@@ -21,9 +21,7 @@ class CreateProductsTable extends Migration
             $table->text('content');
             $table->integer('status');
             $table->integer('ordernum');
-            $table->integer('info_product_id')->unsigned();
             $table->integer('brands_id')->unsigned();
-            $table->foreign('info_product_id')->references('id')->on('info_product')->onDelete('cascade');
             $table->foreign('brands_id')->references('id')->on('brands')->onDelete('cascade');
             $table->timestamps();
         });

@@ -27,6 +27,8 @@ class CreateInfoProductTable extends Migration
             $table->integer('strap_change');
             $table->integer('expiry_date');
             $table->string('address',100);
+            $table->integer('products_id')->unsigned();
+            $table->foreign('products_id')->references('id')->on('products')->onDelete('cascade');
             $table->integer('brands_id')->unsigned();
             $table->foreign('brands_id')->references('id')->on('brands')->onDelete('cascade');
             $table->timestamps();
