@@ -7,6 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <head>
 <title>Visitors an Admin Panel Category Bootstrap Responsive Website Template | Login :: w3layouts</title>
+<base href="{{ asset('public/backend') }}/">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -29,16 +30,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 <div class="log-w3">
 <div class="w3layouts-main">
-	<h2>Sign In Now</h2>
-		<form action="#" method="post">
-			<input type="email" class="ggg" name="Email" placeholder="E-MAIL" required="">
-			<input type="password" class="ggg" name="Password" placeholder="PASSWORD" required="">
+	<h2>Đăng nhập</h2>
+		<form action="{{route('postadminlogin')}}" method="post">
+			@csrf
+			@if(isset($tb))
+			<div><strong style="color: red;font-weight: italic;text-align: center">{{$tb}}</strong></div>
+			@endif
+			<input type="email" class="ggg" name="Email" placeholder="E-MAIL" >
+			@if($errors->has('Email'))
+			
+				<strong style="color: red;font-weight: italic">{{$errors->first('Email')}}</strong>
+			
+			@endif
+			<input type="password" class="ggg" name="Password" placeholder="Mật khẩu" >
+			@if($errors->has('Password'))
+			<div>
+				<strong style="color: red;font-weight: italic">{{$errors->first('Password')}}</strong>
+			</div>
+			@endif
 			<span><input type="checkbox" />Remember Me</span>
-			<h6><a href="#">Forgot Password?</a></h6>
+			<h6><a href="#">Quên mật khẩu?</a></h6>
 				<div class="clearfix"></div>
 				<input type="submit" value="Sign In" name="login">
 		</form>
-		<p>Don't Have an Account ?<a href="registration.html">Create an account</a></p>
+		<p>Bạn chưa có tài khoản ?<a href="registration.html">Tạo tài khoản</a></p>
 </div>
 </div>
 <script src="js/bootstrap.js"></script>

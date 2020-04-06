@@ -15,12 +15,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('backend.page.dashboard');
 });
 
 // Route backend
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
+Route::get('/admin-login','Admin\HomeController@adminlogin');
+Route::post('/admin-login','Admin\HomeController@postadminlogin')->name('postadminlogin');
+Route::get('adminlogout','Admin\HomeController@logout')->name('adminlogout');
+
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin','middleware'=>'adminlogin'], function () {
     //Route::get('dashboard', 'Dashboard@index');
+    Route::get('dashboard','HomeController@index')->name('dashboard');
 });
 
 //Route fontend

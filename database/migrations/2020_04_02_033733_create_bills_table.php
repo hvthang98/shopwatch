@@ -19,7 +19,7 @@ class CreateBillsTable extends Migration
             $table->date('date_order');
             $table->double('total');
             $table->text('note');
-            $table->tinyInteger('status');
+            $table->tinyInteger('status')->default(0);
             $table->string('name', 100);
             $table->string('address', 100);
             $table->string('phone_number',12);

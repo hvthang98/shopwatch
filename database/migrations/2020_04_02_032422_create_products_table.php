@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->double('price');
             $table->double('sellprice');
             $table->text('content');
-            $table->integer('status');
+            $table->integer('status')->default(0);
             $table->integer('ordernum');
             $table->integer('info_product_id')->unsigned();
             $table->integer('brands_id')->unsigned();

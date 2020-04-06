@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->date('birthday');
             $table->string('phone_number', 12)->collation('utf8_unicode_ci');
             $table->string('address', 100)->collation('utf8_unicode_ci');
-            $table->integer('level');
+            $table->integer('level')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
