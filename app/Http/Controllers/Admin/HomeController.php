@@ -37,7 +37,7 @@ class HomeController extends Controller
     function index()
     {
     	return view('backend.page.dashboard');
-    }
+    }//abc
     function logout(){
     	if(Auth::check()){
     	Auth::logout();
