@@ -11,8 +11,4 @@ class Products extends Model
     {
         return $this->hasOne('App\Brands', 'brands_id', 'id');
     }
-    public function info_product()
-    {
-        return $this->hasOne('App\Info_product', 'info_product_id', 'id');
-    }
 }

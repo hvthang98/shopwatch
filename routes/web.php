@@ -19,13 +19,17 @@ Route::get('/', function () {
 });
 
 // Route backend
-Route::get('admin-login','Admin\HomeController@adminlogin');
-Route::post('admin-login','Admin\HomeController@postadminlogin')->name('postadminlogin');
-Route::get('admin-logout','Admin\HomeController@logout')->name('adminlogout');
+Route::get('admin-login', 'Admin\HomeController@adminlogin');
+Route::post('admin-login', 'Admin\HomeController@postadminlogin')->name('postadminlogin');
+Route::get('admin-logout', 'Admin\HomeController@logout')->name('adminlogout');
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin','middleware'=>'adminlogin'], function () {
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'adminlogin'], function () {
     //Route::get('dashboard', 'Dashboard@index');
-    Route::get('dashboard','HomeController@index')->name('dashboard');
+    Route::get('dashboard', 'HomeController@index')->name('dashboard');
+    Route::group(['prefix' => 'product'], function () {
+        Route::get('add', 'ProductController@index')->name('addProduct');
+        Route::get('get-product','ProductController@getProduct')->name('getProduct');
+    });
 });
 
 //Route fontend

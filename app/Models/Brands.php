@@ -11,8 +11,4 @@ class Brands extends Model
     {
         return $this->hasMany('App\Products', 'brands_id', 'id');
     }
-    public function info_product()
-    {
-        return $this->hasMany('App\Info_product', 'brands_id', 'id');
-    }
 }
