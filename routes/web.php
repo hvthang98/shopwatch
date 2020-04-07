@@ -26,9 +26,12 @@ Route::get('admin-logout', 'Admin\HomeController@logout')->name('adminlogout');
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'adminlogin'], function () {
     //Route::get('dashboard', 'Dashboard@index');
     Route::get('dashboard', 'HomeController@index')->name('dashboard');
+    
+    //Product: add new product, show list product, edit product, add and edit image product 
     Route::group(['prefix' => 'product'], function () {
-        Route::get('add', 'ProductController@index')->name('addProduct');
-        Route::get('get-product','ProductController@getProduct')->name('getProduct');
+        Route::get('add', 'ProductController@addProduct')->name('addProduct');
+        Route::post('get-product', 'ProductController@getProduct')->name('getProduct');
+        
     });
 });
 

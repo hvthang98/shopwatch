@@ -6,15 +6,41 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Products;
 use App\Models\Brands;
+use App\Http\Requests\AddProductRequest;
+use App\Models\ImgProduct;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function addProduct()
     {
         $data['brands'] = Brands::all();
         return view('backend.page.add-product', $data);
     }
-    public function getProduct(){
-        echo 'ok';
+    public function getProduct(AddProductRequest $request)
+    {
+        $product = new Products;
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->sellprice = $request->sellprice;
+        if (isset($request->content)) {
+            $product->content = $request->content;
+        }
+        $product->status = $request->status;
+        $product->ordernum = $request->ordernum;
+        $product->brands_id = $request->brands_id;
+        $product->save();
+
+        if (isset($request->image)) {
+            $file = $request->image;
+            $fileName = 'public/upload/' . $file->getClientOriginalName();
+            $img = new ImgProduct;
+            $img->image = $fileName;
+            $img->status = 1;
+            $img->level = 1;
+            $img->products_id = $product->id;
+            $img->save();
+            $file->move('public/upload', $file->getClientOriginalName());
+        }
+        return redirect(route('addProduct'))->with('notify', 'Thêm sản phẩm thành công');
     }
 }

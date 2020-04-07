@@ -5,20 +5,19 @@
         <div class="leftside-navigation">
             <ul class="sidebar-menu" id="nav-accordion">
                 <li>
-                    <a class="active" href="index.html">
+                    <a class="active" href="javascript:;" class="dcjq-parent">
                         <i class="fa fa-dashboard"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
                 <li class="sub-menu">
-                    <a href="javascript:;">
+                    <a href="javascript:;" class="dcjq-parent">
                         <i class="fa fa-book"></i>
-                        <span>UI Elements</span>
+                        <span>Quản lý sản phẩm</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="typography.html">Typography</a></li>
-                        <li><a href="glyphicon.html">glyphicon</a></li>
-                        <li><a href="grids.html">Grids</a></li>
+                        <li><a href="{{ route('addProduct') }}">Thêm sản phẩm mới</a></li>
+                        <li><a href="glyphicon.html">Danh sách sản phẩm</a></li>
                     </ul>
                 </li>
                 <li>
