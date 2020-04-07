@@ -22,7 +22,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="login.html">
+                    <a href=" {{ route('adminlogout') }} ">
                         <i class="fa fa-user"></i>
                         <span>Login Page</span>
                     </a>

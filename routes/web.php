@@ -19,9 +19,9 @@ Route::get('/', function () {
 });
 
 // Route backend
-Route::get('/admin-login','Admin\HomeController@adminlogin');
-Route::post('/admin-login','Admin\HomeController@postadminlogin')->name('postadminlogin');
-Route::get('adminlogout','Admin\HomeController@logout')->name('adminlogout');
+Route::get('admin-login','Admin\HomeController@adminlogin');
+Route::post('admin-login','Admin\HomeController@postadminlogin')->name('postadminlogin');
+Route::get('admin-logout','Admin\HomeController@logout')->name('adminlogout');
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin','middleware'=>'adminlogin'], function () {
     //Route::get('dashboard', 'Dashboard@index');
