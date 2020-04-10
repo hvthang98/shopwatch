@@ -11,12 +11,13 @@ use App\Models\ImgProduct;
 
 class ProductController extends Controller
 {
-    public function addProduct()
+    // function add product
+    public function getAddProduct()
     {
         $data['brands'] = Brands::all();
         return view('backend.page.add-product', $data);
     }
-    public function getProduct(AddProductRequest $request)
+    public function postProduct(AddProductRequest $request)
     {
         $product = new Products;
         $product->name = $request->name;
@@ -42,5 +43,17 @@ class ProductController extends Controller
             $file->move('public/upload', $file->getClientOriginalName());
         }
         return redirect(route('addProduct'))->with('notify', 'Thêm sản phẩm thành công');
+    }
+
+    // function show list product
+    public function getListProduct()
+    {
+        $data['products'] = Products::all();
+        return view('backend.page.list-product', $data);
+    }
+    public function getImageProduct(Request $request)
+    {
+        $data['images']=ImgProduct::where('products_id',$request->id)->get();
+        return view('backend.page.image-product',$data);
     }
 }

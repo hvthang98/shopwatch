@@ -29,9 +29,10 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
     
     //Product: add new product, show list product, edit product, add and edit image product 
     Route::group(['prefix' => 'product'], function () {
-        Route::get('add', 'ProductController@addProduct')->name('addProduct');
-        Route::post('get-product', 'ProductController@getProduct')->name('getProduct');
-        
+        Route::get('add', 'ProductController@getAddProduct')->name('addProduct');
+        Route::post('post-product', 'ProductController@postProduct')->name('postProduct');
+        Route::get('list-product','ProductController@getListProduct')->name('listProduct');
+        Route::get('image-product/{id}','ProductController@getImageProduct')->name('imageProduct');
     });
 });
 

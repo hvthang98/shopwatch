@@ -18,7 +18,7 @@ Thêm sản phẩm mới
                             @include('error.Note')
                         @endif
                         <form class="cmxform form-horizontal " id="" method="POST"
-                            action=" {{ route('getProduct') }} " enctype="multipart/form-data">
+                            action=" {{ route('postProduct') }} " enctype="multipart/form-data">
                             @csrf
                             <div class="form-group ">
                                 <label for="name" class="control-label col-lg-3">Tên sản phẩm</label>

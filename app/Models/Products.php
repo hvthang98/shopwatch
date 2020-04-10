@@ -9,6 +9,10 @@ class Products extends Model
     protected $table='products';
     public function brands()
     {
-        return $this->hasOne('App\Brands', 'brands_id', 'id');
+        return $this->hasOne('App\Models\Brands', 'id', 'brands_id');
+    }
+    public function imgProduct()
+    {
+        return $this->hasOne('App\Models\ImgProduct', 'products_id', 'id');
     }
 }
