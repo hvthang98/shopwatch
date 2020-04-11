@@ -45,15 +45,69 @@ class ProductController extends Controller
         return redirect(route('addProduct'))->with('notify', 'Thêm sản phẩm thành công');
     }
 
-    // function show list product
+    // function show, edit list product
     public function getListProduct()
     {
         $data['products'] = Products::all();
         return view('backend.page.list-product', $data);
     }
+
+    //function get image product
     public function getImageProduct(Request $request)
     {
-        $data['images']=ImgProduct::where('products_id',$request->id)->get();
-        return view('backend.page.image-product',$data);
+        $data['images'] = ImgProduct::where('products_id', $request->id)->orderBy('level', 'desc')->paginate(5);
+        $data['products_id'] = $request->id;
+        return view('backend.page.image-product', $data);
+    }
+    // function add image product
+    public function addImageProuct(Request $request)
+    {
+        if (isset($request->image)) {
+            $file = $request->image;
+            $fileName = 'public/upload/' . $file->getClientOriginalName();
+            $img = new ImgProduct;
+            $img->image = $fileName;
+            $img->status = 1;
+            $img->level = 0;
+            $img->products_id = $request->id;
+            $img->save();
+            $file->move('public/upload', $file->getClientOriginalName());
+            return redirect()->back();
+        } else {
+            return redirect()->back()->withErrors('File not found');
+        }
+    }
+
+    public function delImageProduct(Request $request)
+    {
+        $data = ImgProduct::where('id', $request->id)->delete();
+        return redirect()->back();
+    }
+    // update image product / change status image product
+    public function updateTmageProduct(Request $request)
+    {
+        $table = ImgProduct::find($request->id);
+        if ($request->status == 1) {
+            $table->status = 0;
+            $table->save();
+        } else {
+            $table->status = 1;
+            $table->save();
+        }
+        return redirect()->back();
+    }
+    //change avatar
+    public function changeAvatar(Request $request)
+    {
+        $table = ImgProduct::where('products_id', $request->products_id)->get();
+        foreach ($table as $items) {
+            $items->level = 0;
+            $items->save();
+        }
+
+        $table = ImgProduct::find($request->image_id);
+        $table->level = 1;
+        $table->save();
+        return redirect()->back();
     }
 }

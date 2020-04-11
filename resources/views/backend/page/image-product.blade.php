@@ -4,13 +4,14 @@ Quản lý ảnh
 @endsection
 @section('main-content')
 <style>
-    <blade media|%20(min-width%3A%20768px)%20%7B%0D>.col-sm-3 {
-        width: 30%;
-    }
+    @media (min-width: 768px) {
+        .col-sm-3 {
+            width: 30%;
+        }
 
-    .col-sm-9 {
-        width: 70%;
-    }
+        .col-sm-9 {
+            width: 70%;
+        }
     }
 
     .panel {
@@ -40,6 +41,14 @@ Quản lý ảnh
         height: 210px;
     }
 
+    .btn-success {
+        margin-top: 10px;
+    }
+
+    .btn-danger {
+        margin-left: 5px;
+    }
+
 </style>
 
 <div class="">
@@ -56,9 +65,15 @@ Quản lý ảnh
                     </a>
                 </div>
                 <div>
-                    <form action="" method="post" enctype="multipart/form-data">
+                    @if(count($errors))
+                        @include('error.Note')
+                    @endif
+                    <form action="{{ route('addImageProduct',$products_id) }}" method="post"
+                        enctype="multipart/form-data">
+                        @csrf
                         <div class="form-group">
-                            <input type="file" class="form-control" id="" title="chọn file ảnh">
+                            <input type="file" class="form-control" id="image" name="image" title="chọn file ảnh"
+                                required>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-info">Lưu</button>
@@ -82,7 +97,7 @@ Quản lý ảnh
                                     <tr>
                                         <th style="width:50px;">STT</th>
                                         <th style="width:250px;">Ảnh sản phẩm</th>
-                                        <th style="width:150px;">Trạng thái</th>
+                                        <th style="width:125px;">Trạng thái</th>
                                         <th style="width:150px;">Chú thích</th>
                                         <th>Tùy Chọn</th>
                                     </tr>
@@ -90,14 +105,14 @@ Quản lý ảnh
                                 <tbody>
                                     @if(isset($images))
                                         @php
-                                            $i=0;
+                                            $stt=$images->firstItem()-1;
                                         @endphp
                                         @foreach($images as $image)
                                             @php
-                                                $i++;
+                                                $stt++;
                                             @endphp
                                             <tr>
-                                                <td>{{ $i }}</td>
+                                                <td>{{ $stt }}</td>
                                                 <td>
                                                     <img src="{{ asset($image->image) }}" alt="" class="list-img">
                                                 </td>
@@ -114,11 +129,28 @@ Quản lý ảnh
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a href="" data-toggle="modal" class="btn btn-danger">
+                                                    @if($image->level!=1)
+                                                        @if($image->status==0)
+                                                            <a href="{{ route('updateImageProduct',[$image->id,$image->status]) }}"
+                                                                data-toggle="modal" class="btn btn-primary">
+                                                                Hiện
+                                                            </a>
+                                                        @else
+                                                            <a href="{{ route('updateImageProduct',[$image->id,$image->status]) }}"
+                                                                data-toggle="modal" class="btn btn-primary">
+                                                                Ẩn
+                                                            </a>
+                                                        @endif
+                                                    @endif
+
+                                                    <a href="{{ route('delImageProduct',$image->id) }}"
+                                                        data-toggle="modal" class="btn btn-danger"
+                                                        onclick="confirm('Bạn có chắc chắn muốn xóa ảnh này?')">
                                                         Xóa
                                                     </a>
                                                     @if($image->level!=1)
-                                                        <a href="" data-toggle="modal" class="btn btn-success">
+                                                        <a href="{{ route('changeAvatar',[$image->id,$image->products_id]) }}"
+                                                            data-toggle="modal" class="btn btn-success">
                                                             Chọn làm ảnh đại diện
                                                         </a>
                                                     @endif
@@ -131,14 +163,7 @@ Quản lý ảnh
                         </div>
                         <footer class="panel-footer">
                             <div class="row">
-                                <ul class="pagination pagination-sm m-t-none m-b-none">
-                                    <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
-                                    <li><a href="">1</a></li>
-                                    <li><a href="">2</a></li>
-                                    <li><a href="">3</a></li>
-                                    <li><a href="">4</a></li>
-                                    <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
-                                </ul>
+                                    {{ $images->render() }}
                             </div>
                         </footer>
                     </div>
