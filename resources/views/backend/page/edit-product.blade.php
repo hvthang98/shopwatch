@@ -191,11 +191,11 @@ Chỉnh sửa sản phẩm
                                 <label for="password" class="control-label col-lg-3">Thay dây</label>
                                 <div class="col-lg-6">
                                     <label>
-                                        <input type="radio" name="strap_change" id="" value="1" @if ($info_product->radio==1)
+                                        <input type="radio" name="strap_change" id="" value="1" @if ($info_product->strap_change==1)
                                         {{ 'checked' }}
                                         @endif>
                                         Có
-                                        <input type="radio" name="strap_change" id="" value="0" @if ($info_product->radio==0)
+                                        <input type="radio" name="strap_change" id="" value="0" @if ($info_product->strap_change==0)
                                         {{ 'checked' }}
                                         @endif>
                                         Không
