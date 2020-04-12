@@ -92,7 +92,7 @@ Thêm sản phẩm mới
                                     <button class="btn btn-primary" type="submit">Lưu</button>
                                     <a href="{{ route('addProduct') }}"><button
                                             class="btn btn-default" type="button"
-                                            onclick="return confirm('Bạn có chắc chắn muốn xóa không?');">Xóa</button>
+                                            onclick="loading()">Xóa</button>
                                     </a>
                                 </div>
                             </div>

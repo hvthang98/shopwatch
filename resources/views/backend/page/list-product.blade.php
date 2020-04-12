@@ -56,7 +56,7 @@ Danh sách sản phẩm
                     </thead>
                     <tbody>
                         @php
-                            $i=0;
+                            $i=$products->firstItem()-1;
                         @endphp
                         @foreach($products as $product)
                             @php
@@ -87,13 +87,15 @@ Danh sách sản phẩm
                                         title="Quản lý ảnh">
                                         <i class="fa fa-picture-o style-icon"></i>
                                     </a>
-                                    <a href="" class="a-icon" title="Chỉnh sửa">
+                                    <a href="{{ route('editProduct',$product->id) }}"
+                                        class="a-icon" title="Chỉnh sửa">
                                         <i class="fa fa-pencil-square-o style-icon"></i>
                                     </a>
-                                    <a href="" class="a-icon" title="Xóa"
-                                        onclick="confirm('Bạn có muốn xóa sản phẩm hay không?')">
+                                    <a href="{{ route('delProduct',$product->id) }}"
+                                        class="a-icon" title="Xóa" onclick="loading()">
                                         <i class="fa fa-times style-icon"></i>
                                     </a>
+
                                 </td>
                             </tr>
                         @endforeach
@@ -102,14 +104,7 @@ Danh sách sản phẩm
             </div>
             <footer class="panel-footer">
                 <div class="row">
-                    <ul class="pagination pagination-sm m-t-none m-b-none">
-                        <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
-                        <li><a href="">1</a></li>
-                        <li><a href="">2</a></li>
-                        <li><a href="">3</a></li>
-                        <li><a href="">4</a></li>
-                        <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
-                    </ul>
+                    {{ $products->links() }}
                 </div>
             </footer>
         </div>

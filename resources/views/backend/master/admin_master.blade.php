@@ -69,6 +69,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!--[if lte IE 8]><script language="javascript" type="text/javascript" src"js/flot-chart/excanvas.min.js"></script><![endif]-->
     <script src="js/jquery.scrollTo.js"></script>
     <!--javascrip-->
+    <script>
+        function loading() {
+            if (confirm('Bạn có chắc chắn muốn xóa hay không?') == false) {
+                event.preventDefault();
+                //return false;
+            }
+        }
+    </script>
+
     @yield('js')
     
 </body>

@@ -1,4 +1,4 @@
 <script>
-    var notify="{{ session()->get('notify') }}";
+    var notify="{{ session()->get('notification') }}";
     alert(notify);
 </script>

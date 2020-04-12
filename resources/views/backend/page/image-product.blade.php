@@ -145,7 +145,7 @@ Quản lý ảnh
 
                                                     <a href="{{ route('delImageProduct',$image->id) }}"
                                                         data-toggle="modal" class="btn btn-danger"
-                                                        onclick="confirm('Bạn có chắc chắn muốn xóa ảnh này?')">
+                                                        onclick="loading()">
                                                         Xóa
                                                     </a>
                                                     @if($image->level!=1)

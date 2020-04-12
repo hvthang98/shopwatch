@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\HomeAdmin;
+use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +39,10 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
 
         //show list product
         Route::get('list-product', 'ProductController@getListProduct')->name('listProduct');
+        Route::get('edit-product/{id}','ProductController@getEditProduct')->name('editProduct');
+        Route::get('del-product/{id}','ProductController@delProduct')->name('delProduct');
+        Route::get('update-product/{id}','ProductController@updateProduct')->name('updateProduct');
+        Route::get('update-info-product/{id}','ProductController@updateInfoProduct')->name('updateInfoProduct');
 
         //edit image product
         Route::get('image-product/{id}', 'ProductController@getImageProduct')->name('imageProduct');
