@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +30,7 @@ class HomeController extends Controller
 		$password = $request->Password;
 		$result = ['email' => $mail, 'password' => $password, 'level' => '1'];
 		if (Auth::attempt($result)) {
-
+			
 			return redirect('admin/dashboard');
 		} else {
 			return view('backend.page.admin-login', ['tb' => 'Sai thông tin đăng nhập']);

@@ -40,6 +40,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="js/morris.js"></script>
     <script src="../editor/ckeditor/ckeditor.js"></script>
     <script src="../editor/ckfinder/ckfinder.js"></script>
+    
+    
 </head>
 
 <body>
@@ -71,5 +73,5 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!--javascrip-->
     @yield('js')
 </body>
-
+<script> CKEDITOR.replace('editor1'); </script>
 </html>
