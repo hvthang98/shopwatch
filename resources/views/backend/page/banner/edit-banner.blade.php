@@ -31,15 +31,18 @@
                                 <div class="form-group">
                                     <label for="mota">Trạng thái</label>
                                     <select name="edit_banner_status" class="form-control input-sm m-bot15">
-                                        <option value="0">Ẩn</option>
-                                        <option value="1">Hiện</option>
+                                        <option value="0" @if ($ban->status==0)
+                                            {{ 'selected' }}
+                                        @endif>Ẩn</option>
+                                        <option value="1" @if ($ban->status==1)
+                                            {{ 'selected' }}
+                                        @endif>Hiện</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="banner_ordernum">Order num</label>
                                     <input type="text" name="edit_banner_ordernum" class="form-control" id="banner_ordernum" value="{{$ban->ordernum}}">
                                 </div>
-                               
                                 <button type="submit" name="edit_banner" class="btn btn-info">Cập nhật banner</button>
                             </form>
                             </div>

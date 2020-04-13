@@ -17,15 +17,15 @@
                                 @endif()
                                 <div class="form-group">
                                     <label for="product">Tên Banner</label>
-                                    <input type="text" name="banner_name" class="form-control" id="" placeholder="Nhập tên banner ">
+                                    <input type="text" name="banner_name" class="form-control" id="" placeholder="Nhập tên banner " required>
                                 </div>
                                 <div class="form-group">
                                     <label for="product">Link Banner</label>
-                                    <input type="text" name="banner_link" class="form-control" id="banner" >
+                                    <input type="text" name="banner_link" class="form-control" id="banner">
                                 </div>
                                 <div >
                                     <label for="mota">Hình ảnh Banner</label>
-                                    <input  type="file" name="banner_image"   >
+                                    <input  type="file" name="banner_image" required >
                                     
                                 </div>
                                 <div class="form-group">
@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="mota">Odernum</label>
-                                    <input type="text" name="banner_odernum" class="form-control" id="mota" placeholder="">
+                                    <input type="number" min=0 name="banner_odernum" class="form-control" id="mota" placeholder="" required>
                                     
                                 </div>
                                 
