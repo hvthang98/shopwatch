@@ -64,6 +64,14 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
         Route::get('change-avatar/{image_id}/{products_id}','ProductController@changeAvatar')->name('changeAvatar');
         
     });
+    Route::group(['prefix' => 'brand'], function () {
+        Route::get('add','BrandController@getAddBrand')->name('addBrand');
+        Route::post('post','BrandController@postBrand')->name('postBrand');
+        Route::get('list','BrandController@getListBrand')->name('listBrand');
+        Route::get('edit/{id}','BrandController@getEditBrand')->name('editBrand');
+        Route::get('update/{id}','BrandController@updateBrand')->name('updateBrand');
+        Route::get('delete/{id}','BrandController@delBrand')->name('deleteBrand');
+    });
 });
 
 //Route fontend
