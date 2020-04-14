@@ -16,6 +16,7 @@ Thêm thương hiệu mới
                         <form class="cmxform form-horizontal " id="" method="post"
                             action="{{ route('postBrand') }}">
                             @csrf
+                            @include('error.Note')
                             <div class="form-group ">
                                 <label for="name" class="control-label col-lg-3">Tên thương hiệu mới</label>
                                 <div class="col-lg-6">

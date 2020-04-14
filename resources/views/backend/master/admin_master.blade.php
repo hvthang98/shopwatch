@@ -78,6 +78,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 //return false;
             }
         }
+        function out() {
+            if (confirm('Bạn có chắc chắn muốn thoát không?') == false) {
+                event.preventDefault();
+                //return false;
+            }
+        }
     </script>
 
     @yield('js')
