@@ -6,7 +6,7 @@ use Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Banners;
-
+use App\Http\Requests\BannerRequest;
 session_start();
 class BannerController extends Controller
 {
@@ -15,13 +15,9 @@ class BannerController extends Controller
     {
         return view('backend.page.banner.add-banner');
     }
-    function post_add_banner(Request $request)
+    function post_add_banner(BannerRequest $request)
     {
-        $request->validate(
-            ['banner_name' => 'required', 'banner_image' => 'required|image', 'banner_odernum' => 'required'],
-
-            []
-        );
+        
 
         $banner = new Banners();
         $banner->name = $request->banner_name;
@@ -39,7 +35,7 @@ class BannerController extends Controller
         $banner->save();
         // $request->session()->flash('status', 'Đã thêm mới thành công!');
 
-        return redirect('admin/all-banner')->with('status', 'Đã thêm mới thành công!');
+        return redirect('admin/banner/all-banner')->with('notification', 'Đã thêm mới thành công!');
     }
     function all_banner()
     {
@@ -51,14 +47,14 @@ class BannerController extends Controller
         $banner = Banners::find($id);
         $banner->status = 1;
         $banner->save();
-        return redirect('admin/all-banner');
+        return redirect('admin/banner/all-banner');
     }
     function unactive_banner($id)
     {
         $banner = Banners::find($id);
         $banner->status = 0;
         $banner->save();
-        return redirect('admin/all-banner');
+        return redirect('admin/banner/all-banner');
     }
     function edit_banner($id)
     {
@@ -83,11 +79,11 @@ class BannerController extends Controller
             $banner->image = $file_name;
         }
         $banner->save();
-        return redirect('admin/all-banner')->with('status', 'Đã cập nhật thành công!');
+        return redirect('admin/banner/all-banner')->with('notification', 'Đã cập nhật thành công!');
     }
     function delete_banner($id)
     {
         Banners::find($id)->delete();
-        return redirect('admin/all-banner')->with('status', 'Đã xóa thành công!');
+        return redirect('admin/banner/all-banner')->with('notification', 'Đã xóa thành công!');
     }
 }

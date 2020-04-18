@@ -52,5 +52,7 @@
         </table>
     </div>
 </div>
-
+@if(session()->has('notification'))
+@include('notify.note')
+@endif
 @endsection

@@ -48,10 +48,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<strong style="color: red;font-weight: italic">{{$errors->first('Password')}}</strong>
 			</div>
 			@endif
-			<span><input type="checkbox" />Remember Me</span>
+			<span><input type="checkbox" />Nhớ mật khẩu</span>
 			<h6><a href="#">Quên mật khẩu?</a></h6>
 				<div class="clearfix"></div>
-				<input type="submit" value="Sign In" name="login">
+				<input type="submit" value="Đăng nhập" name="login">
 		</form>
 		<p>Bạn chưa có tài khoản ?<a href="registration.html">Tạo tài khoản</a></p>
 </div>

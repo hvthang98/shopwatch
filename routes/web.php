@@ -27,20 +27,34 @@ Route::get('admin-logout', 'Admin\HomeController@logout')->name('adminlogout');
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'adminlogin'], function () {
     //Route::get('dashboard', 'Dashboard@index');
     Route::get('dashboard', 'HomeController@index')->name('dashboard');
-
-    //Banner
-    Route::get('/add-banner', 'BannerController@add_banner')->name('add-banner');
-    Route::post('/add-banner', 'BannerController@post_add_banner')->name('post_add_banner');
-    Route::get('/all-banner', 'BannerController@all_banner')->name('all-banner');
-    Route::get('/sta/{id}', 'BannerController@active_banner')->name('active_banner');
-    Route::get('/sta1/{id}', 'BannerController@unactive_banner')->name('unactive_banner');
-    Route::get('/edit-banner/{id}', 'BannerController@edit_banner')->name('edit-banner');
-    Route::post('/edit-banner/{id}', 'BannerController@post_edit_banner')->name('edit-banner');
-    Route::get('/delete-banner/{id}', 'BannerController@delete_banner')->name('delete-banner');
     Route::get('/', function () {
         return redirect(route('dashboard'));
     });
 
+    //Category
+    Route::group(['prefix'=>'category'],function(){
+        Route::get('add-category','CategoryController@add_category')->name('add-category');
+        Route::post('add-category','CategoryController@post_add_category')->name('post-add-category');
+        Route::get('all-category','CategoryController@all_category')->name('all-category');
+        Route::get('/edit-category/{id}', 'CategoryController@edit_category')->name('edit-category');
+        Route::post('edit-category/{id}', 'CategoryController@post_edit_category')->name('post-edit-category');
+        Route::get('delete-category/{id}','CategoryController@delete_category')->name('delete-category');
+        Route::get('active/{id}','CategoryController@active_category')->name('active-category');
+        Route::get('unactive/{id}','CategoryController@unactive_category')->name('unactive-category');
+    });
+    //Banner
+    Route::group(['prefix'=>'banner'],function(){
+        Route::get('/add-banner', 'BannerController@add_banner')->name('add-banner');
+        Route::post('/add-banner', 'BannerController@post_add_banner')->name('post_add_banner');
+        Route::get('/all-banner', 'BannerController@all_banner')->name('all-banner');
+        Route::get('/status/{id}', 'BannerController@active_banner')->name('active_banner');
+        Route::get('/status1/{id}', 'BannerController@unactive_banner')->name('unactive_banner');
+        Route::get('/edit-banner/{id}', 'BannerController@edit_banner')->name('edit-banner');
+        Route::post('/edit-banner/{id}', 'BannerController@post_edit_banner')->name('edit-banner');
+        Route::get('/delete-banner/{id}', 'BannerController@delete_banner')->name('delete-banner');
+    });
+    
+    
     //Product: add new product, show list product, edit product, add and edit image product 
     Route::group(['prefix' => 'product'], function () {
         // add product

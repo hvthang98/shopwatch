@@ -10,6 +10,16 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
+                 <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Quản lý danh mục sản phẩm</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="{{ route('add-category') }}">Thêm danh mục sản phẩm</a></li>
+                        <li><a href="{{ route('all-category') }}">Danh sách danh mục sản phẩm</a></li>
+                    </ul>
+                </li>
                 <li class="sub-menu">
                     <a href="">
                         <i class="fa fa-book"></i>
@@ -23,11 +33,11 @@
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
-                        <span>Banner</span>
+                        <span>Quản lý banner</span>
                     </a>
                     <ul class="sub">
                         <li><a href="{{ route('add-banner') }}">Thêm banners</a></li>
-                        <li><a href="{{ route('all-banner') }}">Quản lý Banners</a></li>
+                        <li><a href="{{ route('all-banner') }}">Danh sách Banners</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">

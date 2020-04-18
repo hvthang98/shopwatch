@@ -5,27 +5,16 @@ use Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Requests\LoginRequest;
 class HomeController extends Controller
 {
 	function adminlogin()
 	{
 		return view('backend.page.admin-login');
 	}
-	function postadminlogin(Request $request)
+	function postadminlogin(LoginRequest $request)
 	{
-		// $request->validate(
-		// 	[
-		// 		'Email' => 'required|email',
-		// 		'Password' => 'required|min:6'
-		// 	],
-		// 	[
-		// 		'Email.required' => 'Email không được để trống',
-		// 		'Email.email' => 'Không đúng định dạng email',
-		// 		'Password.required' => 'Password không được để trống',
-		// 		'Password.min' => 'Mật khẩu không được nhỏ hơn 6 ký tự'
-		// 	]
-		// );
+		
 		$mail = $request->Email;
 		$password = $request->Password;
 		$result = ['email' => $mail, 'password' => $password, 'level' => '1'];
