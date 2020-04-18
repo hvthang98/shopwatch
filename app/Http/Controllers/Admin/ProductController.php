@@ -25,9 +25,8 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->price = $request->price;
         $product->sellprice = $request->sellprice;
-        if (isset($request->content)) {
-            $product->content = $request->content;
-        }
+        $product->quantily= $request->quantily;
+        $product->content = $request->content;
         $product->status = $request->status;
         $product->ordernum = $request->ordernum;
         $product->brands_id = $request->brands_id;
@@ -75,6 +74,7 @@ class ProductController extends Controller
         $table->name = $request->name;
         $table->price = $request->price;
         $table->sellprice = $request->sellprice;
+        $table->quantily = $request->quantily;
         $table->brands_id = $request->brands_id;
         $table->content = $request->content;
         $table->ordernum = $request->ordernum;

@@ -45,10 +45,11 @@ Danh sách sản phẩm
                     <thead>
                         <tr>
                             <th>STT</th>
-                            <th style="width:400px;">Tên sản phẩm</th>
+                            <th style="width:320px;">Tên sản phẩm</th>
                             <th style="width:150px;">Giá sản phẩm</th>
                             <th style="width:150px;">Giá khuyến mãi</th>
-                            <th style="width:160px;">Ảnh sản phẩm</th>
+                            <th style="width:100px;">Số lượng</th>
+                            <th style="width:150px;">Ảnh sản phẩm</th>
                             <th style="width:150px;">Thương hiệu</th>
                             <th style="width:100px;">Trạng thái</th>
                             <th style="width:150px;">Tùy Chọn</th>
@@ -67,6 +68,7 @@ Danh sách sản phẩm
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->price }}</td>
                                 <td>{{ $product->sellprice }}</td>
+                                <td>{{ $product->quantily }}</td>
                                 <td>
                                     @if(
                                         isset($product->imgProduct->image)&&($product->imgProduct->level==1)

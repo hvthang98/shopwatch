@@ -45,6 +45,14 @@ Thêm sản phẩm mới
                                 </div>
                             </div>
                             <div class="form-group ">
+                                <label for="sellprice" class="control-label col-lg-3">Số lượng</label>
+                                <div class="col-lg-6">
+                                    <input class="form-control " id="quantily" name="quantily" type="number" min="0"
+                                        required oninvalid="this.setCustomValidity('Không được để trống')"
+                                        oninput="this.setCustomValidity('')">
+                                </div>
+                            </div>
+                            <div class="form-group ">
                                 <label for="" class="control-label col-lg-3">Ảnh đại diện</label>
                                 <div class="col-lg-6">
                                     <input class="form-control " id="image" name="image" type="file">
