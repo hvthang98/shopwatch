@@ -76,3 +76,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
 });
 
 //Route fontend
+Route::get('test', function () {
+    return view('fontend.master.master');
+});
