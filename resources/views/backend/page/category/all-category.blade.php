@@ -14,36 +14,38 @@
         <table class="table table-striped b-t b-light">
 
             <tr>
-                <th >STT</th>
-                <th >Tên danh mục</th>
-                <th >Trạng thái</th>
-                
+                <th>STT</th>
+                <th>Tên danh mục</th>
+                <th>Trạng thái</th>
+                <th>Tùy chọn </th>
             </tr>
-            
-                @foreach($categories as $cat)
-                    <tr>
-                        <td>{{ $cat->id }}</td>
-                        <td>{{ $cat->name }}</td>
-                        <td>
-                            @if($cat->status==0)
-                            <a href="{{route('active-category',['id'=>$cat->id])}}">Ẩn</a>
-                            @else 
-                            <a href="{{route('unactive-category',['id'=>$cat->id])}}">Hiện</a>
-                            @endif
-                        </td>
-                        
-                        
-                        <td>
+
+            @foreach($categories as $cat)
+                <tr>
+                    <td>{{ $cat->id }}</td>
+                    <td>{{ $cat->name }}</td>
+                    <td>
+                        @if($cat->status==0)
                             <a
-                                href="{{route('edit-category',['id'=>$cat->id])}}"><i
-                                    style="font-size: 20px" class="fa fa-pencil text-success text-active"></i></a>
-                            <a href="{{route('delete-category',['id'=>$cat->id])}}"
-                                onclick="return confirm('Bạn có chắc chắn muốn xóa ?');"><i class="fa fa-trash-o"
-                                    style="font-size:24px"></i></a>
-                        </td>
-                    </tr>
-                @endforeach
-        
+                                href="{{ route('active-category',['id'=>$cat->id]) }}">Ẩn</a>
+                        @else
+                            <a
+                                href="{{ route('unactive-category',['id'=>$cat->id]) }}">Hiện</a>
+                        @endif
+                    </td>
+
+
+                    <td>
+                        <a
+                            href="{{ route('edit-category',['id'=>$cat->id]) }}"><i
+                                style="font-size: 20px" class="fa fa-pencil text-success text-active"></i></a>
+                        <a href="{{ route('delete-category',['id'=>$cat->id]) }}"
+                            onclick="return confirm('Bạn có chắc chắn muốn xóa ?');"><i class="fa fa-trash-o"
+                                style="font-size:24px"></i></a>
+                    </td>
+                </tr>
+            @endforeach
+
         </table>
     </div>
 </div>

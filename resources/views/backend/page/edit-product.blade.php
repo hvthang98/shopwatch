@@ -41,6 +41,13 @@ Chỉnh sửa sản phẩm
                                 </div>
                             </div>
                             <div class="form-group ">
+                                <label for="sellprice" class="control-label col-lg-3">Số lượng</label>
+                                <div class="col-lg-6">
+                                    <input class="form-control " id="quantily" name="quantily" type="number" min=0
+                                        value="{{ $product->quantily }}">
+                                </div>
+                            </div>
+                            <div class="form-group ">
                                 <label for="" class="control-label col-lg-3">Thương hiệu</label>
                                 <div class="col-lg-6">
                                     <select class="form-control m-bot15" name="brands_id">
