@@ -55,6 +55,17 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
     });
     
     
+    //User
+    Route::group(['prefix'=>'user'],function(){
+        Route::get('add-user','UserController@add_user')->name('add-user');
+        Route::post('add-user','UserController@post_add_user')->name('post-add-user');
+        Route::get('all-user','UserController@all_user')->name('all-user');
+        Route::get('active-admin/{id}','UserController@active_admin')->name('active-admin');
+        Route::get('unactive-admin/{id}','UserController@unactive_admin')->name('unactive-admin');
+        Route::get('edit-user/{id}','UserController@edit_user')->name('edit-user');
+        Route::post('post-edit-user/{id}','UserController@post_edit_user')->name('post-edit-user');
+        Route::get('delete-user/{id}','UserController@delete_user')->name('delete');
+    });
     //Product: add new product, show list product, edit product, add and edit image product 
     Route::group(['prefix' => 'product'], function () {
         // add product
