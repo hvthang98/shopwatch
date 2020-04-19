@@ -10,6 +10,7 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
+                
                 <li class="sub-menu">
                     <a href="">
                         <i class="fa fa-book"></i>
@@ -18,6 +19,16 @@
                     <ul class="sub">
                         <li><a href="{{ route('addProduct') }}">Thêm sản phẩm mới</a></li>
                         <li><a href="{{ route('listProduct') }}">Danh sách sản phẩm</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="">
+                        <i class="fa fa-book"></i>
+                        <span>Quản lý người dùng</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="{{ route('add-user') }}">Thêm người dùng</a></li>
+                        <li><a href="{{route('all-user')}}">Danh sách người dùng</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">

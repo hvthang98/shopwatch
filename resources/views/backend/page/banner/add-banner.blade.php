@@ -11,9 +11,7 @@
                                 <form role="form" action="{{route('post_add_banner')}}" method="post" enctype="multipart/form-data">
                                     @csrf
                         		@if(count($errors->all())>0)
-                                <div>
-                                <h4 align="center" style="color: red">Thông tin không hợp lệ</h4>
-                                </div>
+                                    @include('error.Note')
                                 @endif()
                                 <div class="form-group">
                                     <label for="product">Tên Banner</label>
