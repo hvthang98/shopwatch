@@ -98,6 +98,12 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
         Route::get('update/{id}', 'BrandController@updateBrand')->name('updateBrand');
         Route::get('delete/{id}', 'BrandController@delBrand')->name('deleteBrand');
     });
+    // bill
+    Route::group(['prefix' => 'bill'], function () {
+        Route::get('list','BillController@getListBill')->name('listBill');
+        Route::get('detail/{id}','BillController@getDetailBill')->name('detailBill');
+        Route::post('update/{id}','BillController@updateBill')->name('updateBill');
+    });
 });
 
 //Route fontend
