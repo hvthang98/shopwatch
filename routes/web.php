@@ -110,3 +110,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
 Route::get('test', function () {
     return view('fontend.master.master');
 });
+Route::group(['namespace' => 'FontEnd'], function () {
+    Route::get('product-detail/{id}','ProductDetailController@getProductDetail')->name('getProductDetail');
+});

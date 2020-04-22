@@ -1,35 +1,35 @@
+@extends('fontend.master.master')
+@section('title')
+
+@endsection
+@section('main-content')
 <div class="mens">
     <div class="main">
         <div class="wrap">
-            <ul class="breadcrumb breadcrumb__t"><a class="home" href="#">Home</a> / <a href="#">Dolor sit amet</a>
+            <ul class="breadcrumb breadcrumb__t"><a class="home" href="">Home</a> / <a href="#">Dolor sit amet</a>
                 / Lorem ipsum dolor sit amet</ul>
             <div class="cont span_2_of_3">
                 <div class="grid images_3_of_2">
                     <ul id="etalage">
-                        <li>
-                            <a href="optionallink.html">
-                                <img class="etalage_thumb_image" src="images/s-img.jpg" class="img-responsive" />
-                                <img class="etalage_source_image" src="images/s1.jpg" class="img-responsive" title="" />
-                            </a>
-                        </li>
-                        <li>
-                            <img class="etalage_thumb_image" src="images/s-img1.jpg" class="img-responsive" />
-                            <img class="etalage_source_image" src="images/s2.jpg" class="img-responsive" title="" />
-                        </li>
-                        <li>
-                            <img class="etalage_thumb_image" src="images/s-img2.jpg" class="img-responsive" />
-                            <img class="etalage_source_image" src="images/s3.jpg" class="img-responsive" />
-                        </li>
-                        <li>
-                            <img class="etalage_thumb_image" src="images/s4.jpg" class="img-responsive" />
-                            <img class="etalage_source_image" src="images/s-img3.jpg" class="img-responsive" />
-                        </li>
+                        @if(isset($products->imageProduct))
+                            @foreach($products->imageProduct as $image)
+                                <li>
+                                    <a href="optionallink.html">
+                                        <img class="etalage_thumb_image" src="{{ asset($image->image) }}"
+                                            class="img-responsive" />
+                                        <img class="etalage_source_image" src="{{ asset($image->image) }}"
+                                            class="img-responsive" title="" />
+                                    </a>
+                                </li>
+                            @endforeach
+                        @endif
                     </ul>
                     <div class="clearfix"></div>
                 </div>
                 <div class="desc1 span_3_of_2">
-                    <h3 class="m_3">Lorem ipsum dolor sit amet</h3>
-                    <p class="m_5">Rs. 888 <span class="reducedfrom">Rs. 999</span>
+                    <h3 class="m_3">{{ $products->name }}</h3>
+                    <p class="m_5">{{ number_format($products->price) }}&nbsp;<span
+                            class="reducedfrom">{{ number_format($products->sellprice) }}</span>
                     </p>
                     <div class="btn_form">
                         <form>
@@ -42,30 +42,21 @@
                 <div class="content-product">
                     <h4>Giới thiệu sản phẩm</h4>
                     <p>
-                        good
+                        {!! $products->content !!}
                     </p>
                 </div>
                 <div class="clients">
                     <h3 class="m_3">Những sản phẩm liên quan</h3>
                     <ul id="flexiselDemo3">
-                        <li><img src="images/s5.jpg" /><a href="#">Category</a>
-                            <p>Rs 600</p>
-                        </li>
-                        <li><img src="images/s6.jpg" /><a href="#">Category</a>
-                            <p>Rs 850</p>
-                        </li>
-                        <li><img src="images/s7.jpg" /><a href="#">Category</a>
-                            <p>Rs 900</p>
-                        </li>
-                        <li><img src="images/s8.jpg" /><a href="#">Category</a>
-                            <p>Rs 550</p>
-                        </li>
-                        <li><img src="images/s9.jpg" /><a href="#">Category</a>
-                            <p>Rs 750</p>
-                        </li>
+                        @foreach($listProducts as $list)
+                            {{ $list->avatar->image }}
+                            <li><img src="{{ asset($list->avatar->image) }}" /><a href="#">{{ $list->name }}</a>
+                                <p>{{ $list->price }}</p>
+                            </li>
+                        @endforeach
                     </ul>
                     <script type="text/javascript">
-                        $(window).load(function() {
+                        $(window).load(function () {
                             $("#flexiselDemo1").flexisel();
                             $("#flexiselDemo2").flexisel({
                                 enableResponsiveBreakpoints: true,
@@ -109,6 +100,7 @@
                             });
 
                         });
+
                     </script>
                     <script type="text/javascript" src="js/jquery.flexisel.js"></script>
                 </div>
@@ -120,63 +112,71 @@
                         <table class="technical-information">
                             <tr>
                                 <td class="td1">Đường kính mặt</td>
-                                <td>43mm</td>
+                                <td>{{ $products->infoProduct->diameter }} <span>mm</span></td>
                             </tr>
                             <tr>
                                 <td class="td1">Loại máy</td>
-                                <td>Năng lương ảnh sáng</td>
+                                <td>{{ $products->infoProduct->type }}</td>
                             </tr>
                             <tr>
                                 <td class="td1">Chất liệu mặt kính</td>
-                                <td>Kính khoáng(Mineral)</td>
+                                <td>{{ $products->infoProduct->glass_material }}</td>
                             </tr>
                             <tr>
                                 <td class="td1">Chất liệu khung viền</td>
-                                <td>Thép </td>
+                                <td>{{ $products->infoProduct->frames }}</td>
                             </tr>
                             <tr>
                                 <td class="td1">Chống nước</td>
-                                <td>10 ATM - Rửa tay, đi mưa,tắm , bơi </td>
+                                <td>{{ $products->infoProduct->waterproof }}</td>
                             </tr>
                             <tr>
                                 <td class="td1">Độ dày mặt</td>
-                                <td>Dày 11.8mm</td>
+                                <td>{{ $products->infoProduct->thickness }} <span>mm</span></td>
                             </tr>
                             <tr>
                                 <td class="td1">Chất liệu dây</td>
-                                <td>Kim loại</td>
+                                <td>{{ $products->infoProduct->strap_material }}</td>
                             </tr>
-                            <tr>
+                            {{-- <tr>
                                 <td class="td1">Tiện ích</td>
-                                <td>Lịch ngày</td>
-                            </tr>
+                                <td>{{ $products->infoProduct->frames }}</td>
+                            </tr> --}}
                             <tr>
                                 <td class="td1">Độ rộng dây</td>
-                                <td>22</td>
+                                <td>{{ $products->infoProduct->strap_width }} <span>mm</span></td>
                             </tr>
                             <tr>
                                 <td class="td1">Thay dây</td>
                                 <td>Có</td>
                             </tr>
-                            <tr>
+                            {{-- <tr>
                                 <td class="td1">Nguồn năng lượng</td>
-                                <td>pin</td>
-                            </tr>
+                                <td>{{ $products->infoProduct->frames }}</td>
+                            </tr> --}}
                             <tr>
                                 <td class="td1">Thời gian sử dụng pin</td>
-                                <td>Khoảng 5 năm</td>
+                                <td>{{ $products->infoProduct->expiry_date }} <span>giờ</span></td>
                             </tr>
                             <tr>
                                 <td class="td1">Đối tượng sử dụng</td>
-                                <td>Nam/Nữ</td>
+                                <td>
+                                    @if($products->infoProduct->gender==0)
+                                        {{ 'Nữ' }}
+                                    @elseif($products->infoProduct->gender==1)
+                                        {{ 'Nam' }}
+                                    @elseif($products->infoProduct->gender==10)
+                                        {{ 'Nam/Nữ' }}
+                                    @endif
+                                </td>
                             </tr>
                             <tr>
                                 <td class="td1">Thương hiệu</td>
-                                <td>Nhật Bản</td>
+                                <td>{{ $products->brands->name }}</td>
                             </tr>
                             <tr>
                                 <td class="td1">Nơi sản xuất</td>
-                                <td>Thái Lan</td>
+                                <td>{{ $products->infoProduct->address }}</td>
                             </tr>
                         </table>
                     </div>
@@ -196,7 +196,8 @@
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">John Doe <small><i>Posted on February 19, 2016</i></small></h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua.</p>
                         <div class="reply">Trả lời<small>&emsp;Có 2 trả lời</small>
                             <div class="detail-comment">
                                 <div class="form-group">
@@ -209,8 +210,10 @@
                                         <img src="img_avatar1.png" class="media-object" style="width:45px">
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="media-heading">John Doe <small><i>Posted on February 19, 2016</i></small></h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <h4 class="media-heading">John Doe <small><i>Posted on February 19,
+                                                    2016</i></small></h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                            tempor incididunt ut labore et dolore magna aliqua.</p>
 
 
                                     </div>
@@ -220,8 +223,10 @@
                                         <img src="img_avatar1.png" class="media-object" style="width:45px">
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="media-heading">John Doe <small><i>Posted on February 19, 2016</i></small></h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <h4 class="media-heading">John Doe <small><i>Posted on February 19,
+                                                    2016</i></small></h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                            tempor incididunt ut labore et dolore magna aliqua.</p>
                                     </div>
                                 </div>
                             </div>
@@ -235,7 +240,8 @@
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading">John Doe <small><i>Posted on February 19, 2016</i></small></h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua.</p>
                         <div class="reply">Trả lời<small>&emsp;Có 2 trả lời</small>
                             <div class="detail-comment">
                                 <div class="form-group">
@@ -248,8 +254,10 @@
                                         <img src="img_avatar1.png" class="media-object" style="width:45px">
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="media-heading">John Doe <small><i>Posted on February 19, 2016</i></small></h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <h4 class="media-heading">John Doe <small><i>Posted on February 19,
+                                                    2016</i></small></h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                            tempor incididunt ut labore et dolore magna aliqua.</p>
 
                                     </div>
                                 </div>
@@ -258,8 +266,10 @@
                                         <img src="img_avatar1.png" class="media-object" style="width:45px">
                                     </div>
                                     <div class="media-body">
-                                        <h4 class="media-heading">John Doe <small><i>Posted on February 19, 2016</i></small></h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                        <h4 class="media-heading">John Doe <small><i>Posted on February 19,
+                                                    2016</i></small></h4>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                            tempor incididunt ut labore et dolore magna aliqua.</p>
                                     </div>
                                 </div>
                             </div>
@@ -270,3 +280,5 @@
             <div class="clear"></div>
         </div>
     </div>
+</div>
+@endsection

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Free Leoshop Website Template | Home :: w3layouts</title>
+    <title>@yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<base href="{{ asset('public/fontend')}}/">
@@ -80,7 +80,7 @@
 
 <body>
 	@include('fontend.master.header')
-	@include('fontend.page.home')
+	@yield('main-content')
     @include('fontend.master.footer')
 </body>
 

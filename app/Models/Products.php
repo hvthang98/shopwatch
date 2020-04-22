@@ -11,8 +11,16 @@ class Products extends Model
     {
         return $this->hasOne('App\Models\Brands', 'id', 'brands_id');
     }
-    public function imgProduct()
+    public function imageProduct()
     {
-        return $this->hasOne('App\Models\ImgProduct', 'products_id', 'id');
+        return $this->hasMany('App\Models\ImgProduct', 'products_id', 'id');
+    }
+    public function infoProduct()
+    {
+        return $this->hasOne('App\Models\Info_product', 'products_id', 'id');
+    }
+    public function avatar()
+    {
+        return $this->hasOne('App\Models\ImgProduct', 'products_id', 'id')->where('level',1);
     }
 }
