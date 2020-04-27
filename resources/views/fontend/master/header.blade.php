@@ -20,9 +20,14 @@
         </div> -->
         <div class="cssmenu">
             <ul>
-                <li class="active"><a href="login.html">Liên hệ</a></li> |
-                <li><a href="login.html">Đăng nhập</a></li> |
-                <li><a href="register.html">Đăng ký</a></li>
+                @if(Auth::check())
+                    <li class="active">Xin chào {{Auth::user()->name}}</li> 
+                    <li><a href="{{route('user-logout')}}" onclick="return confirm('Bạn muốn đăng xuất ?');">Đăng xuất</a></li>
+                @else
+                    <li class="active"><a href="login.html">Liên hệ</a></li> 
+                    <li><a href="{{route('user-login')}}">Đăng nhập</a></li> 
+                    <li><a href="{{route('user-sign-up')}}">Đăng ký</a></li>
+                @endif
             </ul>
         </div>
         <div class="clear"></div>
@@ -41,27 +46,15 @@
                         <div class="megapanel">
                             <div class="col1">
                                 <div class="h_nav">
-                                    <h4>Contact Lenses</h4>
+                                   
                                     <ul>
-                                        <li><a href="womens.html">Daily-wear soft lenses</a></li>
-                                        <li><a href="womens.html">Extended-wear</a></li>
-                                        <li><a href="womens.html">Lorem ipsum </a></li>
-                                        <li><a href="womens.html">Planned replacement</a></li>
+                                        @foreach($brand as $br)
+                                        <li><a href="{{route('brand',['id'=>$br->id])}}">{{$br->name}}</a></li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col1">
-                                <div class="h_nav">
-                                    <h4>Eye Glasses</h4>
-                                    <ul>
-                                        <li><a href="womens.html">Anti Reflective</a></li>
-                                        <li><a href="womens.html">Aspheric</a></li>
-                                        <li><a href="womens.html">Bifocal</a></li>
-                                        <li><a href="womens.html">Hi-index</a></li>
-                                        <li><a href="womens.html">Progressive</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                            
                         </div>
                     </li>
                     <li><a class="color5" href="#">Nam</a>

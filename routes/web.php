@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\HomeAdmin;
 use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
-
+use App\Models\Products;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('backend.page.dashboard');
-});
+
 
 // Route backend
 Route::get('admin-login', 'Admin\HomeController@adminlogin');
@@ -104,3 +102,12 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
 Route::get('test', function () {
     return view('fontend.master.master');
 });
+//Trang chủ
+Route::get('/','Fontend\HomeController@index')->name('index');
+
+Route::get('/user-login','Fontend\UserController@user_login')->name('user-login');
+Route::post('/post-user-login','Fontend\UserController@post_user_login')->name('post-user-login');
+Route::get('/user-logout','Fontend\UserController@user_logout')->name('user-logout');
+Route::get('/user-sign-up','Fontend\UserController@user_signup')->name('user-sign-up');
+Route::post('/post-user-sign-up','Fontend\UserController@post_user_signup')->name('post-user-signup');
+Route::get('/brand/{id}','Fontend\BrandController@product_of_brand')->name('brand');

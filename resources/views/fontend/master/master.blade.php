@@ -80,8 +80,11 @@
 
 <body>
 	@include('fontend.master.header')
-	@include('fontend.page.home')
+	@yield('content')
     @include('fontend.master.footer')
 </body>
+@if(session('notification'))
+    @include('notify.note')
+@endif
 
 </html>
