@@ -31,6 +31,10 @@
                     <p class="m_5">{{ number_format($products->price) }}&nbsp;<span
                             class="reducedfrom">{{ number_format($products->sellprice) }}</span>
                     </p>
+                    <div class="form-group col-sm-6">
+                        <label for="">Số lượng</label>
+                        <input type="number" class="form-control" id="" placeholder="" min="1" max="{{ $products->quantily }}"  value="1">
+                      </div>
                     <div class="btn_form">
                         <form>
                             <input type="submit" value="Thêm vào giỏ hàng" title="">
@@ -186,96 +190,55 @@
             <div class="comment">
                 <div class="form-group">
                     <label for="comment">Bình luận:</label>
-                    <input type="text" class="form-control" id=""><br>
-                    <button type="button" class="btn btn-info">Gửi</button>
+                    <input type="text" class="form-control" id="input-comment" id-user="2" id-product="2"><br>
+                    <button type="button" class="btn btn-info" id="submit-commnent">Gửi</button>
                 </div>
-                <!-- comment 1 -->
-                <div class="media">
-                    <div class="media-left">
-                        <img src="img_avatar1.png" class="media-object" style="width:45px">
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">John Doe <small><i>Posted on February 19, 2016</i></small></h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua.</p>
-                        <div class="reply">Trả lời<small>&emsp;Có 2 trả lời</small>
-                            <div class="detail-comment">
-                                <div class="form-group">
-                                    <!-- <label for="comment">Trả lời:</label> -->
-                                    <input type="text" class="form-control" id="" placeholder="Trả lời"><br>
-                                    <button type="button" class="btn btn-info">Gửi</button>
-                                </div>
-                                <div class="media">
-                                    <div class="media-left">
-                                        <img src="img_avatar1.png" class="media-object" style="width:45px">
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">John Doe <small><i>Posted on February 19,
-                                                    2016</i></small></h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua.</p>
-
-
-                                    </div>
-                                </div>
-                                <div class="media">
-                                    <div class="media-left">
-                                        <img src="img_avatar1.png" class="media-object" style="width:45px">
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">John Doe <small><i>Posted on February 19,
-                                                    2016</i></small></h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div class="comment-main">
+                    <!-- comment -->
+                    @foreach($comments as $comment)
+                        <div class="media">
+                            <div class="media-left">
+                                <img src="{{ asset('public/upload/avatar_user/default-avatar.png') }}"
+                                    class="media-object" style="width:65px">
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">{{ $comment->users->email }}<small>&emsp;<i>Posted on
+                                            February 19, 2016</i></small>
+                                </h4>
+                                <p>{{ $comment->content }}</p>
+                                <div class="reply">Trả lời<small>&emsp;Có {{ count($comment->replyComment) }} trả lời</small>
+                                    <div class="detail-comment">
+                                        <div class="form-group">
+                                            <br>
+                                            <input type="text" class="form-control" id-comment="{{ $comment->id }}" id-user="2" placeholder="Trả lời"><br>
+                                            <button type="button" class="btn btn-info">Gửi</button>
+                                        </div>
+                                        <div class="detail-comment-content" id="reply{{ $comment->id}}">
+                                            @foreach($comment->replyComment as $reply)
+                                                <div class="media">
+                                                    <div class="media-left">
+                                                        <img src="{{ asset('public/upload/avatar_user/default-avatar.png') }}"
+                                                            class="media-object" style="width:55px">
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h4 class="media-heading">{{ $reply->users->email }}<small>&emsp;<i>Posted on February
+                                                                    19,
+                                                                    2016</i></small></h4>
+                                                        <p>{{ $reply->content }}</p>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <!-- comment 2 -->
-                <div class="media">
-                    <div class="media-left">
-                        <img src="img_avatar1.png" class="media-object" style="width:45px">
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading">John Doe <small><i>Posted on February 19, 2016</i></small></h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua.</p>
-                        <div class="reply">Trả lời<small>&emsp;Có 2 trả lời</small>
-                            <div class="detail-comment">
-                                <div class="form-group">
-                                    <!-- <label for="comment">Trả lời:</label> -->
-                                    <input type="text" class="form-control" id="" placeholder="Trả lời"><br>
-                                    <button type="button" class="btn btn-info">Gửi</button>
-                                </div>
-                                <div class="media">
-                                    <div class="media-left">
-                                        <img src="img_avatar1.png" class="media-object" style="width:45px">
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">John Doe <small><i>Posted on February 19,
-                                                    2016</i></small></h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua.</p>
+                    @endforeach
 
-                                    </div>
-                                </div>
-                                <div class="media">
-                                    <div class="media-left">
-                                        <img src="img_avatar1.png" class="media-object" style="width:45px">
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">John Doe <small><i>Posted on February 19,
-                                                    2016</i></small></h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                            tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
+
+
             </div>
             <div class="clear"></div>
         </div>

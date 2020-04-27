@@ -113,3 +113,12 @@ Route::get('test', function () {
 Route::group(['namespace' => 'FontEnd'], function () {
     Route::get('product-detail/{id}','ProductDetailController@getProductDetail')->name('getProductDetail');
 });
+Route::group(['namespace' => 'Ajax'], function () {
+    Route::group(['prefix' => 'ajax'], function () {
+        Route::get('/','AjaxFontEndController@index');
+        Route::group(['prefix' => 'comment'], function () {
+            Route::get('add','AjaxFontEndController@addComment')->name('addComment');
+            Route::get('addreply','AjaxFontEndController@addReplyComment')->name('addReplyComment');
+        });
+    });
+});
