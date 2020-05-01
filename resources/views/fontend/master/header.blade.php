@@ -121,7 +121,7 @@
             </div>
             <div class="tag-list">
                 <ul class="icon1 sub-icon1 profile_img">
-                    <li><a class="icon-cart" href="#" title="Giỏ hàng">
+                    <li><a class="icon-cart" href="{{ route('getCart') }}" title="Giỏ hàng">
                             <i class="fa fa-shopping-cart"></i>
                         </a>
                         <ul class="sub-icon1 list">

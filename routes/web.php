@@ -111,8 +111,25 @@ Route::get('test', function () {
     return view('fontend.master.master');
 });
 Route::group(['namespace' => 'FontEnd'], function () {
+    Route::get('/', function() {
+        return view('fontend.page.home');
+    })->name('home');
     Route::get('product-detail/{id}','ProductDetailController@getProductDetail')->name('getProductDetail');
+
+    //route function cart
+    Route::group(['prefix' => 'cart'], function () {
+        Route::get('list','CartController@getCart')->name('getCart');    
+        Route::get('add','CartController@add')->name('addCart');
+        Route::get('update','CartController@updateCart')->name('updateCart');
+    });
+
+    //create bill
+    Route::group(['prefix' => 'bill'], function () {
+       Route::post('create','BillFontEndController@create')->name('createBill'); 
+    });
+    
 });
+//ajax fontend
 Route::group(['namespace' => 'Ajax'], function () {
     Route::group(['prefix' => 'ajax'], function () {
         Route::get('/','AjaxFontEndController@index');

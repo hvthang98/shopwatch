@@ -14,7 +14,7 @@
                         @if(isset($products->imageProduct))
                             @foreach($products->imageProduct as $image)
                                 <li>
-                                    <a href="optionallink.html">
+                                    <a>
                                         <img class="etalage_thumb_image" src="{{ asset($image->image) }}"
                                             class="img-responsive" />
                                         <img class="etalage_source_image" src="{{ asset($image->image) }}"
@@ -31,16 +31,18 @@
                     <p class="m_5">{{ number_format($products->price) }}&nbsp;<span
                             class="reducedfrom">{{ number_format($products->sellprice) }}</span>
                     </p>
-                    <div class="form-group col-sm-6">
-                        <label for="">Số lượng</label>
-                        <input type="number" class="form-control" id="" placeholder="" min="1" max="{{ $products->quantily }}"  value="1">
-                      </div>
-                    <div class="btn_form">
-                        <form>
-                            <input type="submit" value="Thêm vào giỏ hàng" title="">
-                        </form>
-                    </div>
-
+                    <form action="{{ route('addCart')}}">
+                        <div class="form-group col-sm-6">
+                            <input type="hidden" name="products_id" value="{{ $products->id }}">
+                            <label for="">Số lượng</label>
+                            <input type="number" class="form-control" id="quantily" name="quantily" placeholder="" min="1"
+                                max="{{ $products->quantily }}" value="1">
+                        </div>
+                        <div class="col-sm-8">
+                            <button type="submit" class="btn btn-primary"
+                                style="z-index: 1;">Thêm vào giỏ hàng</button>
+                        </div>
+                    </form>
                 </div>
                 <div class="clear"></div>
                 <div class="content-product">
@@ -206,14 +208,16 @@
                                             February 19, 2016</i></small>
                                 </h4>
                                 <p>{{ $comment->content }}</p>
-                                <div class="reply">Trả lời<small>&emsp;Có {{ count($comment->replyComment) }} trả lời</small>
+                                <div class="reply">Trả lời<small>&emsp;Có {{ count($comment->replyComment) }} trả
+                                        lời</small>
                                     <div class="detail-comment">
                                         <div class="form-group">
                                             <br>
-                                            <input type="text" class="form-control" id-comment="{{ $comment->id }}" id-user="2" placeholder="Trả lời"><br>
+                                            <input type="text" class="form-control" id-comment="{{ $comment->id }}"
+                                                id-user="2" placeholder="Trả lời"><br>
                                             <button type="button" class="btn btn-info">Gửi</button>
                                         </div>
-                                        <div class="detail-comment-content" id="reply{{ $comment->id}}">
+                                        <div class="detail-comment-content" id="reply{{ $comment->id }}">
                                             @foreach($comment->replyComment as $reply)
                                                 <div class="media">
                                                     <div class="media-left">
@@ -221,7 +225,9 @@
                                                             class="media-object" style="width:55px">
                                                     </div>
                                                     <div class="media-body">
-                                                        <h4 class="media-heading">{{ $reply->users->email }}<small>&emsp;<i>Posted on February
+                                                        <h4 class="media-heading">
+                                                            {{ $reply->users->email }}<small>&emsp;<i>Posted on
+                                                                    February
                                                                     19,
                                                                     2016</i></small></h4>
                                                         <p>{{ $reply->content }}</p>
