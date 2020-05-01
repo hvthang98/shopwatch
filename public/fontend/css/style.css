@@ -782,6 +782,13 @@ ul.last li a:hover {
     -o-transition: all 0.4s ease;
     transition: all 0.4s ease;
 }
+.span_1_of_31{
+    width: 30%;
+    /* -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease; */
+}
 
 .span_1_of_left {
     width: 20.2%;
@@ -1693,8 +1700,13 @@ p.cart a:hover {
 }
 
 .mens-toolbar .sort {
+<<<<<<< HEAD
     float: left;
     width: 20.5%;
+=======
+	float: left;
+	width: 29.5%;
+>>>>>>> list-product
 }
 
 .sort {
@@ -1702,8 +1714,14 @@ p.cart a:hover {
 }
 
 .sort-by {
+<<<<<<< HEAD
     color: #777;
     font-size: 0.85;
+=======
+	width: 200px;
+	color: #777;
+	font-size: 0.85;
+>>>>>>> list-product
 }
 
 .mens-toolbar .pager {

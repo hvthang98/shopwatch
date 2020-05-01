@@ -137,6 +137,7 @@
     <script>
         $(document).ready(function () {
             $(".notification-email").hide();
+            $(".notification-password").hide();
             $("#singup-email").change(function () {
                 var email = $(this).val();
                 var url = "http://localhost:8080/shopwatch/ajax/check-email";
@@ -145,11 +146,25 @@
                 }, function (data) {
                     if (data == 'true') {
                         $(".notification-email").show();
+                        $("#singup-email").css('border-bottom', '1px solid #ff0000');
                     }
-                    if(data=='false'){
+                    if (data == 'false') {
                         $(".notification-email").hide();
+                        $("#singup-email").css('border-bottom', '');
                     }
                 });
+            });
+            //password
+            $("#password_confi").change(function () {
+                var password = $('#password').val();
+                var passwordConfi = $(this).val();
+                if (password != passwordConfi) {
+                    $(".notification-password").show();
+                    $(this).css('border-bottom', '1px solid #ff0000');
+                } else {
+                    $(".notification-password").hide();
+                    $(this).css('border-bottom', '');
+                }
             });
         });
 
@@ -174,7 +189,7 @@
                             @endif
                             <div class="txtb">
                                 <input type="text" name="name" required>
-                                <span data-placehoder="Tên người dùng"></span>
+                                <span data-placehoder="Họ và Tên"></span>
                             </div>
                             <div class="txtb">
                                 <input type="date" name="birthday" required>
@@ -184,15 +199,16 @@
                                 <input type="email" name="email" id="singup-email" required>
                                 <span data-placehoder="Email / Tài khoản đăng nhập"></span>
                             </div>
-                            <p class="bg-danger notification-email" style="color:#f00">Tài khoản đã tồn tại</p>
+                            <p class="notification-email" style="color:#f00">Tài khoản đã tồn tại</p>
                             <div class="txtb">
-                                <input type="password" name="password" required>
+                                <input type="password" name="password" id="password" required>
                                 <span data-placehoder="Mật khẩu"></span>
                             </div>
                             <div class="txtb">
-                                <input type="password" name="password_confirmation" required>
+                                <input type="password" name="password_confirmation" id="password_confi" required>
                                 <span data-placehoder="Nhập lại mật khẩu"></span>
                             </div>
+                            <p class="notification-password" style="color:#f00">Nhập lại mật khẩu sai</p>
                             <div class="txtb">
                                 <input type="text" name="address" required>
                                 <span data-placehoder="Địa chỉ"></span>
@@ -226,42 +242,3 @@
 </body>
 
 </html>
-
-
-
-
-<!-- <div class="register_account">
-    <div class="wrap">
-        <h4 class="title">Đăng ký tài khoản</h4>
-        <form action="{{ route('post-user-signup') }}" method="POST" name="signup">
-@csrf
-            <div class="col_1_of_2 span_1_of_2">
-                <div><input type="text" name="name" placeholder="Họ và tên" require></div>
-                <div><input type="date" name="birthday" placeholder="Năm sinh" require></div>
-                <div><input type="text" name="email" placeholder="E-mail" require></div>
-                <div><input type="password" name="password" placeholder="Mật khẩu" require></div>
-                <div><input type="password" name="repassword" placeholder="Nhập lại mật khẩu" require></div>
-            
-                <div><input type="text" name="address" placeholder="Địa chỉ" require></div>
-                <div><input type="text" name="phonenumber" placeholder="Số điện thoại" require></div>
-                
-                <input  type="submit" class="grey" value="Đăng ký">
-            </div>
-            <div class="clear"></div>
-        </form>
-    </div>
-</div> -->
-
-
-<!-- <div><select id="country" name="country" onchange="change_country(this.value)" class="frm-field required">
-                        <option value="null">Select a Country</option>
-                    </select>
-                </div> -->
-{{-- <button class="grey">Đăng ký</button>
-            </div>
-            <div class="clear"></div>
-        </form>
-    </div>
-</div> --}}
-<!-- <input type="text" value="" class="code"> - <input type="text" value="" class="number"> -->
-<!-- <p class="code">Country Code + Phone Number</p> -->

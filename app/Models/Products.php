@@ -24,4 +24,8 @@ class Products extends Model
     {
         return $this->hasOne('App\Models\ImgProduct', 'products_id', 'id')->where('level', 1);
     }
+    // public function inforProduct()
+    // {
+    //     return $this->hasOne('App\Models\Info_product',  'products_id','id');
+    // }
 }

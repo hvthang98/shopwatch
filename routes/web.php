@@ -109,6 +109,7 @@ Route::get('test', function () {
     return view('fontend.master.master');
 });
 Route::group(['namespace' => 'FontEnd'], function () {
+    //single product
     Route::get('product-detail/{id}', 'ProductDetailController@getProductDetail')->name('getProductSingle');
 
     // home
@@ -121,6 +122,12 @@ Route::group(['namespace' => 'FontEnd'], function () {
     Route::post('/post-user-login', 'UserController@post_user_login')->name('post-user-login');
     //logout
     Route::get('/user-logout', 'UserController@user_logout')->name('user-logout');
+
+    //danh sách sản phẩm theo thương hiệu
+    Route::get('/brand/{id}', 'BrandController@product_of_brand')->name('brand');
+    //danh sách sản phẩm
+    Route::get('male-product', 'ProductController@all_male_product')->name('male-product');
+    Route::get('female-product', 'ProductController@all_female_product')->name('female-product');
 });
 Route::group(['namespace' => 'Ajax'], function () {
     Route::group(['prefix' => 'ajax'], function () {
@@ -134,4 +141,4 @@ Route::group(['namespace' => 'Ajax'], function () {
     });
 });
 
-Route::get('/brand/{id}', 'Fontend\BrandController@product_of_brand')->name('brand');
+// Route::get('/brand/{id}', 'Fontend\BrandController@product_of_brand')->name('brand');
