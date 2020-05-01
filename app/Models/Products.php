@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Products extends Model
 {
-    protected $table='products';
+    protected $table = 'products';
+    public $timestamps = false;
     public function brands()
     {
         return $this->hasOne('App\Models\Brands', 'id', 'brands_id');
@@ -21,6 +22,6 @@ class Products extends Model
     }
     public function avatar()
     {
-        return $this->hasOne('App\Models\ImgProduct', 'products_id', 'id')->where('level',1);
+        return $this->hasOne('App\Models\ImgProduct', 'products_id', 'id')->where('level', 1);
     }
 }

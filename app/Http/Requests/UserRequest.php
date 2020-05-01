@@ -25,12 +25,15 @@ class UserRequest extends FormRequest
     {
         return [
             'email'=>'required|email',
-            // 'pass'=>'required|min:6',
+             
             'name'=>'required',
             'birthday'=>'required|date',
             'phonenumber'=>'required',
             'address'=>'required',
             
         ];
+    }
+    public function messages(){
+        return ['required'=>'Không được để trống trường','email'=>'không đúng định dạng Email','confirmed'=>'Xác nhận lại mật khẩu'];
     }
 }

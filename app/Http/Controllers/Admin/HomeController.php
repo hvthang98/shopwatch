@@ -31,7 +31,7 @@ class HomeController extends Controller
 	}
 	function logout()
 	{
-		if (Auth::check()) {
+		if (Auth::check() && Auth::user()->level!= 0) {
 			Auth::logout();
 			return redirect('admin-login');
 		}

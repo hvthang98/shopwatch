@@ -75,7 +75,7 @@ class BannerController extends Controller
         $file_image = $request->edit_banner_img;
         if ($file_image) {
             $file_name = $file_image->getClientOriginalName();
-            $file_image->move('public/backend/images/', $file_name);
+            $file_image->move('public/upload/images/', $file_name);
             $banner->image = $file_name;
         }
         $banner->save();

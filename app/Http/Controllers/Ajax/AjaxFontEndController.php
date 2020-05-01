@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\ReplyComment;
+use App\Models\Users;
 
 class AjaxFontEndController extends Controller
 {
@@ -32,9 +33,19 @@ class AjaxFontEndController extends Controller
         $table->comment_id = $request->comment_id;
         $table->users_id = $request->users_id;
         if ($table->save()) {
-            $data['reply']=ReplyComment::find($table->id);
-            return view('fontend.ajax.replycomment',$data);
+            $data['reply'] = ReplyComment::find($table->id);
+            return view('fontend.ajax.replycomment', $data);
         }
         //return 'false';
+    }
+
+    //check email
+    public function checkEmail(Request $request)
+    {
+        $data = Users::where('email', $request->email)->get();
+        if (count($data) >=1) {
+            return 'true';
+        }
+        return 'false';
     }
 }
