@@ -16,4 +16,9 @@ class Products extends Model
     {
         return $this->hasMany('App\Models\ImgProduct', 'products_id', 'id');
     }
+
+    public function inforProduct()
+    {
+        return $this->hasOne('App\Models\Info_product',  'products_id','id');
+    }
 }

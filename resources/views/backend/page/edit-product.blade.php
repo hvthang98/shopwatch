@@ -129,7 +129,7 @@ Chỉnh sửa sản phẩm
                                         <option value="1" @if ($info_product->gender==1)
                                             {{ 'selected' }}
                                             @endif>Nam</option>
-                                        <option value="0" @if ($info_product->gender==0)
+                                        <option value="2" @if ($info_product->gender==2)
                                             {{ 'selected' }}
                                             @endif>Nữ</option>
                                         <option value="10" @if ($info_product->gender==10)

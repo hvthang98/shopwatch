@@ -1688,7 +1688,7 @@ p.cart a:hover {
 
 .mens-toolbar .sort {
 	float: left;
-	width: 20.5%;
+	width: 29.5%;
 }
 
 .sort {
@@ -1696,6 +1696,7 @@ p.cart a:hover {
 }
 
 .sort-by {
+	width: 200px;
 	color: #777;
 	font-size: 0.85;
 }

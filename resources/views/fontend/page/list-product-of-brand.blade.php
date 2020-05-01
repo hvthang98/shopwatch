@@ -5,23 +5,17 @@
         color: red;
     }
 </style>
+<div class="main">
 <div class="mens">
     <div class="main">
         <div class="wrap">
             <div class="cont span_2_of_3">
-                
-                <h2 class="head">
-                    @if($i==1)
-                        Male's
-                    @endif
-                    @if($i==2)
-                        Female's
-                    @endif
-                </h2>
+                <h2 class="head">@foreach($brand as $br)
+                    {{$br->name}}
+                @endforeach</h2>
                 <div class="mens-toolbar">
                     <div class="sort">
                         <div class="sort-by">
-                            
                             <form  method="get" action="" >
                            
 
@@ -95,6 +89,7 @@
                             </select>
                             <!-- <a href=""><img src="images/arrow2.gif" alt="" class="v-middle"></a> -->
                         </div>
+
                     </div>
                     <div class="pager">
                         <ul class="dc_pagination dc_paginationA dc_paginationA06">
@@ -125,27 +120,43 @@
                     <li><a href="#">Kids</a></li>
                     <li class="last"><a href="#">Glasses Shop</a></li>
                 </ul> -->
-                
+
+                <section class="sky-form">
+                    <h4>Giới tính</h4>
+                    <div class="row row1 scroll-pane">
+                        <div class="col col-4">
+                            <label class="checkbox"><a  class="{{Request::get('gender')==1?'active':''}}"  href="{{request()->fullUrlWithQuery(['gender'=>1])}}"><i></i>Nam</a></label>
+                            <div class="col col-4">
+                            <label class="checkbox"><i></i><a class="{{Request::get('gender')==2 ?'active':''}}" href="{{request()->fullUrlWithQuery(['gender'=>2])}}">Nữ</a></label>
+                           
+                            </div>
+                            <div class="col col-4">
+                            <label class="checkbox"><i></i><a class="{{Request::get('gender')==10 ?'active':''}}" href="{{request()->fullUrlWithQuery(['gender'=>10])}}">Cả nam nữ</a></label>
+                           
+                            </div>
+                        </div>
+                    </div>
+                </section>
                 <section class="sky-form">
                     <h4>Giá tiền</h4>
                     <div class="row row1 scroll-pane">
                         <div class="col col-4">
-                            <label class="checkbox"><i></i><a class="{{Request::get('price')==1?'active':''}}" href="{{request()->fullUrlWithQuery(['price'=>1])}}">Dưới 5,000,000</a></label>
-                            <label class="checkbox"></i><a class="{{Request::get('price')==2?'active':''}}" href="{{request()->fullUrlWithQuery(['price'=>2])}}">Từ 5,000,000 đến 10,000,000</a></label>
-                            <label class="checkbox"><i></i><a class="{{Request::get('price')==3?'active':''}}" href="{{request()->fullUrlWithQuery(['price'=>3])}}">Trên 10,000,000</a></label>
+                            <label class="checkbox"><i></i><a class="{{Request::get('pri')==1?'active':''}}" href="{{request()->fullUrlWithQuery(['pri'=>1])}}" >Dưới 5,000,000 VNĐ</a></label>
+                            <label class="checkbox"><i></i><a class="{{Request::get('pri')==2?'active':''}}"  href="{{request()->fullUrlWithQuery(['pri'=>2])}}" >Từ 5,000,000 đến 10,000,000 VNĐ</a></label>
+                            <label class="checkbox"><i></i><a class="{{Request::get('pri')==3?'active':''}}"  href="{{request()->fullUrlWithQuery(['pri'=>3])}}" >Trên 10,000,000 VNĐ</a></label>
                         </div>
+                         
                     </div>
                 </section>
-                <section class="sky-form">
+               <!--  <section class="sky-form">
                     <h4>Thương hiệu</h4>
                     <div class="row row1 scroll-pane">
                         <div class="col col-4">
-                            @foreach($brands as $brand)
-                            <label class="checkbox"><a class="{{Request::get('brand')==$brand->id?'active':''}}" href="{{request()->fullUrlWithQuery(['brand'=>$brand->id])}}"><i></i>{{$brand->name}}</a></label>
-                            @endforeach
+                           
                         </div>
                     </div>
-                </section>
+                    
+                </section> -->
                 <!-- <section class="sky-form">
                     <h4>Colors</h4>
                     <ul class="color-list">
@@ -176,6 +187,7 @@
             <div class="clear"></div>
         </div>
     </div>
+</div>
 </div>
 <script src="js/jquery.easydropdown.js"></script>
 @endsection

@@ -48,6 +48,7 @@ class ProductController extends Controller
 
         $info = new Info_product;
         $info->products_id = $product->id;
+        $info->brands_id=$product->brands_id;
         $info->save();
         return redirect(route('addProduct'))->with('notification', 'Thêm sản phẩm thành công');
     }
@@ -62,9 +63,11 @@ class ProductController extends Controller
     // edit product
     public function getEditProduct(Request $request)
     {
+
         $data['product'] = Products::find($request->id);
         $data['brands'] = Brands::all();
         $data['info_product']=Info_product::where('products_id',$request->id)->get()->first();
+
         return view('backend.page.edit-product', $data);
     }
     //update product
@@ -90,7 +93,8 @@ class ProductController extends Controller
     }
     // add and update infor product
     public function updateInfoProduct(Request $request)
-    {
+    {   
+       
         $table=Info_product::where('products_id',$request->id)->get();
         foreach($table as $items){
         $items->gender=$request->gender;
@@ -105,6 +109,7 @@ class ProductController extends Controller
         $items->strap_change=$request->strap_change;
         $items->expiry_date=$request->expiry_date;
         $items->address=$request->address;
+
         $items->save();
         }
         return redirect()->back()->with('notification','Thay đổi thông tin kỹ thuật thành công');

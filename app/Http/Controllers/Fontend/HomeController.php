@@ -16,9 +16,9 @@ class HomeController extends Controller
 	 public function index(){
     	
     	
-    	$highlight_product=Products::where('status',1)->where('ordernum',1)->get();
+    	$highlight_product=Products::where('status',1)->where('ordernum',1)->limit(9)->get();
     	
-    	$new_product=Products::where('status',1)->where('ordernum',2)->get();
+    	$new_product=Products::where('status',1)->where('ordernum',2)->limit(9)->get();
 
     	$highlight_img=[];//mảng danh sách hình ảnh sp nổi bật
     	foreach ($highlight_product as  $h)

@@ -104,10 +104,14 @@ Route::get('test', function () {
 });
 //Trang chủ
 Route::get('/','Fontend\HomeController@index')->name('index');
-
+//đăng nhập
 Route::get('/user-login','Fontend\UserController@user_login')->name('user-login');
 Route::post('/post-user-login','Fontend\UserController@post_user_login')->name('post-user-login');
 Route::get('/user-logout','Fontend\UserController@user_logout')->name('user-logout');
 Route::get('/user-sign-up','Fontend\UserController@user_signup')->name('user-sign-up');
 Route::post('/post-user-sign-up','Fontend\UserController@post_user_signup')->name('post-user-signup');
+//danh sách sản phẩm theo thương hiệu
 Route::get('/brand/{id}','Fontend\BrandController@product_of_brand')->name('brand');
+//danh sách sản phẩm
+Route::get('male-product','Fontend\ProductController@all_male_product')->name('male-product');
+Route::get('female-product','Fontend\ProductController@all_female_product')->name('female-product');
