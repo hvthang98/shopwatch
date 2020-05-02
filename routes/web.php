@@ -128,6 +128,8 @@ Route::group(['namespace' => 'FontEnd'], function () {
     //danh sách sản phẩm
     Route::get('male-product', 'ProductController@all_male_product')->name('male-product');
     Route::get('female-product', 'ProductController@all_female_product')->name('female-product');
+    //list product gender by brand
+    //Route::get('',''); 
 });
 Route::group(['namespace' => 'Ajax'], function () {
     Route::group(['prefix' => 'ajax'], function () {

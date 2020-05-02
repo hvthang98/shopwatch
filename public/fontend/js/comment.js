@@ -4,30 +4,47 @@ $(document).ready(function () {
         $(this).children(".detail-comment").show();
     });
     //comment
+    var check = checkUser();
     $("#submit-commnent").click(function () {
-        submitComment();
+        if (check == "true") {
+            submitComment();
+        } else {
+            alert('Bạn chưa đăng nhập');
+        }
     });
     $("#input-comment").keypress(function (key) {
         if (key.keyCode == 13) {
-            submitComment();
+            if (check == "true") {
+                submitComment();
+            } else {
+                alert('Bạn chưa đăng nhập');
+            }
         }
     });
     //reply comment
     $(".detail-comment input").keypress(function (key) {
         if (key.keyCode == 13) {
-            submitReplyComment($(this));
+            if (check == "true") {
+                submitReplyComment($(this));
+            } else {
+                alert('Bạn chưa đăng nhập');
+            }
         }
     });
     $(".detail-comment button").click(function () {
         let inputRequest = $(this).parents().children("input");
-        submitReplyComment(inputRequest);
+        if (check == "true") {
+            submitReplyComment(inputRequest);
+        } else {
+            alert('Bạn chưa đăng nhập');
+        }
     })
 });
 
 function submitReplyComment(selectorInput) {
     var replycontent = selectorInput.val();
     var idComment = selectorInput.attr('id-comment');
-    var idUser = selectorInput.attr('id-user');
+    var idUser = $("#id-user").attr("id-user");
     var url = "http://localhost:8080/shopwatch/ajax/comment/addreply";
     $.get(url, {
         comment_id: idComment,
@@ -42,7 +59,7 @@ function submitReplyComment(selectorInput) {
 
 function submitComment() {
     var value = $("#input-comment").val();
-    var id = $("#input-comment").attr("id-user");
+    var id = $("#id-user").attr("id-user");
     var idProduct = $("#input-comment").attr("id-product");
     var url = "http://localhost:8080/shopwatch/ajax/comment/add";
     $.get(url, {
@@ -53,4 +70,12 @@ function submitComment() {
         $(".comment-main").append(data);
     });
     $("#input-comment").val("");
+}
+
+function checkUser() {
+    var id = $("#id-user").attr("id-user");
+    if (id == "") {
+        return "false";
+    }
+    return "true";
 }
