@@ -128,9 +128,22 @@ Route::group(['namespace' => 'FontEnd'], function () {
     //danh sách sản phẩm
     Route::get('male-product', 'ProductController@all_male_product')->name('male-product');
     Route::get('female-product', 'ProductController@all_female_product')->name('female-product');
-    //list product gender by brand
-    //Route::get('',''); 
+    
+    //route function cart
+    Route::group(['prefix' => 'cart'], function () {
+        Route::get('list','CartController@getCart')->name('getCart');    
+        Route::get('add','CartController@add')->name('addCart');
+        Route::get('update','CartController@updateCart')->name('updateCart');
+        Route::get('delete/{products_id}','CartController@delete')->name('deleteCart');
+    });
+
+    //create bill
+    Route::group(['prefix' => 'bill'], function () {
+       Route::post('create','BillFontEndController@create')->name('createBill'); 
+    });
+    
 });
+//ajax fontend
 Route::group(['namespace' => 'Ajax'], function () {
     Route::group(['prefix' => 'ajax'], function () {
         Route::get('/', 'AjaxFontEndController@index');

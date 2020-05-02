@@ -107,7 +107,7 @@
             </div>
             <div class="tag-list">
                 <ul class="icon1 sub-icon1 profile_img">
-                    <li><a class="icon-cart" href="#" title="Giỏ hàng">
+                    <li><a class="icon-cart" href="{{ route('getCart') }}" title="Giỏ hàng">
                             <i class="fa fa-shopping-cart"></i>
                         </a>
                         <ul class="sub-icon1 list">
@@ -115,21 +115,27 @@
                                 <li>
                                     <table>
                                         <tr>
-                                            <td class="name">Sản phẩm hạng a hiệu cotext</td>
-                                            <td class="num">x100</td>
-                                            <td class="money">40,000,000</td>
+                                            <td class="name" style="font-weight:bold">Tên</td>
+                                            <td class="num" style="font-weight:bold">Số lượng</td>
+                                            <td class="money" style="font-weight:bold">Thành tiền</td>
                                         </tr>
                                     </table>
                                 </li>
-                                <li>
-                                    <table>
-                                        <tr>
-                                            <td class="name">Sản phẩm hạng a hiệu cotext</td>
-                                            <td class="num">x100</td>
-                                            <td class="money">40,000,000</td>
-                                        </tr>
-                                    </table>
-                                </li>
+                                @foreach($carts as $cart)
+                                    <li>
+                                        <table>
+                                            <tr>
+                                                <td class="name">
+                                                    {{ $cart['product']->name }}</td>
+                                                <td class="num"><span>x
+                                                    </span>{{ $cart['quantily'] }}</td>
+                                                <td class="money">
+                                                    {{ number_format($cart['product']->sellprice*$cart['quantily']) }}
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </li>
+                                @endforeach
                             @else
                                 <li>
                                     <h3>Không có sản phẩm</h3>
@@ -141,8 +147,15 @@
                         </ul>
                     </li>
                 </ul>
+                @if(session()->has('cart'))
+                    <div class="icon-cart-on">
+                        <span>{{ count($carts) }}</span>
+                    </div>
+                @endif
+
             </div>
         </div>
         <div class="clear"></div>
     </div>
 </div>
+

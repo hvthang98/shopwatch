@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Brands;
 use App\Models\Banners;
+use App\Models\Products;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,18 +26,27 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        
-        view()->composer('fontend/master/header',function($view){
-            $brand=Brands::where('status',1)->get();
-            $view->with('brand',$brand);
+
+        view()->composer('fontend/master/header', function ($view) {
+            $brand = Brands::where('status', 1)->get();
+            $view->with('brand', $brand);
+            if (session()->has('cart')) {
+                $carts = session('cart');
+                foreach ($carts as $key => $value) {
+                    $product = Products::find($value['products_id']);
+                    $carts[$key]['product'] = $product;
+                }
+                $data['carts'] = $carts;
+                $view->with('carts', $carts);
+            }
         });
-        view()->composer('fontend/page/home',function($view){
-            $banner=Banners::where('status',1)->get();
-            $view->with('banner',$banner);
+        view()->composer('fontend/page/home', function ($view) {
+            $banner = Banners::where('status', 1)->get();
+            $view->with('banner', $banner);
         });
-        view()->composer('fontend/page/list-product',function($view){
-            $brand=Brands::where('status',1)->get();
-            $view->with('brands',$brand);
+        view()->composer('fontend/page/list-product', function ($view) {
+            $brand = Brands::where('status', 1)->get();
+            $view->with('brands', $brand);
         });
     }
 }

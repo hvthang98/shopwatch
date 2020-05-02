@@ -4,8 +4,8 @@
 <head>
     <title>@yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<base href="{{ asset('public/fontend')}}/">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <base href="{{ asset('public/fontend') }}/">
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
     <link href="css/form.css" rel="stylesheet" type="text/css" media="all" />
     <link href='http://fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
@@ -73,16 +73,74 @@
             });
 
         });
+        //scroll in home
+        $(document).ready(function () {
+            $("#scroll-top").hide();
+            $(window).scroll(function () {
+                //$("#scroll-top").show();
+                var scrollTop = $(window).scrollTop();
+                if (scrollTop > 0) {
+                    $("#scroll-top").show();
+                } else {
+                    $("#scroll-top").hide();
+                }
+            })
+            $("#scroll-top").click(function () {
+                // $(window).animate({scrollTop:0}, '800');
+                $(window).scrollTop(0);
+            });
+        });
 
     </script>
     <script src="js/comment.js"></script>
+    <style>
+        .tag-list {
+            position: relative;
+        }
+
+        .icon-cart-on {
+            width: 16px;
+            height: 16px;
+            background: red;
+            border-radius: 50%;
+            text-align: center;
+            position: absolute;
+        }
+
+        .icon-cart-on span {
+            color: #fff;
+            font-size: 15px;
+        }
+
+        #scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        #scroll-top .fa-arrow-circle-o-up {
+            font-size: 60px;
+        }
+
+        #scroll-top:hover {
+            cursor: pointer;
+        }
+
+    </style>
 </head>
 
 <body>
-	@include('fontend.master.header')
-	@yield('main-content')
-	@yield('content')
+    @include('fontend.master.header')
+    @yield('main-content')
+    @yield('content')
     @include('fontend.master.footer')
+    <div id="scroll-top">
+        <i class="fa fa-arrow-circle-o-up" title="Lên đầu trang"></i>
+    </div>
 </body>
 @if(session('notification'))
     @include('notify.note')
