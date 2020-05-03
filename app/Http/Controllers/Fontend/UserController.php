@@ -11,6 +11,7 @@ use App\Models\Brands;
 use App\Models\ImgProduct;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+
 class UserController extends Controller
 {
     //
@@ -70,8 +71,6 @@ class UserController extends Controller
 
     public function post_user_signup(UserLoginRequest $request )
     {
-
-    	 
     	 $data=$request->all();
     	 $user=new User;
     	 $user->email=$data['email'];

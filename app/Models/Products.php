@@ -6,19 +6,26 @@ use Illuminate\Database\Eloquent\Model;
 
 class Products extends Model
 {
-    protected $table='products';
-    public $timestamps = false; 
+    protected $table = 'products';
+    public $timestamps = false;
     public function brands()
     {
         return $this->hasOne('App\Models\Brands', 'id', 'brands_id');
     }
-    public function imgProduct()
+    public function imageProduct()
     {
         return $this->hasMany('App\Models\ImgProduct', 'products_id', 'id');
     }
-
-    public function inforProduct()
+    public function infoProduct()
     {
-        return $this->hasOne('App\Models\Info_product',  'products_id','id');
+        return $this->hasOne('App\Models\Info_product', 'products_id', 'id');
     }
+    public function avatar()
+    {
+        return $this->hasOne('App\Models\ImgProduct', 'products_id', 'id')->where('level', 1);
+    }
+    // public function inforProduct()
+    // {
+    //     return $this->hasOne('App\Models\Info_product',  'products_id','id');
+    // }
 }

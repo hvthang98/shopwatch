@@ -24,16 +24,22 @@ class UserLoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email'=>'required|email',
-             'password'=>'required|min:6|confirmed',
-            'name'=>'required',
-            'birthday'=>'required|date',
-            'phonenumber'=>'required',
-            'address'=>'required',
-            
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6|confirmed',
+            'name' => 'required',
+            'birthday' => 'required|date',
+            'phonenumber' => 'required',
+            'address' => 'required',
         ];
     }
-    public function messages(){
-        return ['required'=>'Không được để trống trường','email'=>'không đúng định dạng Email','confirmed'=>'Xác nhận lại mật khẩu'];
+    public function messages()
+    {
+        return [
+            'required' => 'Không được để trống trường', 
+            'email' => 'không đúng định dạng Email', 
+            'confirmed' => 'Xác nhận lại mật khẩu sai',
+            'email.unique'=>'Tài khoản đã tồn tại'
+        ];
+
     }
 }

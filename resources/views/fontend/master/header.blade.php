@@ -1,26 +1,11 @@
 <div class="header-top">
     <div class="wrap">
         <!-- <div class="header-top-left">
-            <div class="box">
-                <select tabindex="4" class="dropdown">
-                    <option value="" class="label" value="">Language :</option>
-                    <option value="1">English</option>
-                    <option value="2">French</option>
-                    <option value="3">German</option>
-                </select>
-            </div>
-            <div class="box1">
-                <select tabindex="4" class="dropdown">
-                    <option value="" class="label" value="">Currency :</option>
-                    <option value="1">$ Dollar</option>
-                    <option value="2">€ Euro</option>
-                </select>
-            </div>
-            <div class="clear"></div>
         </div> -->
         <div class="cssmenu">
             <ul>
                 @if(Auth::check())
+<<<<<<< HEAD
                     <div class="drop"> <p >Xin chào {{Auth::user()->name}}</p>
                         <div class="sub-drop">
                             <a href="{{route('user-infor',['id'=>Auth::user()->id])}}">Xem thông tin</a><br/>
@@ -33,10 +18,15 @@
                    <!--  <li>
                         <a href="{{route('user-logout')}}" onclick="return confirm('Bạn muốn đăng xuất ?');">Đăng xuất</a>
                     </li> -->
+=======
+                    <li class="active">Xin chào {{ Auth::user()->name }}</li>
+                    <li><a href="{{ route('user-logout') }}"
+                            onclick="return confirm('Bạn muốn đăng xuất ?');">Đăng xuất</a></li>
+>>>>>>> master
                 @else
-                    <li class="active"><a href="login.html">Liên hệ</a></li> 
-                    <li><a href="{{route('user-login')}}">Đăng nhập</a></li> 
-                    <li><a href="{{route('user-sign-up')}}">Đăng ký</a></li>
+                    <li class="active"><a href="">Liên hệ</a></li>
+                    <li><a href="{{ route('user-login') }}">Đăng nhập</a></li>
+                    <li><a href="{{ route('user-sign-up') }}">Đăng ký</a></li>
                 @endif
             </ul>
         </div>
@@ -47,7 +37,7 @@
     <div class="wrap">
         <div class="header-bottom-left">
             <div class="logo">
-                <a href="index.php"><img src="images/logo.png" alt="" /></a>
+                <a href="{{ route('index') }}"><img src="images/logo.png" alt="" /></a>
             </div>
             <div class="menu">
                 <ul class="megamenu skyblue">
@@ -56,44 +46,52 @@
                         <div class="megapanel">
                             <div class="col1">
                                 <div class="h_nav">
-                                   
                                     <ul>
                                         @foreach($brand as $br)
-                                        <li><a href="{{route('brand',['id'=>$br->id])}}">{{$br->name}}</a></li>
+                                            <li><a
+                                                    href="{{ route('brand',['id'=>$br->id]) }}">{{ $br->name }}</a>
+                                            </li>
                                         @endforeach
                                     </ul>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </li>
-                    <li><a class="color5" href="{{route('male-product')}}">Nam</a>
+                    <li><a class="color5" href="{{ route('male-product') }}">Nam</a>
                         <div class="megapanel">
                             <div class="col1">
                                 <div class="h_nav">
                                     <h4>Thương hiệu</h4>
                                     <ul>
-                                        <li><a href="mens.html">Casio</a></li>
-
+                                        @foreach($brand as $br)
+                                            <li><a
+                                                    href="{{ route('brand',['id'=>$br->id]) }}">{{ $br->name }}</a>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
 
                         </div>
                     </li>
-                    <li><a class="color5" href="{{route('female-product')}}">Nữ</a>
+                    <li><a class="color5" href="{{ route('female-product') }}">Nữ</a>
                         <div class="megapanel">
                             <div class="col1">
                                 <div class="h_nav">
                                     <h4>Thương hiệu</h4>
                                     <ul>
-                                        <li><a href="mens.html">Casio</a></li>
+                                        @foreach($brand as $br)
+                                            <li><a
+                                                    href="{{ route('brand',['id'=>$br->id]) }}">{{ $br->name }}</a>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </li>
-                    <li><a class="color6" href="other.html">Phụ kiện</a>
+                    {{-- <li><a class="color6" href="other.html">Phụ kiện</a>
                         <div class="megapanel">
                             <div class="col1">
                                 <div class="h_nav">
@@ -110,8 +108,7 @@
                                 </div>
                             </div>
                         </div>
-                    </li>
-                    <li ><a class="color7" href="index.php">Tin tức</a></li>
+                    </li> --}}
                 </ul>
             </div>
         </div>
@@ -125,37 +122,55 @@
             </div>
             <div class="tag-list">
                 <ul class="icon1 sub-icon1 profile_img">
-                    <li><a class="icon-cart" href="#" title="Giỏ hàng">
+                    <li><a class="icon-cart" href="{{ route('getCart') }}" title="Giỏ hàng">
                             <i class="fa fa-shopping-cart"></i>
                         </a>
                         <ul class="sub-icon1 list">
-                            <li>
-                                <h3>Không có sản phẩm</h3>
-                            </li>
+                            @if(session()->has('cart'))
+                                <li>
+                                    <table>
+                                        <tr>
+                                            <td class="name" style="font-weight:bold">Tên</td>
+                                            <td class="num" style="font-weight:bold">Số lượng</td>
+                                            <td class="money" style="font-weight:bold">Thành tiền</td>
+                                        </tr>
+                                    </table>
+                                </li>
+                                @foreach($carts as $cart)
+                                    <li>
+                                        <table>
+                                            <tr>
+                                                <td class="name">
+                                                    {{ $cart['product']->name }}</td>
+                                                <td class="num"><span>x
+                                                    </span>{{ $cart['quantily'] }}</td>
+                                                <td class="money">
+                                                    {{ number_format($cart['product']->sellprice*$cart['quantily']) }}
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </li>
+                                @endforeach
+                            @else
+                                <li>
+                                    <h3>Không có sản phẩm</h3>
+                                </li>
+                            @endif
+
                             <!-- khi có sản phẩm -->
-                            <li>
-                                <table>
-                                    <tr>
-                                        <td class="name">Sản phẩm hạng a hiệu cotext</td>
-                                        <td class="num">x100</td>
-                                        <td class="money">40,000,000</td>
-                                    </tr>
-                                </table>
-                            </li>
-                            <li>
-                                <table>
-                                    <tr>
-                                        <td class="name">Sản phẩm hạng a hiệu cotext</td>
-                                        <td class="num">x100</td>
-                                        <td class="money">40,000,000</td>
-                                    </tr>
-                                </table>
-                            </li>
+
                         </ul>
                     </li>
                 </ul>
+                @if(session()->has('cart'))
+                    <div class="icon-cart-on">
+                        <span>{{ count($carts) }}</span>
+                    </div>
+                @endif
+
             </div>
         </div>
         <div class="clear"></div>
     </div>
 </div>
+

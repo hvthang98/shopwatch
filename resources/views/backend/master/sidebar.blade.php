@@ -11,6 +11,15 @@
                     </a>
                 </li>
                 <li class="sub-menu">
+                    <a href="">
+                        <i class="fa fa-book"></i>
+                        <span>Quản lý đơn hàng</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="{{ route('listBill') }}">Danh sách đơn hàng</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
                         <span>Quản lý danh mục sản phẩm</span>

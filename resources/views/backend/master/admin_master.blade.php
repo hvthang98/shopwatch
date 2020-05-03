@@ -40,8 +40,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="js/morris.js"></script>
     <script src="../editor/ckeditor/ckeditor.js"></script>
     <script src="../editor/ckfinder/ckfinder.js"></script>
-    
-    
+
+
 </head>
 
 <body>
@@ -78,16 +78,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 //return false;
             }
         }
+
         function out() {
             if (confirm('Bạn có chắc chắn muốn thoát không?') == false) {
                 event.preventDefault();
                 //return false;
             }
         }
+
+        function questionLoading(mes) {
+            if (confirm(mes) == false) {
+                event.preventDefault();
+            }
+        }
+
     </script>
 
     @yield('js')
-    
+
 </body>
-<script> CKEDITOR.replace('editor1'); </script>
+<script>
+    CKEDITOR.replace('editor1');
+
+</script>
+
 </html>
