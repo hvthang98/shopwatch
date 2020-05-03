@@ -117,35 +117,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-      <div class="login">
-    <div class="wrap">
-        <div class="col_1_of_login span_1_of_login">
-            <div class="login-title">
-                
-                <div id="loginbox" class="loginbox">
-                    <form action="{{route('post-user-login')}}" method="post" name="login" class="login-form">
-                        <h1 class="title">Đăng nhập</h1>
-                        @csrf
-                        @if(count($errors)>0 )
-                        <div>
-                             <strong style="color: red">{{$errors->first()}}</strong>
-                        </div>
-                        @elseif(session()->has('notification')) 
-                          <div>
-                             <strong style="color: red">Sai thông tin đăng nhập</strong>
-                        </div>
-                        @endif
-                        <div class="txtb">
-                              <input type="email" name="email">
-                              <span data-placehoder="Email"></span>
-                        </div>
-                        <div class="txtb">
-                              <input type="password" name="password">
-                              <span data-placehoder="Mật khẩu"></span>
-                        </div>
-                         <!-- <div class="mk">
-=======
     <div class="login">
         <div class="wrap">
             <div class="col_1_of_login span_1_of_login">
@@ -156,9 +127,13 @@
                             class="login-form">
                             <h1 class="title">Đăng nhập</h1>
                             @csrf
-                            @if(count($errors)>0)
+                            @if(count($errors)>0 )
                                 <div>
                                     <strong style="color: red">{{ $errors->first() }}</strong>
+                                </div>
+                            @elseif(session()->has('notification'))
+                                <div>
+                                    <strong style="color: red">Sai thông tin đăng nhập</strong>
                                 </div>
                             @endif
                             <div class="txtb">
@@ -170,13 +145,10 @@
                                 <span data-placehoder="Mật khẩu"></span>
                             </div>
                             <!-- <div class="mk">
->>>>>>> master
                           <input type="checkbox" name="remember" id="rem">
                           <label for="rem" class="label-agree-term"><span>Ghi nhớ đăng nhập</span></label>
                         </div> -->
                             <input type="submit" class="logbtn" name="login" value="Đăng nhập">
-
-                            <!--  -->
                             <div class="bottom-text">
                                 Chưa có tài khoản? <a href="{{ route('user-sign-up') }}">Đăng ký</a>
                             </div>
@@ -186,7 +158,6 @@
             </div>
             <div class="clear"></div>
         </div>
-
     </div>
     <script type="text/javascript">
         $(".txtb input").on("focus", function () {

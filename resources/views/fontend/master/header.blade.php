@@ -5,7 +5,6 @@
         <div class="cssmenu">
             <ul>
                 @if(Auth::check())
-<<<<<<< HEAD
                     <div class="drop"> <p >Xin chào {{Auth::user()->name}}</p>
                         <div class="sub-drop">
                             <a href="{{route('user-infor',['id'=>Auth::user()->id])}}">Xem thông tin</a><br/>
@@ -15,14 +14,6 @@
 
                     </div>
                     <li class="active"><a href="">Liên hệ</a></li>
-                   <!--  <li>
-                        <a href="{{route('user-logout')}}" onclick="return confirm('Bạn muốn đăng xuất ?');">Đăng xuất</a>
-                    </li> -->
-=======
-                    <li class="active">Xin chào {{ Auth::user()->name }}</li>
-                    <li><a href="{{ route('user-logout') }}"
-                            onclick="return confirm('Bạn muốn đăng xuất ?');">Đăng xuất</a></li>
->>>>>>> master
                 @else
                     <li class="active"><a href="">Liên hệ</a></li>
                     <li><a href="{{ route('user-login') }}">Đăng nhập</a></li>
@@ -116,8 +107,8 @@
             <div class="search">
                 <form action="">
                     <input type="text" name="seach" class="textbox" placeholder="Tìm kiếm">
-                    <input type="submit" value="Subscribe" id="submit" name="submit">
-                    <div id="response"> </div>
+                    <input type="submit" value="seach" id="submit" name="submit">
+                    <div id="response"></div>
                 </form>
             </div>
             <div class="tag-list">

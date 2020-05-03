@@ -120,6 +120,8 @@ Route::group(['namespace' => 'FontEnd'], function () {
     //login
     Route::get('/user-login', 'UserController@user_login')->name('user-login');
     Route::post('/post-user-login', 'UserController@post_user_login')->name('post-user-login');
+    Route::get('/user-infor/{id}/', 'UserController@user_infor')->name('user-infor');
+    Route::post('/post-infor/{id}/', 'UserController@post_user_infor')->name('post-infor');
     //logout
     Route::get('/user-logout', 'UserController@user_logout')->name('user-logout');
 
@@ -128,20 +130,19 @@ Route::group(['namespace' => 'FontEnd'], function () {
     //danh sách sản phẩm
     Route::get('male-product', 'ProductController@all_male_product')->name('male-product');
     Route::get('female-product', 'ProductController@all_female_product')->name('female-product');
-    
+
     //route function cart
     Route::group(['prefix' => 'cart'], function () {
-        Route::get('list','CartController@getCart')->name('getCart');    
-        Route::get('add','CartController@add')->name('addCart');
-        Route::get('update','CartController@updateCart')->name('updateCart');
-        Route::get('delete/{products_id}','CartController@delete')->name('deleteCart');
+        Route::get('list', 'CartController@getCart')->name('getCart');
+        Route::get('add', 'CartController@add')->name('addCart');
+        Route::get('update', 'CartController@updateCart')->name('updateCart');
+        Route::get('delete/{products_id}', 'CartController@delete')->name('deleteCart');
     });
 
     //create bill
     Route::group(['prefix' => 'bill'], function () {
-       Route::post('create','BillFontEndController@create')->name('createBill'); 
+        Route::post('create', 'BillFontEndController@create')->name('createBill');
     });
-    
 });
 //ajax fontend
 Route::group(['namespace' => 'Ajax'], function () {
@@ -157,5 +158,3 @@ Route::group(['namespace' => 'Ajax'], function () {
 });
 
 // Route::get('/brand/{id}', 'Fontend\BrandController@product_of_brand')->name('brand');
-Route::get('/user-infor/{id}/','Fontend\UserController@user_infor')->name('user-infor');
-Route::post('/post-infor/{id}/','Fontend\UserController@post_user_infor')->name('post-infor');
