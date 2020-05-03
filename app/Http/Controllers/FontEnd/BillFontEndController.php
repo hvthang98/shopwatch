@@ -8,22 +8,18 @@ use App\Models\Bills;
 use App\Models\BillDetails;
 use App\Models\Products;
 
+
 class BillFontEndController extends Controller
 {
     public function create(Request $request)
     {
-        // echo $request->name."<br>";
-        // echo $request->address."<br>";
-        // echo $request->phone_number."<br>";
-        // echo $request->note."<br>";
-        // echo $request->total."<br>";
-
         $table = new Bills;
         $table->total = $request->total;
         $table->note = $request->note;
         $table->name = $request->name;
         $table->address = $request->address;
         $table->phone_number = $request->phone_number;
+        $table->users_id=$request->users_id;
         $table->save();
 
         foreach (session('cart') as $value) {
@@ -35,8 +31,12 @@ class BillFontEndController extends Controller
             $detail->price=$product->sellprice;
             if($detail->save()){
                 session()->forget('cart');
-                return redirect(route('getCart'))->with('notification','Tạo đơn hàng thành công');
+                return redirect(route('getCart'))->with('notification','Đặt đơn hàng thành công');
             }
         }
+    }
+    public function getBillUser(Request $request)
+    {
+        return view('fontend.page.bill');
     }
 }

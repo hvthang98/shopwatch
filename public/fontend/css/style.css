@@ -409,44 +409,58 @@ body {
 .cssmenu li>a:hover {
     color: #ACEAFA;
 }
-.drop{
-	width: 123.84px;
-	height: 36px;
-	position: relative;
-  display: inline-block;
+
+.drop {
+    width: 123.84px;
+    height: 36px;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
 }
 
-.sub-drop{
-	background: white;
-	width: 97px;
-	height: 50px;
-	text-align:center;
-	font-style: 20px;
-	display: none;
-	 
-  position: absolute;
-  background-color: #f1f1f1;
+.sub-drop {
+    background:#fff;
+    /* width: 97px; */
+    /* height: 50px; */
+    text-align: center;
+    font-style: 20px;
+    display: none;
+    position: absolute;
+    /* background-color: #f1f1f1; */
+    z-index: 1000;
 }
-.drop p{
-	color: red;
+
+.drop p {
+    color: red;
     margin: 10px 0 10px;
 }
+.sub-drop ul li{
+    font-size: 13px;
+    color: #000;
+    margin: 0px 10px 0px 10px;
 }
- .sub-drop a{
-	position: absolute;
-	display: block;
-	font-weight: bold;
-	color: black;
-	 margin-top:5px; 
-	text-decoration: none;
+.sub-drop ul li a{ 
+    color: #000;
 }
- .drop:hover .sub-drop{
-	background-color: #ddd;
-	display: inline-block;
-	right: -5px;
+/* }
+
+.sub-drop ul li a {
+    position: absolute;
+    display: block;
+    font-weight: bold;
+    color: black;
+    margin-top: 5px;
+    text-decoration: none;
+} */
+
+.drop:hover .sub-drop {
+    background-color: #ddd;
+    display: inline-block;
+    right: -5px;
 }
-.sub-drop a:hover{
-	background: #ddd;
+
+.sub-drop ul li a:hover {
+    color: rgb(88, 88, 88);
 }
 
 .header-bottom {
@@ -810,18 +824,19 @@ ul.last li a:hover {
     width: 72%;
 }
 
-.span_2_of_4{
+.span_2_of_4 {
     width: 100%;
 }
 
 .span_1_of_3 {
-    width: 23%;
+    width: 22%;
     -webkit-transition: all 0.4s ease;
     -moz-transition: all 0.4s ease;
     -o-transition: all 0.4s ease;
     transition: all 0.4s ease;
 }
-.span_1_of_31{
+
+.span_1_of_31 {
     width: 30%;
     /* -webkit-transition: all 0.4s ease;
     -moz-transition: all 0.4s ease;
@@ -892,8 +907,8 @@ h2.head {
 .product_image img {
     display: block;
     border: 1px solid #f0f0f0;
-	height: 100%;
-	width: 100%;
+    height: 100%;
+    width: 100%;
 }
 
 .sale-box {
@@ -1739,13 +1754,11 @@ p.cart a:hover {
 }
 
 .mens-toolbar .sort {
-<<<<<<< HEAD
-    float: left;
+    <<<<<<< HEAD float: left;
     width: 20.5%;
-=======
-	float: left;
-	width: 29.5%;
->>>>>>> list-product
+    =======float: left;
+    width: 29.5%;
+    >>>>>>>list-product
 }
 
 .sort {
@@ -1753,14 +1766,12 @@ p.cart a:hover {
 }
 
 .sort-by {
-<<<<<<< HEAD
+    <<<<<<< HEAD color: #777;
+    font-size: 0.85;
+    =======width: 200px;
     color: #777;
     font-size: 0.85;
-=======
-	width: 200px;
-	color: #777;
-	font-size: 0.85;
->>>>>>> list-product
+    >>>>>>>list-product
 }
 
 .mens-toolbar .pager {
@@ -3423,8 +3434,8 @@ ul.delivery-list li a:hover {
 
     .span_2_of_3 {
         width: 100%;
-	}
-	
+    }
+
 
     .cont {
         float: none;

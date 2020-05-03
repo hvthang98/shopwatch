@@ -93,6 +93,7 @@ Giỏ hàng
                                 <span class="input-group-addon"><i class="fa fa-file-text"></i></span>
                                 <textarea name="note" class="note-cart" placeholder="Ghi chú"></textarea>
                             </div>
+                            <input type="hidden" name="users_id" value="<?php if(Auth::check()) echo Auth::user()->id?>">
                         </div>
                         <div class="bils">
                             <h4>Thông tin đơn hàng</h4>

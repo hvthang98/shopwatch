@@ -146,6 +146,10 @@ Route::group(['namespace' => 'FontEnd'], function () {
 
     //seach
     Route::get('seach','SeachFontEndController@getSeach')->name('seachFE');
+    //show bill user
+    Route::group(['prefix' => 'bill'], function () {
+        Route::get('/{id}','BillFontEndController@getBillUser')->name('getBillUser');
+    });
 });
 //ajax fontend
 Route::group(['namespace' => 'Ajax'], function () {

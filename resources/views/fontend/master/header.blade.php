@@ -5,13 +5,30 @@
         <div class="cssmenu">
             <ul>
                 @if(Auth::check())
-                    <div class="drop"> <p >Xin chào {{Auth::user()->name}}</p>
+                    <div class="drop">
+                        <p><i class="fa fa-user" style="color: #fff; font-size:15px"></i> Xin chào
+                            {{ Auth::user()->name }}</p>
                         <div class="sub-drop">
-                            <a href="{{route('user-infor',['id'=>Auth::user()->id])}}">Xem thông tin</a><br/>
-                            <a href="">Xem hóa đơn</a><br/>
-                            <a href="{{route('user-logout')}}" onclick="return confirm('Bạn muốn đăng xuất ?');">Đăng xuất</a>
+                            <ul>
+                                <li>
+                                    <a
+                                        href="{{ route('user-infor',['id'=>Auth::user()->id]) }}">Xem
+                                        thông tin</a></li>
+                                <li><a href="{{ route('user-logout') }}"
+                                        onclick="return confirm('Bạn muốn đăng xuất ?');">Đăng xuất</a></li>
+                            </ul>
                         </div>
-
+                    </div>
+                    <div class="drop">
+                        <p style="color: #fff;">Kiểm tra đơn hàng</p>
+                        <div class="sub-drop" style="width:250px">
+                            <ul>
+                                <li>Các đơn hàng gần đây:</li>
+                                @foreach ($bills as $bill)
+                                <li><a href="{{ route('getBillUser',$bill->id)}}"> {{ date('d/m/Y',strtotime($bill->created_at))}} - Mã ĐH: {{$bill->id }}</a></li>                                    
+                                @endforeach
+                            </ul>
+                        </div>
                     </div>
                     <li class="active"><a href="">Liên hệ</a></li>
                 @else
@@ -164,4 +181,3 @@
         <div class="clear"></div>
     </div>
 </div>
-

@@ -6,6 +6,8 @@ use Illuminate\Support\ServiceProvider;
 use App\Models\Brands;
 use App\Models\Banners;
 use App\Models\Products;
+use App\Models\Bills;
+use Illuminate\Support\Facades\Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -38,6 +40,11 @@ class AppServiceProvider extends ServiceProvider
                 }
                 $data['carts'] = $carts;
                 $view->with('carts', $carts);
+            }
+            if(Auth::check()){
+                $id=Auth::user()->id;
+                $bills=Bills::where('users_id',$id)->get();
+                $view->with('bills',$bills);
             }
         });
         view()->composer('fontend/page/home', function ($view) {

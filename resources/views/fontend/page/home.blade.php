@@ -33,7 +33,7 @@
 <!-- end slider -->
 <!-- main-content -->
 <div class="main">
-    <div class="wrap">
+    <div class="wrap" style="width: 90%">
         <div class="section group">
             <div class="cont span_2_of_4">
                 <h2 class="head">Sản phẩm nổi bật</h2>
