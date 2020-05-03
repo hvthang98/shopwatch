@@ -14,17 +14,14 @@
                     @if($i==1)
                         Male's
                     @endif
-                    @if($i==2)
+                    @if($i==0)
                         Female's
                     @endif
                 </h2>
                 <div class="mens-toolbar">
                     <div class="sort">
                         <div class="sort-by">
-                            
                             <form  method="get" action="" >
-                           
-
                             <label>Sắp xếp</label>
                             <select name="sort" onchange="javascript:this.form.submit()" >
                                 <option value="id" @if(Request::get('sort')=='id'||Request::get('sort')==''){{'selected'}}  @endif >
@@ -40,11 +37,6 @@
                         </div>
                     </div>
                     <div class="pager">
-                        <ul class="dc_pagination dc_paginationA dc_paginationA06">
-                            <li><a href="#" class="previous">Trang</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                        </ul>
                         <div class="clear"></div>
                     </div>
                     <div class="clear"></div>
@@ -52,10 +44,10 @@
                 <div class="top-box">
                     @foreach($product as $pro)
                     <div class="col_1_of_3 span_1_of_3">
-                        <a href="single.html">
+                        <a href="{{ route('getProductSingle',$pro->id) }}">
                             <div class="inner_content clearfix">
                                 <div class="product_image">
-                                    <img src="../../{{$pro->image}}" alt="" />
+                                    <img src="{{asset($pro->image)}}" alt="" />
                                 </div>
                                 <div class="sale-box"><span class="on_sale title_shop">New</span></div>
                                 <div class="price">
@@ -72,60 +64,14 @@
                             </div>
                         </a>
                     </div>
-                    
                     @endforeach
-
                     <div class="clear"></div>
-                    
                 </div>
                 <div class="row">
                     {{ $product->links() }}
                 </div>
-                <div class="mens-toolbar">
-                    <div class="sort">
-                        <div class="sort-by">
-                            <label>Sắp xếp</label>
-                            <select>
-                                <option value="">
-                                    Position </option>
-                                <option value="">
-                                    Name </option>
-                                <option value="">
-                                    Price </option>
-                            </select>
-                            <!-- <a href=""><img src="images/arrow2.gif" alt="" class="v-middle"></a> -->
-                        </div>
-                    </div>
-                    <div class="pager">
-                        <ul class="dc_pagination dc_paginationA dc_paginationA06">
-                            <li><a href="#" class="previous">Trang</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                        </ul>
-                        <div class="clear"></div>
-                    </div>
-                    <div class="clear"></div>
-                </div>
             </div>
             <div class="rsidebar span_1_of_left">
-                <!-- <h5 class="m_1">Categories</h5>
-                <select class="dropdown" tabindex="8" data-settings='{"wrapperClass":"metro"}'>
-                    <option value="1">Mens</option>
-                    <option value="2">Sub Category1</option>
-                    <option value="3">Sub Category2</option>
-                    <option value="4">Sub Category3</option>
-                </select>
-                <select class="dropdown" tabindex="8" data-settings='{"wrapperClass":"metro"}'>
-                    <option value="1">Womens</option>
-                    <option value="2">Sub Category1</option>
-                    <option value="3">Sub Category2</option>
-                    <option value="4">Sub Category3</option>
-                </select>
-                <ul class="kids">
-                    <li><a href="#">Kids</a></li>
-                    <li class="last"><a href="#">Glasses Shop</a></li>
-                </ul> -->
-                
                 <section class="sky-form">
                     <h4>Giá tiền</h4>
                     <div class="row row1 scroll-pane">
@@ -146,32 +92,6 @@
                         </div>
                     </div>
                 </section>
-                <!-- <section class="sky-form">
-                    <h4>Colors</h4>
-                    <ul class="color-list">
-                        <li><a href="#"> <span class="color1"> </span>
-                                <p class="red">Red</p>
-                            </a></li>
-                        <li><a href="#"> <span class="color2"> </span>
-                                <p class="red">Green</p>
-                            </a></li>
-                        <li><a href="#"> <span class="color3"> </span>
-                                <p class="red">Blue</p>
-                            </a></li>
-                        <li><a href="#"> <span class="color4"> </span>
-                                <p class="red">Yellow</p>
-                            </a></li>
-                        <li><a href="#"> <span class="color5"> </span>
-                                <p class="red">Violet</p>
-                            </a></li>
-                        <li><a href="#"> <span class="color6"> </span>
-                                <p class="red">Orange</p>
-                            </a></li>
-                        <li><a href="#"> <span class="color7"> </span>
-                                <p class="red">Gray</p>
-                            </a></li>
-                    </ul>
-                </section> -->
             </div>
             <div class="clear"></div>
         </div>

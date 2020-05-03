@@ -32,8 +32,8 @@
             </div>
             <div class="menu">
                 <ul class="megamenu skyblue">
-                    <li class="active grid"><a href="index.php">Trang chủ</a></li>
-                    <li><a class="color5" href="">Thương hiệu</a>
+                    <li class="active grid"><a href="{{ route('index') }}">Trang chủ</a></li>
+                    <li><a class="color5">Thương hiệu</a>
                         <div class="megapanel">
                             <div class="col1">
                                 <div class="h_nav">
@@ -105,8 +105,8 @@
         </div>
         <div class="header-bottom-right">
             <div class="search">
-                <form action="">
-                    <input type="text" name="seach" class="textbox" placeholder="Tìm kiếm">
+                <form action="{{ route('seachFE') }}" method="get">
+                    <input type="text" name="seach" class="textbox-seach" placeholder="Tìm kiếm">
                     <input type="submit" value="seach" id="submit" name="submit">
                     <div id="response"></div>
                 </form>

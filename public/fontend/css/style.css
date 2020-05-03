@@ -865,9 +865,9 @@ ul.last li a:hover {
     color: #FFF;
 }
 
-.col_1_of_3:first-child {
+/* .col_1_of_3:first-child {
     margin-left: 15px;
-}
+} */
 
 h2.head {
     font-size: 1.7em;

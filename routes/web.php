@@ -143,6 +143,9 @@ Route::group(['namespace' => 'FontEnd'], function () {
     Route::group(['prefix' => 'bill'], function () {
         Route::post('create', 'BillFontEndController@create')->name('createBill');
     });
+
+    //seach
+    Route::get('seach','SeachFontEndController@getSeach')->name('seachFE');
 });
 //ajax fontend
 Route::group(['namespace' => 'Ajax'], function () {
