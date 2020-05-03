@@ -408,6 +408,45 @@ body {
 .cssmenu li>a:hover {
 	color: #ACEAFA;
 }
+.drop{
+	width: 123.84px;
+	height: 36px;
+	position: relative;
+  display: inline-block;
+}
+
+.sub-drop{
+	background: white;
+	width: 97px;
+	height: 50px;
+	text-align:center;
+	font-style: 20px;
+	display: none;
+	 
+  position: absolute;
+  background-color: #f1f1f1;
+}
+.drop p{
+	color: red;
+    margin: 10px 0 10px;
+}
+}
+ .sub-drop a{
+	position: absolute;
+	display: block;
+	font-weight: bold;
+	color: black;
+	 margin-top:5px; 
+	text-decoration: none;
+}
+ .drop:hover .sub-drop{
+	background-color: #ddd;
+	display: inline-block;
+	right: -5px;
+}
+.sub-drop a:hover{
+	background: #ddd;
+}
 
 .header-bottom {
 	background: #fff;

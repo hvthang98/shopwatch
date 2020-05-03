@@ -111,9 +111,13 @@
                     <form action="{{route('post-user-login')}}" method="post" name="login" class="login-form">
                         <h1 class="title">Đăng nhập</h1>
                         @csrf
-                        @if(count($errors)>0)
+                        @if(count($errors)>0 )
                         <div>
                              <strong style="color: red">{{$errors->first()}}</strong>
+                        </div>
+                        @elseif(session()->has('notification')) 
+                          <div>
+                             <strong style="color: red">Sai thông tin đăng nhập</strong>
                         </div>
                         @endif
                         <div class="txtb">

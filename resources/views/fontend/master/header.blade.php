@@ -21,8 +21,18 @@
         <div class="cssmenu">
             <ul>
                 @if(Auth::check())
-                    <li class="active">Xin chào {{Auth::user()->name}}</li> 
-                    <li><a href="{{route('user-logout')}}" onclick="return confirm('Bạn muốn đăng xuất ?');">Đăng xuất</a></li>
+                    <div class="drop"> <p >Xin chào {{Auth::user()->name}}</p>
+                        <div class="sub-drop">
+                            <a href="{{route('user-infor',['id'=>Auth::user()->id])}}">Xem thông tin</a><br/>
+                            <a href="">Xem hóa đơn</a><br/>
+                            <a href="{{route('user-logout')}}" onclick="return confirm('Bạn muốn đăng xuất ?');">Đăng xuất</a>
+                        </div>
+
+                    </div>
+                    <li class="active"><a href="">Liên hệ</a></li>
+                   <!--  <li>
+                        <a href="{{route('user-logout')}}" onclick="return confirm('Bạn muốn đăng xuất ?');">Đăng xuất</a>
+                    </li> -->
                 @else
                     <li class="active"><a href="login.html">Liên hệ</a></li> 
                     <li><a href="{{route('user-login')}}">Đăng nhập</a></li> 
@@ -101,6 +111,7 @@
                             </div>
                         </div>
                     </li>
+                    <li ><a class="color7" href="index.php">Tin tức</a></li>
                 </ul>
             </div>
         </div>

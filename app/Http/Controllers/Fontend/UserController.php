@@ -31,9 +31,29 @@ class UserController extends Controller
 
     		return redirect('/')->with('notification','Đăng nhập thành công');
     	}
+        else{
+            return redirect()->back()->with('notification','Thông tin đăng nhập sai');
+        }
 
     }
 
+    function user_infor($id){
+        $infor=User::where('id',$id)->get();
+
+        return view('fontend.page.user-infor')->with('infors',$infor);
+    }
+    function post_user_infor(Request $request,$id){
+       
+        $infor= User::find($id);
+        $infor->name=$request->name;
+        $infor->email=$request->email;
+        $infor->phone_number=$request->phonenumber;
+        $infor->birthday=$request->birthday;
+        $infor->address=$request->address;
+        $infor->password=bcrypt($request->repas);
+        $infor->save();
+        return redirect('/')->with('notification','Cập nhật thông tin thành công');
+    }
     public function user_logout()
     {
     	if(Auth::check() ){
@@ -41,6 +61,7 @@ class UserController extends Controller
     		return redirect('/');
     	}
     }
+
 
     public function user_signup()
     {

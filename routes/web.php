@@ -110,6 +110,8 @@ Route::post('/post-user-login','Fontend\UserController@post_user_login')->name('
 Route::get('/user-logout','Fontend\UserController@user_logout')->name('user-logout');
 Route::get('/user-sign-up','Fontend\UserController@user_signup')->name('user-sign-up');
 Route::post('/post-user-sign-up','Fontend\UserController@post_user_signup')->name('post-user-signup');
+Route::get('/user-infor/{id}/','Fontend\UserController@user_infor')->name('user-infor');
+Route::post('/post-infor/{id}/','Fontend\UserController@post_user_infor')->name('post-infor');
 //danh sách sản phẩm theo thương hiệu
 Route::get('/brand/{id}','Fontend\BrandController@product_of_brand')->name('brand');
 //danh sách sản phẩm
