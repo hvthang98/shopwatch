@@ -102,6 +102,18 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
         Route::get('detail/{id}', 'BillController@getDetailBill')->name('detailBill');
         Route::post('update/{id}', 'BillController@updateBill')->name('updateBill');
     });
+    //News
+    Route::group(['prefix'=>'new'],function(){
+        Route::get('add-new','NewsController@add_new')->name('add-new');
+        Route::post('add-new','NewsController@post_add_new')->name('post-new');
+        Route::get('all-new','NewsController@all_new')->name('list-new');
+        Route::get('active/{id}','NewsController@active')->name('active');
+        Route::get('unactive/{id}','NewsController@unactive')->name('un-active');
+        Route::get('edit-new/{id}','NewsController@edit')->name('edit');
+        Route::post('edit-new/{id}','NewsController@post_edit')->name('post-edit');
+        Route::get('delete/{id}','NewsController@delete')->name('delete');
+
+    });
 });
 
 //Route fontend
@@ -127,10 +139,19 @@ Route::group(['namespace' => 'FontEnd'], function () {
 
     //danh sách sản phẩm theo thương hiệu
     Route::get('/brand/{id}', 'BrandController@product_of_brand')->name('brand');
+    
     //danh sách sản phẩm
-    Route::get('male-product', 'ProductController@all_male_product')->name('male-product');
-    Route::get('female-product', 'ProductController@all_female_product')->name('female-product');
+    Route::group(['prefix'=>'product'],function(){
+        Route::get('male-product', 'ProductController@all_male_product')->name('male-product');
+        Route::get('male-product-{id}', 'ProductController@all_male_product_brand')->name('male-product/');
+        Route::get('female-product', 'ProductController@all_female_product')->name('female-product');
+        Route::get('female-product-{id}', 'ProductController@all_female_product_brand')->name('female-product/');
+    });
+    
 
+    //tin tức
+    Route::get('/new','NewController@all_new')->name('all-new');
+    Route::get('detail-new-{id}','NewController@detail_new')->name('detail-new');
     //route function cart
     Route::group(['prefix' => 'cart'], function () {
         Route::get('list', 'CartController@getCart')->name('getCart');

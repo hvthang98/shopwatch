@@ -4270,3 +4270,277 @@ ul.delivery-list li a:hover {
         width: 55.5%;
     }
 }
+.tintuc{
+    margin-top:30px;
+    /*background: red;*/
+    width: 1200px;
+    margin: auto;
+    min-height: 950px;
+}
+.tintuc1{
+   /* background: yellow;*/
+    height: 50px;
+    line-height: 50px;
+    margin-top: 50px;
+}
+.tintuc1 p{
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+.loctin{
+    /*background: gray;*/
+    height: 40px;
+    margin-top: 90px;
+}
+.loctin form{
+    margin-left: 30px;
+    line-height: 40px;
+}
+.tintuc2{
+    /*background: green;*/
+    min-height: 691px;
+    margin-top: 30px;
+}
+.tin{
+    background: blue;
+    width: 363px;
+    height: 250px;
+    margin-left: 30px;
+    margin-top:30px;
+    float: left;
+}
+.chua{
+    width: 363px;
+    height: 250px;
+}
+.nd{
+    position: absolute; 
+    bottom: 0; 
+    background: rgb(0, 0.5, 0);
+    background: rgba(0, 0, 0, 0.5);
+    color: white; 
+    transition: .8s ease;
+    opacity:0;
+    color: blue;
+    font-size: 20px;
+    padding-top: 30px;
+    text-align: center;
+    width: 363px;
+    height: 250px;
+}
+.nd p{
+
+    color: white;
+    
+    text-decoration: none;
+    display: block;
+}
+.chua:hover .nd{
+
+    text-decoration: none;
+    color: white;
+    opacity: 5;
+
+
+}
+.ct-tin{
+    width: 1200px;
+    margin: auto;
+}
+
+.br{
+    width: 300px;
+}
+.main1{
+    width: 1200px;
+    min-height: 2500px;
+    /*background-color: red;*/
+    margin: auto;
+    margin-top:50px; 
+}
+.main2{
+    height: 1250px;
+    /*background-color: yellow;*/
+
+}
+.main21{
+    height: 50px;
+    /*background-color: gray;*/
+}
+.main21 h2{
+    line-height: 50px;
+    margin-left: 10px;
+}
+.main22{
+    height: 1330px;
+    margin-top: 20px;
+    /*background-color: orange;*/
+}
+.main221{
+    min-height: 350px;
+    min-width: 260px;
+    float: left;
+    margin-left: 30px;
+    margin-top: 20px;
+    /*background-color: blue;*/
+}
+.img1{
+    min-height:280px;
+    /*background-color: green;*/ 
+}
+.namesp{
+    /*background-color: pink;*/
+    height: 40px;
+}
+.namesp p{
+    width: 260px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+.pri{
+   /* background-color: gray;*/
+    height: 30px;
+}
+.boc-pri{
+    margin-left: 28px ;
+}
+.mua{
+    position: absolute; 
+    bottom: 0; 
+    background: rgb(0, 0.5, 0);
+    background: rgba(0, 0, 0, 0.5);
+    color: white; 
+    transition: .8s ease;
+    opacity:0;
+    color: blue;
+    font-size: 20px;
+    padding-top: 200px;
+    text-align: center;
+    width: 260px;
+    height: 280px;
+}
+.mua a{
+
+    color: white;
+    
+    text-decoration: none;
+    display: block;
+}
+.img1:hover .mua{
+
+    text-decoration: none;
+    color: white;
+    opacity: 5;
+
+
+}
+.sell {
+    height: 30px;
+    min-width: 100px;
+   /* background-color: red;*/
+    float: left;
+    text-align: center;
+   /* margin-left: 28px;*/
+    line-height: 30px;
+}
+.sell span{
+    text-decoration: line-through;
+    font-style: italic;
+    opacity: .6;
+}
+.normalp{
+    height: 30px;
+    min-width: 100px;
+    /*background-color: yellow;*/
+    float: left;
+    
+    line-height: 30px;
+}
+.normalp span{
+    font-weight: bold;
+}
+.spbrand{
+    /*background-color: red;*/
+    min-height: 400px;
+}
+.spbrand1{
+    /*background-color: yellow;*/
+    width: 260px;
+    height: 350px;
+    margin-left: 20px;
+    float: left;
+    margin-top: 20px;
+}
+.spsearch{
+    min-height: 300px;
+}
+.main3{
+    /*background-color: red;*/
+    min-height:500px; 
+    width: 1200px;
+    margin:auto;
+    margin-top:30px;
+}
+.main31{
+    /*background-color: yellow;*/
+    width: 790px;
+    min-height: 500px;
+    float: left;
+
+}
+.main311{
+    /*background-color: pink;*/
+    height: 50px;
+
+}
+.main311 span{
+    line-height: 50px;
+    font-size: 26px;
+    margin-left: 10px;
+}
+.main312{
+    /*background-color: orange;*/
+    height: 450px;
+}
+.main3121{
+    margin-top: 10px;
+   /* background-color: gray;*/
+    width: 370px;
+    height: 137px;
+    margin-left: 10px;
+    float: left;
+}
+.main3121img{
+    width: 137px;
+    height: 137px;
+    float: left;
+    /*background-color: pink;*/
+}
+.main3121nd{
+    /*background-color: red;*/
+    width: 228px;
+    margin-left: 5px;
+    height: 137px;
+    float: left;
+}
+.main3121nd a{
+    margin-left: 5px;
+    font-size: 20px;
+    text-align: center;
+}
+.main32{
+    margin-left: 10px;
+    /*background-color: green;*/
+    width: 400px;
+    min-height: 450px;
+    float: left;
+}
+.BD{
+    height: 400px;
+   /* background-color: pink;*/
+}

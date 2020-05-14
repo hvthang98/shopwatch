@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <head>
+    
     <title>@yield('title')</title>
     <base href="{{ asset('public/backend') }}/">
     <meta name="viewport" content="width=device-width, initial-scale=1">

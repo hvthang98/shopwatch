@@ -40,37 +40,28 @@
                     </div>
                     <div class="clear"></div>
                 </div>
-                <div class="top-box">
-                    @foreach($product as $pro)
-                        <div class="col_1_of_3 span_1_of_3">
-                            <a href="{{ route('getProductSingle',$pro->products_id) }}">
-                                <div class="inner_content clearfix">
-                                    <div class="product_image">
-                                        <img src="{{ asset($pro->image) }}" alt="" />
-                                    </div>
-                                    <div class="sale-box"><span class="on_sale title_shop">New</span></div>
-                                    <div class="price">
-                                        <div class="cart-left">
-                                            <p class="title">{{ $pro->name }}</p>
-                                            <div class="price1">
-                                                <span
-                                                    class="reducedfrom">{{ number_format($pro->price,0,',',',')."đ" }}</span>
-                                                <span
-                                                    class="actual">{{ number_format($pro->sellprice,0,',',',')."đ" }}</span>
-                                            </div>
-                                        </div>
-                                        <div class="cart-right"> </div>
-                                        <div class="clear"></div>
-                                    </div>
+                <div class="spsearch">
+                        @foreach($product as $pro)
+                        <div class="spbrand1">
+                            <div class="img1" style="position: relative;">
+                                <img width="260" height="280" src="../../{{$pro->image}}">
+                                <div class="mua"><a href="{{route('getProductSingle',['id'=>$pro->products_id])}}">Xem chi tiết</a></div>
+                            </div>
+                            <div class="namesp"><p>{{$pro->name}}</p></div>
+                            <div class="pri">
+                                <div class=" boc-pri">
+                                    <div class="sell"><span >{{ number_format($pro->price,0,',',',')."đ" }}</span></div>
+                                    <div class="normalp"><span style="color: red" >{{ number_format($pro->sellprice,0,',',',')."đ" }}</span></div>
                                 </div>
-                            </a>
+                            </div>
                         </div>
-                    @endforeach
-                    @if($product==null)
+                        @endforeach
+                        @if($product==null)
                         <h2>Không tìm thấy từ khóa {{ $key }}</h2>
-                    @endif
-                    <div class="clear"></div>
-                </div>
+                        @endif
+                        
+
+                    </div>
                 <div class="row">
                     {{-- {{ $product->links() }} --}}
                 </div>
@@ -113,3 +104,34 @@
 </div>
 <script src="js/jquery.easydropdown.js"></script>
 @endsection
+<!-- <div class="top-box">
+                    @foreach($product as $pro)
+                        <div class="col_1_of_3 span_1_of_3">
+                            <a href="{{ route('getProductSingle',$pro->products_id) }}">
+                                <div class="inner_content clearfix">
+                                    <div class="product_image">
+                                        <img src="{{ asset($pro->image) }}" alt="" />
+                                    </div>
+                                    <div class="sale-box"><span class="on_sale title_shop">New</span></div>
+                                    <div class="price">
+                                        <div class="cart-left">
+                                            <p class="title">{{ $pro->name }}</p>
+                                            <div class="price1">
+                                                <span
+                                                    class="reducedfrom">{{ number_format($pro->price,0,',',',')."đ" }}</span>
+                                                <span
+                                                    class="actual">{{ number_format($pro->sellprice,0,',',',')."đ" }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="cart-right"> </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
+                    @if($product==null)
+                        <h2>Không tìm thấy từ khóa {{ $key }}</h2>
+                    @endif
+                    <div class="clear"></div>
+                </div> -->

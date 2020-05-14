@@ -23,7 +23,7 @@ class UserController extends Controller
 
     public function post_user_login(Request $request)
     {
-    	$request->validate(['email'=>'required','password'=>'required|min:6'],['required'=>'Không được để trống trường','min'=>'Mật khẩu ít nhất 6 ký tự']);
+    	$request->validate(['email'=>'required','password'=>'required|min:6','g-recaptcha-response' => 'required|captcha'],['required'=>'Không được để trống trường','min'=>'Mật khẩu ít nhất 6 ký tự']);
 
     	$email=$request->email;
     	$pass=$request->password;
@@ -51,7 +51,10 @@ class UserController extends Controller
         $infor->phone_number=$request->phonenumber;
         $infor->birthday=$request->birthday;
         $infor->address=$request->address;
-        $infor->password=bcrypt($request->repas);
+        if($request->repas != null){
+            $infor->password=bcrypt($request->repas);
+        }
+        
         $infor->save();
         return redirect('/')->with('notification','Cập nhật thông tin thành công');
     }
@@ -70,7 +73,8 @@ class UserController extends Controller
     }
 
     public function post_user_signup(UserLoginRequest $request )
-    {
+    { 
+
     	 $data=$request->all();
     	 $user=new User;
     	 $user->email=$data['email'];

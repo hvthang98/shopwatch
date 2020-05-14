@@ -4,17 +4,35 @@
     .active {
         color: red;
     }
+    .br{
+        width: 800px;
+        min-height: 250px;
+       /* background-color: red;*/
+        margin :auto;
+    }
+    .br2{
+        text-align: center;
+    }
 
 </style>
 <div class="main">
     <div class="mens">
         <div class="main">
             <div class="wrap">
-                <div class="cont span_2_of_3">
-                    <h2 class="head">
-                        thương hiệu
+                 @foreach($brand as $brand)
+                <div class="br">
+                    <div class="br1">
+                       
+                    <h2 class="br2">
+                        Thương hiệu
                         {{ $brand->name }}
                     </h2>
+                    </div>
+                    <div class="con">{!! $brand->info !!}</div>
+                </div>
+                @endforeach
+                <div class="cont span_2_of_3">
+                    
                     <div class="mens-toolbar">
                         <div class="sort">
                             <div class="sort-by">
@@ -41,35 +59,24 @@
                         </div>
                         <div class="clear"></div>
                     </div>
-                    <div class="top-box">
+                    <div class="spbrand">
                         @foreach($product as $pro)
-                            <div class="col_1_of_3 span_1_of_3 span_1_of_31">
-                                <a href="{{ route('getProductSingle',$pro->id) }}">
-                                    <div class="inner_content clearfix">
-                                        <div class="product_image">
-                                            <img src="../../{{ $pro->image }}" alt="" />
-                                        </div>
-                                        <div class="sale-box"><span class="on_sale title_shop">New</span></div>
-                                        <div class="price">
-                                            <div class="cart-left">
-                                                <p class="title">{{ $pro->name }}</p>
-                                                <div class="price1">
-                                                    <span
-                                                        class="reducedfrom">{{ number_format($pro->price,0,',',',')."đ" }}</span>
-                                                    <span
-                                                        class="actual">{{ number_format($pro->sellprice,0,',',',')."đ" }}</span>
-                                                </div>
-                                            </div>
-                                            <div class="cart-right"> </div>
-                                            <div class="clear"></div>
-                                        </div>
-                                    </div>
-                                </a>
+                        <div class="spbrand1">
+                            <div class="img1" style="position: relative;">
+                                <img width="260" height="280" src="../../{{$pro->image}}">
+                                <div class="mua"><a href="{{route('getProductSingle',['id'=>$pro->products_id])}}">Xem chi tiết</a></div>
                             </div>
-
+                            <div class="namesp"><p>{{$pro->name}}</p></div>
+                            <div class="pri">
+                                <div class=" boc-pri">
+                                    <div class="sell"><span >{{ number_format($pro->price,0,',',',')."đ" }}</span></div>
+                                    <div class="normalp"><span style="color: red" >{{ number_format($pro->sellprice,0,',',',')."đ" }}</span></div>
+                                </div>
+                            </div>
+                        </div>
                         @endforeach
-
-                        <div class="clear"></div>
+                        
+                        
 
                     </div>
                     <div class="row">

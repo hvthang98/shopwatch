@@ -10,7 +10,7 @@ use App\Models\Comment;
 use App\Models\ReplyComment;
 class ProductDetailController extends Controller
 {
-    public function getProductDetail(Request $request)
+    public function getProductDetail(Request $request,$id)
     {
         $data['products']=Products::find($request->id);
         $data['listProducts']=Products::all();

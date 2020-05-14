@@ -16,12 +16,12 @@ class BrandController extends Controller
 	{
 
 		//get brand
-		$brand = Brands::find($id);
+		$brand = Brands::where('id',$id)->get();
 
-		$product = DB::table('brands')->join('products', 'brands.id', '=', 'products.brands_id')->join('image_product', 'products.id', '=', 'image_product.products_id')->join('info_product', 'products.id', '=', 'info_product.products_id')->where('brands.id', $id)->where('image_product.level', 1);
+		$product = DB::table('brands')->join('products', 'brands.id', '=', 'products.brands_id')->join('image_product', 'products.id', '=', 'image_product.products_id')->join('info_product', 'products.id', '=', 'info_product.products_id')->where('products.brands_id', $id)->where('image_product.level', 1);
 		$tempt = 0;
 		//phần lọc danh sách sản phẩm
-
+		
 		//1. sắp xếp sản phẩm theo tên ,giá
 		if ($request->has('sort')) {
 			$tempt = 1;
@@ -251,28 +251,28 @@ class BrandController extends Controller
 		//gắn link phân trang 
 		switch ($tempt) {
 			case 1:
-				$product = $product->paginate(12)->appends('sort', request('sort'));
+				$product = $product->paginate(6)->appends('sort', request('sort'));
 				break;
 			case 2:
-				$product = $product->paginate(12)->appends('pri', request('pri'));
+				$product = $product->paginate(6)->appends('pri', request('pri'));
 				break;
 			case 3:
-				$product = $product->paginate(12)->appends('gender', request('gender'));
+				$product = $product->paginate(6)->appends('gender', request('gender'));
 				break;
 			case 4:
-				$product = $product->paginate(12)->appends('sort', request('sort'))->appends('pri', request('pri'));
+				$product = $product->paginate(6)->appends('sort', request('sort'))->appends('pri', request('pri'));
 				break;
 			case 5:
-				$product = $product->paginate(12)->appends('gender', request('gender'))->appends('sort', request('sort'));
+				$product = $product->paginate(6)->appends('gender', request('gender'))->appends('sort', request('sort'));
 				break;
 			case 6:
-				$product = $product->paginate(12)->appends('gender', request('gender'))->appends('pri', request('pri'));
+				$product = $product->paginate(6)->appends('gender', request('gender'))->appends('pri', request('pri'));
 				break;
 			case 7:
-				$product = $product->paginate(12)->appends('gender', request('gender'))->appends('pri', request('pri'))->appends('sort', request('sort'));
+				$product = $product->paginate(6)->appends('gender', request('gender'))->appends('pri', request('pri'))->appends('sort', request('sort'));
 				break;
 			default:
-				$product = $product->paginate(12);
+				$product = $product->paginate(6);
 				break;
 		}
 

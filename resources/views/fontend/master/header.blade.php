@@ -74,7 +74,7 @@
                                     <ul>
                                         @foreach($brand as $br)
                                             <li><a
-                                                    href="{{ route('brand',['id'=>$br->id]) }}">{{ $br->name }}</a>
+                                                    href="{{ route('male-product/',['id'=>$br->id]) }}">{{ $br->name }}</a>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -91,7 +91,7 @@
                                     <ul>
                                         @foreach($brand as $br)
                                             <li><a
-                                                    href="{{ route('brand',['id'=>$br->id]) }}">{{ $br->name }}</a>
+                                                    href="{{ route('female-product/',['id'=>$br->id]) }}">{{ $br->name }}</a>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -99,24 +99,8 @@
                             </div>
                         </div>
                     </li>
-                    {{-- <li><a class="color6" href="other.html">Phụ kiện</a>
-                        <div class="megapanel">
-                            <div class="col1">
-                                <div class="h_nav">
-                                    <ul>
-                                        <li><a href="mens.html">
-                                                <h4>Dây da đồng hồ</h4>
-                                            </a>
-                                        </li>
-                                        <li><a href="mens.html">
-                                                <h4>Pin</h4>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </li> --}}
+                    <li> <a class="color5" href="{{route('all-new')}}">Tin tức</a></li>
+                    
                 </ul>
             </div>
         </div>

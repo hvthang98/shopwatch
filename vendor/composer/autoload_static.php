@@ -162,6 +162,7 @@ class ComposerStaticInit2b90b6926669b5c836e717066c0db670
         array (
             'Asm89\\Stack\\' => 12,
             'App\\' => 4,
+            'Anhskohbo\\NoCaptcha\\' => 20,
         ),
     );
 
@@ -444,6 +445,10 @@ class ComposerStaticInit2b90b6926669b5c836e717066c0db670
         array (
             0 => __DIR__ . '/../..' . '/app',
         ),
+        'Anhskohbo\\NoCaptcha\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/anhskohbo/no-captcha/src',
+        ),
     );
 
     public static $prefixesPsr0 = array (
@@ -468,15 +473,30 @@ class ComposerStaticInit2b90b6926669b5c836e717066c0db670
     );
 
     public static $classMap = array (
+        'Anhskohbo\\NoCaptcha\\Facades\\NoCaptcha' => __DIR__ . '/..' . '/anhskohbo/no-captcha/src/Facades/NoCaptcha.php',
+        'Anhskohbo\\NoCaptcha\\NoCaptcha' => __DIR__ . '/..' . '/anhskohbo/no-captcha/src/NoCaptcha.php',
+        'Anhskohbo\\NoCaptcha\\NoCaptchaServiceProvider' => __DIR__ . '/..' . '/anhskohbo/no-captcha/src/NoCaptchaServiceProvider.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Admin\\BannerController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/BannerController.php',
+        'App\\Http\\Controllers\\Admin\\BillController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/BillController.php',
         'App\\Http\\Controllers\\Admin\\BrandController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/BrandController.php',
         'App\\Http\\Controllers\\Admin\\CategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CategoryController.php',
         'App\\Http\\Controllers\\Admin\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/HomeController.php',
+        'App\\Http\\Controllers\\Admin\\NewsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/NewsController.php',
         'App\\Http\\Controllers\\Admin\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ProductController.php',
+        'App\\Http\\Controllers\\Admin\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/UserController.php',
+        'App\\Http\\Controllers\\Ajax\\AjaxFontEndController' => __DIR__ . '/../..' . '/app/Http/Controllers/Ajax/AjaxFontEndController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
-        'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
+        'App\\Http\\Controllers\\FontEnd\\BillFontEndController' => __DIR__ . '/../..' . '/app/Http/Controllers/FontEnd/BillFontEndController.php',
+        'App\\Http\\Controllers\\FontEnd\\CartController' => __DIR__ . '/../..' . '/app/Http/Controllers/FontEnd/CartController.php',
+        'App\\Http\\Controllers\\FontEnd\\ProductDetailController' => __DIR__ . '/../..' . '/app/Http/Controllers/FontEnd/ProductDetailController.php',
+        'App\\Http\\Controllers\\FontEnd\\SeachFontEndController' => __DIR__ . '/../..' . '/app/Http/Controllers/FontEnd/SeachFontEndController.php',
+        'App\\Http\\Controllers\\Fontend\\BrandController' => __DIR__ . '/../..' . '/app/Http/Controllers/FontEnd/BrandController.php',
+        'App\\Http\\Controllers\\Fontend\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/FontEnd/HomeController.php',
+        'App\\Http\\Controllers\\Fontend\\NewController' => __DIR__ . '/../..' . '/app/Http/Controllers/FontEnd/NewController.php',
+        'App\\Http\\Controllers\\Fontend\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/FontEnd/ProductController.php',
+        'App\\Http\\Controllers\\Fontend\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/FontEnd/UserController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\AdminLogin' => __DIR__ . '/../..' . '/app/Http/Middleware/AdminLogin.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
@@ -488,13 +508,22 @@ class ComposerStaticInit2b90b6926669b5c836e717066c0db670
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Requests\\AddBrandRequest' => __DIR__ . '/../..' . '/app/Http/Requests/AddBrandRequest.php',
         'App\\Http\\Requests\\AddProductRequest' => __DIR__ . '/../..' . '/app/Http/Requests/AddProductRequest.php',
+        'App\\Http\\Requests\\BannerRequest' => __DIR__ . '/../..' . '/app/Http/Requests/BannerRequest.php',
+        'App\\Http\\Requests\\LoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/LoginRequest.php',
         'App\\Http\\Requests\\UpdateBrandRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UpdateBrandRequest.php',
+        'App\\Http\\Requests\\UserLoginRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UserLoginRequest.php',
+        'App\\Http\\Requests\\UserRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UserRequest.php',
         'App\\Models\\Banners' => __DIR__ . '/../..' . '/app/Models/Banners.php',
+        'App\\Models\\BillDetails' => __DIR__ . '/../..' . '/app/Models/BillDetails.php',
+        'App\\Models\\Bills' => __DIR__ . '/../..' . '/app/Models/Bills.php',
         'App\\Models\\Brands' => __DIR__ . '/../..' . '/app/Models/Brands.php',
         'App\\Models\\Categories' => __DIR__ . '/../..' . '/app/Models/Categories.php',
+        'App\\Models\\Comment' => __DIR__ . '/../..' . '/app/Models/Comment.php',
         'App\\Models\\ImgProduct' => __DIR__ . '/../..' . '/app/Models/ImgProduct.php',
         'App\\Models\\Info_product' => __DIR__ . '/../..' . '/app/Models/Info_product.php',
         'App\\Models\\Products' => __DIR__ . '/../..' . '/app/Models/Products.php',
+        'App\\Models\\ReplyComment' => __DIR__ . '/../..' . '/app/Models/ReplyComment.php',
+        'App\\Models\\Users' => __DIR__ . '/../..' . '/app/Models/Users.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',

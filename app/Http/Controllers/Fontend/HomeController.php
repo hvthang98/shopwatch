@@ -6,10 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Models\Products;
+use App\Models\News;
 use App\Models\ImgProduct;
 use App\User;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     //
@@ -22,9 +23,10 @@ class HomeController extends Controller
 
 	public function index()
 	{
-		$highlight_product = Products::where('status', 1)->where('ordernum', 1)->get();
-
-		$new_product = Products::where('status', 1)->where('ordernum', 2)->get();
+		$highlight_product = Products::where('status', 1)->where('ordernum', 1)->limit(12)->get();
+		// dd($highlight_product);
+		$new_product = Products::where('status', 1)->where('ordernum', 2)->limit(12)->get();
+		$new=News::all()->random(6);
 
 		$highlight_img = []; //mảng danh sách hình ảnh sp nổi bật
 		foreach ($highlight_product as  $h) {
@@ -47,8 +49,7 @@ class HomeController extends Controller
 		for ($i = 0; $i < count($new_img); $i++) {
 			$new_product[$i]['img'] = $new_img[$i];
 		}
-		$i = 1;
-		$j = 1;
-		return view('fontend.page.home')->with('highlight_product', $highlight_product)->with('new_product', $new_product)->with('i', $i)->with('j', $j);
+		
+		return view('fontend.page.home')->with('highlight_product', $highlight_product)->with('new_product', $new_product)->with('new',$new);
 	}
 }

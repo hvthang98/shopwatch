@@ -7,10 +7,11 @@
             <div class="slide">
                 <!-- Slide image -->
                 <a target="_blank" href="{{ $ban->link }}">
-                    <img src="{{ asset($ban->image) }}" alt="" />
+                    <img src="../upload/images/{{$ban->image}}" alt="" />
                 </a>
-                {{-- public/upload/images/banner1.jpg --}}
+                <!-- {{-- public/upload/images/banner1.jpg --}} -->
                 <!-- /Slide image -->
+               <!--  {{ asset($ban->image) }} -->
                 <!-- Texts container -->
                 <!-- <div class="slide_content">
                 <div class="slide_content_wrap">
@@ -32,118 +33,66 @@
 </div>
 <!-- end slider -->
 <!-- main-content -->
-<div class="main">
-    <div class="wrap" style="width: 90%">
-        <div class="section group">
-            <div class="cont span_2_of_4">
-                <h2 class="head">Sản phẩm nổi bật</h2>
-
-                @foreach($highlight_product as $hpro)
-
-                    <div class="top-box">
-
-                        <div class="col_1_of_3 span_1_of_3 " @if($i==1) style="margin-top: 29px;" @endif>
-                            <a href="{{ route('getProductSingle',$hpro->id) }}">
-                                <div class="inner_content clearfix">
-                                    <div class="product_image">
-                                        <img src="{{ asset($hpro->img) }}" alt="" />
-                                    </div>
-                                    <div class="sale-box"><span class="on_sale title_shop">New</span></div>
-                                    <div class="price">
-                                        <div class="cart-left">
-                                            <p class="title">{{ $hpro->name }}</p>
-                                            <div class="price1">
-                                                <span class="reducedfrom">{{ number_format($hpro->price) }}</span>
-                                                <span class="actual">{{ number_format($hpro->sellprice) }}</span>
-                                            </div>
-                                            <div class="price1">
-                                            </div>
-                                        </div>
-                                        <a href="#">
-                                            <div class="cart-right">
-                                            </div>
-                                        </a>
-                                        <div class="clear"></div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                    </div>
-                    <input type="hidden" value="{{ $i++ }}" name="">
-                @endforeach
-                <div class="clear"></div>
-
-                <!-- </div> -->
-
-
-                <h2 class="head">Sản phẩm mới</h2>
-                @foreach($new_product as $npro)
-                    <div class="top-box">
-
-                        <div class="col_1_of_3 span_1_of_3 " @if($j==1) style="margin-top: 29px;" @endif>
-                            <a href="single.html">
-
-                                <div class="inner_content clearfix">
-
-                                    <div class="product_image">
-
-                                        <img src="{{ asset($npro->img) }}" alt="" />
-
-                                    </div>
-
-                                    <div class="sale-box"><span class="on_sale title_shop">New</span></div>
-                                    <div class="price">
-                                        <div class="cart-left">
-                                            <p class="title">{{ $npro->name }}</p>
-                                            <div class="price1">
-                                                <span class="reducedfrom">{{ $npro->price }}</span>
-                                                <span class="actual">{{ $npro->sellprice }}</span>
-                                            </div>
-                                            <div class="price1">
-                                            </div>
-                                        </div>
-                                        <a href="#">
-                                            <div class="cart-right">
-                                            </div>
-                                        </a>
-                                        <div class="clear"></div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                    </div>
-                    <input type="hidden" value="{{ $j++ }}" name="">
-                @endforeach
-
-                <div class="clear"></div>
-
-            </div>
-            {{-- <div class="rsidebar span_1_of_left">
-                <div class="top-border"> </div>
-                <div class="border">
-                    <link href="css/default.css" rel="stylesheet" type="text/css" media="all" />
-                    <link href="css/nivo-slider.css" rel="stylesheet" type="text/css" media="all" />
-                    <script src="js/jquery.nivo.slider.js"></script>
-                    <script type="text/javascript">
-                        $(window).load(function () {
-                            $('#slider').nivoSlider();
-                        });
-
-                    </script>
-                    <div class="slider-wrapper theme-default">
-                        <div id="slider" class="nivoSlider">
-                            <a href="#"><img src="images/t-img1.jpg" alt="" /></a>
-                            <a href="#"><img src="images/t-img2.jpg" alt="" /></a>
-                            <a href="#"><img src="images/t-img3.jpg" alt="" /></a>
-                        </div>
-                    </div>
-                    <!-- <div class="btn"><a href="single.html"></a></div> -->
+<div class="main1">
+    <div class="main2">
+        <div class="main21"><h2>Sản phẩm nổi bật</h2></div>
+        <div class="main22">
+            @foreach($highlight_product as $hi)
+            <div class="main221">
+                <div class="img1" style="position: relative;">
+                    <img width="260" height="280" src="../../{{$hi->img}}">
+                    <div class="mua"><a href="{{route('getProductSingle',['id'=>$hi->id])}}">Xem chi tiết</a></div>
                 </div>
-            </div> --}}
-            <div class="clear"></div>
+                <div class="namesp"><p>{{$hi->name}}</p></div>
+                <div class="pri">
+                    <div class=" boc-pri">
+                    <div class="sell"><span >{{ number_format($hi->price,0,',',',')."đ" }}</span></div>
+                    <div class="normalp"><span style="color: red" >{{ number_format($hi->sellprice,0,',',',')."đ" }}</span></div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
         </div>
     </div>
+    <div class="main2">
+        <div class="main21"><h2>Sản phẩm mới</h2></div>
+        <div class="main22">
+            @foreach($new_product as $ne)
+            <div class="main221">
+                <div class="img1" style="position: relative;">
+                    <img width="260" height="280" src="../../{{$ne->img}}">
+                    <div class="mua"><a href="{{route('getProductSingle',['id'=>$ne->id])}}">Xem chi tiết</a></div>
+                </div>
+                <div class="namesp"><p>{{$ne->name}}</p></div>
+                <div class="pri">
+                    <div class=" boc-pri">
+                    <div class="sell"><span >{{ number_format($ne->price,0,',',',')."đ" }}</span></div>
+                    <div class="normalp"><span style="color: red" >{{ number_format($ne->sellprice,0,',',',')."đ" }}</span></div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+   <div class="main3">
+    <div class="main31">
+        <div class="main311"><span>Tin Tức</span></div>
+        <div class="main312">
+            @foreach($new as $n)
+            <div class="main3121">
+                <div class="main3121img"><img width="137" height="137" src="../upload/{{$n->image}}"></div>
+                <div class="main3121nd"><a href="{{route('detail-new',['id'=>$n->id])}}">{{$n->title}}</a></div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+    <div class="main32">
+        <div class="main311"><span>Bản đồ</span>
+            <div class="BD"><iframe width="400" height="400" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15676.345735751129!2d106.7169677!3d10.8046919!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x7a7006b269783a40!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBHaWFvIHRow7RuZyBW4bqtbiB04bqjaSBUUC5IQ00!5e0!3m2!1svi!2s!4v1589095980557!5m2!1svi!2s" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe></div>
+
+        </div>
+    </div>
+    
+   </div>
 </div>
 @endsection

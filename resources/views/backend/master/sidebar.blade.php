@@ -70,10 +70,20 @@
                         <li><a href="{{ route('listBrand') }}">Danh sách thương hiệu</a></li>
                     </ul>
                 </li>
+                <li class="sub-menu">
+                    <a href="">
+                        <i class="fa fa-book"></i>
+                        <span>Quản lý tin tức</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="{{ route('add-new') }}">Thêm tin tức mới</a></li>
+                        <li><a href="{{route('list-new')}}">Danh sách tin tức</a></li>
+                    </ul>
+                </li>
                 <li>
                     <a href=" {{ route('adminlogout') }} ">
                         <i class="fa fa-user"></i>
-                        <span>Login Page</span>
+                        <span>Đăng xuất</span>
                     </a>
                 </li>
             </ul>

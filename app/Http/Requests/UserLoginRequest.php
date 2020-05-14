@@ -30,6 +30,7 @@ class UserLoginRequest extends FormRequest
             'birthday' => 'required|date',
             'phonenumber' => 'required',
             'address' => 'required',
+            'g-recaptcha-response' => 'required|captcha'
         ];
     }
     public function messages()
