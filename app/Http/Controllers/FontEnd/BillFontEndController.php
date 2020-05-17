@@ -37,6 +37,8 @@ class BillFontEndController extends Controller
     }
     public function getBillUser(Request $request)
     {
-        return view('fontend.page.bill');
+        $data['bill']=Bills::find($request->id);
+        $data['billDetail']=BillDetails::where('bills_id',$request->id)->get();
+        return view('fontend.page.bill',$data);
     }
 }

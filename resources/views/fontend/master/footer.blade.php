@@ -107,7 +107,7 @@
             </div>
             <div class="f-list2">
                 <ul>
-                    <li class="active"><a href="about.html">Trang chủ</a></li> |
+                    <li class="active"><a href="{{ route('index') }}">Trang chủ</a></li> |
                     <li><a href="delivery.html">Liên hệ</a></li> |
                 </ul>
             </div>

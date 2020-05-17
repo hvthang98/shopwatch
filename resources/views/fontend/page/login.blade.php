@@ -144,16 +144,6 @@
                                 <input type="password" name="password">
                                 <span data-placehoder="Mật khẩu"></span>
                             </div>
-                            <!-- <div class="form-group">
-                                
-                                {!! NoCaptcha::renderJs() !!}
-                                {!! NoCaptcha::display() !!}
-                                <span class="text-danger"></span>
-                            </div> -->
-                            <!-- <div class="mk">
-                          <input type="checkbox" name="remember" id="rem">
-                          <label for="rem" class="label-agree-term"><span>Ghi nhớ đăng nhập</span></label>
-                        </div> -->
                             <input type="submit" class="logbtn" name="login" value="Đăng nhập">
                             <div class="bottom-text">
                                 Chưa có tài khoản? <a href="{{ route('user-sign-up') }}">Đăng ký</a>

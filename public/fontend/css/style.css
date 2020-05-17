@@ -4354,18 +4354,18 @@ ul.delivery-list li a:hover {
 }
 .main1{
     width: 1200px;
-    min-height: 2500px;
+    /* min-height: 2500px; */
     /*background-color: red;*/
     margin: auto;
     margin-top:50px; 
 }
 .main2{
-    height: 1250px;
+    /* height: 1250px; */
     /*background-color: yellow;*/
 
 }
 .main21{
-    height: 50px;
+    /* height: 50px; */
     /*background-color: gray;*/
 }
 .main21 h2{
@@ -4373,7 +4373,7 @@ ul.delivery-list li a:hover {
     margin-left: 10px;
 }
 .main22{
-    height: 1330px;
+    /* height: 1330px; */
     margin-top: 20px;
     /*background-color: orange;*/
 }
