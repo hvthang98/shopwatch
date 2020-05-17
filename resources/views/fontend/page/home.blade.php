@@ -7,19 +7,8 @@
             <div class="slide">
                 <!-- Slide image -->
                 <a target="_blank" href="{{ $ban->link }}">
-                    <img src="{{ asset($ban->image) }}" alt="" />
+                    <img src="../../public/upload/images/{{$ban->image}}" alt="" />
                 </a>
-                {{-- public/upload/images/banner1.jpg --}}
-                <!-- /Slide image -->
-                <!-- Texts container -->
-                <!-- <div class="slide_content">
-                <div class="slide_content_wrap">
-                    <h4 class="title">Aluminium Club</h4>
-
-                    <p class="description">Experiance ray ban</p>
-                </div>
-            </div> -->
-                <!-- /Texts container -->
             </div>
         @endforeach
         <!-- /Duplicate to create more slides -->
@@ -120,28 +109,6 @@
                 <div class="clear"></div>
 
             </div>
-            {{-- <div class="rsidebar span_1_of_left">
-                <div class="top-border"> </div>
-                <div class="border">
-                    <link href="css/default.css" rel="stylesheet" type="text/css" media="all" />
-                    <link href="css/nivo-slider.css" rel="stylesheet" type="text/css" media="all" />
-                    <script src="js/jquery.nivo.slider.js"></script>
-                    <script type="text/javascript">
-                        $(window).load(function () {
-                            $('#slider').nivoSlider();
-                        });
-
-                    </script>
-                    <div class="slider-wrapper theme-default">
-                        <div id="slider" class="nivoSlider">
-                            <a href="#"><img src="images/t-img1.jpg" alt="" /></a>
-                            <a href="#"><img src="images/t-img2.jpg" alt="" /></a>
-                            <a href="#"><img src="images/t-img3.jpg" alt="" /></a>
-                        </div>
-                    </div>
-                    <!-- <div class="btn"><a href="single.html"></a></div> -->
-                </div>
-            </div> --}}
             <div class="clear"></div>
         </div>
     </div>
