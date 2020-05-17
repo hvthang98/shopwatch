@@ -217,12 +217,7 @@
                                 <input type="text" name="phonenumber" required>
                                 <span data-placehoder="Số điện thoại"></span>
                             </div>
-                            <div class="form-group">
-                                
-                                {!! NoCaptcha::renderJs() !!}
-                                {!! NoCaptcha::display() !!}
-                                <span class="text-danger"></span>
-                            </div>
+                           
                             <input type="submit" class="logbtn" name="signup" value="Đăng ký">
 
                             <div class="mk"><a href="{{ route('index') }}">Về trang chủ</a></div>

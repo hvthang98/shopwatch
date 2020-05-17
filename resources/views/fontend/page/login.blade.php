@@ -144,12 +144,12 @@
                                 <input type="password" name="password">
                                 <span data-placehoder="Mật khẩu"></span>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 
                                 {!! NoCaptcha::renderJs() !!}
                                 {!! NoCaptcha::display() !!}
                                 <span class="text-danger"></span>
-                            </div>
+                            </div> -->
                             <!-- <div class="mk">
                           <input type="checkbox" name="remember" id="rem">
                           <label for="rem" class="label-agree-term"><span>Ghi nhớ đăng nhập</span></label>

@@ -80,7 +80,7 @@
         <div class="main312">
             @foreach($new as $n)
             <div class="main3121">
-                <div class="main3121img"><img width="137" height="137" src="../upload/{{$n->image}}"></div>
+                <div class="main3121img"><img width="137" height="137" src="../upload/images/{{$n->image}}"></div>
                 <div class="main3121nd"><a href="{{route('detail-new',['id'=>$n->id])}}">{{$n->title}}</a></div>
             </div>
             @endforeach
