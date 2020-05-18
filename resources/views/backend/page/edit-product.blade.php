@@ -70,10 +70,12 @@ Chỉnh sửa sản phẩm
                                 </div>
                             </div>
                             <div class="form-group ">
-                                <label for="sellprice" class="control-label col-lg-3">Thứ tự sắp xếp</label>
+                                <label for="" class="control-label col-lg-3">Thứ tự sắp xếp</label>
                                 <div class="col-lg-6">
-                                    <input class="form-control " id="ordernum" name="ordernum" type="number" min=0
-                                        value="{{ $product->ordernum }}" required>
+                                    <select class="form-control m-bot15" name="ordernum">
+                                       <option value="1" <?php if($product->ordernum==1) echo 'selected' ?>>Sản phẩm nổi bật</option>
+                                       <option value="2" <?php if($product->ordernum==2) echo 'selected'?>>Sản phẩm mới</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group ">
@@ -91,7 +93,6 @@ Chỉnh sửa sản phẩm
                                     </label>
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <div class="col-lg-offset-3 col-lg-6">
                                     <button class="btn btn-primary" type="submit">Lưu</button>

@@ -12,7 +12,7 @@
                 </li>
                 <li class="sub-menu">
                     <a href="">
-                        <i class="fa fa-book"></i>
+                        <i class="fa fa-shopping-cart"></i>
                         <span>Quản lý đơn hàng</span>
                     </a>
                     <ul class="sub">
@@ -21,7 +21,7 @@
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa fa-book"></i>
+                        <i class="fa fa-tasks"></i>
                         <span>Quản lý danh mục sản phẩm</span>
                     </a>
                     <ul class="sub">
@@ -32,7 +32,7 @@
 
                 <li class="sub-menu">
                     <a href="">
-                        <i class="fa fa-book"></i>
+                        <i class="fa fa-briefcase"></i>
                         <span>Quản lý sản phẩm</span>
                     </a>
                     <ul class="sub">
@@ -42,7 +42,7 @@
                 </li>
                 <li class="sub-menu">
                     <a href="">
-                        <i class="fa fa-book"></i>
+                        <i class="fa fa-users"></i>
                         <span>Quản lý người dùng</span>
                     </a>
                     <ul class="sub">
@@ -52,7 +52,7 @@
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa fa-book"></i>
+                        <i class="fa fa-list-ul"></i>
                         <span>Quản lý banner</span>
                     </a>
                     <ul class="sub">
@@ -62,7 +62,7 @@
                 </li>
                 <li class="sub-menu">
                     <a href="">
-                        <i class="fa fa-book"></i>
+                        <i class="fa fa-adn"></i>
                         <span>Quản lý thương hiệu</span>
                     </a>
                     <ul class="sub">
@@ -72,7 +72,7 @@
                 </li>
                 <li class="sub-menu">
                     <a href="">
-                        <i class="fa fa-book"></i>
+                        <i class="fa fa-bullhorn"></i>
                         <span>Quản lý tin tức</span>
                     </a>
                     <ul class="sub">
@@ -82,7 +82,7 @@
                 </li>
                 <li>
                     <a href=" {{ route('adminlogout') }} ">
-                        <i class="fa fa-user"></i>
+                        <i class="fa fa-power-off"></i>
                         <span>Đăng xuất</span>
                     </a>
                 </li>

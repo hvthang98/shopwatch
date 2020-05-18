@@ -71,5 +71,18 @@ class UserController extends Controller
     function delete_user($id){
     	User::find($id)->delete();
     	return redirect('admin/user/all-user')->with(['notification'=>'Đã xóa thành công']);
-    }
+	}
+	public function getDetailUser(Request $request)
+	{
+		$data['user']=User::find($request->id);
+		return view('backend.page.user.infor-user',$data);
+	}
+	public function getChangePassword(Request $request)
+	{
+		return view('backend.page.user.change-pw-user');
+	}
+	public function postChangePassword(Request $request)
+	{
+		
+	}
 }

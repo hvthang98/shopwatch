@@ -64,6 +64,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
         Route::post('post-edit-user/{id}', 'UserController@post_edit_user')->name('post-edit-user');
         Route::get('delete-user/{id}', 'UserController@delete_user')->name('delete');
     });
+    Route::get('detail-user/{id}','UserController@getDetailUser')->name('getDetailUser');
+    Route::get('change-password/{id}','UserController@getChangePassword')->name('getChangePW');
+    Route::post('post-change-pw','UserController@postChangePassword')->name('postChangePW');
     //Product: add new product, show list product, edit product, add and edit image product 
     Route::group(['prefix' => 'product'], function () {
         // add product

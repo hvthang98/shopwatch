@@ -72,7 +72,7 @@ Chi tiết đơn hàng
                         </tr>
                         <tr>
                             <td>User</td>
-                            <td>{{ $bills->users->email }}</td>
+                            <td><?php if(isset($bills->users)) echo $bills->users->email?></td>
                         </tr>
                         <tr>
                             <td>Ngày đặt</td>

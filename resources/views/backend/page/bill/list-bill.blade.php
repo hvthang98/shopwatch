@@ -62,7 +62,7 @@ Danh sách đơn hàng
                                 <td>{{ $bill->phone_number }}</td>
                                 <td>{{ $bill->address }}</td>
                                 <td>{{ number_format($bill->total) }}</td>
-                                <td>{{ $bill->created_at }}</td>
+                                <td>{{ date('d-m-Y H:m',strtotime($bill->created_at))}}</td>
                                 <td>
                                     @if($bill->status==0)
                                         <p class="text-danger">

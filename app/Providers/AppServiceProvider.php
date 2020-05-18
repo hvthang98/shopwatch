@@ -28,7 +28,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
+        view()->composer('backend.master.header',function($view){
+            $bills=Bills::where('status',0)->count();
+            $view->with('numbills',$bills);
+        });
         view()->composer('fontend/master/header', function ($view) {
             $brand = Brands::where('status', 1)->get();
             $view->with('brand', $brand);

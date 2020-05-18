@@ -11,7 +11,7 @@ class BillController extends Controller
 {
     public function getListBill()
     {
-        $data['bills'] = Bills::paginate(10);
+        $data['bills'] = Bills::orderBy('status')->orderBy('created_at')->paginate(10);
         return view('backend.page.bill.list-bill', $data);
     }
     public function getDetailBill(Request $request)

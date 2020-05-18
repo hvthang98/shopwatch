@@ -76,11 +76,20 @@ Thêm sản phẩm mới
                                     <textarea class="ckeditor" id="content" name="content"></textarea>
                                 </div>
                             </div>
-                            <div class="form-group ">
+                            {{-- <div class="form-group ">
                                 <label for="sellprice" class="control-label col-lg-3">Thứ tự sắp xếp</label>
                                 <div class="col-lg-6">
                                     <input class="form-control " id="ordernum" name="ordernum" type="number" min="0"
                                         value='1'>
+                                </div>
+                            </div> --}}
+                            <div class="form-group ">
+                                <label for="" class="control-label col-lg-3">Thứ tự sắp xếp</label>
+                                <div class="col-lg-6">
+                                    <select class="form-control m-bot15" name="ordernum">
+                                       <option value="1">Sản phẩm nổi bật</option>
+                                       <option value="2">Sản phẩm mới</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group ">

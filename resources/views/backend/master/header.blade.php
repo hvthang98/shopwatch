@@ -3,7 +3,7 @@
     <!--logo start-->
     <div class="brand">
         <a href="index.html" class="logo">
-            VISITORS
+            LEO SHOP
         </a>
         <div class="sidebar-toggle-box">
             <div class="fa fa-bars"></div>
@@ -14,7 +14,7 @@
         <!--  notification start -->
         <ul class="nav top-menu">
             <!-- settings start -->
-            <li class="dropdown">
+            {{-- <li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                     <i class="fa fa-tasks"></i>
                     <span class="badge bg-success">8</span>
@@ -80,10 +80,10 @@
                         <a href="#">See All Tasks</a>
                     </li>
                 </ul>
-            </li>
+            </li> --}}
             <!-- settings end -->
             <!-- inbox dropdown start-->
-            <li id="header_inbox_bar" class="dropdown">
+            {{-- <li id="header_inbox_bar" class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                     <i class="fa fa-envelope-o"></i>
                     <span class="badge bg-important">4</span>
@@ -144,44 +144,27 @@
                         <a href="#">See all messages</a>
                     </li>
                 </ul>
-            </li>
+            </li> --}}
             <!-- inbox dropdown end -->
             <!-- notification dropdown start-->
             <li id="header_notification_bar" class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
 
                     <i class="fa fa-bell-o"></i>
-                    <span class="badge bg-warning">3</span>
+                    <span class="badge bg-warning">{{ $numbills }}</span>
                 </a>
                 <ul class="dropdown-menu extended notification">
                     <li>
-                        <p>Notifications</p>
+                        <p>Thông báo</p>
                     </li>
                     <li>
                         <div class="alert alert-info clearfix">
-                            <span class="alert-icon"><i class="fa fa-bolt"></i></span>
+                            <span class="alert-icon"><i class="fa fa-shopping-cart"></i></span>
                             <div class="noti-info">
-                                <a href="#"> Server #1 overloaded.</a>
+                                <a href="{{ route('listBill') }}"><span>{{ $numbills }}</span> đơn hàng chưa xứ lý</a>
                             </div>
                         </div>
                     </li>
-                    <li>
-                        <div class="alert alert-danger clearfix">
-                            <span class="alert-icon"><i class="fa fa-bolt"></i></span>
-                            <div class="noti-info">
-                                <a href="#"> Server #2 overloaded.</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="alert alert-success clearfix">
-                            <span class="alert-icon"><i class="fa fa-bolt"></i></span>
-                            <div class="noti-info">
-                                <a href="#"> Server #3 overloaded.</a>
-                            </div>
-                        </div>
-                    </li>
-
                 </ul>
             </li>
             <!-- notification dropdown end -->
@@ -191,27 +174,24 @@
     <div class="top-nav clearfix">
         <!--search & user info start-->
         <ul class="nav pull-right top-menu">
-            <li>
-                <input type="text" class="form-control search" placeholder=" Search">
-            </li>
-            <!-- user login dropdown start-->
+
             @if(Auth::check())
-            <li class="dropdown">
-                 
-                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                    <img alt="" src="images/2.png">
-                    <span class="username">{{Auth::user()->name}}</span>
-                    <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu extended logout">
-                    <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
-                    <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-                    <li><a href="{{route('adminlogout')}}"><i class="fa fa-key"></i> Log Out</a></li>
-                </ul>
-            </li>
+                <li class="dropdown">
+
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <img alt=""
+                            src="{{ asset('public/upload/avatar_user/default-avatar.png') }}">
+                        <span class="username">{{ Auth::user()->name }}</span>
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu extended logout">
+                        <li><a href="{{ route('getDetailUser',Auth::user()->id) }}"><i class="fa fa-suitcase"></i>Thông tin cá nhân</a></li>
+                        <li><a href="{{ route('getChangePW',Auth::user()->id) }}"><i class="fa fa-key"></i>Đổi mật khẩu</a></li>
+                        <li><a href="{{ route('adminlogout') }}"><i class="fa fa-power-off"></i>Đăng xuất</a></li>
+                    </ul>
+                </li>
             @endif
             <!-- user login dropdown end -->
-
         </ul>
         <!--search & user info end-->
     </div>
