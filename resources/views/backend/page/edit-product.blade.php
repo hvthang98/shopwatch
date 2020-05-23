@@ -73,6 +73,7 @@ Chỉnh sửa sản phẩm
                                 <label for="" class="control-label col-lg-3">Thứ tự sắp xếp</label>
                                 <div class="col-lg-6">
                                     <select class="form-control m-bot15" name="ordernum">
+                                        <option value="0" <?php if($product->ordernum==0) echo 'selected' ?>>Không hiển thị trang chủ</option>
                                        <option value="1" <?php if($product->ordernum==1) echo 'selected' ?>>Sản phẩm nổi bật</option>
                                        <option value="2" <?php if($product->ordernum==2) echo 'selected'?>>Sản phẩm mới</option>
                                     </select>
@@ -130,7 +131,7 @@ Chỉnh sửa sản phẩm
                                         <option value="1" @if ($info_product->gender==1)
                                             {{ 'selected' }}
                                             @endif>Nam</option>
-                                        <option value="2" @if ($info_product->gender==2)
+                                        <option value="2" @if ($info_product->gender==0)
                                             {{ 'selected' }}
                                             @endif>Nữ</option>
                                         <option value="10" @if ($info_product->gender==10)
@@ -189,7 +190,7 @@ Chỉnh sửa sản phẩm
                                 </div>
                             </div>
                             <div class="form-group ">
-                                <label for="password" class="control-label col-lg-3">Độ dày dây (mm)</label>
+                                <label for="password" class="control-label col-lg-3">Độ rộng dây (mm)</label>
                                 <div class="col-lg-6">
                                     <input class="form-control " id="strap_width" name="strap_width" type="number" min=0
                                         value="{{ $info_product->strap_width }}">
@@ -211,9 +212,9 @@ Chỉnh sửa sản phẩm
                                 </div>
                             </div>
                             <div class="form-group ">
-                                <label for="password" class="control-label col-lg-3">Thời gian sử dụng(Giờ)</label>
+                                <label for="password" class="control-label col-lg-3">Thời gian sử dụng</label>
                                 <div class="col-lg-6">
-                                    <input class="form-control " id="expiry_date" name="expiry_date" type="number" min=0
+                                    <input class="form-control " id="expiry_date" name="expiry_date" type="text" min=0
                                         value="{{ $info_product->expiry_date }}">
                                 </div>
                             </div>

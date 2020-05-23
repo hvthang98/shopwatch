@@ -2,7 +2,7 @@
 <header class="header fixed-top clearfix">
     <!--logo start-->
     <div class="brand">
-        <a href="index.html" class="logo">
+        <a href="{{ route('dashboard') }}" class="logo">
             LEO SHOP
         </a>
         <div class="sidebar-toggle-box">

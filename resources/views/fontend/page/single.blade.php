@@ -36,8 +36,7 @@
                 </div>
                 <div class="desc1 span_3_of_2">
                     <h3 class="m_3">{{ $products->name }}</h3>
-                    <p class="m_5">{{ number_format($products->price) }}&nbsp;<span
-                            class="reducedfrom">{{ number_format($products->sellprice) }}</span>
+                    <p class="m_5">{{ number_format($products->sellprice) }}&nbsp;<span class="reducedfrom">{{ number_format($products->price) }}</span>
                     </p>
                     <form action="{{ route('addCart')}}">
                         <div class="form-group col-sm-6">
@@ -60,14 +59,17 @@
                     </p>
                 </div>
                 <div class="clients">
-                    <h3 class="m_3">Những sản phẩm liên quan</h3>
+                    <h3 class="m_3">Những sản phẩm khác nổi bật</h3>
                     <ul id="flexiselDemo3">
                         @foreach($listProducts as $list)
-                            {{ $list->avatar->image }}
+                            {{-- {{ $list->avatar->image }} --}}
                             <li>
-                                <img src="{{ asset($list->avatar->image) }}" style="height:140px" /><a href="{{ route('getProductSingle',$list->id) }}">{{ $list->name }}</a>
-                                <p style="font-size:15px">{{ $list->sellprice }} <span>đ</span></p>
-                                <p class="price-deco">{{ $list->price }}</p>
+                                <img src="{{ asset($list->avatar->image) }}" style="height:140px" />
+                                <a href="{{ route('getProductSingle',$list->id) }}">
+                                    {{ $list->name }}
+                                </a>
+                                <p style="font-size:15px">{{ number_format($list->sellprice) }} <span>đ</span></p>
+                                <p class="price-deco">{{ number_format($list->price) }}</p>
                             </li>
                         @endforeach
                     </ul>
@@ -171,7 +173,7 @@
                             </tr> --}}
                             <tr>
                                 <td class="td1">Thời gian sử dụng pin</td>
-                                <td>{{ $products->infoProduct->expiry_date }} <span>giờ</span></td>
+                                <td>{{ $products->infoProduct->expiry_date }}</td>
                             </tr>
                             <tr>
                                 <td class="td1">Đối tượng sử dụng</td>

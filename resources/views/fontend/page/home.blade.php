@@ -22,67 +22,71 @@
 <!-- end slider -->
 <!-- main-content -->
 <div class="main1">
-    <div class="main2">
-        <div class="main21">
-            <h2>Sản phẩm nổi bật</h2>
-        </div>
-        <div class="main22">
-            @foreach($highlight_product as $hi)
-                <div class="main221">
-                    <div class="img1" style="position: relative;">
-                        <img width="260" height="280" src="../../{{ $hi->img }}">
-                        <div class="mua"><a
-                                href="{{ route('getProductSingle',['id'=>$hi->id]) }}">Xem
-                                chi tiết</a></div>
-                    </div>
-                    <div class="namesp">
-                        <p>{{ $hi->name }}</p>
-                    </div>
-                    <div class="pri">
-                        <div class=" boc-pri">
-                            <div class="sell">
-                                <span>{{ number_format($hi->price,0,',',',')."đ" }}</span>
-                            </div>
-                            <div class="normalp"><span
-                                    style="color: red">{{ number_format($hi->sellprice,0,',',',')."đ" }}</span>
+    @if(count($highlight_product)!=0)
+        <div class="main2">
+            <div class="main21">
+                <h2>Sản phẩm nổi bật</h2>
+            </div>
+            <div class="main22">
+                @foreach($highlight_product as $hi)
+                    <div class="main221">
+                        <div class="img1" style="position: relative;">
+                            <img width="260" height="280" src="../../{{ $hi->img }}">
+                            <div class="mua"><a
+                                    href="{{ route('getProductSingle',['id'=>$hi->id]) }}">Xem
+                                    chi tiết</a></div>
+                        </div>
+                        <div class="namesp">
+                            <p>{{ $hi->name }}</p>
+                        </div>
+                        <div class="pri">
+                            <div class=" boc-pri">
+                                <div class="sell">
+                                    <span>{{ number_format($hi->price,0,',',',')."đ" }}</span>
+                                </div>
+                                <div class="normalp"><span
+                                        style="color: red">{{ number_format($hi->sellprice,0,',',',')."đ" }}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
-    </div>
+    @endif
     <div class="clear"></div>
-    <div class="main2">
-        <div class="main21">
-            <h2>Sản phẩm mới</h2>
-        </div>
-        <div class="main22">
-            @foreach($new_product as $ne)
-                <div class="main221">
-                    <div class="img1" style="position: relative;">
-                        <img width="260" height="280" src="../../{{ $ne->img }}">
-                        <div class="mua"><a
-                                href="{{ route('getProductSingle',['id'=>$ne->id]) }}">Xem
-                                chi tiết</a></div>
-                    </div>
-                    <div class="namesp">
-                        <p>{{ $ne->name }}</p>
-                    </div>
-                    <div class="pri">
-                        <div class=" boc-pri">
-                            <div class="sell">
-                                <span>{{ number_format($ne->price,0,',',',')."đ" }}</span>
-                            </div>
-                            <div class="normalp"><span
-                                    style="color: red">{{ number_format($ne->sellprice,0,',',',')."đ" }}</span>
+    @if(count($new_product)!=0)
+        <div class="main2">
+            <div class="main21">
+                <h2>Sản phẩm mới</h2>
+            </div>
+            <div class="main22">
+                @foreach($new_product as $ne)
+                    <div class="main221">
+                        <div class="img1" style="position: relative;">
+                            <img width="260" height="280" src="../../{{ $ne->img }}">
+                            <div class="mua"><a
+                                    href="{{ route('getProductSingle',['id'=>$ne->id]) }}">Xem
+                                    chi tiết</a></div>
+                        </div>
+                        <div class="namesp">
+                            <p>{{ $ne->name }}</p>
+                        </div>
+                        <div class="pri">
+                            <div class=" boc-pri">
+                                <div class="sell">
+                                    <span>{{ number_format($ne->price,0,',',',')."đ" }}</span>
+                                </div>
+                                <div class="normalp"><span
+                                        style="color: red">{{ number_format($ne->sellprice,0,',',',')."đ" }}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
-    </div>
+    @endif
     <div class="clear"></div>
     <div class="main3">
         <div class="main31">

@@ -84,11 +84,12 @@ Thêm sản phẩm mới
                                 </div>
                             </div> --}}
                             <div class="form-group ">
-                                <label for="" class="control-label col-lg-3">Thứ tự sắp xếp</label>
+                                <label for="" class="control-label col-lg-3">Danh mục trang chủ</label>
                                 <div class="col-lg-6">
                                     <select class="form-control m-bot15" name="ordernum">
-                                       <option value="1">Sản phẩm nổi bật</option>
-                                       <option value="2">Sản phẩm mới</option>
+                                        <option value="0" checked>Không hiển thị trang chủ</option>
+                                        <option value="1">Sản phẩm nổi bật</option>
+                                        <option value="2">Sản phẩm mới</option>
                                     </select>
                                 </div>
                             </div>
@@ -108,8 +109,7 @@ Thêm sản phẩm mới
                                 <div class="col-lg-offset-3 col-lg-6">
                                     <button class="btn btn-primary" type="submit">Lưu</button>
                                     <a href="{{ route('addProduct') }}"><button
-                                            class="btn btn-default" type="button"
-                                            onclick="loading()">Xóa</button>
+                                            class="btn btn-default" type="button" onclick="loading()">Xóa</button>
                                     </a>
                                 </div>
                             </div>
@@ -126,8 +126,7 @@ Thêm sản phẩm mới
 @section('js')
 <script>
     CKEDITOR.replace('content');
+
 </script>
-@if (session()->has('notification'))
 @include('notify.note');
-@endif
 @endsection

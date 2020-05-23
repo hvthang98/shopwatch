@@ -64,16 +64,15 @@ Danh sách sản phẩm
                                 $i++;
                             @endphp
                             <tr>
+                                {{-- {{ dd($product) }} --}}
                                 <td>{{ $i }}</td>
                                 <td>{{ $product->name }}</td>
-                                <td>{{ $product->price }}</td>
-                                <td>{{ $product->sellprice }}</td>
-                                <td>{{ $product->quantily }}</td>
+                                <td>{{ number_format($product->price) }}</td>
+                                <td>{{ number_format($product->sellprice) }}</td>
+                                <td>{{ number_format($product->quantily) }}</td>
                                 <td>
-                                    @if(
-                                        isset($product->imgProduct->image)&&($product->imgProduct->level==1)
-                                        )
-                                        <img src="{{ asset($product->imgProduct->image) }}" alt="" class="list-img">
+                                    @if(isset($product->avatar->image))
+                                        <img src="{{ asset($product->avatar->image) }}" alt="" class="list-img">
                                     @endif
                                 </td>
                                 <td>{{ $product->brands->name }}</td>
@@ -112,4 +111,7 @@ Danh sách sản phẩm
         </div>
     </div>
 </div>
+@endsection
+@section('js')
+@include('notify.note');
 @endsection

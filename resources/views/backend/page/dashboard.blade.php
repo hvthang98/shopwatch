@@ -2,12 +2,17 @@
 @section('main-content')
 <!-- //market-->
 @if(session()->has('mess'))
-<script >
-    alert( {{session()->get('mess')}} );
-</script>
+    <script>
+        alert({
+            {
+                session() - % 3 Eget( % 26 % 2339 % 3 Bmess % 26 % 2339 % 3 B)
+            }
+        });
+
+    </script>
 @endif
 <div class="market-updates">
-    <div class="col-md-3 market-update-gd">
+    {{--  <div class="col-md-3 market-update-gd">
         <div class="market-update-block clr-block-2">
             <div class="col-md-4 market-update-right">
                 <i class="fa fa-eye"> </i>
@@ -19,21 +24,8 @@
             </div>
             <div class="clearfix"> </div>
         </div>
-    </div>
-    <div class="col-md-3 market-update-gd">
-        <div class="market-update-block clr-block-1">
-            <div class="col-md-4 market-update-right">
-                <i class="fa fa-users"></i>
-            </div>
-            <div class="col-md-8 market-update-left">
-                <h4>Users</h4>
-                <h3>1,250</h3>
-                <p>Other hand, we denounce</p>
-            </div>
-            <div class="clearfix"> </div>
-        </div>
-    </div>
-    <div class="col-md-3 market-update-gd">
+    </div>  --}}
+    {{--  <div class="col-md-3 market-update-gd">
         <div class="market-update-block clr-block-3">
             <div class="col-md-4 market-update-right">
                 <i class="fa fa-usd"></i>
@@ -45,6 +37,19 @@
             </div>
             <div class="clearfix"> </div>
         </div>
+    </div>  --}}
+    <div class="col-md-3 market-update-gd">
+        <div class="market-update-block clr-block-1">
+            <div class="col-md-4 market-update-right">
+                <i class="fa fa-users"></i>
+            </div>
+            <div class="col-md-8 market-update-left">
+                <h4>Người dùng</h4>
+                <h3>100</h3>
+                <p></p>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
     </div>
     <div class="col-md-3 market-update-gd">
         <div class="market-update-block clr-block-4">
@@ -52,9 +57,9 @@
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
             </div>
             <div class="col-md-8 market-update-left">
-                <h4>Orders</h4>
+                <h4>Đơn hàng</h4>
                 <h3>1,500</h3>
-                <p>Other hand, we denounce</p>
+                <p></p>
             </div>
             <div class="clearfix"> </div>
         </div>
@@ -62,7 +67,7 @@
     <div class="clearfix"> </div>
 </div>
 <!-- //market-->
-<div class="row">
+{{--  <div class="row">
     <div class="panel-body">
         <div class="col-md-12 w3ls-graph">
             <!--agileinfo-grap-->
@@ -84,10 +89,10 @@
 
         </div>
     </div>
-</div>
+</div>  --}}
 <div class="agil-info-calendar">
     <!-- calendar -->
-    <div class="col-md-6 agile-calendar">
+    {{--  <div class="col-md-6 agile-calendar">
         <div class="calendar-widget">
             <div class="panel-heading ui-sortable-handle">
                 <span class="panel-icon">
@@ -110,17 +115,17 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>  --}}
     <!-- //calendar -->
     <div class="col-md-6 w3agile-notifications">
         <div class="notifications">
             <!--notification start-->
 
             <header class="panel-heading">
-                Notification
+                Thông báo
             </header>
             <div class="notify-w3ls">
-                <div class="alert alert-info clearfix">
+                {{--  <div class="alert alert-info clearfix">
                     <span class="alert-icon"><i class="fa fa-envelope-o"></i></span>
                     <div class="notification-info">
                         <ul class="clearfix notification-meta">
@@ -157,21 +162,8 @@
                             <a href="#">Anjelina Mewlo, Jack Flip</a> and <a href="#">3 others</a>
                         </p>
                     </div>
-                </div>
-                <div class="alert alert-warning ">
-                    <span class="alert-icon"><i class="fa fa-bell-o"></i></span>
-                    <div class="notification-info">
-                        <ul class="clearfix notification-meta">
-                            <li class="pull-left notification-sender">Domain Renew Deadline 7 days ahead
-                            </li>
-                            <li class="pull-right notification-time">5 Days Ago</li>
-                        </ul>
-                        <p>
-                            Next 5 July Thursday is the last day
-                        </p>
-                    </div>
-                </div>
-                <div class="alert alert-info clearfix">
+                </div>  --}}
+                  {{--  <div class="alert alert-info clearfix">
                     <span class="alert-icon"><i class="fa fa-envelope-o"></i></span>
                     <div class="notification-info">
                         <ul class="clearfix notification-meta">
@@ -183,7 +175,19 @@
                             Urgent meeting for next proposal
                         </p>
                     </div>
+                </div>  --}}
+                <div class="alert alert-warning ">
+                    <span class="alert-icon"><i class="fa fa-bell-o"></i></span>
+                    <div class="notification-info">
+                        <ul class="clearfix notification-meta">
+                            <li class="pull-left notification-sender">Có 6 đơn hàng chưa xử lý
+                            </li>
+                            <li class="pull-right notification-time">Hôm qua</li>
+                        </ul>
+                        <p></p>
+                    </div>
                 </div>
+              
 
             </div>
 
@@ -193,7 +197,7 @@
     <div class="clearfix"> </div>
 </div>
 <!-- tasks -->
-<div class="agile-last-grids">
+{{--  <div class="agile-last-grids">
     <div class="col-md-4 agile-last-left">
         <div class="agile-last-grid">
             <div class="area-grids-heading">
@@ -367,10 +371,10 @@
         </div>
     </div>
     <div class="clearfix"> </div>
-</div>
+</div>  --}}
 <!-- //tasks -->
 <div class="agileits-w3layouts-stats">
-    <div class="col-md-4 stats-info widget">
+    {{--  <div class="col-md-4 stats-info widget">
         <div class="stats-info-agileits">
             <div class="stats-title">
                 <h4 class="title">Browser Stats</h4>
@@ -410,65 +414,49 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div>  --}}
     <div class="col-md-8 stats-info stats-last widget-shadow">
         <div class="stats-last-agile">
             <table class="table stats-table ">
                 <thead>
                     <tr>
-                        <th>S.NO</th>
-                        <th>PRODUCT</th>
-                        <th>STATUS</th>
-                        <th>PROGRESS</th>
+                        <th>STT</th>
+                        <th>Sản phẩm</th>
+                        <th>Trạng thái</th>
+                        <th>Phát triển</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <th scope="row">1</th>
-                        <td>Lorem ipsum</td>
-                        <td><span class="label label-success">In progress</span></td>
+                        <td>Đồng hồ Nữ Elio EL004-01</td>
+                        <td><span class="label label-success">Còn sản phẩm</span></td>
                         <td>
                             <h5>85% <i class="fa fa-level-up"></i></h5>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row">2</th>
-                        <td>Aliquam</td>
-                        <td><span class="label label-warning">New</span></td>
+                        <td>Đồng hồ Nam MVMT D-MT01-BBRG</td>
+                        <td><span class="label label-danger">Hết sản phẩm</span></td>
                         <td>
                             <h5>35% <i class="fa fa-level-up"></i></h5>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row">3</th>
-                        <td>Lorem ipsum</td>
-                        <td><span class="label label-danger">Overdue</span></td>
+                        <td>Đồng hồ Nam Citizen BM7451-89E</td>
+                        <td><span class="label label-danger">Hết sản phẩm</span></td>
                         <td>
                             <h5 class="down">40% <i class="fa fa-level-down"></i></h5>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row">4</th>
-                        <td>Aliquam</td>
-                        <td><span class="label label-info">Out of stock</span></td>
+                        <td>Đồng hồ Nam MVW MS005-02</td>
+                        <td><span class="label label-success">Còn sản phẩm</span></td>
                         <td>
                             <h5>100% <i class="fa fa-level-up"></i></h5>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>Lorem ipsum</td>
-                        <td><span class="label label-success">In progress</span></td>
-                        <td>
-                            <h5 class="down">10% <i class="fa fa-level-down"></i></h5>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">6</th>
-                        <td>Aliquam</td>
-                        <td><span class="label label-warning">New</span></td>
-                        <td>
-                            <h5>38% <i class="fa fa-level-up"></i></h5>
                         </td>
                     </tr>
                 </tbody>

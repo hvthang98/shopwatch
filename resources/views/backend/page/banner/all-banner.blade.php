@@ -14,21 +14,22 @@
         <table class="table table-striped b-t b-light">
 
             <tr>
-                <th style="text-align: center;">STT</th>
-                <th style="text-align: center;">Tên Banner</th>
-                <th style="text-align: center;">Liên kết</th>
-                <th style="text-align: center;">Hình Ảnh</th>
-                <th style="text-align: center;">Trạng thái</th>
-                <th style="text-align: center;">Ordernum</th>
+                <th>STT</th>
+                <th>Tên Banner</th>
+                <th>Liên kết</th>
+                <th>Hình Ảnh</th>
+                <th>Trạng thái</th>
+                <th>Thứ tự</th>
+                <th></th>
             </tr>
-            
+                <?php $stt=1 ?>
                 @foreach($banners as $ban)
                     <tr>
-                        <td>{{ $ban->id }}</td>
+                        <td>{{ $stt++}}</td>
                         <td>{{ $ban->name }}</td>
                         <td>{{ $ban->link }}</td>
                         <td><img src="../upload/images/{{ $ban->image }}" width="100" height="100"></td>
-                        <td style="text-align: center;">
+                        <td>
                             @if($ban->status==0)
                                 <a
                                     href="{{ route('active_banner',['id'=>$ban->id]) }}">Ẩn</a>
@@ -37,7 +38,7 @@
                                     href="{{ route('unactive_banner',['id'=>$ban->id]) }}">Hiện</a>
                             @endif
                         </td>
-                        <td style="text-align: center;">{{ $ban->ordernum }}</td>
+                        <td >{{ $ban->ordernum }}</td>
                         <td>
                             <a
                                 href="{{ route('edit-banner',['id'=>$ban->id]) }}"><i

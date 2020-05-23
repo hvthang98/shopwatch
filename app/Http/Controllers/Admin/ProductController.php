@@ -50,7 +50,7 @@ class ProductController extends Controller
         $info->products_id = $product->id;
         $info->brands_id=$product->brands_id;
         $info->save();
-        return redirect(route('addProduct'))->with('notification', 'Thêm sản phẩm thành công');
+        return redirect(route('listProduct'))->with('notification', 'Thêm sản phẩm thành công');
     }
 
     // function show, edit list product

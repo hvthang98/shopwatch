@@ -27,7 +27,7 @@ Danh sách đơn hàng
     <div class="">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Danh sách sản phẩm
+                Danh sách các đơn hàng
             </div>
             <div style="padding: 15px 10px 10px 10px">
                 <form action="">

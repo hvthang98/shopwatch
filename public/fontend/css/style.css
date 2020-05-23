@@ -159,10 +159,12 @@ table {
 
 /* content */
 .content-product {
+    max-height: 1000px;
+    overflow: auto;
     border: 1px solid #ccc;
     min-height: 200px;
     border-radius: 10px;
-    margin-top: 50px;
+    margin-top: 150px;
     padding: 20px 15px 20px 15px;
     font-size: 18px;
 }
@@ -2580,7 +2582,7 @@ p.m_text {
     padding: 0px;
     cursor: pointer;
     position: relative;
-    line-height: 0px;
+    /* line-height: 0px; */
     /*--padding-right:50px;--*/
 }
 
@@ -2608,7 +2610,7 @@ p.m_text {
 .nbs-flexisel-item p {
     color: #777;
     font-size: 0.85em;
-    padding: 20px;
+    /* padding: 20px; */
 }
 
 .nbs-flexisel-item>img {
