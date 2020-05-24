@@ -104,6 +104,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
         Route::get('list', 'BillController@getListBill')->name('listBill');
         Route::get('detail/{id}', 'BillController@getDetailBill')->name('detailBill');
         Route::post('update/{id}', 'BillController@updateBill')->name('updateBill');
+        Route::get('deletebill/{id}','BillController@delete')->name('deleteBill');
     });
     //News
     Route::group(['prefix'=>'new'],function(){

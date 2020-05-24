@@ -23,6 +23,7 @@ class BillFontEndController extends Controller
         $table->save();
 
         foreach (session('cart') as $value) {
+            //create detail bill
             $product = Products::find($value['products_id']);
             $detail = new BillDetails;
             $detail->bills_id = $table->id;
@@ -30,7 +31,13 @@ class BillFontEndController extends Controller
             $detail->quantily = $value['quantily'];
             $detail->price = $product->sellprice;
             $detail->save();
+
+            //update quantily product
+            $quantily = ($product->quantily) - $value['quantily'];
+            $product->quantily = $quantily;
+            $product->save();
         }
+        //delete all session
         session()->forget('cart');
         return redirect(route('getCart'))->with('notification', 'Đặt đơn hàng thành công');
     }

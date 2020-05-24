@@ -601,4 +601,5 @@
 
 </script>
 <!-- //calendar -->
+@include('notify.note');
 @endsection

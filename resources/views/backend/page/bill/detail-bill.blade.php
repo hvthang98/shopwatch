@@ -161,6 +161,7 @@ Chi tiết đơn hàng
                                         <th>Đơn giá</th>
                                         <th>Số lượng</th>
                                         <th>Thành tiền</th>
+                                        <th>Ghi chú</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -168,7 +169,6 @@ Chi tiết đơn hàng
                                         $stt=1;
                                     @endphp
                                     @foreach ($billDetails as $billDetail)
-                                        
                                     <tr>
                                         <td>{{ $stt++ }}</td>
                                         <td>{{ $billDetail->products_id }}</td>
@@ -176,9 +176,13 @@ Chi tiết đơn hàng
                                         <td>{{ number_format($billDetail->price) }}</td>
                                         <td>{{ $billDetail->quantily }}</td>
                                         <td>{{ number_format($billDetail->price*$billDetail->quantily) }}</td>
+                                        <td>
+                                            @if(($billDetail->products->quantily)+($billDetail->quantily)<=0)
+                                            <p style="color: red">hết hàng</p>
+                                            @endif
+                                        </td>
                                     </tr>
                                     @endforeach
-                                    
                                 </tbody>
                             </table>
                         </div>
