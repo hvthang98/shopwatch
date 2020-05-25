@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Bills;
 use App\Models\BillDetails;
 use App\Models\Products;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Carts;
 
 
 class BillFontEndController extends Controller
@@ -21,21 +23,39 @@ class BillFontEndController extends Controller
         $table->phone_number = $request->phone_number;
         $table->users_id = $request->users_id;
         $table->save();
+        if (Auth::check()) {
+            $carts=Carts::where('users_id',Auth::user()->id)->get();
+            foreach($carts as $cart){
+                $detail = new BillDetails;
+                $detail->bills_id = $table->id;
+                $detail->products_id = $cart->products_id;
+                $detail->quantily = $cart->quantily;
+                $detail->price = $cart->products->sellprice;
+                $detail->save();
 
-        foreach (session('cart') as $value) {
-            //create detail bill
-            $product = Products::find($value['products_id']);
-            $detail = new BillDetails;
-            $detail->bills_id = $table->id;
-            $detail->products_id = $value['products_id'];
-            $detail->quantily = $value['quantily'];
-            $detail->price = $product->sellprice;
-            $detail->save();
+                //update quantily product
+                $product = Products::find($cart->products_id);
+                $quantily = ($product->quantily) - ($cart->quantily);
+                $product->quantily = $quantily;
+                $product->save();
+            }
+            Carts::where('users_id',Auth::user()->id)->delete();
+        } else {
+            foreach (session('cart') as $value) {
+                //create detail bill
+                $product = Products::find($value['products_id']);
+                $detail = new BillDetails;
+                $detail->bills_id = $table->id;
+                $detail->products_id = $value['products_id'];
+                $detail->quantily = $value['quantily'];
+                $detail->price = $product->sellprice;
+                $detail->save();
 
-            //update quantily product
-            $quantily = ($product->quantily) - $value['quantily'];
-            $product->quantily = $quantily;
-            $product->save();
+                //update quantily product
+                $quantily = ($product->quantily) - $value['quantily'];
+                $product->quantily = $quantily;
+                $product->save();
+            }
         }
         //delete all session
         session()->forget('cart');

@@ -24,8 +24,10 @@
                         <div class="sub-drop" style="width:250px">
                             <ul>
                                 <li>Các đơn hàng gần đây:</li>
-                                @foreach ($bills as $bill)
-                                <li><a href="{{ route('getBillUser',$bill->id)}}"> {{ date('d/m/Y',strtotime($bill->created_at))}} - Mã ĐH: {{$bill->id }}</a></li>                                    
+                                @foreach($bills as $bill)
+                                    <li><a href="{{ route('getBillUser',$bill->id) }}">
+                                            {{ date('d/m/Y',strtotime($bill->created_at)) }}
+                                            - Mã ĐH: {{ $bill->id }}</a></li>
                                 @endforeach
                             </ul>
                         </div>
@@ -99,8 +101,8 @@
                             </div>
                         </div>
                     </li>
-                    <li> <a class="color5" href="{{route('all-new')}}">Tin tức</a></li>
-                    
+                    <li> <a class="color5" href="{{ route('all-new') }}">Tin tức</a></li>
+
                 </ul>
             </div>
         </div>
@@ -118,48 +120,90 @@
                             <i class="fa fa-shopping-cart"></i>
                         </a>
                         <ul class="sub-icon1 list">
-                            @if(session()->has('cart'))
-                                <li>
-                                    <table>
-                                        <tr>
-                                            <td class="name" style="font-weight:bold">Tên</td>
-                                            <td class="num" style="font-weight:bold">Số lượng</td>
-                                            <td class="money" style="font-weight:bold">Thành tiền</td>
-                                        </tr>
-                                    </table>
-                                </li>
-                                @foreach($carts as $cart)
+                            @if(Auth::check())
+                            {{--  sign in user  --}}
+                                @if(count($carts)!=0)
                                     <li>
                                         <table>
                                             <tr>
-                                                <td class="name">
-                                                    {{ $cart['product']->name }}</td>
-                                                <td class="num"><span>x
-                                                    </span>{{ $cart['quantily'] }}</td>
-                                                <td class="money">
-                                                    {{ number_format($cart['product']->sellprice*$cart['quantily']) }}
-                                                </td>
+                                                <td class="name" style="font-weight:bold">Tên</td>
+                                                <td class="num" style="font-weight:bold">Số lượng</td>
+                                                <td class="money" style="font-weight:bold">Thành tiền</td>
                                             </tr>
                                         </table>
                                     </li>
-                                @endforeach
+                                    @foreach($carts as $cart)
+                                        <li>
+                                            <table>
+                                                <tr>
+                                                    <td class="name">
+                                                        {{ $cart->products->name }}</td>
+                                                    <td class="num"><span>x
+                                                        </span>{{ $cart->quantily }}</td>
+                                                    <td class="money">
+                                                        {{ number_format($cart->products->sellprice*$cart->quantily) }}
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </li>
+                                    @endforeach
+                                @else
+                                    <li>
+                                        <h3>Không có sản phẩm</h3>
+                                    </li>
+                                @endif
                             @else
-                                <li>
-                                    <h3>Không có sản phẩm</h3>
-                                </li>
+                            {{--  not sign in user  --}}
+                                @if(session()->has('cart'))
+                                    <li>
+                                        <table>
+                                            <tr>
+                                                <td class="name" style="font-weight:bold">Tên</td>
+                                                <td class="num" style="font-weight:bold">Số lượng</td>
+                                                <td class="money" style="font-weight:bold">Thành tiền</td>
+                                            </tr>
+                                        </table>
+                                    </li>
+                                    @foreach($carts as $cart)
+                                        <li>
+                                            <table>
+                                                <tr>
+                                                    <td class="name">
+                                                        {{ $cart['product']->name }}</td>
+                                                    <td class="num"><span>x
+                                                        </span>{{ $cart['quantily'] }}</td>
+                                                    <td class="money">
+                                                        {{ number_format($cart['product']->sellprice*$cart['quantily']) }}
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </li>
+                                    @endforeach
+                                @else
+                                    <li>
+                                        <h3>Không có sản phẩm</h3>
+                                    </li>
+                                @endif
                             @endif
-
                             <!-- khi có sản phẩm -->
 
                         </ul>
                     </li>
                 </ul>
-                @if(session()->has('cart'))
-                    <div class="icon-cart-on">
-                        <span>{{ count($carts) }}</span>
-                    </div>
+                {{-- show number product in cart --}}
+                @if(Auth::check())
+                    @if(isset($carts)&&count($carts)!=0)
+                        <div class="icon-cart-on">
+                            <span>{{ count($carts) }}</span>
+                        </div>
+                    @endif
+                @else
+                    @if(session()->has('cart'))
+                        <div class="icon-cart-on">
+                            <span>{{ count($carts) }}</span>
+                        </div>
+                    @endif
                 @endif
-
             </div>
         </div>
         <div class="clear"></div>

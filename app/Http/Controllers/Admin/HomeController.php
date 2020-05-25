@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LoginRequest;
+use App\Models\Bills;
+use App\User;
 class HomeController extends Controller
 {
 	function adminlogin()
@@ -25,10 +27,7 @@ class HomeController extends Controller
 			return view('backend.page.admin-login', ['tb' => 'Sai thông tin đăng nhập']);
 		}
 	}
-	function index()
-	{
-		return view('backend.page.dashboard');
-	}
+	
 	function logout()
 	{
 		if (Auth::check() && Auth::user()->level!= 0) {

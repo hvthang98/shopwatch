@@ -30,8 +30,8 @@ Danh sách đơn hàng
                 Danh sách các đơn hàng
             </div>
             <div style="padding: 15px 10px 10px 10px">
-                <form action="">
-                    <input type="text" class="form-control search" placeholder=" Search" name="seach">
+                <form action="{{ route('seachBill') }}" method="GET">
+                    <input type="text" class="form-control search" placeholder="mã ĐH hoặc tên KH" name="key">
                 </form>
             </div>
             <div class="table-responsive">
