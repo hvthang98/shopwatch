@@ -30,7 +30,7 @@
     <div class="clearfix"> </div>
 </div>
 <div class="agileits-w3layouts-stats">
-    <div class="col-md-12 stats-info stats-last widget-shadow">
+    {{-- <div class="col-md-12 stats-info stats-last widget-shadow">
         <div class="stats-last-agile">
             <p style="font-weight: bold; font-size: 20px; margin-bottom: 30px; text-align: center;">Lượng tiêu thụ sản phẩm trong tháng này</p>
             <table class="table stats-table ">
@@ -78,7 +78,7 @@
                 </tbody>
             </table>
         </div>
-    </div>
+    </div> --}}
     <div class="clearfix"> </div>
 </div>
 @endsection

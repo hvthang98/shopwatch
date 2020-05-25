@@ -14,6 +14,11 @@ Giỏ hàng
         height: 100px;
     }
 
+    .cart_img {
+        width: 160px;
+        height: 120px;
+    }
+
 </style>
 <div class="cart">
     <div class="wrap">
@@ -34,6 +39,7 @@ Giỏ hàng
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
+                                <th></th>
                                 <th class="name">Sản phẩm</th>
                                 <th class="price">Đơn giá</th>
                                 <th class="numb">Số lượng</th>
@@ -45,6 +51,8 @@ Giỏ hàng
                                 {{-- sign in user --}}
                                 @foreach($carts_user as $cart)
                                     <tr>
+                                        <td><img src="{{ asset($cart->products->avatar->image) }}" alt=""
+                                                class="cart_img"></td>
                                         <td>{{ $cart->products->name }}</td>
                                         <td>
                                             {{ number_format($cart->products->sellprice) }}
@@ -57,8 +65,7 @@ Giỏ hàng
                                             <form action="{{ route('updateCart') }}" method="get">
                                                 <div class="form-group" id="table-cart"
                                                     id="productid{{ $cart->products_id }}">
-                                                    <input type="hidden" name="id"
-                                                        value="{{ $cart->id }}">
+                                                    <input type="hidden" name="id" value="{{ $cart->id }}">
                                                     <input type="number" class="form-control" min=1
                                                         value="{{ $cart->quantily }}" name="quantily"
                                                         id-product="{{ $cart->products_id }}">
@@ -69,8 +76,7 @@ Giỏ hàng
                                             </form>
                                         </td>
                                         <td>
-                                            <a
-                                                href="{{ route('deleteCart',$cart->id) }}"><button
+                                            <a href="{{ route('deleteCart',$cart->id) }}"><button
                                                     type="button" class="btn btn-danger delete-cart" id=""
                                                     style="z-index: 1">Xóa</button></a>
                                         </td>
@@ -80,6 +86,7 @@ Giỏ hàng
                                 {{-- not sign in user --}}
                                 @foreach($carts as $key=>$cart)
                                     <tr>
+                                        <td><img src="{{ asset($cart['product']->avatar->image) }}" alt="" class="cart_img"></td>
                                         <td>{{ $cart['product']->name }}</td>
                                         <td>
                                             {{ number_format($cart['product']->sellprice) }}

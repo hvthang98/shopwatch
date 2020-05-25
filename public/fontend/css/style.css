@@ -413,11 +413,12 @@ body {
 }
 
 .drop {
-    width: 123.84px;
+    /* width: 123.84px; */
     height: 36px;
     position: relative;
     display: inline-block;
     cursor: pointer;
+    margin-right: 10px;
 }
 
 .sub-drop {
