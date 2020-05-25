@@ -13,16 +13,22 @@ Giỏ hàng
         width: 100%;
         height: 100px;
     }
+
 </style>
 <div class="cart">
     <div class="wrap">
         <!-- cart empty -->
-        @if(!isset($carts))
+        @if(!isset($carts) && !isset($carts_user))
             <h4 class="title">Giỏ hàng chưa có sản phẩm</h4>
+        @endif
+        @if(isset($carts_user))
+            @if(count($carts_user)==0)
+                <h4 class="title">Giỏ hàng chưa có sản phẩm</h4>
+            @endif
         @endif
         <a href="{{ route('index') }}">Tiếp tục mua sắm</a>
         <!-- cart not empty -->
-        @if(isset($carts))
+        @if(isset($carts)||(isset($carts_user)&&count($carts_user)!=0))
             <div>
                 <div class="cart-table">
                     <table class="table table-striped table-hover">
@@ -35,36 +41,78 @@ Giỏ hàng
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($carts as $key=>$cart)
-                                <tr>
-                                    <td>{{ $cart['product']->name }}</td>
-                                    <td>
-                                        {{ number_format($cart['product']->sellprice) }}
-                                        <br>
-                                        <span
-                                            class="price-cart">{{ number_format($cart['product']->price) }}</span>
+                            @if(Auth::check())
+                                {{-- sign in user --}}
+                                @foreach($carts_user as $cart)
+                                    <tr>
+                                        <td>{{ $cart->products->name }}</td>
+                                        <td>
+                                            {{ number_format($cart->products->sellprice) }}
+                                            <br>
+                                            <span
+                                                class="price-cart">{{ number_format($cart->products->price) }}</span>
 
-                                    </td>
-                                    <td>
-                                        <form action="{{ route('updateCart') }}" method="get">
-                                            <div class="form-group" id="table-cart"
-                                                id="productid{{ $cart['products_id'] }}">
-                                                <input type="hidden" name="products_id"
-                                                    value="{{ $cart['products_id'] }}">
-                                                <input type="number" class="form-control" min=1
-                                                    value="{{ $cart['quantily'] }}"
-                                                    name="quantily"
-                                                    id-product="{{ $cart['products_id'] }}">
-                                                <button type="submit" class="btn btn-primary" id="">Cập
-                                                    nhật</button>
-                                            </div>
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('deleteCart',$cart['product']->id) }}"><button type="button" class="btn btn-danger delete-cart" id="">Xóa</button></a>
-                                    </td>
-                                </tr>
-                            @endforeach
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('updateCart') }}" method="get">
+                                                <div class="form-group" id="table-cart"
+                                                    id="productid{{ $cart->products_id }}">
+                                                    <input type="hidden" name="id"
+                                                        value="{{ $cart->id }}">
+                                                    <input type="number" class="form-control" min=1
+                                                        value="{{ $cart->quantily }}" name="quantily"
+                                                        id-product="{{ $cart->products_id }}">
+                                                    <button type="submit" class="btn btn-primary" id=""
+                                                        style="z-index: 1">Cập
+                                                        nhật</button>
+                                                </div>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <a
+                                                href="{{ route('deleteCart',$cart->id) }}"><button
+                                                    type="button" class="btn btn-danger delete-cart" id=""
+                                                    style="z-index: 1">Xóa</button></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                {{-- not sign in user --}}
+                                @foreach($carts as $key=>$cart)
+                                    <tr>
+                                        <td>{{ $cart['product']->name }}</td>
+                                        <td>
+                                            {{ number_format($cart['product']->sellprice) }}
+                                            <br>
+                                            <span
+                                                class="price-cart">{{ number_format($cart['product']->price) }}</span>
+
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('updateCart') }}" method="get">
+                                                <div class="form-group" id="table-cart"
+                                                    id="productid{{ $cart['products_id'] }}">
+                                                    <input type="hidden" name="products_id"
+                                                        value="{{ $cart['products_id'] }}">
+                                                    <input type="number" class="form-control" min=1
+                                                        value="{{ $cart['quantily'] }}"
+                                                        name="quantily"
+                                                        id-product="{{ $cart['products_id'] }}">
+                                                    <button type="submit" class="btn btn-primary" id=""
+                                                        style="z-index: 1">Cập
+                                                        nhật</button>
+                                                </div>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <a
+                                                href="{{ route('deleteCart',$cart['product']->id) }}"><button
+                                                    type="button" class="btn btn-danger delete-cart" id=""
+                                                    style="z-index: 1">Xóa</button></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>
@@ -93,7 +141,8 @@ Giỏ hàng
                                 <span class="input-group-addon"><i class="fa fa-file-text"></i></span>
                                 <textarea name="note" class="note-cart" placeholder="Ghi chú"></textarea>
                             </div>
-                            <input type="hidden" name="users_id" value="<?php if(Auth::check()) echo Auth::user()->id?>">
+                            <input type="hidden" name="users_id"
+                                value="<?php if(Auth::check()) echo Auth::user()->id?>">
                         </div>
                         <div class="bils">
                             <h4>Thông tin đơn hàng</h4>

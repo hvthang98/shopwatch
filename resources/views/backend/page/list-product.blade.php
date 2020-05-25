@@ -35,8 +35,8 @@ Danh sách sản phẩm
                 Danh sách sản phẩm
             </div>
             <div style="padding: 15px 10px 10px 10px">
-                <form action="">
-                    <input type="text" class="form-control search" placeholder=" Search" name="seach">
+                <form action="{{ route('seachProducts') }}" method="GET">
+                    <input type="text" class="form-control search" placeholder="#Mã hoặc tên sản phẩm" name="key">
                 </form>
             </div>
             <div class="table-responsive">

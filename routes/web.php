@@ -24,7 +24,7 @@ Route::get('admin-logout', 'Admin\HomeController@logout')->name('adminlogout');
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'adminlogin'], function () {
     //Route::get('dashboard', 'Dashboard@index');
-    Route::get('dashboard', 'HomeController@index')->name('dashboard');
+    Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('/', function () {
         return redirect(route('dashboard'));
     });
@@ -117,6 +117,11 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
         Route::post('edit-new/{id}','NewsController@post_edit')->name('post-edit');
         Route::get('delete/{id}','NewsController@delete')->name('delete');
 
+    });
+    //Seach
+    Route::group(['prefix' => 'seach'], function () {
+        Route::get('bill','SeachController@getBill')->name('seachBill');
+        Route::get('products','SeachController@getProducts')->name('seachProducts');
     });
 });
 
