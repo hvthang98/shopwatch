@@ -155,14 +155,19 @@
         <div class="col-75">
             <div class="container">
                 <div class="row">
-                    <form action="{{route('postChangePW')}}" method="POST">
+                    @if(count($errors)>0)
+                        <div>
+                            <strong style="color: red">{{ $errors->first() }}</strong>
+                        </div>
+                    @endif
+                    <form action="{{ route('postChangePW') }}" method="POST">
                         @csrf
                         <div class="col-50">
                             <h3>Thay đổi mật khẩu</h3>
                             <label></i>Mật khẩu cũ</label>
-                            <input type="password" id="fname" name="password_old">
+                            <input type="password" id="fname" name="current_password">
                             <label></i>Mật khẩu mới</label>
-                            <input type="password" id="pw_new" name="password_new">
+                            <input type="password" id="pw_new" name="password">
                             <label></i>Nhập lại mật khẩu</label>
                             <input type="password" id="pw_confir" name="password_confirmation">
                             <input type="submit" name="submit" value="Lưu">

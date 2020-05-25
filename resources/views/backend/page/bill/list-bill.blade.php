@@ -83,6 +83,9 @@ Danh sách đơn hàng
                                         title="Chi tiết đơn hàng">
                                         <i class="fa fa-file-text style-icon"></i>
                                     </a>
+                                    <a href="{{ route('deleteBill',$bill->id) }}" title="xóa" onclick="questionLoading('Bạn có chắc chắn xóa đơn hàng này không?')">
+                                        <i class="fa fa-times style-icon"></i>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
