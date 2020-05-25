@@ -108,7 +108,7 @@
             <div class="f-list2">
                 <ul>
                     <li class="active"><a href="{{ route('index') }}">Trang chủ</a></li> |
-                    <li><a href="delivery.html">Liên hệ</a></li> |
+                    <li><a href="{{ route('contact') }}">Liên hệ</a></li> |
                 </ul>
             </div>
             <div class="clear"></div>
