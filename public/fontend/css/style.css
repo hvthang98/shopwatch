@@ -4385,6 +4385,7 @@ ul.delivery-list li a:hover {
     float: left;
     margin-left: 30px;
     margin-top: 20px;
+    box-shadow: 0px 0px 0px 2px;
     /*background-color: blue;*/
 }
 .img1{
@@ -4429,9 +4430,13 @@ ul.delivery-list li a:hover {
 .mua a{
 
     color: white;
-    
+    width: 150px;
+    margin-left: 55px;
     text-decoration: none;
     display: block;
+}
+.mua>a:hover{
+    text-decoration: none;
 }
 .img1:hover .mua{
 
@@ -4477,6 +4482,7 @@ ul.delivery-list li a:hover {
     margin-left: 20px;
     float: left;
     margin-top: 20px;
+    box-shadow: 0px 0px 0px 2px;
 }
 .spsearch{
     min-height: 300px;
@@ -4545,4 +4551,42 @@ ul.delivery-list li a:hover {
 .BD{
     height: 400px;
    /* background-color: pink;*/
+}
+.ct-tin1{
+    min-width: 50px;
+    text-align: center;
+    font-weight: bold;
+    margin-top:50px; 
+    margin-bottom: 100px; 
+}
+.contact{
+    width: 1000px;
+    margin-top:100px; 
+    margin:auto;
+    min-height: 760px;
+    /*background-color: red;*/
+}
+.titlecontact{
+    width: 1000px;
+    height: 60px;
+    margin-bottom: 100px;
+    text-align: center;
+    font-weight: bold;
+  /*  background-color: pink;*/
+    float: left;
+
+}
+.contact1{
+    width: 490px;
+    min-height: 600px;
+    /*background-color: yellow;*/
+    margin-right: 10px;
+    float: left;
+}
+.contact2{
+    width: 490px;
+    min-height: 600px;
+   /* background-color: blue;*/
+    margin-left: 10px;
+    float: left;
 }

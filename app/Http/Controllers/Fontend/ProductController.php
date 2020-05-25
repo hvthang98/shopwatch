@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 class ProductController extends Controller
 {
     public function all_male_product(Request $request){
-    	$product=DB::table('products')->join('image_product','products.id','=','image_product.products_id')->join('info_product','products.id','=','info_product.products_id')->where('info_product.gender',1)->where('image_product.level',1);
+    	$product=DB::table('products')->join('brands','products.brands_id','=','brands.id')->join('image_product','products.id','=','image_product.products_id')->join('info_product','products.id','=','info_product.products_id')->where('image_product.level',1)->whereIn('info_product.gender',[1,10])->select('products.*','image_product.image');
     	$tempt=0;
     	if($request->has('sort')){
     	 	$tempt=1;
@@ -228,8 +228,8 @@ class ProductController extends Controller
     	
     	return view('fontend.page.list-product')->with('product',$product)->with('i',1);
     }
-    public function all_female_product(Request $request){
-    	$product=DB::table('products')->join('image_product','products.id','=','image_product.products_id')->join('info_product','products.id','=','info_product.products_id')->where('info_product.gender',2)->where('image_product.level',1);
+    public function all_male_product_brand(Request $request, $id){
+    	$product=DB::table('products')->join('brands','products.brands_id','=','brands.id')->join('image_product','products.id','=','image_product.products_id')->join('info_product','products.id','=','info_product.products_id')->where('image_product.level',1)->where('products.brands_id',$id)->whereIn('info_product.gender',[1,10])->select('products.*','image_product.image');
     	$tempt=0;
     	if($request->has('sort')){
     	 	$tempt=1;
@@ -442,11 +442,11 @@ class ProductController extends Controller
     			break;	
     		
     	}
-    	return view('fontend.page.list-product')->with('product',$product)->with('i',2);
+    	return view('fontend.page.list-product')->with('product',$product)->with('i',1);
     	
     }
-    public function all_male_product_brand(Request $request,$id){
-        $product=DB::table('products')->join('brands','products.brands_id','=','brands.id')->join('image_product','products.id','=','image_product.products_id')->join('info_product','products.id','=','info_product.products_id')->where('info_product.gender',1)->where('image_product.level',1)->where('products.brands_id',$id);
+    public function all_female_product(Request $request){
+        $product=DB::table('products')->join('brands','products.brands_id','=','brands.id')->join('image_product','products.id','=','image_product.products_id')->join('info_product','products.id','=','info_product.products_id')->where('image_product.level',1)->whereIn('info_product.gender',[0,10])->select('products.*','image_product.image');
         $tempt=0;
         if($request->has('sort')){
             $tempt=1;
@@ -634,37 +634,38 @@ class ProductController extends Controller
         }
         switch ($tempt) {
             case '0':
-                $product=$product->paginate(3);
+                $product=$product->paginate(6);
                 break;
             case '1':
-                $product=$product->paginate(3)->appends('sort',request('sort'));
+                $product=$product->paginate(6)->appends('sort',request('sort'));
                 break;
             case '2':
-                $product=$product->paginate(3)->appends('price',request('price'));
+                $product=$product->paginate(6)->appends('price',request('price'));
                 break;
             case '3':
-                $product=$product->paginate(3)->appends('brand',request('brand'));
+                $product=$product->paginate(6)->appends('brand',request('brand'));
                 break;
             case '4':
-                $product=$product->paginate(3)->appends('sort',request('sort'))->appends('price',request('price'));
+                $product=$product->paginate(6)->appends('sort',request('sort'))->appends('price',request('price'));
                 break;
             case '5':
-                $product=$product->paginate(3)->appends('sort',request('sort'))->appends('brand',request('brand'));
+                $product=$product->paginate(6)->appends('sort',request('sort'))->appends('brand',request('brand'));
                 break;
             case '6':
-                $product=$product->paginate(3)->appends('brand',request('brand'))->appends('price',request('price'));
+                $product=$product->paginate(6)->appends('brand',request('brand'))->appends('price',request('price'));
                 break;
             case '7':
-                $product=$product->paginate(3)->appends('sort',request('sort'))->appends('price',request('price'))->appends('brand',request('brand'));
+                $product=$product->paginate(6)->appends('sort',request('sort'))->appends('price',request('price'))->appends('brand',request('brand'));
                 break;  
             
         }
-        return view('fontend.page.list-product')->with('product',$product)->with('i',1);
+        return view('fontend.page.list-product')->with('product',$product)->with('i',2);
 
 
     } 
     public function all_female_product_brand(Request $request,$id){
-        $product=DB::table('products')->join('brands','products.brands_id','=','brands.id')->join('image_product','products.id','=','image_product.products_id')->join('info_product','products.id','=','info_product.products_id')->where('info_product.gender',2)->where('image_product.level',1)->where('products.brands_id',$id);
+        $product=DB::table('products')->join('brands','products.brands_id','=','brands.id')->join('image_product','products.id','=','image_product.products_id')->join('info_product','products.id','=','info_product.products_id')->where('products.brands_id',$id)->whereIn('info_product.gender',[0,10])->where('image_product.level',1)->select('products.*','image_product.image');
+
         $tempt=0;
         if($request->has('sort')){
             $tempt=1;
@@ -852,28 +853,28 @@ class ProductController extends Controller
         }
         switch ($tempt) {
             case '0':
-                $product=$product->paginate(3);
+                $product=$product->paginate(6);
                 break;
             case '1':
-                $product=$product->paginate(3)->appends('sort',request('sort'));
+                $product=$product->paginate(6)->appends('sort',request('sort'));
                 break;
             case '2':
-                $product=$product->paginate(3)->appends('price',request('price'));
+                $product=$product->paginate(6)->appends('price',request('price'));
                 break;
             case '3':
-                $product=$product->paginate(3)->appends('brand',request('brand'));
+                $product=$product->paginate(6)->appends('brand',request('brand'));
                 break;
             case '4':
-                $product=$product->paginate(3)->appends('sort',request('sort'))->appends('price',request('price'));
+                $product=$product->paginate(6)->appends('sort',request('sort'))->appends('price',request('price'));
                 break;
             case '5':
-                $product=$product->paginate(3)->appends('sort',request('sort'))->appends('brand',request('brand'));
+                $product=$product->paginate(6)->appends('sort',request('sort'))->appends('brand',request('brand'));
                 break;
             case '6':
-                $product=$product->paginate(3)->appends('brand',request('brand'))->appends('price',request('price'));
+                $product=$product->paginate(6)->appends('brand',request('brand'))->appends('price',request('price'));
                 break;
             case '7':
-                $product=$product->paginate(3)->appends('sort',request('sort'))->appends('price',request('price'))->appends('brand',request('brand'));
+                $product=$product->paginate(6)->appends('sort',request('sort'))->appends('price',request('price'))->appends('brand',request('brand'));
                 break;  
             
         }

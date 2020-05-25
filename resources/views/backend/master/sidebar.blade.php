@@ -80,6 +80,16 @@
                         <li><a href="{{route('list-new')}}">Danh sách tin tức</a></li>
                     </ul>
                 </li>
+                <li class="sub-menu">
+                    <a href="">
+                     <i class="fa fa-phone"></i>
+                        <span>Quản lý liên hệ</span>
+                        </a>
+                    <ul class="sub">
+                        <li><a href="{{route('all-contact')}}">Danh sách liên hệ</a></li>
+
+                    </ul>
+                </li>
                 <li>
                     <a href=" {{ route('adminlogout') }} ">
                         <i class="fa fa-power-off"></i>

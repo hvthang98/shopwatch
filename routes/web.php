@@ -67,6 +67,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
     Route::get('detail-user/{id}','UserController@getDetailUser')->name('getDetailUser');
     Route::get('change-password/{id}','UserController@getChangePassword')->name('getChangePW');
     Route::post('post-change-pw','UserController@postChangePassword')->name('postChangePW');
+
     //Product: add new product, show list product, edit product, add and edit image product 
     Route::group(['prefix' => 'product'], function () {
         // add product
@@ -117,6 +118,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
         Route::get('delete/{id}','NewsController@delete')->name('delete');
 
     });
+    Route::get('all-contact','ContactController@all_contact')->name('all-contact');
+    Route::get('/delete-con-{id}','ContactController@delete_contact')->name('delete-contact');
+    Route::get('reply-contact','ContactController@reply_contact')->name('reply-contact');
 });
 
 //Route fontend
@@ -155,6 +159,11 @@ Route::group(['namespace' => 'FontEnd'], function () {
     //tin tức
     Route::get('/new','NewController@all_new')->name('all-new');
     Route::get('detail-new-{id}','NewController@detail_new')->name('detail-new');
+
+    //liên hệ
+    Route::get('/contact','ContactController@contactPage')->name('contact');
+    Route::post('/contact','ContactController@post_contact')->name('post-contact');
+
     //route function cart
     Route::group(['prefix' => 'cart'], function () {
         Route::get('list', 'CartController@getCart')->name('getCart');

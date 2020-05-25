@@ -158,7 +158,7 @@ class BrandController extends Controller
 					$product = $product->where('gender', 1);
 					break;
 				case '2':
-					$product = $product->where('gender', 2);
+					$product = $product->where('gender', 0);
 					break;
 				case '10':
 					$product = $product->where('gender', 10);
@@ -187,7 +187,7 @@ class BrandController extends Controller
 					$product = $product->where('gender', 1);
 					break;
 				case '2':
-					$product = $product->where('gender', 2);
+					$product = $product->where('gender', 0);
 					break;
 				case '10':
 					$product = $product->where('gender', 10);
@@ -240,7 +240,7 @@ class BrandController extends Controller
 					$product = $product->where('gender', 1);
 					break;
 				case '2':
-					$product = $product->where('gender', 2);
+					$product = $product->where('gender', 0);
 					break;
 				case '10':
 					$product = $product->where('gender', 10);

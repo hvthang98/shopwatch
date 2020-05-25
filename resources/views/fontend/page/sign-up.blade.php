@@ -217,7 +217,18 @@
                                 <input type="text" name="phonenumber" required>
                                 <span data-placehoder="Số điện thoại"></span>
                             </div>
-                           
+                            <div >
+
+                              
+                               <div class="captcha">
+                                 <span>{!! captcha_img() !!}</span>
+                                 
+
+                             
+                     </div>
+                     <div >
+                         <input style="height: 40px; width: 260px" type="text" name="captcha"  placeholder="Nhập mã xác thực"><br/><br/>
+                     </div>
                             <input type="submit" class="logbtn" name="signup" value="Đăng ký">
 
                             <div class="mk"><a href="{{ route('index') }}">Về trang chủ</a></div>

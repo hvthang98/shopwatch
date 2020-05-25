@@ -64,7 +64,7 @@ Danh sách sản phẩm
                                 $i++;
                             @endphp
                             <tr>
-                                {{-- {{ dd($product) }} --}}
+                                
                                 <td>{{ $i }}</td>
                                 <td>{{ $product->name }}</td>
                                 <td>{{ number_format($product->price) }}</td>

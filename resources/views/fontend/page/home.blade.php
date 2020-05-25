@@ -1,5 +1,6 @@
 @extends('fontend.master.master')
 @section('content')
+<script type="text/javascript" src="js/background.js"></script>
 <!-- start slider -->
 <div id="fwslider">
     <div class="slider_container">
@@ -32,8 +33,8 @@
                     <div class="main221">
                         <div class="img1" style="position: relative;">
                             <img width="260" height="280" src="../../{{ $hi->img }}">
-                            <div class="mua"><a
-                                    href="{{ route('getProductSingle',['id'=>$hi->id]) }}">Xem
+                            <div class="mua nav-link"><a
+                                    class="btn btn-primary" href="{{ route('getProductSingle',['id'=>$hi->id]) }}">Xem
                                     chi tiết</a></div>
                         </div>
                         <div class="namesp">
@@ -66,6 +67,7 @@
                         <div class="img1" style="position: relative;">
                             <img width="260" height="280" src="../../{{ $ne->img }}">
                             <div class="mua"><a
+                                class="btn btn-primary"
                                     href="{{ route('getProductSingle',['id'=>$ne->id]) }}">Xem
                                     chi tiết</a></div>
                         </div>

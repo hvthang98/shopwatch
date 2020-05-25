@@ -30,7 +30,7 @@ class UserLoginRequest extends FormRequest
             'birthday' => 'required|date',
             'phonenumber' => 'required',
             'address' => 'required',
-            
+            'captcha' => 'required|captcha',
         ];
     }
     public function messages()

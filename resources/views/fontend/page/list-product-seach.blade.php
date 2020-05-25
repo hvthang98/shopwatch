@@ -45,7 +45,7 @@
                         <div class="spbrand1">
                             <div class="img1" style="position: relative;">
                                 <img width="260" height="280" src="../../{{$pro->image}}">
-                                <div class="mua"><a href="{{route('getProductSingle',['id'=>$pro->products_id])}}">Xem chi tiết</a></div>
+                                <div class="mua"><a class="btn btn-primary" href="{{route('getProductSingle',['id'=>$pro->products_id])}}">Xem chi tiết</a></div>
                             </div>
                             <div class="namesp"><p>{{$pro->name}}</p></div>
                             <div class="pri">

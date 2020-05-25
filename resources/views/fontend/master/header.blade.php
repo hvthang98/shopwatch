@@ -30,9 +30,9 @@
                             </ul>
                         </div>
                     </div>
-                    <li class="active"><a href="">Liên hệ</a></li>
+                    <li class="active"><a href="{{route('contact')}}">Liên hệ</a></li>
                 @else
-                    <li class="active"><a href="">Liên hệ</a></li>
+                    <li class="active"><a href="{{route('contact')}}">Liên hệ</a></li>
                     <li><a href="{{ route('user-login') }}">Đăng nhập</a></li>
                     <li><a href="{{ route('user-sign-up') }}">Đăng ký</a></li>
                 @endif

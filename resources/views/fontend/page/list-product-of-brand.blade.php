@@ -64,7 +64,7 @@
                         <div class="spbrand1">
                             <div class="img1" style="position: relative;">
                                 <img width="260" height="280" src="../../{{$pro->image}}">
-                                <div class="mua"><a href="{{route('getProductSingle',['id'=>$pro->products_id])}}">Xem chi tiết</a></div>
+                                <div class="mua"><a class="btn btn-primary" href="{{route('getProductSingle',['id'=>$pro->products_id])}}">Xem chi tiết</a></div>
                             </div>
                             <div class="namesp"><p>{{$pro->name}}</p></div>
                             <div class="pri">
@@ -93,8 +93,8 @@
                                         href="{{ request()->fullUrlWithQuery(['gender'=>1]) }}"><i></i>Nam</a></label>
                                 <div class="col col-4">
                                     <label class="checkbox"><i></i><a
-                                            class="{{ Request::get('gender')==0 ?'active':'' }}"
-                                            href="{{ request()->fullUrlWithQuery(['gender'=>0]) }}">Nữ</a></label>
+                                            class="{{ Request::get('gender')==2 ?'active':'' }}"
+                                            href="{{ request()->fullUrlWithQuery(['gender'=>2]) }}">Nữ</a></label>
 
                                 </div>
                                 <div class="col col-4">

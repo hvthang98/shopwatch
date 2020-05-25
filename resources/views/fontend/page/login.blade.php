@@ -144,6 +144,21 @@
                                 <input type="password" name="password">
                                 <span data-placehoder="Mật khẩu"></span>
                             </div>
+                            
+                            <div class="row">
+
+                              <div class="col-md-4"></div>
+                              <div class="form-group col-md-4">
+                               <div class="captcha">
+                                 <span>{!! captcha_img() !!}</span>
+                                 <button type="button" class="btn btn-success"><i class="fa fa-refresh" id="refresh"></i></button>
+
+                             </div>
+                         </div>
+                     </div>
+                     <div >
+                         <input style="height: 40px; width: 260px" type="text" name="captcha"  placeholder="Nhập mã xác thực"><br/><br/>
+                     </div>
                             <input type="submit" class="logbtn" name="login" value="Đăng nhập">
                             <div class="bottom-text">
                                 Chưa có tài khoản? <a href="{{ route('user-sign-up') }}">Đăng ký</a>
