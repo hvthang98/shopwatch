@@ -4,18 +4,20 @@
 @endsection
 @section('main-content')
 <style>
-    .nbs-flexisel-item .price-deco{
+    .nbs-flexisel-item .price-deco {
         margin: 0px;
-        margin-bottom: 10px; 
+        margin-bottom: 10px;
         padding: 0px;
-        text-decoration:line-through;
+        text-decoration: line-through;
         font-size: 12px;
     }
+
 </style>
 <div class="mens">
     <div class="main">
         <div class="wrap">
-            <ul class="breadcrumb breadcrumb__t"><a class="home" href="{{ route('index') }}">Trang chủ</a> / {{ $products->name }}</ul>
+            <ul class="breadcrumb breadcrumb__t"><a class="home" href="{{ route('index') }}">Trang
+                    chủ</a> / {{ $products->name }}</ul>
             <div class="cont span_2_of_3">
                 <div class="grid images_3_of_2">
                     <ul id="etalage">
@@ -36,18 +38,24 @@
                 </div>
                 <div class="desc1 span_3_of_2">
                     <h3 class="m_3">{{ $products->name }}</h3>
-                    <p class="m_5">{{ number_format($products->sellprice) }}&nbsp;<span class="reducedfrom">{{ number_format($products->price) }}</span>
+                    <p class="m_5">{{ number_format($products->sellprice) }}&nbsp;<span
+                            class="reducedfrom">{{ number_format($products->price) }}</span>
                     </p>
-                    <form action="{{ route('addCart')}}">
+                    <form action="{{ route('addCart') }}">
                         <div class="form-group col-sm-6">
                             <input type="hidden" name="products_id" value="{{ $products->id }}">
                             <label for="">Số lượng</label>
-                            <input type="number" class="form-control" id="quantily" name="quantily" placeholder="" min="1"
-                                max="{{ $products->quantily }}" value="1">
+                            <input type="number" class="form-control" id="quantily" name="quantily" placeholder=""
+                                min="1" max="{{ $products->quantily }}" value="1">
                         </div>
                         <div class="col-sm-8">
-                            <button type="submit" class="btn btn-primary"
-                                style="z-index: 1;">Thêm vào giỏ hàng</button>
+                            @if($products->quantily > 0)
+                                <button type="submit" class="btn btn-primary" style="z-index: 1;">Thêm vào giỏ
+                                    hàng</button>
+                            @else
+                                <p class="text-danger" style="font-size: 20px">Hết hàng</p>
+                            @endif
+
                         </div>
                     </form>
                 </div>
@@ -206,7 +214,8 @@
                     <input type="text" class="form-control" id="input-comment" id-product="{{ $products->id }}"><br>
                     <button type="button" class="btn btn-info" id="submit-commnent">Gửi</button>
                 </div>
-                <input type="hidden" name="user" id="id-user" id-user ="<?php if(Auth::check()){echo Auth::user()->id;}?>">
+                <input type="hidden" name="user" id="id-user"
+                    id-user="<?php if(Auth::check()){echo Auth::user()->id;}?>">
                 <div class="comment-main">
                     <!-- comment -->
                     @foreach($comments as $comment)
@@ -225,7 +234,8 @@
                                     <div class="detail-comment">
                                         <div class="form-group">
                                             <br>
-                                            <input type="text" class="form-control" id-comment="{{ $comment->id }}" placeholder="Trả lời"><br>
+                                            <input type="text" class="form-control" id-comment="{{ $comment->id }}"
+                                                placeholder="Trả lời"><br>
                                             <button type="button" class="btn btn-info">Gửi</button>
                                         </div>
                                         <div class="detail-comment-content" id="reply{{ $comment->id }}">
@@ -236,7 +246,9 @@
                                                             class="media-object" style="width:55px">
                                                     </div>
                                                     <div class="media-body">
-                                                        <h4 class="media-heading">{{ $reply->users->name }}<small>&emsp;<i>Posted on February
+                                                        <h4 class="media-heading">
+                                                            {{ $reply->users->name }}<small>&emsp;<i>Posted on
+                                                                    February
                                                                     19,
                                                                     2016</i></small></h4>
                                                         <p>{{ $reply->content }}</p>

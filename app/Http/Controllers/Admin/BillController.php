@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Bills;
 use App\Models\BillDetails;
+use App\Models\Products;
 use App\Models\Users;
 
 class BillController extends Controller
@@ -19,7 +20,7 @@ class BillController extends Controller
     {
         // echo $request->id;
         $data['bills'] = Bills::find($request->id);
-        $data['billDetails'] = BillDetails::where('bills_id',$request->id)->get();
+        $data['billDetails'] = BillDetails::where('bills_id', $request->id)->get();
         // dd($data);
         return view('backend.page.bill.detail-bill', $data);
     }
@@ -32,7 +33,18 @@ class BillController extends Controller
     }
     public function delete(Request $request)
     {
-        Bills::find($request->id)->delete();
+        // quantily product rollback 
+        $bill = Bills::find($request->id);
+        $detail_bill = BillDetails::where('bills_id', $request->id)->get();
+        if ($bill->status != 3) {
+            foreach ($detail_bill as $detail) {
+                $product = Products::find($detail->products_id);
+                $product->quantily = ($product->quantily) + ($detail->quantily);
+                $product->save();
+            }
+        }
+        //delete bill
+        $bill = Bills::find($request->id)->delete();
         return redirect(route('listBill'))->with('notification', 'Đã xóa đơn hàng đơn hàng thành công');
     }
 }

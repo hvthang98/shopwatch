@@ -131,18 +131,18 @@ Giỏ hàng
                             <h4>Thông tin giao hàng</h4>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                <input id="msg" type="text" class="form-control" name="name" placeholder="Họ và Tên"
+                                <input id="msg" type="text" class="form-control" name="name" placeholder="Họ và Tên" value="<?php if(Auth::check()) echo Auth::user()->name?>"
                                     required>
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
-                                <input id="msg" type="text" class="form-control" name="address" placeholder="Địa chỉ"
+                                <input id="msg" type="text" class="form-control" name="address" placeholder="Địa chỉ" value="<?php if(Auth::check()) echo Auth::user()->address?>"
                                     required>
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-phone"></i></span>
                                 <input id="msg" type="text" class="form-control" name="phone_number"
-                                    placeholder="Số điện thoại" required>
+                                    placeholder="Số điện thoại" value="<?php if(Auth::check()) echo Auth::user()->phone_number?>" required>
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-file-text"></i></span>

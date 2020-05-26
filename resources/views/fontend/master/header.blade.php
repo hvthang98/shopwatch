@@ -52,7 +52,7 @@
             <div class="menu">
                 <ul class="megamenu skyblue">
                     <li class="active grid"><a href="{{ route('index') }}">Trang chủ</a></li>
-                    <li><a class="color5">Thương hiệu</a>
+                    <li><a class="color5">Thương hiệu <i class="fa fa-caret-down"> </i></a>
                         <div class="megapanel">
                             <div class="col1">
                                 <div class="h_nav">
@@ -68,7 +68,7 @@
 
                         </div>
                     </li>
-                    <li><a class="color5" href="{{ route('male-product') }}">Nam</a>
+                    <li><a class="color5" href="{{ route('male-product') }}">Nam <i class="fa fa-caret-down"></i></a>
                         <div class="megapanel">
                             <div class="col1">
                                 <div class="h_nav">
@@ -85,7 +85,7 @@
 
                         </div>
                     </li>
-                    <li><a class="color5" href="{{ route('female-product') }}">Nữ</a>
+                    <li><a class="color5" href="{{ route('female-product') }}">Nữ <i class="fa fa-caret-down"></i></a>
                         <div class="megapanel">
                             <div class="col1">
                                 <div class="h_nav">
