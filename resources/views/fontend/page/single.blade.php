@@ -232,7 +232,10 @@
                                 </h4>
                                 <p>{{ $comment->content }}</p>
                                 <div class="reply">Trả lời<small>&emsp;Có {{ count($comment->replyComment) }} trả
-                                        lời</small>
+                                        lời </small>
+                                        @if (Auth::check() && Auth::user()->id==$comment->users_id)
+                                        <a href="">Xóa</a>                                            
+                                        @endif
                                     <div class="detail-comment">
                                         <div class="form-group">
                                             <br>
