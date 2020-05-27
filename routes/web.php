@@ -189,6 +189,11 @@ Route::group(['namespace' => 'FontEnd'], function () {
     Route::group(['prefix' => 'bill'], function () {
         Route::get('/{id}','BillFontEndController@getBillUser')->name('getBillUser');
     });
+    //delete comment
+    Route::group(['prefix' => 'comment'], function () {
+        Route::get('delete/{id}','CommentController@delete')->name('deleteComment');
+        Route::get('deleteReply/{id}','CommentController@deleteReply')->name('deleteReplyComment');
+    });
 });
 //ajax fontend
 Route::group(['namespace' => 'Ajax'], function () {

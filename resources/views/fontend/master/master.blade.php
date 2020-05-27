@@ -157,5 +157,11 @@
 @if(session('notification'))
     @include('notify.note')
 @endif
-
+<script>
+    function questionLoading(mes) {
+            if (confirm(mes) == false) {
+                event.preventDefault();
+            }
+        }
+</script>
 </html>

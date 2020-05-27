@@ -5,11 +5,13 @@
             class="media-object" style="width:65px">
     </div>
     <div class="media-body">
-        <h4 class="media-heading">{{ $comment->users->name }}<small>&emsp;<i>Posted on
-                    February 19, 2016</i></small>
+        <h4 class="media-heading">{{ $comment->users->name }}<small>&emsp;<i>{{ date('d-m-Y',strtotime($comment->created_at)) }}</i></small>
         </h4>
         <p>{{ $comment->content }}</p>
         <div class="reply">Trả lời<small>&emsp;</small>
+            @if (Auth::check() && Auth::user()->id==$comment->users_id)
+                <a href="{{ route('deleteComment',$comment->id) }}" onclick="questionLoading('Bạn chắc chắn muốn xóa bình luận')">Xóa</a>                                            
+            @endif
             <div class="detail-comment" style="display: none">
                 <div class="form-group">
                     <br>
@@ -24,9 +26,7 @@
                                     class="media-object" style="width:55px">
                             </div>
                             <div class="media-body">
-                                <h4 class="media-heading">{{ $reply->users->name }}<small>&emsp;<i>Posted on February
-                                            19,
-                                            2016</i></small></h4>
+                                <h4 class="media-heading">{{ $reply->users->name }}<small>&emsp;<i>{{ date('d-m-Y',strtotime($reply->created_at)) }}</i></small></h4>
                                 <p>{{ $reply->content }}</p>
                             </div>
                         </div>

@@ -39,7 +39,8 @@ class UserLoginRequest extends FormRequest
             'required' => 'Không được để trống trường', 
             'email' => 'không đúng định dạng Email', 
             'confirmed' => 'Xác nhận lại mật khẩu sai',
-            'email.unique'=>'Tài khoản đã tồn tại'
+            'email.unique'=>'Tài khoản đã tồn tại',
+            'captcha'=>'Sai mã xác thực'
         ];
 
     }
