@@ -1,4 +1,7 @@
 @extends('backend.master.admin_master')
+@section('title')
+	Danh sách các banner
+@endsection
 @section('main-content')
 <div class="table-agile-info">
   <div class="panel panel-default">

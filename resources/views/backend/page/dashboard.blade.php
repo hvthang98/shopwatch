@@ -1,4 +1,7 @@
 @extends('backend.master.admin_master')
+@section('title')
+	Dashboard
+@endsection
 @section('main-content')
 <div class="market-updates">
     <div class="col-md-3 market-update-gd">

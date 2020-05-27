@@ -1,4 +1,7 @@
 @extends('fontend.master.master')
+@section('title')
+	Tin tức
+@endsection
 @section('content')
 @foreach($detailnew as $det)
 <div class="ct-tin">

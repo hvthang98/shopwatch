@@ -14,7 +14,7 @@
         <table class="table table-striped b-t b-light">
 
             <tr>
-                <th>STT</th>
+                <th>ID</th>
                 <th>Email</th>
                 <th>Tên</th>
                 <th>Ngày sinh</th>
@@ -52,7 +52,7 @@
                         <a
                             href="{{ route('edit-user',['id'=>$user->id]) }}"><i
                                 style="font-size: 20px" class="fa fa-pencil text-success text-active"></i></a>
-                        <a href="{{ route('delete',['id'=>$user->id]) }}"
+                        <a href="{{ route('deleteUser',['id'=>$user->id]) }}"
                             onclick="return confirm('Bạn có chắc chắn muốn xóa ?');"><i class="fa fa-trash-o"
                                 style="font-size:24px"></i></a>
                     </td>

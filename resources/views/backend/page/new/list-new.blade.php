@@ -1,4 +1,7 @@
 @extends('backend.master.admin_master')
+@section('title')
+    Danh sách tin tức
+@endsection
 @section('main-content')
 <style>
     .news-content {

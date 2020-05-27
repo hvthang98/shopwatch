@@ -35,6 +35,8 @@ Danh sách đơn hàng
                 </form>
             </div>
             <div class="table-responsive">
+                @if (count($bills)!=0)
+                    
                 <table class="table" ui-jq="footable" ui-options="{
         " paging": { "enabled" : true }, "filtering" : { "enabled" : true }, "sorting" : { "enabled" : true }}">
                     <thead>
@@ -91,6 +93,10 @@ Danh sách đơn hàng
                         @endforeach
                     </tbody>
                 </table>
+                @else
+                <p class="bg-warning" style="text-align: center; font-size: 30px;">Không tìm thấy đơn hàng</p>
+                @endif
+
             </div>
             <footer class="panel-footer">
                 <div class="row">

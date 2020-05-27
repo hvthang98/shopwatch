@@ -39,7 +39,7 @@ class BannerController extends Controller
     }
     function all_banner()
     {
-        $banners = Banners::all();
+        $banners = Banners::orderBy('ordernum','asc')->get();
         return view('backend.page.banner.all-banner', ['banners' => $banners]);
     }
     function active_banner($id)

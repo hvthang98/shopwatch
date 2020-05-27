@@ -1,4 +1,7 @@
 @extends('fontend.master.master')
+@section('title')
+    Sản phẩm
+@endsection
 @section('content')
 <style type="text/css">
     .active{

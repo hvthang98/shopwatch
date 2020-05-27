@@ -1,4 +1,7 @@
 @extends('backend.master.admin_master')
+@section('title')
+	Thêm người dùng
+@endsection
 @section('main-content')
 <div class="row">
 	<div class="col-lg-12">

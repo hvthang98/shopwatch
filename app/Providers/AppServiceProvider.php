@@ -56,7 +56,7 @@ class AppServiceProvider extends ServiceProvider
             }
         });
         view()->composer('fontend/page/home', function ($view) {
-            $banner = Banners::where('status', 1)->get();
+            $banner = Banners::where('status', 1)->orderBy('ordernum','asc')->get();
             $view->with('banner', $banner);
         });
         view()->composer('fontend/page/list-product', function ($view) {

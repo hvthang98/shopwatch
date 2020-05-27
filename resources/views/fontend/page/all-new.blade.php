@@ -1,4 +1,7 @@
 @extends('fontend.master.master')
+@section('title')
+	Tin tức
+@endsection
 @section('content')
 <div class="tintuc">
 	<div class="tintuc1"><p>Tin Tức</p></div>

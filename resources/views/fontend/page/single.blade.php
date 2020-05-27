@@ -1,6 +1,6 @@
 @extends('fontend.master.master')
 @section('title')
-
+{{ $products->name }}
 @endsection
 @section('main-content')
 <style>
@@ -23,14 +23,16 @@
                     <ul id="etalage">
                         @if(isset($products->imageProduct))
                             @foreach($products->imageProduct as $image)
-                                <li>
-                                    <a>
-                                        <img class="etalage_thumb_image" src="{{ asset($image->image) }}"
-                                            class="img-responsive" />
-                                        <img class="etalage_source_image" src="{{ asset($image->image) }}"
-                                            class="img-responsive" title="" />
-                                    </a>
-                                </li>
+                                @if($image->status==1)
+                                    <li>
+                                        <a>
+                                            <img class="etalage_thumb_image" src="{{ asset($image->image) }}"
+                                                class="img-responsive" />
+                                            <img class="etalage_source_image" src="{{ asset($image->image) }}"
+                                                class="img-responsive" title="" />
+                                        </a>
+                                    </li>
+                                @endif
                             @endforeach
                         @endif
                     </ul>

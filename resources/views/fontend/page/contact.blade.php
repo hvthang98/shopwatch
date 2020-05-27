@@ -1,4 +1,7 @@
 @extends('fontend.master.master')
+@section('title')
+	Liên hệ
+@endsection
 @section('content')
 <script type="text/javascript" src="js/contact.js"></script>
 <div class="contact">

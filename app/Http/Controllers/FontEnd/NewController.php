@@ -8,7 +8,7 @@ use App\Models\News;
 class NewController extends Controller
 {
     public function all_new(){
-    	$news=News::paginate(6);
+    	$news=News::where('status',1)->paginate(6);
     	return view('fontend.page.all-new')->with('news',$news);
     }
     public function detail_new($id){

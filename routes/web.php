@@ -62,7 +62,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
         Route::get('unactive-admin/{id}', 'UserController@unactive_admin')->name('unactive-admin');
         Route::get('edit-user/{id}', 'UserController@edit_user')->name('edit-user');
         Route::post('post-edit-user/{id}', 'UserController@post_edit_user')->name('post-edit-user');
-        Route::get('delete-user/{id}', 'UserController@delete_user')->name('delete');
+        Route::get('delete-user/{id}', 'UserController@delete_user')->name('deleteUser');
     });
     Route::get('detail-user/{id}','UserController@getDetailUser')->name('getDetailUser');
     Route::get('change-password/{id}','UserController@getChangePassword')->name('getChangePW');

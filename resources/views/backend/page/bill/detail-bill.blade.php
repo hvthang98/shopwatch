@@ -1,6 +1,6 @@
 @extends('backend.master.admin_master')
 @section('title')
-Chi tiết đơn hàng
+Chi tiết đơn hàng #{{ $bills->id  }}
 @endsection
 @section('main-content')
 <style>

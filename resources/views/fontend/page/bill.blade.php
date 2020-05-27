@@ -1,6 +1,6 @@
 @extends('fontend.master.master')
 @section('title')
-Giỏ hàng
+Đơn hàng
 @endsection
 @section('main-content')
 <style>
