@@ -233,6 +233,7 @@ ul.sidebar-menu li a.active i {
     box-shadow:1px 0 3px rgba(0,0,0,.15);
 }
 .wrapper {
+    min-height: 80vh;
     display:inline-block;
     margin-top:80px;
     padding:15px;
