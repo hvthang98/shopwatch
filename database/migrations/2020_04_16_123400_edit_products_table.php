@@ -27,7 +27,8 @@ class EditProductsTable extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            //
+            $table->dropForeign(['categories_id']);
+            $table->dropColumn('categories_id');
         });
     }
 }

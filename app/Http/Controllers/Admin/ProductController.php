@@ -12,8 +12,6 @@ use App\Models\Info_product;
 
 class ProductController extends Controller
 {
-    //product
-    // function add product
     public function getAddProduct()
     {
         $data['brands'] = Brands::all();
@@ -116,7 +114,6 @@ class ProductController extends Controller
     }
 
     // image product
-    //function get image product
     public function getImageProduct(Request $request)
     {
         $data['images'] = ImgProduct::where('products_id', $request->id)->orderBy('level', 'desc')->paginate(5);

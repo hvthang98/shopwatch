@@ -4,18 +4,6 @@ use App\Http\Controllers\Admin\HomeAdmin;
 use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Products;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-
 
 // Route backend
 Route::get('admin-login', 'Admin\HomeController@adminlogin');
@@ -23,7 +11,6 @@ Route::post('admin-login', 'Admin\HomeController@postadminlogin')->name('postadm
 Route::get('admin-logout', 'Admin\HomeController@logout')->name('adminlogout');
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'adminlogin'], function () {
-    //Route::get('dashboard', 'Dashboard@index');
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('/', function () {
         return redirect(route('dashboard'));
@@ -207,5 +194,3 @@ Route::group(['namespace' => 'Ajax'], function () {
         Route::post('check-email', 'AjaxFontEndController@checkEmail')->name('checkEmail');
     });
 });
-
-// Route::get('/brand/{id}', 'Fontend\BrandController@product_of_brand')->name('brand');
