@@ -422,7 +422,7 @@ body {
 }
 
 .sub-drop {
-    background:#fff;
+    background: #fff;
     /* width: 97px; */
     /* height: 50px; */
     text-align: center;
@@ -437,14 +437,17 @@ body {
     color: red;
     margin: 10px 0 10px;
 }
-.sub-drop ul li{
+
+.sub-drop ul li {
     font-size: 13px;
     color: #000;
     margin: 0px 10px 0px 10px;
 }
-.sub-drop ul li a{ 
+
+.sub-drop ul li a {
     color: #000;
 }
+
 /* }
 
 .sub-drop ul li a {
@@ -1757,11 +1760,8 @@ p.cart a:hover {
 }
 
 .mens-toolbar .sort {
-    <<<<<<< HEAD float: left;
-    width: 20.5%;
-    =======float: left;
+    float: left;
     width: 29.5%;
-    >>>>>>>list-product
 }
 
 .sort {
@@ -1769,12 +1769,10 @@ p.cart a:hover {
 }
 
 .sort-by {
-    <<<<<<< HEAD color: #777;
-    font-size: 0.85;
-    =======width: 200px;
     color: #777;
     font-size: 0.85;
-    >>>>>>>list-product
+    width: 200px;
+    color: #777;
 }
 
 .mens-toolbar .pager {
@@ -4273,58 +4271,67 @@ ul.delivery-list li a:hover {
         width: 55.5%;
     }
 }
-.tintuc{
-    margin-top:30px;
+
+.tintuc {
+    margin-top: 30px;
     /*background: red;*/
     width: 1200px;
     margin: auto;
     min-height: 950px;
 }
-.tintuc1{
-   /* background: yellow;*/
+
+.tintuc1 {
+    /* background: yellow;*/
     height: 50px;
     line-height: 50px;
     margin-top: 50px;
 }
-.tintuc1 p{
+
+.tintuc1 p {
     text-align: center;
     font-size: 30px;
     font-weight: bold;
 }
-.loctin{
+
+.loctin {
     /*background: gray;*/
     height: 40px;
     margin-top: 90px;
 }
-.loctin form{
+
+.loctin form {
     margin-left: 30px;
     line-height: 40px;
 }
-.tintuc2{
-    /*background: green;*/
+
+.tintuc2 {
+    margin-top: 100px;
     min-height: 691px;
     margin-top: 30px;
 }
-.tin{
+
+.tin {
     background: blue;
     width: 363px;
     height: 250px;
     margin-left: 30px;
-    margin-top:30px;
+    margin-top: 30px;
     float: left;
 }
-.chua{
+
+.chua {
     width: 363px;
     height: 250px;
 }
-.nd{
-    position: absolute; 
-    bottom: 0; 
+
+.nd {
+    position: absolute;
+    bottom: 0;
     background: rgb(0, 0.5, 0);
     background: rgba(0, 0, 0, 0.5);
-    color: white; 
+    color: white;
     transition: .8s ease;
-    opacity:0;
+    opacity: 0;
     color: blue;
     font-size: 20px;
     padding-top: 30px;
@@ -4332,14 +4339,16 @@ ul.delivery-list li a:hover {
     width: 363px;
     height: 250px;
 }
-.nd p{
+
+.nd p {
 
     color: white;
-    
+
     text-decoration: none;
     display: block;
 }
-.chua:hover .nd{
+
+.chua:hover .nd {
 
     text-decoration: none;
     color: white;
@@ -4347,40 +4356,47 @@ ul.delivery-list li a:hover {
 
 
 }
-.ct-tin{
+
+.ct-tin {
     width: 1200px;
     margin: auto;
 }
 
-.br{
+.br {
     width: 300px;
 }
-.main1{
+
+.main1 {
     width: 1200px;
     /* min-height: 2500px; */
     /*background-color: red;*/
     margin: auto;
-    margin-top:50px; 
+    margin-top: 50px;
 }
-.main2{
+
+.main2 {
     /* height: 1250px; */
     /*background-color: yellow;*/
 
 }
-.main21{
+
+.main21 {
     /* height: 50px; */
     /*background-color: gray;*/
 }
-.main21 h2{
+
+.main21 h2 {
     line-height: 50px;
     margin-left: 10px;
 }
-.main22{
+
+.main22 {
     /* height: 1330px; */
     margin-top: 20px;
     /*background-color: orange;*/
 }
-.main221{
+
+.main221 {
     min-height: 350px;
     min-width: 260px;
     float: left;
@@ -4389,38 +4405,44 @@ ul.delivery-list li a:hover {
     box-shadow: 0px 0px 0px 2px;
     /*background-color: blue;*/
 }
-.img1{
-    min-height:280px;
-    /*background-color: green;*/ 
+
+.img1 {
+    min-height: 280px;
+    /*background-color: green;*/
 }
-.namesp{
+
+.namesp {
     /*background-color: pink;*/
     height: 40px;
 }
-.namesp p{
+
+.namesp p {
     width: 260px;
     height: 40px;
     line-height: 40px;
     text-align: center;
     font-weight: bold;
     overflow: hidden;
-    text-overflow: ellipsis; 
+    text-overflow: ellipsis;
 }
-.pri{
-   /* background-color: gray;*/
+
+.pri {
+    /* background-color: gray;*/
     height: 30px;
 }
-.boc-pri{
-    margin-left: 28px ;
+
+.boc-pri {
+    margin-left: 28px;
 }
-.mua{
-    position: absolute; 
-    bottom: 0; 
+
+.mua {
+    position: absolute;
+    bottom: 0;
     background: rgb(0, 0.5, 0);
     background: rgba(0, 0, 0, 0.5);
-    color: white; 
+    color: white;
     transition: .8s ease;
-    opacity:0;
+    opacity: 0;
     color: blue;
     font-size: 20px;
     padding-top: 200px;
@@ -4428,7 +4450,8 @@ ul.delivery-list li a:hover {
     width: 260px;
     height: 280px;
 }
-.mua a{
+
+.mua a {
 
     color: white;
     width: 150px;
@@ -4436,10 +4459,12 @@ ul.delivery-list li a:hover {
     text-decoration: none;
     display: block;
 }
-.mua>a:hover{
+
+.mua>a:hover {
     text-decoration: none;
 }
-.img1:hover .mua{
+
+.img1:hover .mua {
 
     text-decoration: none;
     color: white;
@@ -4447,36 +4472,42 @@ ul.delivery-list li a:hover {
 
 
 }
+
 .sell {
     height: 30px;
     min-width: 100px;
-   /* background-color: red;*/
+    /* background-color: red;*/
     float: left;
     text-align: center;
-   /* margin-left: 28px;*/
+    /* margin-left: 28px;*/
     line-height: 30px;
 }
-.sell span{
+
+.sell span {
     text-decoration: line-through;
     font-style: italic;
     opacity: .6;
 }
-.normalp{
+
+.normalp {
     height: 30px;
     min-width: 100px;
     /*background-color: yellow;*/
     float: left;
-    
+
     line-height: 30px;
 }
-.normalp span{
+
+.normalp span {
     font-weight: bold;
 }
-.spbrand{
+
+.spbrand {
     /*background-color: red;*/
     min-height: 400px;
 }
-.spbrand1{
+
+.spbrand1 {
     /*background-color: yellow;*/
     width: 260px;
     height: 350px;
@@ -4485,109 +4516,126 @@ ul.delivery-list li a:hover {
     margin-top: 20px;
     box-shadow: 0px 0px 0px 2px;
 }
-.spsearch{
+
+.spsearch {
     min-height: 300px;
 }
-.main3{
+
+.main3 {
     /*background-color: red;*/
-    min-height:500px; 
+    min-height: 500px;
     width: 1200px;
-    margin:auto;
-    margin-top:30px;
+    margin: auto;
+    margin-top: 30px;
 }
-.main31{
+
+.main31 {
     /*background-color: yellow;*/
     width: 790px;
     min-height: 500px;
     float: left;
 
 }
-.main311{
+
+.main311 {
     /*background-color: pink;*/
     height: 50px;
 
 }
-.main311 span{
+
+.main311 span {
     line-height: 50px;
     font-size: 26px;
     margin-left: 10px;
 }
-.main312{
+
+.main312 {
     /*background-color: orange;*/
     height: 450px;
 }
-.main3121{
+
+.main3121 {
     margin-top: 10px;
-   /* background-color: gray;*/
+    /* background-color: gray;*/
     width: 370px;
     height: 137px;
     margin-left: 10px;
     float: left;
 }
-.main3121img{
+
+.main3121img {
     width: 137px;
     height: 137px;
     float: left;
     /*background-color: pink;*/
 }
-.main3121nd{
+
+.main3121nd {
     /*background-color: red;*/
     width: 228px;
     margin-left: 5px;
     height: 137px;
     float: left;
 }
-.main3121nd a{
+
+.main3121nd a {
     margin-left: 5px;
     font-size: 20px;
     text-align: center;
 }
-.main32{
+
+.main32 {
     margin-left: 10px;
     /*background-color: green;*/
     width: 400px;
     min-height: 450px;
     float: left;
 }
-.BD{
+
+.BD {
     height: 400px;
-   /* background-color: pink;*/
+    /* background-color: pink;*/
 }
-.ct-tin1{
+
+.ct-tin1 {
     min-width: 50px;
     text-align: center;
     font-weight: bold;
-    margin-top:50px; 
-    margin-bottom: 100px; 
+    margin-top: 50px;
+    margin-bottom: 100px;
 }
-.contact{
+
+.contact {
     width: 1000px;
-    margin-top:100px; 
-    margin:auto;
+    margin-top: 100px;
+    margin: auto;
     min-height: 760px;
     /*background-color: red;*/
 }
-.titlecontact{
+
+.titlecontact {
     width: 1000px;
     height: 60px;
     margin-bottom: 100px;
     text-align: center;
     font-weight: bold;
-  /*  background-color: pink;*/
+    /*  background-color: pink;*/
     float: left;
 
 }
-.contact1{
+
+.contact1 {
     width: 490px;
     min-height: 600px;
     /*background-color: yellow;*/
     margin-right: 10px;
     float: left;
 }
-.contact2{
+
+.contact2 {
     width: 490px;
     min-height: 600px;
-   /* background-color: blue;*/
+    /* background-color: blue;*/
     margin-left: 10px;
     float: left;
 }
