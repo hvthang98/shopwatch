@@ -22,7 +22,6 @@ class Products extends Model
     }
     public function avatar()
     {
-        return $this->hasMany('App\Models\ImgProduct', 'products_id', 'id')->where('level', 1);
-    }
-    
+        return $this->hasOne('App\Models\ImgProduct', 'products_id', 'id')->where('level', 1);
+    }    
 }

@@ -72,9 +72,8 @@
                     <h3 class="m_3">Những sản phẩm khác nổi bật</h3>
                     <ul id="flexiselDemo3">
                         @foreach($listProducts as $list)
-                            {{-- {{ $list->avatar->image }} --}}
                             <li>
-                                <img src="{{ asset($list->avatar->image) }}" style="height:140px" />
+                                <img src="<?php if(isset($list->avatar->image)) echo asset($list->avatar->image)?>" style="height:140px" />
                                 <a href="{{ route('getProductSingle',$list->id) }}">
                                     {{ $list->name }}
                                 </a>
@@ -165,10 +164,6 @@
                                 <td class="td1">Chất liệu dây</td>
                                 <td>{{ $products->infoProduct->strap_material }}</td>
                             </tr>
-                            {{-- <tr>
-                                <td class="td1">Tiện ích</td>
-                                <td>{{ $products->infoProduct->frames }}</td>
-                            </tr> --}}
                             <tr>
                                 <td class="td1">Độ rộng dây</td>
                                 <td>{{ $products->infoProduct->strap_width }} <span>mm</span></td>
@@ -177,10 +172,6 @@
                                 <td class="td1">Thay dây</td>
                                 <td>Có</td>
                             </tr>
-                            {{-- <tr>
-                                <td class="td1">Nguồn năng lượng</td>
-                                <td>{{ $products->infoProduct->frames }}</td>
-                            </tr> --}}
                             <tr>
                                 <td class="td1">Thời gian sử dụng pin</td>
                                 <td>{{ $products->infoProduct->expiry_date }}</td>

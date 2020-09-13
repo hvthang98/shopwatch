@@ -86,7 +86,7 @@ Giỏ hàng
                                 {{-- not sign in user --}}
                                 @foreach($carts as $key=>$cart)
                                     <tr>
-                                        <td><img src="{{ asset($cart['product']->avatar->image) }}" alt="" class="cart_img"></td>
+                                        <td><img src="{{ asset($cart['product']->avatar->first()->get()->image) }}" alt="" class="cart_img"></td>
                                         <td>{{ $cart['product']->name }}</td>
                                         <td>
                                             {{ number_format($cart['product']->sellprice) }}
