@@ -1,23 +1,10 @@
 <!DOCTYPE html>
 
 <head>
-    
+
     <title>@yield('title')</title>
     <base href="{{ asset('public/backend') }}/">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-    <script type="application/x-javascript">
-        addEventListener("load", function () {
-            setTimeout(hideURLbar, 0);
-        }, false);
-
-        function hideURLbar() {
-            window.scrollTo(0, 1);
-        }
-
-    </script>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <!-- bootstrap-css -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- //bootstrap-css -->
@@ -36,13 +23,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link rel="stylesheet" href="css/monthly.css">
     <!-- //calendar -->
     <!-- //font-awesome icons -->
-    <script src="js/jquery2.0.3.min.js"></script>
-    <script src="js/raphael-min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/morris.js"></script>
     <script src="../editor/ckeditor/ckeditor.js"></script>
     <script src="../editor/ckfinder/ckfinder.js"></script>
-
-
 </head>
 
 <body>
@@ -69,38 +53,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="js/scripts.js"></script>
     <script src="js/jquery.slimscroll.js"></script>
     <script src="js/jquery.nicescroll.js"></script>
-    <!--[if lte IE 8]><script language="javascript" type="text/javascript" src"js/flot-chart/excanvas.min.js"></script><![endif]-->
     <script src="js/jquery.scrollTo.js"></script>
     <!--javascrip-->
     <script>
-        function loading() {
-            if (confirm('Bạn có chắc chắn muốn xóa hay không?') == false) {
-                event.preventDefault();
-                //return false;
-            }
-        }
-
-        function out() {
-            if (confirm('Bạn có chắc chắn muốn thoát không?') == false) {
-                event.preventDefault();
-                //return false;
-            }
-        }
-
         function questionLoading(mes) {
             if (confirm(mes) == false) {
                 event.preventDefault();
             }
         }
-
     </script>
-
-    @yield('js')
-
 </body>
 <script>
     CKEDITOR.replace('editor1');
-
 </script>
 
 </html>

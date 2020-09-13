@@ -73,9 +73,12 @@ Chỉnh sửa sản phẩm
                                 <label for="" class="control-label col-lg-3">Thứ tự sắp xếp</label>
                                 <div class="col-lg-6">
                                     <select class="form-control m-bot15" name="ordernum">
-                                        <option value="0" <?php if($product->ordernum==0) echo 'selected' ?>>Không hiển thị trang chủ</option>
-                                       <option value="1" <?php if($product->ordernum==1) echo 'selected' ?>>Sản phẩm nổi bật</option>
-                                       <option value="2" <?php if($product->ordernum==2) echo 'selected'?>>Sản phẩm mới</option>
+                                        <option value="0" <?php if($product->ordernum==0) echo 'selected' ?>>Không hiển
+                                            thị trang chủ</option>
+                                        <option value="1" <?php if($product->ordernum==1) echo 'selected' ?>>Sản phẩm
+                                            nổi bật</option>
+                                        <option value="2" <?php if($product->ordernum==2) echo 'selected'?>>Sản phẩm mới
+                                        </option>
                                     </select>
                                 </div>
                             </div>
@@ -98,8 +101,7 @@ Chỉnh sửa sản phẩm
                                 <div class="col-lg-offset-3 col-lg-6">
                                     <button class="btn btn-primary" type="submit">Lưu</button>
                                     <a href="{{ route('editProduct',$product->id) }}"><button
-                                            class="btn btn-default" type="button"
-                                            onclick="loading()">Đặt
+                                            class="btn btn-default" type="button" onclick="loading()">Đặt
                                             lại</button>
                                     </a>
                                 </div>
@@ -121,117 +123,27 @@ Chỉnh sửa sản phẩm
                 </header>
                 <div class="panel-body">
                     <div class="form">
-                        <form class="cmxform form-horizontal " id="" method="get"
-                            action="{{ route('updateInfoProduct',$product->id) }}"
-                            novalidate="novalidate" enctype="multipart/form-data">
-                            <div class="form-group ">
-                                <label for="" class="control-label col-lg-3">Giới tính</label>
-                                <div class="col-lg-6">
-                                    <select class="form-control m-bot15" name="gender">
-                                        <option value="1" @if ($info_product->gender==1)
-                                            {{ 'selected' }}
-                                            @endif>Nam</option>
-                                        <option value="0" @if ($info_product->gender==0)
-                                            {{ 'selected' }}
-                                            @endif>Nữ</option>
-                                        <option value="10" @if ($info_product->gender==10)
-                                            {{ 'selected' }}
-                                            @endif>Nam và nữ</option>
-                                    </select>
+                        <form class="form-horizontal" method="post" action="">
+                            <div class="content-infor">
+                                @foreach($info_product as $key=>$info)
+                                    <div class="form-group">
+                                        <div class="col-lg-4"><input class="form-control name_infor_{{ $key+1 }}"
+                                                value="{{ $info->name }}"></div>
+                                        <div class="col-lg-8"><input class="form-control content_infor_{{ $key+1 }}"
+                                                value="{{ $info->content }}"></div>
+                                    </div>
+                                @endforeach
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-4">
+                                    <button class="btn btn-success" id="add-infor" type="button"
+                                        data-count="{{ count($info_product) }}">Thêm</button>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="name" class="control-label col-lg-3">Loại máy</label>
-                                <div class="col-lg-6">
-                                    <input class=" form-control" id="type" name="type" type="text"
-                                        value="{{ $info_product->type }}">
-                                </div>
-                            </div>
-                            <div class="form-group ">
-                                <label for="price" class="control-label col-lg-3">Chất liệu kính</label>
-                                <div class="col-lg-6">
-                                    <input class=" form-control" id="glass_material" name="glass_material" type="text"
-                                        value="{{ $info_product->glass_material }}">
-                                </div>
-                            </div>
-                            <div class="form-group ">
-                                <label for="sellprice" class="control-label col-lg-3">Chất liệu khung viền</label>
-                                <div class="col-lg-6">
-                                    <input class="form-control " id="frames" name="frames" type="text"
-                                        value="{{ $info_product->frames }}">
-                                </div>
-                            </div>
-                            <div class="form-group ">
-                                <label for="password" class="control-label col-lg-3">Chống nước</label>
-                                <div class="col-lg-6">
-                                    <input class="form-control " id="waterproof" name="waterproof" type="text"
-                                        value="{{ $info_product->waterproof }}">
-                                </div>
-                            </div>
-                            <div class="form-group ">
-                                <label for="password" class="control-label col-lg-3">Đường kính mặt(mm)</label>
-                                <div class="col-lg-6">
-                                    <input class="form-control " id="diameter" name="diameter" type="number" min=0
-                                        value="{{ $info_product->diameter }}">
-                                </div>
-                            </div>
-                            <div class="form-group ">
-                                <label for="password" class="control-label col-lg-3">Độ dày mặt(mm)</label>
-                                <div class="col-lg-6">
-                                    <input class="form-control " id="thickness" name="thickness" type="number" min=0
-                                        value="{{ $info_product->thickness }}">
-                                </div>
-                            </div>
-                            <div class="form-group ">
-                                <label for="password" class="control-label col-lg-3">Chất liệu dây</label>
-                                <div class="col-lg-6">
-                                    <input class="form-control " id="strap_material" name="strap_material" type="text"
-                                        value="{{ $info_product->strap_material }}">
-                                </div>
-                            </div>
-                            <div class="form-group ">
-                                <label for="password" class="control-label col-lg-3">Độ rộng dây (mm)</label>
-                                <div class="col-lg-6">
-                                    <input class="form-control " id="strap_width" name="strap_width" type="number" min=0
-                                        value="{{ $info_product->strap_width }}">
-                                </div>
-                            </div>
-                            <div class="form-group ">
-                                <label for="password" class="control-label col-lg-3">Thay dây</label>
-                                <div class="col-lg-6">
-                                    <label>
-                                        <input type="radio" name="strap_change" id="" value="1" @if ($info_product->strap_change==1)
-                                        {{ 'checked' }}
-                                        @endif>
-                                        Có
-                                        <input type="radio" name="strap_change" id="" value="0" @if ($info_product->strap_change==0)
-                                        {{ 'checked' }}
-                                        @endif>
-                                        Không
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group ">
-                                <label for="password" class="control-label col-lg-3">Thời gian sử dụng</label>
-                                <div class="col-lg-6">
-                                    <input class="form-control " id="expiry_date" name="expiry_date" type="text" min=0
-                                        value="{{ $info_product->expiry_date }}">
-                                </div>
-                            </div>
-                            <div class="form-group ">
-                                <label for="password" class="control-label col-lg-3">Nơi sản xuất</label>
-                                <div class="col-lg-6">
-                                    <input class="form-control " id="address" name="address" type="text"
-                                        value="{{ $info_product->address }}">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-lg-offset-3 col-lg-6">
-                                    <button class="btn btn-primary" type="submit">Lưu</button>
-                                    <a href="{{ route('editProduct',$product->id) }}"><button
-                                            class="btn btn-default" type="button" onclick="loading()">Đặt
-                                            lại</button>
-                                    </a>
+                                <div class="col-lg-12" style="text-align: center">
+                                    <button class="btn btn-primary" type="button" id="save-infor"
+                                        data-product="{{ $product->id }}">Lưu</button>
                                 </div>
                             </div>
                         </form>
@@ -242,13 +154,52 @@ Chỉnh sửa sản phẩm
     </div>
     <!-- page end-->
 </div>
-@endsection
-@section('js')
-<script>
-    CKEDITOR.replace('content');
-
-</script>
 @if(session()->has('notification'))
     @include('notify.note');
 @endif
+<script>
+    CKEDITOR.replace('content');
+    //add infor
+    let dataInfor = [];
+    let count = $('#add-infor').data('count');
+    count = parseInt(count);
+    $('#add-infor').click(function () {
+        count++;
+        let content =
+            '<div class="form-group"><div class="col-lg-4"><input class="form-control name_infor_' + count +
+            '"></div><div class="col-lg-8"><input class="form-control content_infor_' + count +
+            '"></div></div>';
+        $('.content-infor').append(content);
+    });
+    $('#save-infor').click(function () {
+        if (count > 0) {
+            dataInfor = [];
+            for (let i = 1; i <= count; i++) {
+                let elementName = '.name_infor_' + i;
+                let elementContent = '.content_infor_' + i;
+                let name = $(elementName).val();
+                let content = $(elementContent).val();
+                if (name != '') {
+                    dataInfor.push({
+                        name: name,
+                        content: content
+                    });
+                }
+            }
+        }
+        //ajax
+        let json = JSON.stringify(dataInfor);
+        let url = location.origin + '/shopwatch/admin/product/store-infor';
+        let idProduct = this.dataset.product;
+        $.get(url, {
+            id: idProduct,
+            content: json
+        }, function (data) {
+            if (data == true) {
+                alert('Lưu thành công');
+            }
+        })
+    })
+
+</script>
 @endsection

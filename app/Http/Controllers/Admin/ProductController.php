@@ -23,7 +23,7 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->price = $request->price;
         $product->sellprice = $request->sellprice;
-        $product->quantily= $request->quantily;
+        $product->quantily = $request->quantily;
         $product->content = $request->content;
         $product->status = $request->status;
         $product->ordernum = $request->ordernum;
@@ -41,31 +41,25 @@ class ProductController extends Controller
             $img->save();
             $file->move('public/upload', $file->getClientOriginalName());
         }
-
-        // create information product on info_product table
-
-        $info = new Info_product;
-        $info->products_id = $product->id;
-        $info->brands_id=$product->brands_id;
-        $info->save();
         return redirect(route('listProduct'))->with('notification', 'Thêm sản phẩm thành công');
     }
 
     // function show, edit list product
     public function getListProduct()
     {
-        $data['products'] = Products::orderBy('id', 'desc')->paginate(10);
+        $data['products'] = Products::orderBy('created_at', 'desc')->paginate(10);
         return view('backend.page.list-product', $data);
     }
 
     // edit product
     public function getEditProduct(Request $request)
     {
-
-        $data['product'] = Products::find($request->id);
+        $product = Products::find($request->id);
+        $data['product'] = $product;
         $data['brands'] = Brands::all();
-        $data['info_product']=Info_product::where('products_id',$request->id)->get()->first();
-
+        $data['info_product'] = json_decode($product->infor);
+        // dd($data['info_product']);
+        // echo count($data['info_product']);
         return view('backend.page.edit-product', $data);
     }
     //update product
@@ -91,26 +85,11 @@ class ProductController extends Controller
     }
     // add and update infor product
     public function updateInfoProduct(Request $request)
-    {   
-       
-        $table=Info_product::where('products_id',$request->id)->get();
-        foreach($table as $items){
-        $items->gender=$request->gender;
-        $items->type=$request->type;
-        $items->glass_material=$request->glass_material;
-        $items->frames=$request->frames;
-        $items->waterproof=$request->waterproof;
-        $items->diameter=$request->diameter;
-        $items->thickness=$request->thickness;
-        $items->strap_material=$request->strap_material;
-        $items->strap_width=$request->strap_width;
-        $items->strap_change=$request->strap_change;
-        $items->expiry_date=$request->expiry_date;
-        $items->address=$request->address;
-
-        $items->save();
-        }
-        return redirect()->back()->with('notification','Thay đổi thông tin kỹ thuật thành công');
+    {
+        $product = Products::find($request->id);
+        $product->infor = $request->content;
+        $product->save();
+        return true;
     }
 
     // image product

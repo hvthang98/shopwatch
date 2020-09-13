@@ -66,7 +66,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
         Route::get('edit-product/{id}', 'ProductController@getEditProduct')->name('editProduct');
         Route::get('del-product/{id}', 'ProductController@delProduct')->name('delProduct');
         Route::get('update-product/{id}', 'ProductController@updateProduct')->name('updateProduct');
-        Route::get('update-info-product/{id}', 'ProductController@updateInfoProduct')->name('updateInfoProduct');
+        Route::get('store-infor', 'ProductController@updateInfoProduct')->name('updateInfoProduct');
 
         //edit image product
         Route::get('image-product/{id}', 'ProductController@getImageProduct')->name('imageProduct');
