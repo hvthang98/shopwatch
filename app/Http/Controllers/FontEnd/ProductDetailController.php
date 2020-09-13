@@ -12,8 +12,10 @@ class ProductDetailController extends Controller
 {
     public function getProductDetail(Request $request,$id)
     {
-        $data['products']=Products::find($request->id);
-        $data['listProducts']=Products::all();
+        $product=Products::find($request->id);
+        $data['products']=$product;
+        $data['infor_product']=json_decode($product->infor);
+        $data['listProducts']=Products::orderBy('created_at','desc')->limit(6)->get();
         $data['comments']=Comment::where('products_id',$request->id)->get();
         return view('fontend.page.single',$data);
     }

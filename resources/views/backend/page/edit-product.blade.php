@@ -125,19 +125,22 @@ Chỉnh sửa sản phẩm
                     <div class="form">
                         <form class="form-horizontal" method="post" action="">
                             <div class="content-infor">
-                                @foreach($info_product as $key=>$info)
-                                    <div class="form-group">
-                                        <div class="col-lg-4"><input class="form-control name_infor_{{ $key+1 }}"
-                                                value="{{ $info->name }}"></div>
-                                        <div class="col-lg-8"><input class="form-control content_infor_{{ $key+1 }}"
-                                                value="{{ $info->content }}"></div>
-                                    </div>
-                                @endforeach
+                                @if(isset($info_product))
+                                    @foreach($info_product as $key=>$info)
+                                        <div class="form-group">
+                                            <div class="col-lg-4"><input class="form-control name_infor_{{ $key+1 }}"
+                                                    value="{{ $info->name }}"></div>
+                                            <div class="col-lg-8"><input
+                                                    class="form-control content_infor_{{ $key+1 }}"
+                                                    value="{{ $info->content }}"></div>
+                                        </div>
+                                    @endforeach
+                                @endif
                             </div>
                             <div class="form-group">
                                 <div class="col-lg-4">
                                     <button class="btn btn-success" id="add-infor" type="button"
-                                        data-count="{{ count($info_product) }}">Thêm</button>
+                                        data-count="{{ $countInfor}}">Thêm</button>
                                 </div>
                             </div>
                             <div class="form-group">

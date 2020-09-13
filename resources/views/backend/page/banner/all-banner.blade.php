@@ -31,7 +31,7 @@
                         <td>{{ $stt++}}</td>
                         <td>{{ $ban->name }}</td>
                         <td>{{ $ban->link }}</td>
-                        <td><img src="../upload/images/{{ $ban->image }}" width="100" height="100"></td>
+                        <td><img src="../storage/{{ $ban->image }}" width="100" height="100"></td>
                         <td>
                             @if($ban->status==0)
                                 <a

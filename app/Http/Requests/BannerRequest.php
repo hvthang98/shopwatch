@@ -26,7 +26,7 @@ class BannerRequest extends FormRequest
         return [
             'banner_name' => 'required',
              'banner_image' => 'required|image',
-              'banner_odernum' => 'required',
+              'ordernum' => 'required',
         ];
     }
 }

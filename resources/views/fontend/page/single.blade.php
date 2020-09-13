@@ -11,6 +11,15 @@
         text-decoration: line-through;
         font-size: 12px;
     }
+    .name-infor{
+        font-size: 16px;
+        font-weight: bold;
+        text-transform:capitalize;
+    }
+    .content-infor{
+        font-size: 15px;
+        text-transform: capitalize;
+    }
 
 </style>
 <div class="mens">
@@ -82,121 +91,25 @@
                             </li>
                         @endforeach
                     </ul>
-                    <script type="text/javascript">
-                        $(window).load(function () {
-                            $("#flexiselDemo1").flexisel();
-                            $("#flexiselDemo2").flexisel({
-                                enableResponsiveBreakpoints: true,
-                                responsiveBreakpoints: {
-                                    portrait: {
-                                        changePoint: 480,
-                                        visibleItems: 1
-                                    },
-                                    landscape: {
-                                        changePoint: 640,
-                                        visibleItems: 2
-                                    },
-                                    tablet: {
-                                        changePoint: 768,
-                                        visibleItems: 3
-                                    }
-                                }
-                            });
-
-                            $("#flexiselDemo3").flexisel({
-                                visibleItems: 5,
-                                animationSpeed: 1000,
-                                autoPlay: false,
-                                autoPlaySpeed: 3000,
-                                pauseOnHover: true,
-                                enableResponsiveBreakpoints: true,
-                                responsiveBreakpoints: {
-                                    portrait: {
-                                        changePoint: 480,
-                                        visibleItems: 1
-                                    },
-                                    landscape: {
-                                        changePoint: 640,
-                                        visibleItems: 2
-                                    },
-                                    tablet: {
-                                        changePoint: 768,
-                                        visibleItems: 3
-                                    }
-                                }
-                            });
-                        });
-
-                    </script>
-                    <script type="text/javascript" src="js/jquery.flexisel.js"></script>
+                    
                 </div>
             </div>
             <div class="rsingle span_1_of_single">
                 <section class="sky-form">
                     <h4>Thông số kỹ thuật</h4>
                     <div class="row rows scroll-pane">
-                        <table class="technical-information">
-                            <tr>
-                                <td class="td1">Đường kính mặt</td>
-                                <td>{{ $products->infoProduct->diameter }} <span>mm</span></td>
-                            </tr>
-                            <tr>
-                                <td class="td1">Loại máy</td>
-                                <td>{{ $products->infoProduct->type }}</td>
-                            </tr>
-                            <tr>
-                                <td class="td1">Chất liệu mặt kính</td>
-                                <td>{{ $products->infoProduct->glass_material }}</td>
-                            </tr>
-                            <tr>
-                                <td class="td1">Chất liệu khung viền</td>
-                                <td>{{ $products->infoProduct->frames }}</td>
-                            </tr>
-                            <tr>
-                                <td class="td1">Chống nước</td>
-                                <td>{{ $products->infoProduct->waterproof }}</td>
-                            </tr>
-                            <tr>
-                                <td class="td1">Độ dày mặt</td>
-                                <td>{{ $products->infoProduct->thickness }} <span>mm</span></td>
-                            </tr>
-                            <tr>
-                                <td class="td1">Chất liệu dây</td>
-                                <td>{{ $products->infoProduct->strap_material }}</td>
-                            </tr>
-                            <tr>
-                                <td class="td1">Độ rộng dây</td>
-                                <td>{{ $products->infoProduct->strap_width }} <span>mm</span></td>
-                            </tr>
-                            <tr>
-                                <td class="td1">Thay dây</td>
-                                <td>Có</td>
-                            </tr>
-                            <tr>
-                                <td class="td1">Thời gian sử dụng pin</td>
-                                <td>{{ $products->infoProduct->expiry_date }}</td>
-                            </tr>
-                            <tr>
-                                <td class="td1">Đối tượng sử dụng</td>
-                                <td>
-                                    @if($products->infoProduct->gender==0)
-                                        {{ 'Nữ' }}
-                                    @elseif($products->infoProduct->gender==1)
-                                        {{ 'Nam' }}
-                                    @elseif($products->infoProduct->gender==10)
-                                        {{ 'Nam/Nữ' }}
-                                    @endif
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="td1">Thương hiệu</td>
-                                <td>{{ $products->brands->name }}</td>
-                            </tr>
-                            <tr>
-                                <td class="td1">Nơi sản xuất</td>
-                                <td>{{ $products->infoProduct->address }}</td>
-                            </tr>
-                        </table>
+                        @if (isset($infor_product ))
+                        @foreach ($infor_product as $infor)
+                        <div class="col-lg-12" style="padding: 10px 0px 10px 0px;border-bottom: 1px solid #ccc" >
+                       <div class="col-lg-4">
+                           <span class="name-infor">{{ $infor->name }}</span>
+                       </div>
+                       <div class="col-lg-8">
+                           <span class="content-infor">{{ $infor->content }}</span>
+                       </div>
+                    </div>
+                       @endforeach
+                       @endif
                     </div>
                 </section>
             </div>
@@ -263,4 +176,51 @@
     </div>
 </div>
 @include('notify.note')
+<script type="text/javascript">
+    $(window).load(function () {
+        $("#flexiselDemo1").flexisel();
+        $("#flexiselDemo2").flexisel({
+            enableResponsiveBreakpoints: true,
+            responsiveBreakpoints: {
+                portrait: {
+                    changePoint: 480,
+                    visibleItems: 1
+                },
+                landscape: {
+                    changePoint: 640,
+                    visibleItems: 2
+                },
+                tablet: {
+                    changePoint: 768,
+                    visibleItems: 3
+                }
+            }
+        });
+
+        $("#flexiselDemo3").flexisel({
+            visibleItems: 5,
+            animationSpeed: 1000,
+            autoPlay: false,
+            autoPlaySpeed: 3000,
+            pauseOnHover: true,
+            enableResponsiveBreakpoints: true,
+            responsiveBreakpoints: {
+                portrait: {
+                    changePoint: 480,
+                    visibleItems: 1
+                },
+                landscape: {
+                    changePoint: 640,
+                    visibleItems: 2
+                },
+                tablet: {
+                    changePoint: 768,
+                    visibleItems: 3
+                }
+            }
+        });
+    });
+
+</script>
+<script type="text/javascript" src="js/jquery.flexisel.js"></script>
 @endsection

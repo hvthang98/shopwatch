@@ -11,7 +11,7 @@
             <div class="slide">
                 <!-- Slide image -->
                 <a target="_blank" href="{{ $ban->link }}" title="{{ $ban->name }}">
-                    <img src="../upload/images/{{ $ban->image }}" alt="" />
+                    <img src="../storage/{{ $ban->image }}" alt="" />
                 </a>
             </div>
         @endforeach

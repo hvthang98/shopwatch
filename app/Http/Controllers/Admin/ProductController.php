@@ -58,8 +58,12 @@ class ProductController extends Controller
         $data['product'] = $product;
         $data['brands'] = Brands::all();
         $data['info_product'] = json_decode($product->infor);
-        // dd($data['info_product']);
-        // echo count($data['info_product']);
+        if (isset($product->infor)) {
+            $count = count(json_decode($product->infor));
+        } else {
+            $count = 0;
+        }
+        $data['countInfor'] = $count;
         return view('backend.page.edit-product', $data);
     }
     //update product
