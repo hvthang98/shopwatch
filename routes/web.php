@@ -96,13 +96,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
     });
     //News
     Route::group(['prefix'=>'new'],function(){
-        Route::get('add-new','NewsController@add_new')->name('add-new');
-        Route::post('add-new','NewsController@post_add_new')->name('post-new');
-        Route::get('all-new','NewsController@all_new')->name('list-new');
+        Route::get('add-new','NewsController@add_new')->name('add-news');
+        Route::post('add-new','NewsController@store')->name('post-new');
+        Route::get('all-new','NewsController@all_new')->name('list-news');
         Route::get('active/{id}','NewsController@active')->name('active');
         Route::get('unactive/{id}','NewsController@unactive')->name('un-active');
         Route::get('edit-new/{id}','NewsController@edit')->name('edit');
-        Route::post('edit-new/{id}','NewsController@post_edit')->name('post-edit');
+        Route::post('edit-new/{id}','NewsController@update')->name('update-news');
         Route::get('delete/{id}','NewsController@delete')->name('delete');
 
     });

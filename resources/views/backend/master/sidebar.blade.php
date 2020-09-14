@@ -76,8 +76,8 @@
                         <span>Quản lý tin tức</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="{{ route('add-new') }}">Thêm tin tức mới</a></li>
-                        <li><a href="{{route('list-new')}}">Danh sách tin tức</a></li>
+                        <li><a href="{{ route('add-news') }}">Thêm tin tức mới</a></li>
+                        <li><a href="{{route('list-news')}}">Danh sách tin tức</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">

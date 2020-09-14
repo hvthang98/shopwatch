@@ -31,7 +31,6 @@ Danh sách sản phẩm
 <div class="">
     <div class="">
         <div class="panel panel-default">
-            
             <div class="panel-heading">
                 Danh sách sản phẩm
             </div>
@@ -41,8 +40,7 @@ Danh sách sản phẩm
                 </form>
             </div>
             <div class="table-responsive">
-                <table class="table" ui-jq="footable" ui-options="{
-        " paging": { "enabled" : true }, "filtering" : { "enabled" : true }, "sorting" : { "enabled" : true }}">
+                <table class="table" ui-jq="footable">
                     <thead>
                         <tr>
                             <th>STT</th>
