@@ -32,9 +32,9 @@
                             </ul>
                         </div>
                     </div>
-                    <li class="active"><a href="{{route('contact')}}">Liên hệ</a></li>
+                    <li class="active"><a href="{{ route('contact') }}">Liên hệ</a></li>
                 @else
-                    <li class="active"><a href="{{route('contact')}}">Liên hệ</a></li>
+                    <li class="active"><a href="{{ route('contact') }}">Liên hệ</a></li>
                     <li><a href="{{ route('user-login') }}">Đăng nhập</a></li>
                     <li><a href="{{ route('user-sign-up') }}">Đăng ký</a></li>
                 @endif
@@ -52,57 +52,28 @@
             <div class="menu">
                 <ul class="megamenu skyblue">
                     <li class="active grid"><a href="{{ route('index') }}">Trang chủ</a></li>
-                    <li><a class="color5">Thương hiệu <i class="fa fa-caret-down"> </i></a>
-                        <div class="megapanel">
-                            <div class="col1">
-                                <div class="h_nav">
-                                    <ul>
-                                        @foreach($brand as $br)
-                                            <li><a
-                                                    href="{{ route('brand',['id'=>$br->id]) }}">{{ $br->name }}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li><a class="color5" href="{{ route('male-product') }}">Nam <i class="fa fa-caret-down"></i></a>
-                        <div class="megapanel">
-                            <div class="col1">
-                                <div class="h_nav">
-                                    <h4>Thương hiệu</h4>
-                                    <ul>
-                                        @foreach($brand as $br)
-                                            <li><a
-                                                    href="{{ route('male-product/',['id'=>$br->id]) }}">{{ $br->name }}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li><a class="color5" href="{{ route('female-product') }}">Nữ <i class="fa fa-caret-down"></i></a>
-                        <div class="megapanel">
-                            <div class="col1">
-                                <div class="h_nav">
-                                    <h4>Thương hiệu</h4>
-                                    <ul>
-                                        @foreach($brand as $br)
-                                            <li><a
-                                                    href="{{ route('female-product/',['id'=>$br->id]) }}">{{ $br->name }}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+                    @if(isset($categories))
+                        @foreach($categories as $category)
+                            <li><a class="color5" style="cursor: pointer;">{{ $category->name }}  @if(count($category->brandCategories)>0)<span><i class="fa fa-caret-down"></i></span> @endif</a>
+                                @if(count($category->brandCategories)>0)
+                                    <div class="megapanel">
+                                        <div class="col1">
+                                            <div class="h_nav">
+                                                <ul>
+                                                    @foreach($category->brandCategories as $item)
+                                                        <li><a
+                                                                href="{{ route('brand',$item->brand->id) }}">{{ $item->brand->name }}</a>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                            </li>
+                        @endforeach
+                    @endif
                     <li> <a class="color5" href="{{ route('all-new') }}">Tin tức</a></li>
-
                 </ul>
             </div>
         </div>
@@ -121,7 +92,7 @@
                         </a>
                         <ul class="sub-icon1 list">
                             @if(Auth::check())
-                            {{--  sign in user  --}}
+                                {{-- sign in user --}}
                                 @if(count($carts)!=0)
                                     <li>
                                         <table>
@@ -153,7 +124,7 @@
                                     </li>
                                 @endif
                             @else
-                            {{--  not sign in user  --}}
+                                {{-- not sign in user --}}
                                 @if(session()->has('cart'))
                                     <li>
                                         <table>

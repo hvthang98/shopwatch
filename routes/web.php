@@ -26,6 +26,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
         Route::get('delete-category/{id}', 'CategoryController@delete_category')->name('delete-category');
         Route::get('active/{id}', 'CategoryController@active_category')->name('active-category');
         Route::get('unactive/{id}', 'CategoryController@unactive_category')->name('unactive-category');
+        //brand
+        Route::post('store-brand','CategoryController@storeBrand')->name('store-brand');
+        Route::get('del-brand-cate/{idCate}/{idBrand}','CategoryController@deleteBrand')->name('delBrandCate');
     });
     //Banner
     Route::group(['prefix' => 'banner'], function () {

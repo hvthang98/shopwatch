@@ -35,7 +35,7 @@
                 @foreach($highlight_product as $hi)
                     <div class="main221">
                         <div class="img1" style="position: relative;">
-                            <img width="260" height="280" src="../../<?php if(isset($hi->avatar->image)) echo $hi->avatar->image?>">
+                            <img width="260" height="280" src="../storage/<?php if(isset($hi->avatar->image)) echo $hi->avatar->image?>">
                             <div class="mua nav-link"><a
                                     class="btn btn-primary" href="{{ route('getProductSingle',['id'=>$hi->id]) }}">Xem
                                     chi tiết</a></div>
@@ -68,7 +68,7 @@
                 @foreach($new_product as $ne)
                     <div class="main221">
                         <div class="img1" style="position: relative;">
-                            <img width="260" height="280" src="../../<?php if(isset($ne->avatar->image)) echo $ne->avatar->image?>">
+                            <img width="260" height="280" src="../storage/<?php if(isset($ne->avatar->image)) echo $ne->avatar->image?>">
                             <div class="mua"><a
                                 class="btn btn-primary"
                                     href="{{ route('getProductSingle',['id'=>$ne->id]) }}">Xem
@@ -99,7 +99,7 @@
             <div class="main312">
                 @foreach($new as $n)
                     <div class="main3121">
-                        <div class="main3121img"><img width="137" height="137" src="../upload/images/{{ $n->image }}">
+                        <div class="main3121img"><img width="137" height="137" src="../storage/{{ $n->image }}">
                         </div>
                         <div class="main3121nd"><a
                                 href="{{ route('detail-new',['id'=>$n->id]) }}">{{ $n->title }}</a>

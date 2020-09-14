@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Categories extends Model
 {
-    protected $table='categories';
-    public $timestamps = false; 
+    protected $table = 'categories';
+    public function brandCategories()
+    {
+        return $this->hasMany('App\Models\BrandCategories', 'categories_id', 'id');
+    }
+    
 }

@@ -8,6 +8,7 @@ use App\Models\Banners;
 use App\Models\Products;
 use App\Models\Bills;
 use App\Models\Carts;
+use App\Models\Categories;
 use Illuminate\Support\Facades\Auth;
 
 class AppServiceProvider extends ServiceProvider
@@ -34,8 +35,8 @@ class AppServiceProvider extends ServiceProvider
             $view->with('numbills',$bills);
         });
         view()->composer('fontend/master/header', function ($view) {
-            $brand = Brands::where('status', 1)->get();
-            $view->with('brand', $brand);
+            $category = Categories::where('status', 1)->orderBy('ordernum','asc')->get();
+            $view->with('categories', $category);
             if (session()->has('cart')) {
                 $carts = session('cart');
                 foreach ($carts as $key => $value) {
