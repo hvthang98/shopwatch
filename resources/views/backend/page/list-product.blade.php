@@ -31,6 +31,7 @@ Danh sách sản phẩm
 <div class="">
     <div class="">
         <div class="panel panel-default">
+            
             <div class="panel-heading">
                 Danh sách sản phẩm
             </div>
@@ -72,7 +73,7 @@ Danh sách sản phẩm
                                 <td>{{ number_format($product->quantily) }}</td>
                                 <td>
                                     @if(isset($product->avatar->image))
-                                        <img src="{{ asset($product->avatar->image) }}" alt="" class="list-img">
+                                        <img src="../storage/{{$product->avatar->image}}" alt="" class="list-img">
                                     @endif
                                 </td>
                                 <td>{{ $product->brands->name }}</td>

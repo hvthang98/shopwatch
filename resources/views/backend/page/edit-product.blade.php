@@ -8,6 +8,9 @@ Chỉnh sửa sản phẩm
     <div class="row">
         <div class="col-lg-12">
             <section class="panel">
+                <div>
+                    <a href="{{ route('listProduct') }}" class="black"><i class="fa fa-arrow-circle-left"></i><span> Thoát</span></a>
+                </div>
                 <header class="panel-heading">
                     thông tin sản phẩm
                     <span class="tools pull-right">

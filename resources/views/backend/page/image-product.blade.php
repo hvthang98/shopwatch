@@ -4,17 +4,10 @@ Quản lý ảnh
 @endsection
 @section('main-content')
 <style>
-    @media (min-width: 768px) {
-        .col-sm-3 {
-            width: 30%;
-        }
-
-        .col-sm-9 {
-            width: 70%;
-        }
+    .col-sm-9 {
+        width: 70%;
     }
-
-    .panel {
+     .panel {
         padding: 10px;
     }
 
@@ -48,10 +41,19 @@ Quản lý ảnh
     .btn-danger {
         margin-left: 5px;
     }
+    .center{
+        text-align: center;
+    }
+    .black{
+        color: rgb(240, 30, 30);
+    }
 
 </style>
 
-<div class="">
+<div>
+    <div>
+        <a href="{{ route('listProduct') }}" class="black"><i class="fa fa-arrow-circle-left"></i><span> Thoát</span></a>
+    </div>
     <div class="panel-heading">
         Quản lý ảnh sản phẩm
     </div>
@@ -59,6 +61,7 @@ Quản lý ảnh
     <div class="row">
         <div class="col-sm-3 com-w3ls">
             <section class="panel">
+               
                 <div class="panel-body">
                     <a class="btn btn-compose">
                         Thêm ảnh
@@ -75,12 +78,22 @@ Quản lý ảnh
                             <input type="file" class="form-control" id="image" name="image" title="chọn file ảnh"
                                 required>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group center">
                             <button type="submit" class="btn btn-info">Lưu</button>
                         </div>
                     </form>
                 </div>
             </section>
+            <div class="panel-heading">
+                Ảnh đại diện
+            </div>
+            @if(isset($images))
+                @foreach($images as $image)
+                    @if($image->level==1)
+                        <img class="img-thumbnail" src="../storage/{{ $image->image }}" alt="">
+                    @endif
+                @endforeach
+            @endif
         </div>
         <div class="col-sm-9 mail-w3agile">
             <section class="panel">
@@ -91,8 +104,7 @@ Quản lý ảnh
                 <div class="panel-body minimal">
                     <div class="table-inbox-wrap ">
                         <div class="table-responsive">
-                            <table class="table" ui-jq="footable" ui-options="{
-        " paging": { "enabled" : true }, "filtering" : { "enabled" : true }, "sorting" : { "enabled" : true }}">
+                            <table class="table" ui-jq="footable">
                                 <thead>
                                     <tr>
                                         <th style="width:50px;">STT</th>
@@ -114,7 +126,7 @@ Quản lý ảnh
                                             <tr>
                                                 <td>{{ $stt }}</td>
                                                 <td>
-                                                    <img src="{{ asset($image->image) }}" alt="" class="list-img">
+                                                    <img src="../storage/{{ $image->image }}" alt="" class="list-img">
                                                 </td>
                                                 <td>
                                                     @if($image->status==1)
@@ -144,8 +156,7 @@ Quản lý ảnh
                                                     @endif
 
                                                     <a href="{{ route('delImageProduct',$image->id) }}"
-                                                        data-toggle="modal" class="btn btn-danger"
-                                                        onclick="loading()">
+                                                        data-toggle="modal" class="btn btn-danger" onclick="loading()">
                                                         Xóa
                                                     </a>
                                                     @if($image->level!=1)
@@ -163,7 +174,7 @@ Quản lý ảnh
                         </div>
                         <footer class="panel-footer">
                             <div class="row">
-                                    {{ $images->render() }}
+                                {{ $images->render() }}
                             </div>
                         </footer>
                     </div>

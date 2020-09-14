@@ -69,13 +69,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
         Route::get('store-infor', 'ProductController@updateInfoProduct')->name('updateInfoProduct');
 
         //edit image product
-        Route::get('image-product/{id}', 'ProductController@getImageProduct')->name('imageProduct');
-        Route::post('add-image-product/{id}', 'ProductController@addImageProuct')->name('addImageProduct');
-        Route::get('del-image-product/{id}', 'ProductController@delImageProduct')->name('delImageProduct');
-        Route::get('update-image-product/{id}/{status}', 'ProductController@updateTmageProduct')->name('updateImageProduct');
+        Route::get('image-product/{id}', 'ImageProductController@index')->name('imageProduct');
+        Route::post('add-image-product/{id}', 'ImageProductController@store')->name('addImageProduct');
+        Route::get('del-image-product/{id}', 'ImageProductController@delete')->name('delImageProduct');
+        Route::get('update-image-product/{id}/{status}', 'ImageProductController@update')->name('updateImageProduct');
 
         //change avatar
-        Route::get('change-avatar/{image_id}/{products_id}', 'ProductController@changeAvatar')->name('changeAvatar');
+        Route::get('change-avatar/{image_id}/{products_id}', 'ImageProductController@changeAvatar')->name('changeAvatar');
     });
 
     // brand: add, edit/update , delete
