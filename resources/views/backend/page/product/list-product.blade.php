@@ -74,7 +74,11 @@ Danh sách sản phẩm
                                         <img src="../storage/{{$product->avatar->image}}" alt="" class="list-img">
                                     @endif
                                 </td>
-                                <td>{{ $product->brands->name }}</td>
+                                <td>
+                                    @if(isset($product->brands->name))
+                                    {{ $product->brands->name }}
+                                    @endif
+                                </td>
                                 <td>
                                     @if($product->status==1)
                                         {{ 'Hiện' }}

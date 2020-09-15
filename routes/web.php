@@ -185,7 +185,7 @@ Route::group(['namespace' => 'FontEnd'], function () {
         Route::get('deleteReply/{id}','CommentController@deleteReply')->name('deleteReplyComment');
     });
 });
-//ajax fontend
+//ajax
 Route::group(['namespace' => 'Ajax'], function () {
     Route::group(['prefix' => 'ajax'], function () {
         Route::get('/', 'AjaxFontEndController@index');
@@ -195,5 +195,7 @@ Route::group(['namespace' => 'Ajax'], function () {
         });
         //check email
         Route::post('check-email', 'AjaxFontEndController@checkEmail')->name('checkEmail');
+        //backend
+        Route::get('brand','AjaxBachEndController@getBrand');
     });
 });

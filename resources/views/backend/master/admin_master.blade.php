@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 
 <head>
-
     <title>@yield('title')</title>
     <base href="{{ asset('public/backend') }}/">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
@@ -27,6 +26,8 @@
     <script src="js/morris.js"></script>
     <script src="../editor/ckeditor/ckeditor.js"></script>
     <script src="../editor/ckfinder/ckfinder.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 </head>
 
 <body>
@@ -61,10 +62,8 @@
                 event.preventDefault();
             }
         }
+
     </script>
 </body>
-<script>
-    CKEDITOR.replace('editor1');
-</script>
 
 </html>

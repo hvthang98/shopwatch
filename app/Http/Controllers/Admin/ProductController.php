@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Products;
 use App\Models\Brands;
 use App\Http\Requests\AddProductRequest;
+use App\Models\BrandCategories;
+use App\Models\Categories;
 use App\Models\ImgProduct;
 use App\Models\Info_product;
 use Illuminate\Support\Facades\Storage;
@@ -16,7 +18,8 @@ class ProductController extends Controller
     public function getAddProduct()
     {
         $data['brands'] = Brands::all();
-        return view('backend.page.add-product', $data);
+        $data['categories'] = Categories::orderBy('ordernum', 'asc')->get();
+        return view('backend.page.product.add-product', $data);
     }
     public function postProduct(AddProductRequest $request)
     {
@@ -28,7 +31,17 @@ class ProductController extends Controller
         $product->content = $request->content;
         $product->status = $request->status;
         $product->ordernum = $request->ordernum;
-        $product->brands_id = $request->brands_id;
+        $category = $request->category;
+        if ($category != 0) {
+            if (isset($request->brands)) {
+                $product->brands_id = $request->brands;
+            }
+            $product->categories_id = $category;
+        }
+        if (isset($request->tags)) {
+            $tags = implode(',', $request->tags);
+            $product->tags = $tags;
+        }
         $product->save();
 
         if (isset($request->image)) {
@@ -47,7 +60,7 @@ class ProductController extends Controller
     public function getListProduct()
     {
         $data['products'] = Products::orderBy('created_at', 'desc')->paginate(10);
-        return view('backend.page.list-product', $data);
+        return view('backend.page.product.list-product', $data);
     }
 
     // edit product
@@ -55,7 +68,8 @@ class ProductController extends Controller
     {
         $product = Products::find($request->id);
         $data['product'] = $product;
-        $data['brands'] = Brands::all();
+        $data['categories'] = Categories::orderBy('ordernum', 'asc')->get();
+        $data['brands'] = BrandCategories::where('categories_id', $product->categories_id)->get();
         $data['info_product'] = json_decode($product->infor);
         if (isset($product->infor)) {
             $count = count(json_decode($product->infor));
@@ -63,7 +77,7 @@ class ProductController extends Controller
             $count = 0;
         }
         $data['countInfor'] = $count;
-        return view('backend.page.edit-product', $data);
+        return view('backend.page.product.edit-product', $data);
     }
     //update product
     public function updateProduct(Request $request)
@@ -73,10 +87,24 @@ class ProductController extends Controller
         $table->price = $request->price;
         $table->sellprice = $request->sellprice;
         $table->quantily = $request->quantily;
-        $table->brands_id = $request->brands_id;
         $table->content = $request->content;
         $table->ordernum = $request->ordernum;
         $table->status = $request->status;
+        $category = $request->category;
+        if ($category != 0) {
+            if (isset($request->brands)) {
+                $table->brands_id = $request->brands;
+            } else {
+                $table->brands_id = null;
+            }
+            $table->categories_id = $category;
+        } else {
+            $table->categories_id = null;
+        }
+        if (isset($request->tags)) {
+            $tags = implode(',', $request->tags);
+            $table->tags = $tags;
+        }
         $table->save();
         return redirect()->back()->with('notification', 'Thay đổi thông tin sản phẩm thành công');
     }

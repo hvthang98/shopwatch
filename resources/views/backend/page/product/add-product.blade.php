@@ -59,30 +59,30 @@ Thêm sản phẩm mới
                                 </div>
                             </div>
                             <div class="form-group ">
-                                <label for="" class="control-label col-lg-3">Thương hiệu</label>
+                                <label for="" class="control-label col-lg-3">Danh mục</label>
                                 <div class="col-lg-6">
-                                    <select class="form-control m-bot15" name="brands_id">
-                                        @if(isset($brands))
-                                            @foreach($brands as $brand)
-                                                <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                    <select class="form-control m-bot15" name="category" id="category">
+                                        <option value="0" selected>Chọn danh mục</option>
+                                        @if(isset($categories))
+                                            @foreach($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
                                             @endforeach
                                         @endif
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group ">
+                                <label for="" class="control-label col-lg-3">Thương hiệu</label>
+                                <div class="col-lg-6" id="brands"></div>
+                            </div>
+
+                            <div class="form-group ">
                                 <label for="password" class="control-label col-lg-3">Mô tả</label>
                                 <div class="col-lg-6">
                                     <textarea class="ckeditor" id="content" name="content"></textarea>
                                 </div>
                             </div>
-                            {{-- <div class="form-group ">
-                                <label for="sellprice" class="control-label col-lg-3">Thứ tự sắp xếp</label>
-                                <div class="col-lg-6">
-                                    <input class="form-control " id="ordernum" name="ordernum" type="number" min="0"
-                                        value='1'>
-                                </div>
-                            </div> --}}
+
                             <div class="form-group ">
                                 <label for="" class="control-label col-lg-3">Danh mục trang chủ</label>
                                 <div class="col-lg-6">
@@ -104,7 +104,19 @@ Thêm sản phẩm mới
                                     </label>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="control-label col-lg-3">Nhập vào tag cho tin tức</label>
+                                <select name="tags[]" class="form-control multi-tag" style="width: 500px"
+                                    multiple="multiple">
+                                </select>
+                                <script type="text/javascript">
+                                    $(".multi-tag").select2({
+                                        tags: true,
+                                        tokenSeparators: [',']
+                                    })
 
+                                </script>
+                            </div>
                             <div class="form-group">
                                 <div class="col-lg-offset-3 col-lg-6">
                                     <button class="btn btn-primary" type="submit">Lưu</button>
@@ -113,7 +125,6 @@ Thêm sản phẩm mới
                                     </a>
                                 </div>
                             </div>
-
                         </form>
                     </div>
                 </div>
@@ -122,10 +133,20 @@ Thêm sản phẩm mới
     </div>
     <!-- page end-->
 </div>
-@endsection
-@section('js')
 <script>
     CKEDITOR.replace('content');
+
+</script>
+<script>
+    $('#category').change(function () {
+        let idCategory = this.value;
+        let url = location.origin + '/shopwatch/ajax/brand';
+        $.get(url, {
+            id: idCategory
+        }, function (data) {
+            $('#brands').html(data);
+        });
+    });
 
 </script>
 @include('notify.note');

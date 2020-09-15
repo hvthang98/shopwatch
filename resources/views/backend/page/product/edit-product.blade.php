@@ -51,17 +51,27 @@ Chỉnh sửa sản phẩm
                                 </div>
                             </div>
                             <div class="form-group ">
-                                <label for="" class="control-label col-lg-3">Thương hiệu</label>
+                                <label for="" class="control-label col-lg-3">Danh mục</label>
                                 <div class="col-lg-6">
-                                    <select class="form-control m-bot15" name="brands_id">
-                                        @foreach($brands as $brand)
-                                            <option value="{{ $brand->id }}" @if ($product->brands->id==$brand->id)
-                                                {{ 'selected' }}
+                                    <select class="form-control m-bot15" name="category" id="category">
+                                        <option value="0" selected>Chọn danh mục</option>
+                                        @if(isset($categories))
+                                            @foreach($categories as $category)
+                                                <option value="{{ $category->id }}" <?php if($category->id==$product->categories_id) echo 'selected' ?>>{{ $category->name }}</option>
+                                            @endforeach
                                         @endif
-                                        >
-                                        {{ $brand->name }}</option>
-                                        @endforeach
-
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <label for="" class="control-label col-lg-3">Thương hiệu</label>
+                                <div class="col-lg-6" id="brands">
+                                    <select class="form-control m-bot15" name="brands">
+                                        @if(isset($brands))
+                                            @foreach($brands as $item)           
+                                                    <option value="{{ $item->brand->id }}" <?php if($item->brand->id==$product->brands_id) echo 'selected' ?>>{{  $item->brand->name }}</option>
+                                            @endforeach
+                                        @endif
                                     </select>
                                 </div>
                             </div>
@@ -84,6 +94,23 @@ Chỉnh sửa sản phẩm
                                         </option>
                                     </select>
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-lg-3">Tags</label>
+                                <?php $tags=explode(',',$product->tags);?>
+                                <select name="tags[]" class="form-control multi-tag" style="width: 500px"
+                                    multiple="multiple">
+                                    @foreach ($tags as $tag)
+                                    <option selected="selected">{{ $tag }}</option>
+                                    @endforeach
+                                </select>
+                                <script type="text/javascript">
+                                    $(".multi-tag").select2({
+                                        tags: true,
+                                        tokenSeparators: [',']
+                                    })
+
+                                </script>
                             </div>
                             <div class="form-group ">
                                 <label for="sellprice" class="control-label col-lg-3">Trạng thái</label>
@@ -206,6 +233,15 @@ Chỉnh sửa sản phẩm
             }
         })
     })
-
+    //ajax categrory
+    $('#category').change(function () {
+        let idCategory = this.value;
+        let url = location.origin + '/shopwatch/ajax/brand';
+        $.get(url, {
+            id: idCategory
+        }, function (data) {
+            $('#brands').html(data);
+        });
+    });
 </script>
 @endsection
