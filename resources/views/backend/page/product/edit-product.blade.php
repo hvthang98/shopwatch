@@ -101,7 +101,9 @@ Chỉnh sửa sản phẩm
                                 <select name="tags[]" class="form-control multi-tag" style="width: 500px"
                                     multiple="multiple">
                                     @foreach ($tags as $tag)
+                                    @if($tag!='')
                                     <option selected="selected">{{ $tag }}</option>
+                                    @endif
                                     @endforeach
                                 </select>
                                 <script type="text/javascript">

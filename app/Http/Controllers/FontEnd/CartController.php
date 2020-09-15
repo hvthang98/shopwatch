@@ -19,18 +19,16 @@ class CartController extends Controller
             foreach ($data['carts_user'] as $cart) {
                 $total += ($cart->quantily) * ($cart->products->sellprice);
             }
-        } else {
-            //not sign in 
-            if (session()->has('cart')) {
-                $carts = session('cart');
-                foreach ($carts as $key => $value) {
-                    $product = Products::find($value['products_id']);
-                    $carts[$key]['product'] = $product;
-                    $total += $product->sellprice * $value['quantily'];
-                }
-                $data['carts'] = $carts;
+        }
+        //not sign in 
+        if (session()->has('cart')) {
+            $carts = session('cart');
+            foreach ($carts as $key => $value) {
+                $product = Products::find($value['products_id']);
+                $carts[$key]['product'] = $product;
+                $total += $product->sellprice * $value['quantily'];
             }
-            //dd($carts);
+            $data['carts'] = $carts;
         }
         $data['total'] = $total;
         $data['ship'] = 0;

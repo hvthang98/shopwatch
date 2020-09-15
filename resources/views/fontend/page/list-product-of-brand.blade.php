@@ -22,18 +22,18 @@
     <div class="mens">
         <div class="main">
             <div class="wrap">
-                 @foreach($brand as $brand)
+                @if (isset($brands))
+                    
                 <div class="br">
                     <div class="br1">
-                       
                     <h2 class="br2">
                         Thương hiệu
-                        {{ $brand->name }}
+                        {{$brands->name }}
                     </h2>
                     </div>
-                    <div class="con">{!! $brand->info !!}</div>
+                    <div class="con">{!! $brands->info !!}</div>
                 </div>
-                @endforeach
+                @endif
                 <div class="cont span_2_of_3">
                     
                     <div class="mens-toolbar">
@@ -63,41 +63,42 @@
                         <div class="clear"></div>
                     </div>
                     <div class="spbrand">
-                        @foreach($product as $pro)
+                        @foreach($products as $product)
                         <div class="spbrand1">
                             <div class="img1" style="position: relative;">
-                                <img width="260" height="280" src="../../{{$pro->image}}">
-                                <div class="mua"><a class="btn btn-primary" href="{{route('getProductSingle',['id'=>$pro->products_id])}}">Xem chi tiết</a></div>
+                                <img width="260" height="280" src="../storage/{{$product->avatar->image}}">
+                                <div class="mua"><a class="btn btn-primary" href="{{route('getProductSingle',$product->id)}}">Xem chi tiết</a></div>
                             </div>
-                            <div class="namesp"><p>{{$pro->name}}</p></div>
+                            <div class="namesp"><p>{{$product->name}}</p></div>
                             <div class="pri">
                                 <div class=" boc-pri">
-                                    <div class="sell"><span >{{ number_format($pro->price,0,',',',')."đ" }}</span></div>
-                                    <div class="normalp"><span style="color: red" >{{ number_format($pro->sellprice,0,',',',')."đ" }}</span></div>
+                                    <div class="sell"><span >{{ number_format($product->price,0,',',',')."đ" }}</span></div>
+                                    <div class="normalp"><span style="color: red" >{{ number_format($product->sellprice,0,',',',')."đ" }}</span></div>
                                 </div>
                             </div>
                         </div>
                         @endforeach
-                        
-                        
-
                     </div>
                     <div class="row">
-                        {{ $product->links() }}
+                        {{ $products->links() }}
                     </div>
                 </div>
                 <div class="rsidebar span_1_of_left">
                     <section class="sky-form">
-                        <h4>Giới tính</h4>
+                        <h4>Category</h4>
                         <div class="row row1 scroll-pane">
                             <div class="col col-4">
+                                @foreach ($categories as $item)
                                 <label class="checkbox"><a
-                                        class="{{ Request::get('gender')==1?'active':'' }}"
-                                        href="{{ request()->fullUrlWithQuery(['gender'=>1]) }}"><i></i>Nam</a></label>
-                                <div class="col col-4">
+                                    class="{{ $idCategory==$item->id?'active':'' }}"
+                                    href="{{ route('brand',$item->id)}}"><i></i>{{ $item->name }}</a>
+                                </label>
+                            @endforeach
+                                {{-- <div class="col col-4">
                                     <label class="checkbox"><i></i><a
                                             class="{{ Request::get('gender')==2 ?'active':'' }}"
-                                            href="{{ request()->fullUrlWithQuery(['gender'=>2]) }}">Nữ</a></label>
+                                            href="{{ request()->fullUrlWithQuery(['gender'=>2]) }}">Nữ</a>
+                                        </label>
 
                                 </div>
                                 <div class="col col-4">
@@ -105,7 +106,7 @@
                                             class="{{ Request::get('gender')==10 ?'active':'' }}"
                                             href="{{ request()->fullUrlWithQuery(['gender'=>10]) }}">Cả
                                             nam nữ</a></label>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </section>

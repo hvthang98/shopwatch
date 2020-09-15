@@ -54,7 +54,7 @@
                     <li class="active grid"><a href="{{ route('index') }}">Trang chủ</a></li>
                     @if(isset($categories))
                         @foreach($categories as $category)
-                            <li><a class="color5" style="cursor: pointer;">{{ $category->name }}  @if(count($category->brandCategories)>0)<span><i class="fa fa-caret-down"></i></span> @endif</a>
+                            <li><a href="{{ route('brand',$category->id)}}" class="color5" style="cursor: pointer;">{{ $category->name }}  @if(count($category->brandCategories)>0)<span><i class="fa fa-caret-down"></i></span> @endif</a>
                                 @if(count($category->brandCategories)>0)
                                     <div class="megapanel">
                                         <div class="col1">
@@ -62,7 +62,7 @@
                                                 <ul>
                                                     @foreach($category->brandCategories as $item)
                                                         <li><a
-                                                                href="{{ route('brand',$item->brand->id) }}">{{ $item->brand->name }}</a>
+                                                                href="{{ route('brand',[$category->id,$item->brand->id]) }}">{{ $item->brand->name }}</a>
                                                         </li>
                                                     @endforeach
                                                 </ul>

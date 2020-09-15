@@ -51,7 +51,7 @@ Giỏ hàng
                                 {{-- sign in user --}}
                                 @foreach($carts_user as $cart)
                                     <tr>
-                                        <td><img src="{{ asset($cart->products->avatar->image) }}" alt=""
+                                        <td><img src="../storage/{{$cart->products->avatar->image}}" alt=""
                                                 class="cart_img"></td>
                                         <td>{{ $cart->products->name }}</td>
                                         <td>
@@ -86,7 +86,7 @@ Giỏ hàng
                                 {{-- not sign in user --}}
                                 @foreach($carts as $key=>$cart)
                                     <tr>
-                                        <td><img src="{{ asset($cart['product']->avatar->first()->get()->image) }}" alt="" class="cart_img"></td>
+                                        <td><img src="../storage/{{$cart['product']->avatar->image}}" alt="" class="cart_img"></td>
                                         <td>{{ $cart['product']->name }}</td>
                                         <td>
                                             {{ number_format($cart['product']->sellprice) }}
@@ -181,5 +181,4 @@ Giỏ hàng
         @endif
     </div>
 </div>
-@include('notify.note')
 @endsection

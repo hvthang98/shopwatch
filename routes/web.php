@@ -141,7 +141,8 @@ Route::group(['namespace' => 'FontEnd'], function () {
     Route::get('/user-logout', 'UserController@user_logout')->name('user-logout');
 
     //danh sách sản phẩm theo thương hiệu
-    Route::get('/brand/{id}', 'BrandController@product_of_brand')->name('brand');
+    Route::get('/brand/{idCategory}/{idBrand?}', 'BrandController@product_of_brand')->name('brand');
+    
     
     //danh sách sản phẩm
     Route::group(['prefix'=>'product'],function(){
