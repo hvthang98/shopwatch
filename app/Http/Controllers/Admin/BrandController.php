@@ -12,7 +12,7 @@ class BrandController extends Controller
 {
     public function getAddBrand()
     {
-        return view('backend.page.add-brand');
+        return view('backend.page.brand.add-brand');
     }
     public function postBrand(AddBrandRequest $request)
     {
@@ -26,12 +26,12 @@ class BrandController extends Controller
     public function getListBrand()
     {
         $data['brands'] = Brands::paginate(10);
-        return view('backend.page.list-brand', $data);
+        return view('backend.page.brand.list-brand', $data);
     }
     public function getEditBrand(Request $request)
     {
         $data['brand'] = Brands::find($request->id);
-        return view('backend.page.edit-brand', $data);
+        return view('backend.page.brand.edit-brand', $data);
     }
     public function updateBrand(UpdateBrandRequest $request)
     {

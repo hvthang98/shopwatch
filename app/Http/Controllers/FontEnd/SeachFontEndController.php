@@ -10,18 +10,18 @@ use App\Models\Brands;
 
 class SeachFontEndController extends Controller
 {
+    public $seach;
     public function getSeach(Request $request)
     {
-        $key = $request->seach;
-        $data['key'] = $key;
-        $products = Brands::join('products',function($product){
-            $product->on('brands.id', 'products.brands_id')->where('products.status', 1);
-        })->join('info_product', 'info_product.products_id', '=', 'products.id')->join('image_product', function ($image) {
-            $image->on('products.id', '=', 'image_product.products_id')->where('level', 1);
-        });
-        //seach
-        $products = $products->orWhere('products.name', 'like', '%' . $key . '%')->orWhere('brands.name', 'like', '%' . $key . '%')->orWhere('info_product.type', 'like', '%' . $key . '%')->get();
+        $this->seach = $request->seach;
+        $products = Products::where('status', 1)->where(function ($query) {
+            $key = explode(',', $this->seach);
+            foreach ($key as $value) {
+                $query->orWhere('tags', 'like', '%' . $value . '%');
+            }
+        })->get();
         $data['product'] = $products;
+        $data['key'] = $this->seach;
         $data['brands'] = Brands::all();
         return view('fontend.page.list-product-seach', $data);
     }
