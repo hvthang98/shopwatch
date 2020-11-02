@@ -36,7 +36,7 @@ Danh sách tin tức
                             {!! $new->content !!}
                         </div>
                     </td>
-                    <td><img src="../storage/{{ $new->image }}" width="100" height="100"></td>
+                    <td><img src="storage/{{ $new->image }}" width="100" height="100"></td>
                     <td style="text-align: center;">
                         @if($new->status==0)
                             <a

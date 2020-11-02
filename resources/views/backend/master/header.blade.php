@@ -180,7 +180,7 @@
 
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <img alt=""
-                            src="{{ asset('public/upload/avatar_user/default-avatar.png') }}">
+                            src="upload/avatar_user/default-avatar.png">
                         <span class="username">{{ Auth::user()->name }}</span>
                         <b class="caret"></b>
                     </a>

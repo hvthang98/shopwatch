@@ -71,7 +71,7 @@ Danh sách sản phẩm
                                 <td>{{ number_format($product->quantily) }}</td>
                                 <td>
                                     @if(isset($product->avatar->image))
-                                        <img src="../storage/{{$product->avatar->image}}" alt="" class="list-img">
+                                        <img src="storage/{{$product->avatar->image}}" alt="" class="list-img">
                                     @endif
                                 </td>
                                 <td>

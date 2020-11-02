@@ -4,14 +4,14 @@
             <div class="section group example">
                 <div class="col_1_of_2 span_1_of_2">
                     <ul class="f-list">
-                        <li><img src="images/2.png"><span class="f-text">Miễn phí vận chuyển</span>
+                        <li><img src="fontend/images/2.png"><span class="f-text">Miễn phí vận chuyển</span>
                             <div class="clear"></div>
                         </li>
                     </ul>
                 </div>
                 <div class="col_1_of_2 span_1_of_2">
                     <ul class="f-list">
-                        <li><img src="images/3.png"><span class="f-text">Điện thoại: 0123456789</span>
+                        <li><img src="fontend/images/3.png"><span class="f-text">Điện thoại: 0123456789</span>
                             <div class="clear"></div>
                         </li>
                     </ul>
