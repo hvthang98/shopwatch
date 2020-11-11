@@ -19,7 +19,7 @@ class SeachFontEndController extends Controller
             foreach ($key as $value) {
                 $query->orWhere('tags', 'like', '%' . $value . '%');
             }
-        })->get();
+        })->orWhere('name','like', '%' . $this->seach . '%')->orWhere('infor','like', '%' . $this->seach . '%')->get();
         $data['product'] = $products;
         $data['key'] = $this->seach;
         $data['brands'] = Brands::all();

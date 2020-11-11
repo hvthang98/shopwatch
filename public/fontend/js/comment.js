@@ -45,7 +45,7 @@ function submitReplyComment(selectorInput) {
     var replycontent = selectorInput.val();
     var idComment = selectorInput.attr('id-comment');
     var idUser = $("#id-user").attr("id-user");
-    var url = "http://localhost:8080/shopwatch/ajax/comment/addreply";
+    var url = location.origin + "/shopwatch/ajax/comment/addreply";
     $.get(url, {
         comment_id: idComment,
         users_id: idUser,
@@ -61,7 +61,7 @@ function submitComment() {
     var value = $("#input-comment").val();
     var id = $("#id-user").attr("id-user");
     var idProduct = $("#input-comment").attr("id-product");
-    var url = "http://localhost:8080/shopwatch/ajax/comment/add";
+    var url = location.origin + "/shopwatch/ajax/comment/add";
     $.get(url, {
         users_id: id,
         content: value,

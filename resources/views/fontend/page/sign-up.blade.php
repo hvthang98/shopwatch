@@ -135,15 +135,15 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     @csrf
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $(".notification-email").hide();
             $(".notification-password").hide();
-            $("#singup-email").change(function () {
+            $("#singup-email").change(function() {
                 var email = $(this).val();
                 var url = "http://localhost:8080/shopwatch/ajax/check-email";
                 $.post(url, {
                     email: email
-                }, function (data) {
+                }, function(data) {
                     if (data == 'true') {
                         $(".notification-email").show();
                         $("#singup-email").css('border-bottom', '1px solid #ff0000');
@@ -155,7 +155,7 @@
                 });
             });
             //password
-            $("#password_confi").change(function () {
+            $("#password_confi").change(function() {
                 var password = $('#password').val();
                 var passwordConfi = $(this).val();
                 if (password != passwordConfi) {
@@ -178,11 +178,10 @@
                 <div class="login-title">
 
                     <div id="loginbox" class="loginbox">
-                        <form action="{{ route('post-user-signup') }}" method="post" name="login"
-                            class="login-form">
+                        <form action="{{ route('post-user-signup') }}" method="post" name="login" class="login-form">
                             <h1 class="title">Đăng ký tài khoản</h1>
                             @csrf
-                            @if(count($errors)>0)
+                            @if (count($errors) > 0)
                                 <div>
                                     <strong style="color: red">{{ $errors->first() }}</strong>
                                 </div>
@@ -214,24 +213,12 @@
                                 <span data-placehoder="Địa chỉ"></span>
                             </div>
                             <div class="txtb">
-                                <input type="text" name="phonenumber" required>
+                                <input type="text" name="phonenumber" required class="only-number">
                                 <span data-placehoder="Số điện thoại"></span>
                             </div>
-                            <div >
-
-                              
-                               <div class="captcha">
-                                 <span>{!! captcha_img() !!}</span>
-                                 
-
-                             
-                     </div>
-                     <div >
-                         <input style="height: 40px; width: 260px" type="text" name="captcha"  placeholder="Nhập mã xác thực"><br/><br/>
-                     </div>
-                            <input type="submit" class="logbtn" name="signup" value="Đăng ký">
-
-                            <div class="mk"><a href="{{ route('index') }}">Về trang chủ</a></div>
+                            <div>
+                                <input type="submit" class="logbtn" name="signup" value="Đăng ký">
+                                <div class="mk"><a href="{{ route('index') }}">Về trang chủ</a></div>
                         </form>
                     </div>
                 </div>
@@ -241,14 +228,19 @@
 
     </div>
     <script type="text/javascript">
-        $(".txtb input").on("focus", function () {
+        $(".txtb input").on("focus", function() {
             $(this).addClass("focus");
         });
 
-        $(".txtb input").on("blur", function () {
+        $(".txtb input").on("blur", function() {
             if ($(this).val() == "")
                 $(this).removeClass("focus");
         });
+        $(".only-number").on('keyup',function(){
+            let value=$(this).val().replace(/[^0-9]/g, '');
+            console.log(value);
+            this.value=value;
+        })
 
     </script>
 </body>

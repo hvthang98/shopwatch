@@ -123,11 +123,10 @@
                 <div class="login-title">
 
                     <div id="loginbox" class="loginbox">
-                        <form action="{{ route('post-user-login') }}" method="post" name="login"
-                            class="login-form">
+                        <form action="{{ route('post-user-login') }}" method="post" name="login" class="login-form">
                             <h1 class="title">Đăng nhập</h1>
                             @csrf
-                            @if(count($errors)>0 )
+                            @if (count($errors) > 0)
                                 <div>
                                     <strong style="color: red">{{ $errors->first() }}</strong>
                                 </div>
@@ -144,21 +143,10 @@
                                 <input type="password" name="password">
                                 <span data-placehoder="Mật khẩu"></span>
                             </div>
-                            
+
                             <div class="row">
-
-                              <div class="col-md-4"></div>
-                              <div class="form-group col-md-4">
-                               <div class="captcha">
-                                 <span>{!! captcha_img() !!}</span>
-                                 <button type="button" class="btn btn-success"><i class="fa fa-refresh" id="refresh"></i></button>
-
-                             </div>
-                         </div>
-                     </div>
-                     <div >
-                         <input style="height: 40px; width: 260px" type="text" name="captcha"  placeholder="Nhập mã xác thực"><br/><br/>
-                     </div>
+                                <div class="col-md-4"></div>
+                            </div>
                             <input type="submit" class="logbtn" name="login" value="Đăng nhập">
                             <div class="bottom-text">
                                 Chưa có tài khoản? <a href="{{ route('user-sign-up') }}">Đăng ký</a>
@@ -171,15 +159,15 @@
         </div>
     </div>
     <script type="text/javascript">
-        $(".txtb input").on("focus", function () {
+        $(".txtb input").on("focus", function() {
             $(this).addClass("focus");
         });
 
-        $(".txtb input").on("blur", function () {
+        $(".txtb input").on("blur", function() {
             if ($(this).val() == "")
                 $(this).removeClass("focus");
         });
-        
+
     </script>
 </body>
 
