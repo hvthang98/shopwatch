@@ -8,7 +8,7 @@ Tin tức
         @foreach($news as $new)
             <div class="tin">
                 <div class="chua" style="position: relative;">
-                    <img width="363" height="250" src="../upload/images/{{ $new->image }}">
+                    <img width="363" height="250" src="../storage/{{ $new->image }}">
                     <div class="nd">
                         <p>{{ $new->title }}</p><a
                             href="{{ route('detail-new',['id'=>$new->id]) }}">Xem
