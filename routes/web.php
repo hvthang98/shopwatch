@@ -16,7 +16,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
         return redirect(route('dashboard'));
     });
 
-    //Category
+    /**
+      * Category
+    */
     Route::group(['prefix' => 'category'], function () {
         Route::get('add-category', 'CategoryController@add_category')->name('add-category');
         Route::post('add-category', 'CategoryController@post_add_category')->name('post-add-category');
@@ -58,7 +60,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
     Route::get('change-password/{id}','UserController@getChangePassword')->name('getChangePW');
     Route::post('post-change-pw','UserController@postChangePassword')->name('postChangePW');
 
-    //Product: add new product, show list product, edit product, add and edit image product 
+    /**
+     * Product
+     */
     Route::group(['prefix' => 'product'], function () {
         // add product
         Route::get('add', 'ProductController@getAddProduct')->name('addProduct');
