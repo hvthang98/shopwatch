@@ -35,9 +35,9 @@
                                 @if($image->status==1)
                                     <li>
                                         <a>
-                                            <img class="etalage_thumb_image" src="../storage/{{$image->image}}"
+                                            <img class="etalage_thumb_image" src="storage/{{$image->image}}"
                                                 class="img-responsive" />
-                                            <img class="etalage_source_image" src="../storage/{{$image->image}}"
+                                            <img class="etalage_source_image" src="storage/{{$image->image}}"
                                                 class="img-responsive" title="" />
                                         </a>
                                     </li>
@@ -82,7 +82,7 @@
                     <ul id="flexiselDemo3">
                         @foreach($listProducts as $list)
                             <li>
-                                <img src="../storage/<?php if(isset($list->avatar->image)) echo $list->avatar->image?>" style="height:140px" />
+                                <img src="storage/<?php if(isset($list->avatar->image)) echo $list->avatar->image?>" style="height:140px" />
                                 <a href="{{ route('getProductSingle',$list->id) }}">
                                     {{ $list->name }}
                                 </a>
@@ -222,5 +222,5 @@
     });
 
 </script>
-<script type="text/javascript" src="js/jquery.flexisel.js"></script>
+<script type="text/javascript" src="fontend/js/jquery.flexisel.js"></script>
 @endsection

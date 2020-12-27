@@ -1,0 +1,158 @@
+1. Product
+    Resource API
+    domain: http://192.168.1.4:8000/
+- list product
+    * URI: api/product,
+    * Method: GET,
+    * Request: {domain}/api/product?limit=1&page=1&column=id&sort=asc
+    * Response:
+        + Success: 
+            {
+                "status": true,
+                "code": 200,
+                "data": [
+                    {
+                        "id": 9,
+                        "name": "Đồng hồ Nam MVW MS005-02",
+                        "price": 3100000,
+                        "sellprice": 2170000,
+                        "content": "<h2 style=\"text-align:start\"><span style=\"color:#333333\"><span style=\"background-color:#ffffff\"><span style=\"color:#666666\"><strong>MVW&nbsp;</strong></span></span></span></h2>\r\n\r\n<h3 style=\"text-align:start\"><span style=\"color:#333333\"><span style=\"background-color:#ffffff\"><span style=\"color:#666666\"><strong>Sang trọng, tinh tế</strong></span></span></span></h3>\r\n\r\n<p style=\"text-align:start\"><span style=\"font-size:16px\"><span style=\"color:#333333\"><span style=\"font-family:Helvetica,Arial,&quot;DejaVu Sans&quot;,&quot;Liberation Sans&quot;,Freesans,sans-serif\"><span style=\"background-color:#ffffff\">Sản phẩm&nbsp;<a href=\"https://www.thegioididong.com/dong-ho-deo-tay\" style=\"padding:0px; text-decoration:none; color:#50a8e3\" target=\"_blank\" title=\"Đồng hồ đeo tay chính hãng 100%, giá rẻ tại Thế Giới Di Động\">đồng hồ</a>&nbsp;mang thương hiệu MVW với nhiều mẫu m&atilde; năng động, trẻ trung nhưng kh&ocirc;ng k&eacute;m phần tinh tế v&agrave; sang trọng, ph&ugrave; hợp với nữ giới hoạt động ở nhiều lĩnh vực từ d&acirc;n văn ph&ograve;ng đến doanh nh&acirc;n</span></span></span></span></p>\r\n\r\n<h3>Thiết kế mang n&eacute;t đẹp cổ điển, thời thượng, ph&ugrave; hợp với c&aacute;c qu&yacute; &ocirc;ng lịch l&atilde;m, phong độ</h3>\r\n\r\n<p><a href=\"https://www.thegioididong.com/dong-ho-deo-tay/mvw-ms005-02-nam\" target=\"_blank\" title=\"Đồng hồ nam MVW MS005-02 chính hãng, giá rẻ, bán tại Thế Giới Di Động \">Đồng hồ nam MVW MS005-02</a>&nbsp;đến từ h&atilde;ng MVW uy t&iacute;n của Việt Nam -&nbsp;thương hiệu độc quyền của Thế Giới Di Động.</p>\r\n\r\n<p><a href=\"https://www.thegioididong.com/images/7264/210313/mvw-ms005-02-nam-fix1.jpg\" onclick=\"return false;\"><img alt=\"Đồng hồ Nam MVW MS005-02 có thiết kế sang trọng, nam tính\" src=\"https://cdn.tgdd.vn/Products/Images/7264/210313/mvw-ms005-02-nam-fix1.jpg\" title=\"Đồng hồ Nam MVW MS005-02 có thiết kế sang trọng, nam tính\" /></a></p>\r\n\r\n<h3><a href=\"https://www.thegioididong.com/dong-ho-deo-tay-mvw-nam\" target=\"_blank\" title=\"Đồng hồ MVW nam chính hãng, giá rẻ, bán tại Thế Giới Di Động\">Đồng hồ MVW nam</a>&nbsp;c&oacute; lớp vỏ ngo&agrave;i bền bỉ, an to&agrave;n với va đập th&ocirc;ng thường</h3>\r\n\r\n<p>- Mặt k&iacute;nh&nbsp;cứng c&aacute;p vượt trội, gần như kh&ocirc;ng xảy ra trầy xước hay nứt vỡ, độ trong suốt cao.</p>\r\n\r\n<p>- Khung viền chịu lực, kh&aacute;ng nhiệt, c&oacute; khả năng chống oxi h&oacute;a gi&uacute;p bảo vệ tốt&nbsp;<a href=\"https://www.thegioididong.com/dong-ho-deo-tay-mvw\" target=\"_blank\" title=\"Đồng hồ MVW chính hãng, giá rẻ, bán tại Thế Giới Di Động\">đồng hồ MVW</a>.</p>\r\n\r\n<p style=\"text-align:start\">&nbsp;</p>",
+                        "status": 1,
+                        "ordernum": 1,
+                        "brands_id": 1,
+                        "categories_id": 4,
+                        "created_at": null,
+                        "updated_at": "2020-09-15T09:23:20.000000Z",
+                        "quantily": 99,
+                        "infor": "[{\"name\":\"pro\",\"content\":\"hay lam anh em\"},{\"name\":\"haha cai con c\",\"content\":\"dau xanh\"},{\"name\":\"dau xanh\",\"content\":\"haha\"}]",
+                        "views": 0,
+                        "tags": "helo,haha,hihi,nữ"
+                    }
+                ],
+                "meta": {
+                    "currentPage": 1,
+                    "perPage": "1",
+                    "total": 18
+                }
+            }
+        + Failed:
+            {
+                "status": false,
+                "code": 500,
+                "message": "Order direction must be \"asc\" or \"desc\"."
+            }
+
+- show product:
+    * URI: api/product/{id},
+    * Method: GET,
+    * Request: {domain}/api/product/9
+    * Response:
+        + Success: 
+            {
+                "status": true,
+                "code": 200,
+                "data": {
+                    "id": 9,
+                    "name": "Đồng hồ Nam MVW MS005-02",
+                    "price": 3100000,
+                    "sellprice": 2170000,
+                    "content": "<h2 style=\"text-align:start\"><span style=\"color:#333333\"><span style=\"background-color:#ffffff\"><span style=\"color:#666666\"><strong>MVW&nbsp;</strong></span></span></span></h2>\r\n\r\n<h3 style=\"text-align:start\"><span style=\"color:#333333\"><span style=\"background-color:#ffffff\"><span style=\"color:#666666\"><strong>Sang trọng, tinh tế</strong></span></span></span></h3>\r\n\r\n<p style=\"text-align:start\"><span style=\"font-size:16px\"><span style=\"color:#333333\"><span style=\"font-family:Helvetica,Arial,&quot;DejaVu Sans&quot;,&quot;Liberation Sans&quot;,Freesans,sans-serif\"><span style=\"background-color:#ffffff\">Sản phẩm&nbsp;<a href=\"https://www.thegioididong.com/dong-ho-deo-tay\" style=\"padding:0px; text-decoration:none; color:#50a8e3\" target=\"_blank\" title=\"Đồng hồ đeo tay chính hãng 100%, giá rẻ tại Thế Giới Di Động\">đồng hồ</a>&nbsp;mang thương hiệu MVW với nhiều mẫu m&atilde; năng động, trẻ trung nhưng kh&ocirc;ng k&eacute;m phần tinh tế v&agrave; sang trọng, ph&ugrave; hợp với nữ giới hoạt động ở nhiều lĩnh vực từ d&acirc;n văn ph&ograve;ng đến doanh nh&acirc;n</span></span></span></span></p>\r\n\r\n<h3>Thiết kế mang n&eacute;t đẹp cổ điển, thời thượng, ph&ugrave; hợp với c&aacute;c qu&yacute; &ocirc;ng lịch l&atilde;m, phong độ</h3>\r\n\r\n<p><a href=\"https://www.thegioididong.com/dong-ho-deo-tay/mvw-ms005-02-nam\" target=\"_blank\" title=\"Đồng hồ nam MVW MS005-02 chính hãng, giá rẻ, bán tại Thế Giới Di Động \">Đồng hồ nam MVW MS005-02</a>&nbsp;đến từ h&atilde;ng MVW uy t&iacute;n của Việt Nam -&nbsp;thương hiệu độc quyền của Thế Giới Di Động.</p>\r\n\r\n<p><a href=\"https://www.thegioididong.com/images/7264/210313/mvw-ms005-02-nam-fix1.jpg\" onclick=\"return false;\"><img alt=\"Đồng hồ Nam MVW MS005-02 có thiết kế sang trọng, nam tính\" src=\"https://cdn.tgdd.vn/Products/Images/7264/210313/mvw-ms005-02-nam-fix1.jpg\" title=\"Đồng hồ Nam MVW MS005-02 có thiết kế sang trọng, nam tính\" /></a></p>\r\n\r\n<h3><a href=\"https://www.thegioididong.com/dong-ho-deo-tay-mvw-nam\" target=\"_blank\" title=\"Đồng hồ MVW nam chính hãng, giá rẻ, bán tại Thế Giới Di Động\">Đồng hồ MVW nam</a>&nbsp;c&oacute; lớp vỏ ngo&agrave;i bền bỉ, an to&agrave;n với va đập th&ocirc;ng thường</h3>\r\n\r\n<p>- Mặt k&iacute;nh&nbsp;cứng c&aacute;p vượt trội, gần như kh&ocirc;ng xảy ra trầy xước hay nứt vỡ, độ trong suốt cao.</p>\r\n\r\n<p>- Khung viền chịu lực, kh&aacute;ng nhiệt, c&oacute; khả năng chống oxi h&oacute;a gi&uacute;p bảo vệ tốt&nbsp;<a href=\"https://www.thegioididong.com/dong-ho-deo-tay-mvw\" target=\"_blank\" title=\"Đồng hồ MVW chính hãng, giá rẻ, bán tại Thế Giới Di Động\">đồng hồ MVW</a>.</p>\r\n\r\n<p style=\"text-align:start\">&nbsp;</p>",
+                    "status": 1,
+                    "ordernum": 1,
+                    "brands_id": 1,
+                    "categories_id": 4,
+                    "created_at": null,
+                    "updated_at": "2020-09-15T09:23:20.000000Z",
+                    "quantily": 99,
+                    "infor": "[{\"name\":\"pro\",\"content\":\"hay lam anh em\"},{\"name\":\"haha cai con c\",\"content\":\"dau xanh\"},{\"name\":\"dau xanh\",\"content\":\"haha\"}]",
+                    "views": 0,
+                    "tags": "helo,haha,hihi,nữ"
+                }
+            }
+        + Failed: 
+            {
+                "status": false,
+                "code": 500,
+                "message": "Undefined class constant 'HTTP_OKs'"
+            }
+- create: 
+    * URI: api/product/,
+    * Method: POST,
+    * Request: {domain}/api/product/
+            body: 
+                {
+                    "name":"hello1",
+                    "price":1,
+                    "sellprice":1,
+                    "brands_id":1,
+                    "categories_id":3
+                }
+            
+    * Response:
+        + Success: 
+            {
+                "status": true,
+                "code": 201,
+                "data": {
+                    "name": "hello1",
+                    "price": 1,
+                    "sellprice": 1,
+                    "brands_id": 1,
+                    "categories_id": 3,
+                    "updated_at": "2020-12-27T15:42:27.000000Z",
+                    "created_at": "2020-12-27T15:42:27.000000Z",
+                    "id": 42
+                }
+            }
+        + Failed:
+-update: 
+    * URI: api/product/,
+    * Method: PUT/PATCH,
+    * Request: {domain}/api/product/{id}
+            body: 
+                {
+                    "name":"hello1",
+                    "price":1,
+                    "sellprice":1,
+                    "brands_id":1,
+                    "categories_id":3
+                }
+            
+    * Response:
+        + Success: 
+            {
+                "status": true,
+                "code": 201,
+                "data": {
+                    "name": "hello1",
+                    "price": 1,
+                    "sellprice": 1,
+                    "brands_id": 1,
+                    "categories_id": 3,
+                    "updated_at": "2020-12-27T15:42:27.000000Z",
+                    "created_at": "2020-12-27T15:42:27.000000Z",
+                    "id": 42
+                }
+            }
+        + Failed:
+-destroy:
+    * URI: api/product/,
+    * Method: DELETE,
+    * Request: {domain}/api/product/{id}
+            body: 
+                {
+                    "name":"hello1",
+                    "price":1,
+                    "sellprice":1,
+                    "brands_id":1,
+                    "categories_id":3
+                }
+            
+    * Response:
+        + Success: 
+             {
+                "status": true,
+                "code": 201,
+                "message": "Destroy id"
+            }
+        + Failed:

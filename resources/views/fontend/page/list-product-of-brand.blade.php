@@ -66,7 +66,7 @@
                         @foreach($products as $product)
                         <div class="spbrand1">
                             <div class="img1" style="position: relative;">
-                                <img width="260" height="280" src="../storage/{{$product->avatar->image}}">
+                                <img width="260" height="280" src="storage/{{$product->avatar->image}}">
                                 <div class="mua"><a class="btn btn-primary" href="{{route('getProductSingle',$product->id)}}">Xem chi tiết</a></div>
                             </div>
                             <div class="namesp"><p>{{$product->name}}</p></div>

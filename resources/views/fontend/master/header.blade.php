@@ -47,7 +47,7 @@
     <div class="wrap">
         <div class="header-bottom-left">
             <div class="logo">
-                <a href="{{ route('index') }}"><img src="images/logo.png" alt="" /></a>
+                <a href="{{ route('index') }}"><img src="fontend/images/logo.png" alt="" /></a>
             </div>
             <div class="menu">
                 <ul class="megamenu skyblue">

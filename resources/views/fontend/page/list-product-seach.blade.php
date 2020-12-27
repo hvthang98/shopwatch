@@ -47,7 +47,7 @@ Tìm kiếm
                     @foreach($product as $pro)
                         <div class="spbrand1">
                             <div class="img1" style="position: relative;">
-                                <img width="260" height="280" src="../storage/{{ $pro->avatar->image }}">
+                                <img width="260" height="280" src="storage/{{ $pro->avatar->image }}">
                                 <div class="mua"><a class="btn btn-primary"
                                         href="{{ route('getProductSingle',$pro->id) }}">Xem
                                         chi tiết</a></div>

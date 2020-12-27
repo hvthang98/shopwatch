@@ -14,7 +14,7 @@ class ImageProductController extends Controller
     {
         $data['images'] = ImgProduct::where('products_id', $request->id)->orderBy('created_at','desc')->paginate(5);
         $data['products_id'] = $request->id;
-        return view('backend.page.image-product', $data);
+        return view('backend.page.product.image-product', $data);
     }
     // function add image product
     public function store(Request $request)

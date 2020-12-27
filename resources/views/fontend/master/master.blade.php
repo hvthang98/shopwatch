@@ -3,55 +3,54 @@
 
 <head>
     <title>@yield('title')</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-  
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'
+        integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 
-  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <base href="{{ asset('public/fontend') }}/">
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="css/form.css" rel="stylesheet" type="text/css" media="all" />
+    <base href="{{ asset('') }}">
+    <link href="fontend/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="fontend/css/form.css" rel="stylesheet" type="text/css" media="all" />
     <link href='http://fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
-    <script type="text/javascript" src="js/jquery1.min.js"></script>
+    <script type="text/javascript" src="fontend/js/jquery1.min.js"></script>
     <!-- start menu -->
-    <link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="fontend/css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
     <!-- font CSS -->
     <link
         href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic'
         rel='stylesheet' type='text/css'>
     <!-- bootstrap CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="fontend/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
     <!-- font-awesome icons -->
-    <link rel="stylesheet" href="css/font.css" type="text/css" />
-    <link href="css/font-awesome.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/morris.css" type="text/css" />
+    <link rel="stylesheet" href="fontend/css/font.css" type="text/css" />
+    <link href="fontend/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="fontend/css/morris.css" type="text/css" />
 
-    <script type="text/javascript" src="js/megamenu.js"></script>
+    <script type="text/javascript" src="fontend/js/megamenu.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $(".megamenu").megamenu();
         });
 
     </script>
     <!--start slider -->
-    <link rel="stylesheet" href="css/fwslider.css" media="all">
-    <script src="js/jquery-ui.min.js"></script>
-    <script src="js/css3-mediaqueries.js"></script>
-    <script src="js/fwslider.js"></script>
+    <link rel="stylesheet" href="fontend/css/fwslider.css" media="all">
+    <script src="fontend/js/jquery-ui.min.js"></script>
+    <script src="fontend/js/css3-mediaqueries.js"></script>
+    <script src="fontend/js/fwslider.js"></script>
     <!--end slider -->
-    <script src="js/jquery.easydropdown.js"></script>
+    <script src="fontend/js/jquery.easydropdown.js"></script>
     <!-- start details -->
-    <script src="js/slides.min.jquery.js"></script>
+    <script src="fontend/js/slides.min.jquery.js"></script>
     <script>
-        $(function () {
+        $(function() {
             $('#products').slides({
                 preload: true,
                 preloadImage: 'img/loading.gif',
@@ -65,10 +64,10 @@
         });
 
     </script>
-    <link rel="stylesheet" href="css/etalage.css">
-    <script src="js/jquery.etalage.min.js"></script>
+    <link rel="stylesheet" href="fontend/css/etalage.css">
+    <script src="fontend/js/jquery.etalage.min.js"></script>
     <script>
-        jQuery(document).ready(function ($) {
+        jQuery(document).ready(function($) {
 
             $('#etalage').etalage({
                 thumb_image_width: 360,
@@ -76,7 +75,7 @@
                 source_image_width: 900,
                 source_image_height: 900,
                 show_hint: true,
-                click_callback: function (image_anchor, instance_id) {
+                click_callback: function(image_anchor, instance_id) {
                     alert('Callback example:\nYou clicked on an image with the anchor: "' +
                         image_anchor +
                         '"\n(in Etalage instance: "' + instance_id + '")');
@@ -85,9 +84,9 @@
 
         });
         //scroll in home
-        $(document).ready(function () {
+        $(document).ready(function() {
             $("#scroll-top").hide();
-            $(window).scroll(function () {
+            $(window).scroll(function() {
                 //$("#scroll-top").show();
                 var scrollTop = $(window).scrollTop();
                 if (scrollTop > 0) {
@@ -96,14 +95,14 @@
                     $("#scroll-top").hide();
                 }
             })
-            $("#scroll-top").click(function () {
+            $("#scroll-top").click(function() {
                 // $(window).animate({scrollTop:0}, '800');
                 $(window).scrollTop(0);
             });
         });
 
     </script>
-    <script src="js/comment.js"></script>
+    <script src="fontend/js/comment.js"></script>
     <style>
         .tag-list {
             position: relative;
@@ -153,14 +152,16 @@
         <i class="fa fa-arrow-circle-o-up" title="Lên đầu trang"></i>
     </div>
 </body>
-@if(session('notification'))
+@if (session('notification'))
     @include('notify.note')
 @endif
 <script>
     function questionLoading(mes) {
-            if (confirm(mes) == false) {
-                event.preventDefault();
-            }
+        if (confirm(mes) == false) {
+            event.preventDefault();
         }
+    }
+
 </script>
+
 </html>
