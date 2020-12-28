@@ -33,17 +33,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
         Route::get('del-brand-cate/{idCate}/{idBrand}','CategoryController@deleteBrand')->name('delBrandCate');
     });
     //Banner
+    Route::resource('banner', 'BannerController')->names('admin.banner')->parameters([
+        'banner'=>'id',
+    ])->except('show');
     Route::group(['prefix' => 'banner'], function () {
-        Route::get('/add-banner', 'BannerController@add_banner')->name('add-banner');
-        Route::post('/add-banner', 'BannerController@post_add_banner')->name('post_add_banner');
-        Route::get('/all-banner', 'BannerController@all_banner')->name('all-banner');
-        Route::get('/status/{id}', 'BannerController@active_banner')->name('active_banner');
-        Route::get('/status1/{id}', 'BannerController@unactive_banner')->name('unactive_banner');
-        Route::get('/edit-banner/{id}', 'BannerController@edit_banner')->name('edit-banner');
-        Route::post('/edit-banner/{id}', 'BannerController@post_edit_banner')->name('edit-banner');
-        Route::get('/delete-banner/{id}', 'BannerController@delete_banner')->name('delete-banner');
+        Route::get('/active/{id}', 'BannerController@active')->name('admin.banner.active');
+        Route::get('/unactive/{id}', 'BannerController@unactive')->name('admin.banner.unactive');
     });
-
 
     //User
     Route::group(['prefix' => 'user'], function () {

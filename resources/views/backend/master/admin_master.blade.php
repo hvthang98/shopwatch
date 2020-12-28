@@ -26,8 +26,10 @@
     <script src="backend/js/morris.js"></script>
     <script src="editor/ckeditor/ckeditor.js"></script>
     <script src="editor/ckfinder/ckfinder.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script src="js/helpers.js"></script>
+    <script src="js\sweetalert2.js"></script>
 </head>
 
 <body>
@@ -64,6 +66,12 @@
         }
 
     </script>
+    @if (session()->has('notification'))
+        @include('notify.success')
+    @endif
+    @if (session()->has('error'))
+        @include('notify.error')
+    @endif
 </body>
 
 </html>

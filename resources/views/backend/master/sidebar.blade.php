@@ -56,8 +56,8 @@
                         <span>Quản lý banner</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="{{ route('add-banner') }}">Thêm banners</a></li>
-                        <li><a href="{{ route('all-banner') }}">Danh sách Banners</a></li>
+                        <li><a href="{{ route('admin.banner.create') }}">Thêm banners</a></li>
+                        <li><a href="{{ route('admin.banner.index') }}">Danh sách Banners</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">

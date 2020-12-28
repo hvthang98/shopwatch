@@ -10,12 +10,19 @@ use Illuminate\Support\Facades\Storage;
 
 class BannerController extends Controller
 {
-    function add_banner()
+    public function index()
+    {
+        $banners = Banners::orderBy('ordernum', 'asc')->get();
+        return view('backend.page.banner.all-banner', ['banners' => $banners]);
+    }
+
+    public function create()
     {
         $data['banners'] = Banners::orderBy('ordernum', 'asc')->get();
         return view('backend.page.banner.add-banner', $data);
     }
-    function post_add_banner(BannerRequest $request)
+
+    public function store(BannerRequest $request)
     {
         $banner = new Banners();
         $banner->name = $request->banner_name;
@@ -37,34 +44,16 @@ class BannerController extends Controller
         $path = $request->file('banner_image')->store('banner');
         $banner->image = $path;
         $banner->save();
-        return redirect()->route('all-banner')->with('notification', 'Đã thêm mới thành công!');
+        return redirect()->route('admin.banner.index')->with('notification', 'Đã thêm mới thành công!');
     }
-    function all_banner()
-    {
-        $banners = Banners::orderBy('ordernum', 'asc')->get();
-        return view('backend.page.banner.all-banner', ['banners' => $banners]);
-    }
-    function active_banner($id)
-    {
-        $banner = Banners::find($id);
-        $banner->status = 1;
-        $banner->save();
-        return redirect()->route('all-banner');
-    }
-    function unactive_banner($id)
-    {
-        $banner = Banners::find($id);
-        $banner->status = 0;
-        $banner->save();
-        return redirect()->route('all-banner');
-    }
-    function edit_banner($id)
+
+    public function edit($id)
     {
         $data['banner'] = Banners::find($id);
         $data['banners'] = Banners::orderBy('ordernum', 'asc')->get();
         return view('backend.page.banner.edit-banner', $data);
     }
-    function post_edit_banner(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $banner = Banners::find($id);
         $banner->name = $request->edit_banner_name;
@@ -88,13 +77,53 @@ class BannerController extends Controller
             $banner->image = $path;
         }
         $banner->save();
-        return redirect()->route('all-banner')->with('notification', 'Đã cập nhật thành công!');
+        return redirect()->route('admin.banner.index')->with('notification', 'Đã cập nhật thành công!');
     }
-    function delete_banner($id)
+    public function destroy($id)
     {
         $banner = Banners::find($id);
         Storage::delete($banner->image);
         $banner->delete();
-        return redirect()->route('all-banner')->with('notification', 'Đã xóa thành công!');
+        return redirect()->route('admin.banner.index')->with('notification', 'Đã xóa thành công!');
+    }
+
+    public function active($id)
+    {
+        try {
+            $banner = Banners::find($id);
+            $banner->status = 1;
+            $banner->save();
+            return response()->json([
+                'status' => true,
+                'code'=>200,
+                'message'=>'Đã thay đổi trạng thái thành công',
+            ])->setStatusCode(200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'code'=>500,
+                'message'=> $th,
+            ]);
+        }
+        
+    }
+    public function unactive($id)
+    {
+        try {
+            $banner = Banners::find($id);
+            $banner->status = 0;
+            $banner->save();
+            return response()->json([
+                'status' => true,
+                'code'=>200,
+                'message'=>'Đã thay đổi trạng thái thành công',
+            ])->setStatusCode(200);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'code'=>500,
+                'message'=> $th,
+            ]);
+        }
     }
 }

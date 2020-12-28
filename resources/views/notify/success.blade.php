@@ -1,11 +1,10 @@
 @if (session()->has('notification'))
 <script>
-    var notify="{{ session()->get('notification') }}";
-    // alert(notify);
+    var message="{{ session()->get('notification') }}";
     Swal.fire({
         position: 'top-end',
         icon: 'success',
-        title: notify,
+        title: message,
         showConfirmButton: false,
         timer: 1500
     })

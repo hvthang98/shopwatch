@@ -14,9 +14,10 @@ Chỉnh sửa banner
                     <div class="panel-body">
                         <div class="position-center">
                             <form role="form" method="post"
-                                action="{{ route('edit-banner',$banner->id) }}"
+                                action="{{ route('admin.banner.update',$banner->id) }}"
                                 enctype="multipart/form-data">
                                 @csrf
+                                @method('put')
                                 <div class="form-group">
                                     <label for="product">Tên Banner</label>
                                     <input type="text" name="edit_banner_name" class="form-control" id="banner"
