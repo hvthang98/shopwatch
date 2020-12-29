@@ -16,7 +16,7 @@
                         <span>Quản lý đơn hàng</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="{{ route('listBill') }}">Danh sách đơn hàng</a></li>
+                        <li><a href="{{ route('admin.bill.index') }}">Danh sách đơn hàng</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -66,8 +66,8 @@
                         <span>Quản lý thương hiệu</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="{{ route('addBrand') }}">Thêm thương hiệu mới</a></li>
-                        <li><a href="{{ route('listBrand') }}">Danh sách thương hiệu</a></li>
+                        <li><a href="{{ route('admin.brand.create') }}">Thêm thương hiệu mới</a></li>
+                        <li><a href="{{ route('admin.brand.index') }}">Danh sách thương hiệu</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -76,8 +76,8 @@
                         <span>Quản lý tin tức</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="{{ route('add-news') }}">Thêm tin tức mới</a></li>
-                        <li><a href="{{route('list-news')}}">Danh sách tin tức</a></li>
+                        <li><a href="{{ route('admin.news.create') }}">Thêm tin tức mới</a></li>
+                        <li><a href="{{route('admin.news.index')}}">Danh sách tin tức</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">

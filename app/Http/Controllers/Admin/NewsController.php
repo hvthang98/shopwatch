@@ -9,46 +9,36 @@ use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
-	public function add_new()
+	public function index()
 	{
-		return view('backend.page.new.add-new');
+		$news = News::orderBy('created_at', 'desc')->paginate(5);
+		return view('backend.page.news.list-new')->with('news', $news);
 	}
+
+	public function create()
+	{
+		return view('backend.page.news.add-new');
+	}
+
 	public function store(Request $request)
 	{
 		$request->validate(['title' => 'required', 'content' => 'required', 'image' => 'required']);
-		$path = $request->file('image')->store('news');
+		$path = $request->file('image')->storeAs('news',date('Y_m_d').'_'.$request->title);
 		$new = new News;
 		$new->title = $request->title;
 		$new->content = $request->content;
 		$new->status = $request->status;
 		$new->image = $path;
 		$new->save();
-		return redirect()->route('list-news')->with('notification', 'Đã thêm tin mới');
+		return redirect()->route('admin.news.index')->with('notification', 'Đã thêm tin mới');
 	}
-	public function all_new()
-	{
-		$news = News::orderBy('created_at', 'desc')->paginate(5);
-		return view('backend.page.new.list-new')->with('news', $news);
-	}
-	public function active($id)
-	{
-		$new = News::find($id);
-		$new->status = 1;
-		$new->save();
-		return redirect()->back();
-	}
-	public function unactive($id)
-	{
-		$new = News::find($id);
-		$new->status = 0;
-		$new->save();
-		return redirect()->back();
-	}
+	
 	public function edit($id)
 	{
 		$news = News::find($id);
-		return view('backend.page.new.edit-new')->with('news', $news);
+		return view('backend.page.news.edit-new')->with('news', $news);
 	}
+
 	public function update(Request $request, $id)
 	{
 		$news = News::find($id);
@@ -61,13 +51,55 @@ class NewsController extends Controller
 		$news->content = $request->content;
 		$news->status = $request->status;
 		$news->save();
-		return redirect()->route('list-news')->with('notification', 'Đã cập nhật thành công');
+		return redirect()->route('admin.news.index')->with('notification', 'Đã cập nhật thành công');
 	}
-	public function delete($id)
+
+	public function destroy($id)
 	{
 		$news = News::find($id);
 		Storage::delete($news->image);
 		$news->delete();
 		return redirect()->back()->with('notification', 'Đã xóa thành công');
+	}
+
+	public function active($id)
+	{
+		try {
+			$new = News::find($id);
+			$new->status = 1;
+			$new->save();
+			return response()->json([
+                'status' => true,
+                'code'=>200,
+                'message'=>'Đã thay đổi trạng thái thành công',
+            ])->setStatusCode(200);
+		} catch (\Throwable $th) {
+			return response()->json([
+                'status' => false,
+                'code'=>500,
+                'message'=> $th,
+            ]);
+		}
+		
+	}
+
+	public function unactive($id)
+	{
+		try{
+			$new = News::find($id);
+			$new->status = 0;
+			$new->save();
+			return response()->json([
+				'status' => true,
+				'code'=>200,
+				'message'=>'Đã thay đổi trạng thái thành công',
+			])->setStatusCode(200);
+		}catch(\Throwable $th){
+			return response()->json([
+                'status' => false,
+                'code'=>500,
+                'message'=> $th,
+            ]);
+		}
 	}
 }

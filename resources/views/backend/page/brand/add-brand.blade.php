@@ -14,7 +14,7 @@ Thêm thương hiệu mới
                 <div class="panel-body">
                     <div class="form">
                         <form class="cmxform form-horizontal " id="" method="post"
-                            action="{{ route('postBrand') }}">
+                            action="{{ route('admin.brand.store') }}">
                             @csrf
                             @include('error.Note')
                             <div class="form-group ">
@@ -46,7 +46,7 @@ Thêm thương hiệu mới
                             <div class="form-group">
                                 <div class="col-lg-offset-3 col-lg-6">
                                     <button class="btn btn-primary" type="submit">Lưu</button>
-                                    <a href="{{ route('addBrand') }}" onclick="loading()"><button
+                                    <a href="{{ route('admin.brand.create') }}" onclick="loading()"><button
                                             class="btn btn-default" type="button">Xóa</button>
                                     </a>
                                 </div>

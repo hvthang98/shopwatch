@@ -13,9 +13,12 @@ Chỉnh sửa thương hiệu
                 </header>
                 <div class="panel-body">
                     <div class="form">
-                        <form class="cmxform form-horizontal " id="" method="get"
-                            action="{{ route('updateBrand',$brand->id) }}">
+                        <form class="cmxform form-horizontal " id="" method="post"
+                            action="{{ route('admin.brand.update',$brand->id) }}">
                             @include('error.Note')
+                            @method('put')
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $brand->id }}">
                             <div class="form-group ">
                                 <label for="name" class="control-label col-lg-3">Tên thương hiệu mới</label>
 
@@ -52,7 +55,7 @@ Chỉnh sửa thương hiệu
                             <div class="form-group">
                                 <div class="col-lg-offset-3 col-lg-6">
                                     <button class="btn btn-primary" type="submit">Lưu</button>
-                                    <a href="{{ route('listBrand') }}" onclick="out()"><button
+                                    <a href="{{ route('admin.brand.index') }}" onclick="out()"><button
                                             class="btn btn-default" type="button">Thoát</button>
                                     </a>
                                 </div>

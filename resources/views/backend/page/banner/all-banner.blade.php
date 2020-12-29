@@ -84,20 +84,7 @@
         </div>
     </div>
     <script>
-        let id;
-        let destroy = document.querySelectorAll('.destroy');
-        if (destroy) {
-            Array.from(destroy).forEach(function(e){
-                e.addEventListener('click', function() {
-                    id = this.dataset.id;
-                });
-            })
-            
-            document.querySelector('#button-destroy').addEventListener('click', function() {
-                let api = '/admin/banner/' + id;
-                submitApi('#destroyBanner', api);
-            })
-        }
+        destroyItems('/admin/banner/','#destroyBanner');
         //active or unactive
         $('.itemsBanner').on('click','.btnUnactive',function(){
             let id=$(this).data('id');

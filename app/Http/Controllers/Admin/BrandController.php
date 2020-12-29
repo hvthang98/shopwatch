@@ -10,41 +10,46 @@ use App\Models\Brands;
 
 class BrandController extends Controller
 {
-    public function getAddBrand()
+    public function index()
+    {
+        $data['brands'] = Brands::paginate(10);
+        return view('backend.page.brand.list-brand', $data);
+    }
+
+    public function create()
     {
         return view('backend.page.brand.add-brand');
     }
-    public function postBrand(AddBrandRequest $request)
+
+    public function store(AddBrandRequest $request)
     {
         $table = new Brands;
         $table->name = $request->name;
         $table->info = $request->content;
         $table->status = $request->status;
         $table->save();
-        return redirect(route('listBrand'))->with('notification', 'Thêm thương hiệu thành công');
+        return redirect(route('admin.brand.index'))->with('notification', 'Thêm thương hiệu thành công');
     }
-    public function getListBrand()
-    {
-        $data['brands'] = Brands::paginate(10);
-        return view('backend.page.brand.list-brand', $data);
-    }
-    public function getEditBrand(Request $request)
+
+    public function edit(Request $request)
     {
         $data['brand'] = Brands::find($request->id);
         return view('backend.page.brand.edit-brand', $data);
     }
-    public function updateBrand(UpdateBrandRequest $request)
+
+    public function update(UpdateBrandRequest $request)
     {
         $table = Brands::find($request->id);
         $table->name = $request->name;
         $table->info = $request->content;
         $table->status = $request->status;
         $table->save();
-        return redirect(route('listBrand'))->with('notification', 'Cập nhật thông tin thương hiệu thành công');
+        return redirect(route('admin.brand.index'))->with('notification', 'Cập nhật thông tin thương hiệu thành công');
     }
-    public function delBrand(Request $request)
+
+    public function destroy(Request $request)
     {
         Brands::find($request->id)->delete();
-        return redirect(route('listBrand'))->with('notification', 'Xóa thương hiệu thành công');
+        return redirect(route('admin.brand.index'))->with('notification', 'Xóa thương hiệu thành công');
     }
 }

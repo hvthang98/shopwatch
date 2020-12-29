@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\Http\Request;
 class UpdateBrandRequest extends FormRequest
 {
     /**
@@ -21,10 +21,11 @@ class UpdateBrandRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(Request $req)
     {
         return [
-            'name'=>'unique:brands,name,'.$this->segment(4).',id'
+            // 'name'=>'unique:brands,name,'.$this->segment(3).',id'
+            'name'=>'unique:brands,name,'.$req->id.',id'
         ];
     }
     public function messages()

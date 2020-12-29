@@ -9,15 +9,16 @@ Chỉnh sửa tin tức
             <div class="col-lg-12">
                 <section class="panel">
                     <div>
-                        <a href="{{ route('list-news') }}" class="black"><i class="fa fa-arrow-circle-left"></i><span> Thoát</span></a>
+                        <a href="{{ route('admin.news.index') }}" class="black"><i class="fa fa-arrow-circle-left"></i><span> Thoát</span></a>
                     </div>
                     <header class="panel-heading">
                         Chỉnh sửa tin tức
                     </header>
                     <div class="panel-body">
                         <div class="position-center">
-                                <form role="form" method="post" action="{{ route('update-news',$news->id) }}" enctype="multipart/form-data">
+                                <form role="form" method="post" action="{{ route('admin.news.update',$news->id) }}" enctype="multipart/form-data">
                                     @csrf
+                                    @method('put')
                                     <div class="form-group">
                                         <label for="product">Tiêu đề tin tức</label>
                                         <input type="text" name="title" class="form-control" id="banner"

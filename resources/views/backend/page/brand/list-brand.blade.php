@@ -64,11 +64,11 @@ Danh sách thương hiệu
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('editBrand',$brand->id) }}" class="a-icon"
+                                    <a href="{{ route('admin.brand.edit',$brand->id) }}" class="a-icon"
                                         title="Chỉnh sửa">
                                         <i class="fa fa-pencil-square-o style-icon"></i>
                                     </a>
-                                    <a href="{{ route('deleteBrand',$brand->id) }}" class="a-icon" title="Xóa" onclick="loading()">
+                                    <a class="a-icon destroy" data-toggle="modal" data-target="#destroyBrand" title="Xóa" data-id="{{ $brand->id }}">
                                         <i class="fa fa-times style-icon"></i>
                                     </a>
                                 </td>
@@ -86,9 +86,32 @@ Danh sách thương hiệu
         </div>
     </div>
 </div>
-@endsection
-@section('js')
-@if(session()->has('notification'))
-    @include('notify.note')
-@endif
+<!-- Modal -->
+<div class="modal fade" id="destroyBrand" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Xóa thương hiệu</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" id="formDestroyBanner" method="post">
+                    @csrf
+                    @method('DELETE')
+                </form>
+                <p>Bạn có chắc chắn xóa thương hiệu này?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+                <button type="button" class="btn btn-danger" id="button-destroy">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    destroyItems('/admin/brand/','#destroyBrand');
+</script>
 @endsection

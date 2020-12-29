@@ -56,15 +56,12 @@ Danh sách sản phẩm
                     </thead>
                     <tbody>
                         @php
-                            $i=$products->firstItem()-1;
+                            $i=$products->firstItem();
                         @endphp
                         @foreach($products as $product)
-                            @php
-                                $i++;
-                            @endphp
                             <tr>
                                 
-                                <td>{{ $i }}</td>
+                                <td>{{ $i++ }}</td>
                                 <td>{{ $product->name }}</td>
                                 <td>{{ number_format($product->price) }}</td>
                                 <td>{{ number_format($product->sellprice) }}</td>
@@ -114,7 +111,4 @@ Danh sách sản phẩm
         </div>
     </div>
 </div>
-@endsection
-@section('js')
-@include('notify.note');
 @endsection

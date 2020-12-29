@@ -57,15 +57,7 @@
     <script src="backend/js/jquery.slimscroll.js"></script>
     <script src="backend/js/jquery.nicescroll.js"></script>
     <script src="backend/js/jquery.scrollTo.js"></script>
-    <!--javascrip-->
-    <script>
-        function questionLoading(mes) {
-            if (confirm(mes) == false) {
-                event.preventDefault();
-            }
-        }
 
-    </script>
     @if (session()->has('notification'))
         @include('notify.success')
     @endif

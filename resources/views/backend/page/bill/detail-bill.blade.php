@@ -129,7 +129,8 @@ Chi tiết đơn hàng #{{ $bills->id  }}
                 <header class="panel-heading wht-bg">
                     <h5 class="gen-case">Tùy chọn trạng thái đơn hàng</h5>
                 </header>
-                <form action="{{ route('updateBill',$bills->id) }}" method="post">
+                <form action="{{ route('admin.bill.update',$bills->id) }}" method="post">
+                    @method('patch')
                     @csrf
                     <select class="form-control m-bot15" name="status">
                         <option selected value="0" <?php if($bills->status==0) echo 'selected' ?>>Chưa sử lý</option>

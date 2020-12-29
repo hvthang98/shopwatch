@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Products;
 
 // Route backend
+/**
+ * sign in or login
+ */
 Route::get('admin-login', 'Admin\HomeController@adminlogin');
 Route::post('admin-login', 'Admin\HomeController@postadminlogin')->name('postadminlogin');
 Route::get('admin-logout', 'Admin\HomeController@logout')->name('adminlogout');
@@ -18,6 +21,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
 
     /**
       * Category
+      *
     */
     Route::group(['prefix' => 'category'], function () {
         Route::get('add-category', 'CategoryController@add_category')->name('add-category');
@@ -32,7 +36,11 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
         Route::post('store-brand','CategoryController@storeBrand')->name('store-brand');
         Route::get('del-brand-cate/{idCate}/{idBrand}','CategoryController@deleteBrand')->name('delBrandCate');
     });
-    //Banner
+
+    /**
+      * Banner
+
+    */
     Route::resource('banner', 'BannerController')->names('admin.banner')->parameters([
         'banner'=>'id',
     ])->except('show');
@@ -58,6 +66,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
 
     /**
      * Product
+     * 
      */
     Route::group(['prefix' => 'product'], function () {
         // add product
@@ -81,34 +90,37 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
         Route::get('change-avatar/{image_id}/{products_id}', 'ImageProductController@changeAvatar')->name('changeAvatar');
     });
 
-    // brand: add, edit/update , delete
-    Route::group(['prefix' => 'brand'], function () {
-        Route::get('add', 'BrandController@getAddBrand')->name('addBrand');
-        Route::post('post', 'BrandController@postBrand')->name('postBrand');
-        Route::get('list', 'BrandController@getListBrand')->name('listBrand');
-        Route::get('edit/{id}', 'BrandController@getEditBrand')->name('editBrand');
-        Route::get('update/{id}', 'BrandController@updateBrand')->name('updateBrand');
-        Route::get('delete/{id}', 'BrandController@delBrand')->name('deleteBrand');
-    });
-    // bill
-    Route::group(['prefix' => 'bill'], function () {
-        Route::get('list', 'BillController@getListBill')->name('listBill');
-        Route::get('detail/{id}', 'BillController@getDetailBill')->name('detailBill');
-        Route::post('update/{id}', 'BillController@updateBill')->name('updateBill');
-        Route::get('deletebill/{id}','BillController@delete')->name('deleteBill');
-    });
-    //News
-    Route::group(['prefix'=>'new'],function(){
-        Route::get('add-new','NewsController@add_new')->name('add-news');
-        Route::post('add-new','NewsController@store')->name('post-new');
-        Route::get('all-new','NewsController@all_new')->name('list-news');
-        Route::get('active/{id}','NewsController@active')->name('active');
-        Route::get('unactive/{id}','NewsController@unactive')->name('un-active');
-        Route::get('edit-new/{id}','NewsController@edit')->name('edit');
-        Route::post('edit-new/{id}','NewsController@update')->name('update-news');
-        Route::get('delete/{id}','NewsController@delete')->name('delete');
+    /**
+     * Brand of product
+     * 
+     */
+    Route::resource('brand', 'BrandController')->names('admin.brand')->parameters([
+        'brand'=>'id',
+    ])->except('show');
 
+    /**
+     * Bill
+     * 
+     */
+    Route::resource('bill', 'BillController')->names('admin.bill')->parameters([
+        'bill'=>'id',
+    ])->except('edit','create','store');
+
+    /**
+     * News
+     * 
+     */
+    Route::resource('news', 'NewsController')->names('admin.news')->parameters([
+        'news'=>'id'
+    ])->except('show');
+    Route::group(['prefix'=>'news'],function(){
+        Route::get('active/{id}','NewsController@active')->name('admin.news.active');
+        Route::get('unactive/{id}','NewsController@unactive')->name('admin.news.unactive');
     });
+
+    /**
+     * contact
+     */
     Route::get('all-contact','ContactController@all_contact')->name('all-contact');
     Route::get('/delete-con-{id}','ContactController@delete_contact')->name('delete-contact');
     Route::get('reply-contact','ContactController@reply_contact')->name('reply-contact');

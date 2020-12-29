@@ -11,7 +11,7 @@ Thêm tin tức mới
             </header>
             <div class="panel-body">
                 <div class="position-center">
-                    <form role="form" action="{{ route('post-new') }}" method="post"
+                    <form role="form" action="{{ route('admin.news.store') }}" method="post"
                         enctype="multipart/form-data">
                         @csrf
                         @if(count($errors->all())>0)
@@ -28,7 +28,7 @@ Thêm tin tức mới
                         </div>
                         <div>
                             <label for="mota">Hình ảnh đại diện</label>
-                            <input type="file" name="image">
+                            <input type="file" name="image" required>
 
                         </div>
                         <div class="form-group">
