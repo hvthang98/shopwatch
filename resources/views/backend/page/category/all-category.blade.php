@@ -8,6 +8,9 @@
 </style>
 <div class="table-agile-info">
     <div class="panel panel-default">
+        <div>
+            <a class="btn btn-primary" href="{{ route('admin.category.create') }}" role="button">Thêm danh mục sản phẩm</a>    
+        </div>
         <div class="panel-heading">
             Danh mục Menu
         </div>
@@ -29,7 +32,7 @@
             </tr>
 
             @foreach($categories as $cat)
-                <tr>
+                <tr class="itemsCategory">
                     <td>{{ $stt++ }}</td>
                     <td>
                         {{ $cat->name }}
@@ -46,34 +49,29 @@
                     <td>
                         {{ $cat->ordernum }}
                     </td>
-                    <td>
+                    <td id="status{{ $cat->id }}">
                         @if($cat->status==0)
                             <a
-                                href="{{ route('active-category',['id'=>$cat->id]) }}">Ẩn</a>
+                                <button class="btn btn-danger btnUnactive" type="button" data-id="{{ $cat->id }}">Ẩn</button>
                         @else
-                            <a
-                                href="{{ route('unactive-category',['id'=>$cat->id]) }}">Hiện</a>
+                            <button class="btn btn-success btnActive" type="button" data-id="{{ $cat->id }}">Hiện</button>
                         @endif
                     </td>
                     <td>
                         <a
-                            href="{{ route('edit-category',['id'=>$cat->id]) }}"><i
+                            href="{{ route('admin.category.edit',['id'=>$cat->id]) }}"><i
                                 style="font-size: 20px" class="fa fa-pencil text-success text-active"></i></a>
-                        <a href="{{ route('delete-category',['id'=>$cat->id]) }}"
-                            onclick="return confirm('Bạn có chắc chắn muốn xóa ?');"><i class="fa fa-trash-o"
-                                style="font-size:24px"></i></a>
+                        <a data-toggle="modal" data-target="#destroyCategory" data-id="{{ $cat->id }}" class="destroy" ><i class="fa fa-trash-o" style="font-size:24px"></i></a>
                     </td>
                 </tr>
             @endforeach
         </table>
-
     </div>
     <div>
         <div class="panel-heading">
             Thêm thương hiệu cho menu
         </div>
-
-        <form action="{{ route('store-brand') }}" method="POST">
+        <form action="{{ route('admin.category.storeBrand') }}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="my-input">Tên category</label>
@@ -99,7 +97,90 @@
         </form>
     </div>
 </div>
-@if(session()->has('notification'))
-    @include('notify.note')
-@endif
+<!-- Modal -->
+<div class="modal fade" id="destroyCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Xóa banner</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form action="" method="post">
+                @csrf
+                @method('DELETE')
+            </form>
+            <p>Bạn có chắc chắn xóa banner này?</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+            <button type="button" class="btn btn-danger" id="button-destroy">Xóa</button>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+destroyItems('/admin/category/','#destroyCategory');
+//active or unactive
+$('.itemsCategory').on('click','.btnUnactive',function(){
+    let id=$(this).data('id');
+    let url='/admin/category/active/'+id;
+    $.get(url,function(data,status){
+        if(data.status==true){
+            let elementStatus=$('#status'+id);
+            elementStatus.html(`<button class="btn btn-success btnActive" type="button" data-id="${id}">Hiện</button>`);
+            Swal.fire({
+                position: 'top-end',
+                width: 600,
+                icon: 'success',
+                title: data.message,
+                showConfirmButton: false,
+                timer: 800
+            })
+        }
+        else{
+            Swal.fire({
+                position: 'top-end',
+                width: 600,
+                icon: 'error',
+                title: 'Lỗi server',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+        
+    })
+})
+$('.itemsCategory').on('click','.btnActive',function(){
+    let id=this.dataset.id;
+    let url='/admin/category/unactive/'+id;
+    $.get(url,function(data,status){
+        if(data.status==true){
+            let elementStatus=$('#status'+id);
+            elementStatus.html(`<button class="btn btn-danger btnUnactive" type="button" data-id="${id}">Ẩn</button>`);
+            Swal.fire({
+                position: 'top-end',
+                width: 600,
+                icon: 'success',
+                title: data.message,
+                showConfirmButton: false,
+                timer: 800
+            })
+        }
+        else{
+            Swal.fire({
+                position: 'top-end',
+                width: 600,
+                icon: 'error',
+                title: 'Lỗi server',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+    })
+})
+</script>
 @endsection

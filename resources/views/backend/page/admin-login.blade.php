@@ -38,7 +38,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="log-w3">
         <div class="w3layouts-main">
             <h2>Đăng nhập</h2>
-            <form action="{{ route('postadminlogin') }}" method="post">
+            <form action="{{ route('admin.login.isLogin') }}" method="post">
                 @csrf
                 @if (isset($tb))
                     <div><strong style="color: red;font-weight: italic;text-align: center">{{ $tb }}</strong></div>

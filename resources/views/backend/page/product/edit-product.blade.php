@@ -9,7 +9,7 @@ Chỉnh sửa sản phẩm
         <div class="col-lg-12">
             <section class="panel">
                 <div>
-                    <a href="{{ route('listProduct') }}" class="black"><i class="fa fa-arrow-circle-left"></i><span> Thoát</span></a>
+                    <a href="{{ route('admin.product.index') }}" class="black"><i class="fa fa-arrow-circle-left"></i><span> Thoát</span></a>
                 </div>
                 <header class="panel-heading">
                     thông tin sản phẩm
@@ -19,9 +19,11 @@ Chỉnh sửa sản phẩm
                 </header>
                 <div class="panel-body">
                     <div class="form">
-                        <form class="cmxform form-horizontal " id="" method="get"
-                            action="{{ route('updateProduct',$product->id) }}"
+                        <form class="cmxform form-horizontal"method="post"
+                            action="{{ route('admin.product.update',$product->id) }}"
                             novalidate="novalidate" enctype="multipart/form-data">
+                            @csrf
+                            @method('put')
                             <div class="form-group ">
                                 <label for="name" class="control-label col-lg-3">Tên sản phẩm</label>
                                 <div class="col-lg-6">
@@ -132,7 +134,7 @@ Chỉnh sửa sản phẩm
                             <div class="form-group">
                                 <div class="col-lg-offset-3 col-lg-6">
                                     <button class="btn btn-primary" type="submit">Lưu</button>
-                                    <a href="{{ route('editProduct',$product->id) }}"><button
+                                    <a href="{{ route('admin.product.edit',$product->id) }}"><button
                                             class="btn btn-default" type="button" onclick="loading()">Đặt
                                             lại</button>
                                     </a>
@@ -189,9 +191,6 @@ Chỉnh sửa sản phẩm
     </div>
     <!-- page end-->
 </div>
-@if(session()->has('notification'))
-    @include('notify.note');
-@endif
 <script>
     CKEDITOR.replace('content');
     //add infor

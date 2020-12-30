@@ -2,7 +2,7 @@
 <header class="header fixed-top clearfix">
     <!--logo start-->
     <div class="brand">
-        <a href="{{ route('dashboard') }}" class="logo">
+        <a href="{{ route('admin.dashboard.index') }}" class="logo">
             LEO SHOP
         </a>
         <div class="sidebar-toggle-box">
@@ -185,9 +185,9 @@
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">
-                        <li><a href="{{ route('getDetailUser',Auth::user()->id) }}"><i class="fa fa-suitcase"></i>Thông tin cá nhân</a></li>
-                        <li><a href="{{ route('getChangePW',Auth::user()->id) }}"><i class="fa fa-key"></i>Đổi mật khẩu</a></li>
-                        <li><a href="{{ route('adminlogout') }}"><i class="fa fa-power-off"></i>Đăng xuất</a></li>
+                        <li><a href="{{ route('admin.user.show',Auth::user()->id) }}"><i class="fa fa-suitcase"></i>Thông tin cá nhân</a></li>
+                        <li><a href="{{ route('admin.user.changePassword',Auth::user()->id) }}"><i class="fa fa-key"></i>Đổi mật khẩu</a></li>
+                        <li><a href="{{ route('admin.logout') }}"><i class="fa fa-power-off"></i>Đăng xuất</a></li>
                     </ul>
                 </li>
             @endif

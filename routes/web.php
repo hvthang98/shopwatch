@@ -5,41 +5,39 @@ use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Products;
 
-// Route backend
 /**
  * sign in or login
  */
-Route::get('admin-login', 'Admin\HomeController@adminlogin');
-Route::post('admin-login', 'Admin\HomeController@postadminlogin')->name('postadminlogin');
-Route::get('admin-logout', 'Admin\HomeController@logout')->name('adminlogout');
+Route::get('admin-login', 'Admin\HomeController@login');
+Route::post('admin-login', 'Admin\HomeController@isLogin')->name('admin.login.isLogin');
+Route::get('admin-logout', 'Admin\HomeController@logout')->name('admin.logout');
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'adminlogin'], function () {
-    Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('/', function () {
-        return redirect(route('dashboard'));
+        return redirect(route('admin.dashboard.index'));
     });
+    /**
+     * Dashboard
+     */
+    Route::get('dashboard', 'DashboardController@index')->name('admin.dashboard.index');
 
     /**
       * Category
       *
     */
+    Route::resource('category', 'CategoryController')->names('admin.category')->parameters([
+        'category'=>'id',
+    ])->except('show');
     Route::group(['prefix' => 'category'], function () {
-        Route::get('add-category', 'CategoryController@add_category')->name('add-category');
-        Route::post('add-category', 'CategoryController@post_add_category')->name('post-add-category');
-        Route::get('all-category', 'CategoryController@all_category')->name('all-category');
-        Route::get('/edit-category/{id}', 'CategoryController@edit_category')->name('edit-category');
-        Route::post('edit-category/{id}', 'CategoryController@post_edit_category')->name('post-edit-category');
-        Route::get('delete-category/{id}', 'CategoryController@delete_category')->name('delete-category');
-        Route::get('active/{id}', 'CategoryController@active_category')->name('active-category');
-        Route::get('unactive/{id}', 'CategoryController@unactive_category')->name('unactive-category');
-        //brand
-        Route::post('store-brand','CategoryController@storeBrand')->name('store-brand');
-        Route::get('del-brand-cate/{idCate}/{idBrand}','CategoryController@deleteBrand')->name('delBrandCate');
+        Route::get('active/{id}', 'CategoryController@active')->name('admin.category.active');
+        Route::get('unactive/{id}', 'CategoryController@unactive')->name('admin.category.unactive');
+        
+        Route::post('store-brand','CategoryController@storeBrand')->name('admin.category.storeBrand');
+        Route::get('del-brand-cate/{id}','CategoryController@deleteBrand')->name('admin.category.deleteBrand');
     });
 
     /**
       * Banner
-
     */
     Route::resource('banner', 'BannerController')->names('admin.banner')->parameters([
         'banner'=>'id',
@@ -49,45 +47,37 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
         Route::get('/unactive/{id}', 'BannerController@unactive')->name('admin.banner.unactive');
     });
 
-    //User
+    /**
+     * User
+     */
+    Route::resource('user', 'UserController')->names('admin.user')->parameters([
+        'user' =>'id'
+    ]);
     Route::group(['prefix' => 'user'], function () {
-        Route::get('add-user', 'UserController@add_user')->name('add-user');
-        Route::post('add-user', 'UserController@post_add_user')->name('post-add-user');
-        Route::get('all-user', 'UserController@all_user')->name('all-user');
-        Route::get('active-admin/{id}', 'UserController@active_admin')->name('active-admin');
-        Route::get('unactive-admin/{id}', 'UserController@unactive_admin')->name('unactive-admin');
-        Route::get('edit-user/{id}', 'UserController@edit_user')->name('edit-user');
-        Route::post('post-edit-user/{id}', 'UserController@post_edit_user')->name('post-edit-user');
-        Route::get('delete-user/{id}', 'UserController@delete_user')->name('deleteUser');
+        Route::get('active/{id}', 'UserController@active')->name('admin.user.active');
+        Route::get('unactive/{id}', 'UserController@unactive')->name('admin.user.unactive');
     });
-    Route::get('detail-user/{id}','UserController@getDetailUser')->name('getDetailUser');
-    Route::get('change-password/{id}','UserController@getChangePassword')->name('getChangePW');
-    Route::post('post-change-pw','UserController@postChangePassword')->name('postChangePW');
+    Route::get('change-password/{id}','UserController@changePassword')->name('admin.user.changePassword');
+    Route::post('post-change-pw','UserController@updatePassword')->name('admin.user.updatePassword');
 
     /**
      * Product
      * 
      */
+    Route::resource('product', 'ProductController')->names('admin.product')->parameters([
+        'product'=>'id',
+    ])->except('show');
+
     Route::group(['prefix' => 'product'], function () {
-        // add product
-        Route::get('add', 'ProductController@getAddProduct')->name('addProduct');
-        Route::post('post-product', 'ProductController@postProduct')->name('postProduct');
-
-        //show list product
-        Route::get('list-product', 'ProductController@getListProduct')->name('listProduct');
-        Route::get('edit-product/{id}', 'ProductController@getEditProduct')->name('editProduct');
-        Route::get('del-product/{id}', 'ProductController@delProduct')->name('delProduct');
-        Route::get('update-product/{id}', 'ProductController@updateProduct')->name('updateProduct');
         Route::get('store-infor', 'ProductController@updateInfoProduct')->name('updateInfoProduct');
+    });
 
-        //edit image product
-        Route::get('image-product/{id}', 'ImageProductController@index')->name('imageProduct');
-        Route::post('add-image-product/{id}', 'ImageProductController@store')->name('addImageProduct');
-        Route::get('del-image-product/{id}', 'ImageProductController@delete')->name('delImageProduct');
-        Route::get('update-image-product/{id}/{status}', 'ImageProductController@update')->name('updateImageProduct');
-
-        //change avatar
-        Route::get('change-avatar/{image_id}/{products_id}', 'ImageProductController@changeAvatar')->name('changeAvatar');
+    Route::group(['prefix' => 'image-product'], function () {
+        Route::get('/{id}', 'ImageProductController@index')->name('admin.imageProduct.index');
+        Route::post('/{id}', 'ImageProductController@store')->name('admin.imageProduct.store');
+        Route::delete('/{id}', 'ImageProductController@destroy')->name('admin.imageProduct.destroy');
+        Route::get('update-image-product/{id}/{status}', 'ImageProductController@update')->name('admin.imageProduct.changeAvatar');
+        Route::get('change-avatar/{image_id}/{products_id}', 'ImageProductController@changeAvatar')->name('admin.imageProduct.changeAvatar');
     });
 
     /**
@@ -121,10 +111,12 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
     /**
      * contact
      */
-    Route::get('all-contact','ContactController@all_contact')->name('all-contact');
-    Route::get('/delete-con-{id}','ContactController@delete_contact')->name('delete-contact');
-    Route::get('reply-contact','ContactController@reply_contact')->name('reply-contact');
-    //Seach
+    Route::resource('contact', 'ContactController')->names('admin.contact')->parameters(['contact'=>'id'])->only('index','destroy');
+    Route::get('reply-contact','ContactController@reply')->name('admin.contact.reply');
+    
+    /**
+     * seach
+     */
     Route::group(['prefix' => 'seach'], function () {
         Route::get('bill','SeachController@getBill')->name('seachBill');
         Route::get('products','SeachController@getProducts')->name('seachProducts');

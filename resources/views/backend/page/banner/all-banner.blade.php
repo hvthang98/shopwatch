@@ -37,10 +37,8 @@
                         <td><img src="../storage/{{ $ban->image }}" width="100" height="100"></td>
                         <td id="status{{ $ban->id }}">
                             @if ($ban->status == 0)
-                                {{--  <a href="{{ route('admin.banner.active', ['id' => $ban->id]) }}">Ẩn</a>  --}}
                                 <button class="btn btn-danger btnUnactive" type="button" data-id="{{ $ban->id }}">Ẩn</button>
                             @elseif($ban->status==1)
-                                {{--  <a href="{{ route('admin.banner.unactive', ['id' => $ban->id]) }}">Hiện</a>  --}}
                                 <button class="btn btn-success btnActive" type="button" data-id="{{ $ban->id }}">Hiện</button>
                             @endif
                         </td>

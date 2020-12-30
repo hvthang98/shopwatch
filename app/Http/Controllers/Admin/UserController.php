@@ -11,13 +11,12 @@ use App\User;
 
 class UserController extends Controller
 {
-	function add_user()
+	public function create()
 	{
 		return view('backend.page.user.add-user');
 	}
-	function post_add_user(UserRequest $request)
+	public function store(UserRequest $request)
 	{
-
 		$email = $request->email;
 		$pass = bcrypt($request->pass);
 		$name = $request->name;
@@ -35,66 +34,65 @@ class UserController extends Controller
 		$user->address = $address;
 		$user->level = $level;
 		$user->save();
-		return redirect('admin/user/all-user')->with(['notification' => 'Đã thêm mới thành công']);
+		return redirect()->route('admin.user.index')->with(['notification' => 'Đã thêm mới thành công']);
 	}
-	function all_user()
+	public function index()
 	{
 		$users = User::paginate(5);
 		return view('backend.page.user.all-user', ['users' => $users]);
 	}
-	function edit_user($id)
+	public function edit($id)
 	{
 		$user = User::where('id', $id)->get();
 
 		return view('backend.page.user.edit-user', ['user' => $user]);
 	}
-	function post_edit_user(UserRequest $request, $id)
+	public function update(UserRequest $request, $id)
 	{
 		$data = $request->all();
 		$user = User::find($id);
 		$user->email = $data['email'];
-		//$user->password=bcrypt($data['pass']);
 		$user->name = $data['name'];
 		$user->birthday = $data['birthday'];
 		$user->phone_number = $data['phonenumber'];
 		$user->address = $data['address'];
 		$user->level = $data['level'];
 		$user->save();
-		return redirect('admin/user/all-user')->with(['notification' => 'Đã cập nhật người dùng thành công']);
+		return redirect()->route('admin.user.index')->with(['notification' => 'Đã cập nhật người dùng thành công']);
 	}
-	function active_admin($id)
+	public function active($id)
 	{
 		$user = User::find($id);
 		$user->level = 1;
 		$user->save();
 		return redirect()->back();
 	}
-	function unactive_admin($id)
+	public function unactive($id)
 	{
 		$user = User::find($id);
 		$user->level = 0;
 		$user->save();
 		return redirect()->back();
 	}
-	function delete_user($id)
+	public function destroy($id)
 	{
 		User::find($id)->delete();
-		return redirect('admin/user/all-user')->with(['notification' => 'Đã xóa thành công']);
+		return redirect()->route('admin.user.index')->with(['notification' => 'Đã xóa thành công']);
 	}
-	public function getDetailUser(Request $request)
+	public function show(Request $request)
 	{
 		$data['user'] = User::find($request->id);
 		return view('backend.page.user.infor-user', $data);
 	}
-	public function getChangePassword(Request $request)
+	public function changePassword(Request $request)
 	{
 		return view('backend.page.user.change-pw-user');
 	}
-	public function postChangePassword(UserChangePW $request)
+	public function updatePassword(UserChangePW $request)
 	{
 		$user = User::find(Auth::user()->id);
 		$user->password = bcrypt($request->password);
 		$user->save();
-		return redirect(route('dashboard'))->with('notification', 'Đã thay đổi mật khẩu thành công');
+		return redirect()->route('admin.dashboard.index')->with('notification', 'Đã thay đổi mật khẩu thành công');
 	}
 }

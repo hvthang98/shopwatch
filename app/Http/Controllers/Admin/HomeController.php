@@ -10,11 +10,12 @@ use App\Models\Bills;
 use App\User;
 class HomeController extends Controller
 {
-	function adminlogin()
+	function login()
 	{
 		return view('backend.page.admin-login');
 	}
-	function postadminlogin(LoginRequest $request)
+
+	function isLogin(LoginRequest $request)
 	{
 		
 		$mail = $request->Email;

@@ -18,7 +18,7 @@ Thêm sản phẩm mới
                             @include('error.Note')
                         @endif
                         <form class="cmxform form-horizontal " id="" method="POST"
-                            action=" {{ route('postProduct') }} " enctype="multipart/form-data">
+                            action=" {{ route('admin.product.store') }} " enctype="multipart/form-data">
                             @csrf
                             <div class="form-group ">
                                 <label for="name" class="control-label col-lg-3">Tên sản phẩm</label>
@@ -120,7 +120,7 @@ Thêm sản phẩm mới
                             <div class="form-group">
                                 <div class="col-lg-offset-3 col-lg-6">
                                     <button class="btn btn-primary" type="submit">Lưu</button>
-                                    <a href="{{ route('addProduct') }}"><button
+                                    <a href="{{ route('admin.product.create') }}"><button
                                             class="btn btn-default" type="button" onclick="loading()">Xóa</button>
                                     </a>
                                 </div>
@@ -149,5 +149,4 @@ Thêm sản phẩm mới
     });
 
 </script>
-@include('notify.note');
 @endsection

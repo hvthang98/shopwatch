@@ -5,7 +5,7 @@
         <div class="leftside-navigation">
             <ul class="sidebar-menu" id="nav-accordion">
                 <li>
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('admin.dashboard.index') }}">
                         <i class="fa fa-dashboard"></i>
                         <span>Dashboard</span>
                     </a>
@@ -25,8 +25,8 @@
                         <span>Quản lý danh mục sản phẩm</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="{{ route('add-category') }}">Thêm danh mục sản phẩm</a></li>
-                        <li><a href="{{ route('all-category') }}">Danh sách danh mục sản phẩm</a></li>
+                        <li><a href="{{ route('admin.category.create') }}">Thêm danh mục sản phẩm</a></li>
+                        <li><a href="{{ route('admin.category.index') }}">Danh sách danh mục sản phẩm</a></li>
                     </ul>
                 </li>
 
@@ -36,8 +36,8 @@
                         <span>Quản lý sản phẩm</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="{{ route('addProduct') }}">Thêm sản phẩm mới</a></li>
-                        <li><a href="{{ route('listProduct') }}">Danh sách sản phẩm</a></li>
+                        <li><a href="{{ route('admin.product.create') }}">Thêm sản phẩm mới</a></li>
+                        <li><a href="{{ route('admin.product.index') }}">Danh sách sản phẩm</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -46,8 +46,8 @@
                         <span>Quản lý người dùng</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="{{ route('add-user') }}">Thêm người dùng</a></li>
-                        <li><a href="{{ route('all-user') }}">Danh sách người dùng</a></li>
+                        <li><a href="{{ route('admin.user.create') }}">Thêm người dùng</a></li>
+                        <li><a href="{{ route('admin.user.index') }}">Danh sách người dùng</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -86,12 +86,11 @@
                         <span>Quản lý liên hệ</span>
                         </a>
                     <ul class="sub">
-                        <li><a href="{{route('all-contact')}}">Danh sách liên hệ</a></li>
-
+                        <li><a href="{{route('admin.contact.index')}}">Danh sách liên hệ</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href=" {{ route('adminlogout') }} ">
+                    <a href=" {{ route('admin.logout') }} ">
                         <i class="fa fa-power-off"></i>
                         <span>Đăng xuất</span>
                     </a>

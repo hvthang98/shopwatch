@@ -4,7 +4,7 @@
     <div class="col-lg-12">
         <section class="panel">
             <div>
-                <a href="{{ route('all-category') }}" class="black"><i
+                <a href="{{ route('admin.category.index') }}" class="black"><i
                         class="fa fa-arrow-circle-left"></i><span> Thoát</span></a>
             </div>
             <header class="panel-heading">
@@ -12,9 +12,10 @@
             </header>
             <div class="panel-body">
                 <div class="position-center">
-                    <form role="form" action="{{ route('post-edit-category',$category->id) }}"
+                    <form role="form" action="{{ route('admin.category.update',$category->id) }}"
                         method="post">
                         @csrf
+                        @method('put')
                         @if(count($errors->all())>0)
                             <div>
                                 <h4 align="center" style="color: red">Thông tin không hợp lệ</h4>
@@ -55,7 +56,7 @@
                         <div class="form-group">
                             <div class="col-lg-offset-3 col-lg-6">
                                 <button class="btn btn-info" type="submit">Cập nhật danh mục</button>
-                                <a href="{{ route('edit-category',$category->id) }}"><button
+                                <a href="{{ route('admin.category.edit',$category->id) }}"><button
                                         class="btn btn-default" type="button" onclick="loading()">Xóa</button>
                                 </a>
                             </div>
@@ -74,7 +75,7 @@
                                 <tr>
                                     <td>{{ $item->brand->name }}</td>
                                     <td>
-                                        <a href="{{ route('delBrandCate',[$category->id,$item->id]) }}"
+                                        <a href="{{ route('admin.category.deleteBrand',[$item->id]) }}"
                                             onclick="return confirm('Bạn có chắc chắn muốn xóa ?');"><i
                                                 class="fa fa-trash-o" style="font-size:24px"></i></a>
                                     </td>

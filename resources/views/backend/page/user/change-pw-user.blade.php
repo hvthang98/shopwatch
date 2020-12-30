@@ -123,14 +123,8 @@
             color: grey;
         }
 
-        /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
-        <blade media|%20(max-width%3A%20800px)%20%7B%0D>.row {
-            flex-direction: column-reverse;
-        }
-
         .col-25 {
             margin-bottom: 20px;
-        }
         }
 
         h3 {
@@ -155,28 +149,29 @@
         <div class="col-75">
             <div class="container">
                 <div class="row">
-                    @if(count($errors)>0)
+                    @if (count($errors) > 0)
                         <div>
                             <strong style="color: red">{{ $errors->first() }}</strong>
                         </div>
                     @endif
-                    <form action="{{ route('postChangePW') }}" method="POST">
+                    <form action="{{ route('admin.user.updatePassword') }}" method="POST">
                         @csrf
                         <div class="col-50">
                             <h3>Thay đổi mật khẩu</h3>
                             <label></i>Mật khẩu cũ</label>
-                            <input type="password" id="fname" name="current_password">
+                            <input type="password" id="fname" name="current_password" required>
                             <label></i>Mật khẩu mới</label>
-                            <input type="password" id="pw_new" name="password">
+                            <input type="password" id="pw_new" name="password" required>
                             <label></i>Nhập lại mật khẩu</label>
-                            <input type="password" id="pw_confir" name="password_confirmation">
+                            <input type="password" id="pw_confir" name="password_confirmation" required>
                             <input type="submit" name="submit" value="Lưu">
-                            <button><a href="{{ route('dashboard') }}">Quay lại trang chủ</a></button>
+                            <button><a href="{{ route('admin.dashboard.index') }}">Quay lại trang chủ</a></button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+    </div>
 </body>
 
 </html>

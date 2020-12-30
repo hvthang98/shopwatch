@@ -1,15 +1,3 @@
-function submitApi(idModalDestroy, api) {
-    let form = document.querySelector(idModalDestroy).querySelector('form');
-    form.action = api;
-    form.submit();
-}
-
-function questionLoading(mes) {
-    if (confirm(mes) == false) {
-        event.preventDefault();
-    }
-}
-
 function destroyItems(url, idModal) {
     let id;
     let destroy = document.querySelectorAll('.destroy');

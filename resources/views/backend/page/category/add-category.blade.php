@@ -3,12 +3,13 @@
 <div class="row">
     <div class="col-lg-12">
         <section class="panel">
+            
             <header class="panel-heading">
                 Thêm danh mục sản phẩm
             </header>
             <div class="panel-body">
                 <div class="position-center">
-                    <form role="form" action="{{ route('post-add-category') }}" method="post">
+                    <form role="form" action="{{ route('admin.category.store') }}" method="post">
                         @csrf
                         @if(count($errors->all())>0)
                             <div>
@@ -41,7 +42,7 @@
                         <div class="form-group">
                             <div class="col-lg-offset-3 col-lg-6">
                                 <button class="btn btn-info" type="submit">Thêm danh mục</button>
-                                <a href="{{ route('add-category') }}"><button class="btn btn-default"
+                                <a href="{{ route('admin.category.create') }}"><button class="btn btn-default"
                                         type="button" onclick="loading()">Xóa</button>
                                 </a>
                             </div>

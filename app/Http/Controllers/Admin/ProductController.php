@@ -15,13 +15,20 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    public function getAddProduct()
+    public function index()
+    {
+        $data['products'] = Products::orderBy('created_at', 'desc')->paginate(10);
+        return view('backend.page.product.list-product', $data);
+    }
+
+    public function create()
     {
         $data['brands'] = Brands::all();
         $data['categories'] = Categories::orderBy('ordernum', 'asc')->get();
         return view('backend.page.product.add-product', $data);
     }
-    public function postProduct(AddProductRequest $request)
+
+    public function store(AddProductRequest $request)
     {
         $product = new Products;
         $product->name = $request->name;
@@ -53,18 +60,10 @@ class ProductController extends Controller
             $img->products_id = $product->id;
             $img->save();
         }
-        return redirect(route('listProduct'))->with('notification', 'Thêm sản phẩm thành công');
+        return redirect(route('admin.product.index'))->with('notification', 'Thêm sản phẩm thành công');
     }
 
-    // function show, edit list product
-    public function getListProduct()
-    {
-        $data['products'] = Products::orderBy('created_at', 'desc')->paginate(10);
-        return view('backend.page.product.list-product', $data);
-    }
-
-    // edit product
-    public function getEditProduct(Request $request)
+    public function edit(Request $request)
     {
         $product = Products::find($request->id);
         $data['product'] = $product;
@@ -79,8 +78,8 @@ class ProductController extends Controller
         $data['countInfor'] = $count;
         return view('backend.page.product.edit-product', $data);
     }
-    //update product
-    public function updateProduct(Request $request)
+
+    public function update(Request $request)
     {
         $table = Products::find($request->id);
         $table->name = $request->name;
@@ -108,8 +107,8 @@ class ProductController extends Controller
         $table->save();
         return redirect()->back()->with('notification', 'Thay đổi thông tin sản phẩm thành công');
     }
-    //delete product
-    public function delProduct(Request $request)
+
+    public function destroy(Request $request)
     {
         $product = Products::find($request->id);
         $path = 'product' . ($request->id);

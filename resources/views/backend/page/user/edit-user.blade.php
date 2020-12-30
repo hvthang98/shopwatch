@@ -13,7 +13,7 @@
                 <div class="position-center">
                     @foreach($user as $user)
                         <form role="form"
-                            action="{{ route('post-edit-user',['id'=>$user->id]) }}"
+                            action="{{ route('admin.user.edit',['id'=>$user->id]) }}"
                             method="post">
                             @csrf
                             @if(count($errors)>0)
@@ -54,8 +54,8 @@
                             </div>
                             <button type="submit" name="add-user" class="btn btn-info">Cập nhật người dùng</button>
                             <a
-                                href="{{ route('edit-user',['id'=>$user->id]) }}"><button
-                                    class="btn btn-default" type="button" onclick="loading()">Xóa</button>
+                                href="{{ route('admin.user.edit',['id'=>$user->id]) }}"><button
+                                    class="btn btn-default" type="button" onclick="loading()">Đặt lại</button>
                             </a>
                         </form>
                     @endforeach

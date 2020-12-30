@@ -168,7 +168,7 @@
                         <label for="adr"><i class="fa fa-address-card-o"></i> Địa chỉ</label>
                         <input type="text" id="adr" name="address" value="{{ $user->address }}">
                         {{-- <input type="submit" name="submit" value="Đồng ý"> --}}
-                        <button><a href="{{ route('dashboard') }}">Quay lại trang chủ</a></button>
+                        <button><a href="{{ route('admin.dashboard.index') }}">Quay lại trang chủ</a></button>
                     </div>
                 </div>
             </div>

@@ -10,13 +10,21 @@ use App\Models\Categories;
 
 class CategoryController extends Controller
 {
-	function add_category()
+	public function index()
+	{
+		$categories = Categories::orderBy('ordernum', 'asc')->paginate(10);
+		$brand = Brands::all();
+		$stt = $categories->firstItem();
+		return view('backend.page.category.all-category', ['categories' => $categories, 'stt' => $stt, 'brands' => $brand]);
+	}
+
+	public function create()
 	{
 		$data['categories'] = Categories::orderBy('ordernum', 'asc')->get();
 		return view('backend.page.category.add-category', $data);
 	}
 
-	function post_add_category(Request $request)
+	public function store(Request $request)
 	{
 		$request->validate(['category_name' => 'required']);
 		$ordernum = $request->ordernum;
@@ -30,24 +38,17 @@ class CategoryController extends Controller
 		$category->status = $request->status;
 		$category->ordernum = $ordernum + 1;
 		$category->save();
-		return redirect()->route('all-category')->with(['notification' => 'Đã thêm danh mục thành công']);
+		return redirect()->route('admin.category.index')->with(['notification' => 'Đã thêm danh mục thành công']);
 	}
-
-	function all_category()
-	{
-		$categories = Categories::orderBy('ordernum', 'asc')->paginate(10);
-		$brand = Brands::all();
-		$stt = $categories->firstItem();
-		return view('backend.page.category.all-category', ['categories' => $categories, 'stt' => $stt, 'brands' => $brand]);
-	}
-	function edit_category($id)
+	
+	public function edit($id)
 	{
 		$category = Categories::find($id);
 		$categories = Categories::orderBy('ordernum', 'asc')->get();
 
 		return view('backend.page.category.edit-category', ['category' => $category, 'categories' => $categories]);
 	}
-	function post_edit_category(Request $request, $id)
+	public function update(Request $request, $id)
 	{
 		$name = $request->edit_category_name;
 		$status = $request->edit_status;
@@ -64,38 +65,62 @@ class CategoryController extends Controller
 		$category->name = $name;
 		$category->status = $status;
 		$category->save();
-		return redirect('admin/category/all-category')->with(['notification' => 'Đã cập nhật danh mục thành công']);
+		return redirect()->route('admin.category.index')->with(['notification' => 'Đã cập nhật danh mục thành công']);
 	}
 
-	function delete_category($id)
+	public function destroy($id)
 	{
 		Categories::find($id)->delete();
-		return redirect('admin/category/all-category/')->with(['notification' => 'Đã xóa danh mục thành công']);
+		return redirect()->route('admin.category.index')->with(['notification' => 'Đã xóa danh mục thành công']);
 	}
 
-	function active_category($id)
+	public function active($id)
 	{
-		$category = Categories::find($id);
-		$category->status = 1;
-		$category->save();
-		return redirect()->back();
+		try {
+			$category = Categories::find($id);
+			$category->status = 1;
+			$category->save();
+			return response()->json([
+				'status' =>true,
+				'code'=>200,
+				'message' =>'Đã thay đổi trạng thái thành công',
+			]);
+		} catch (\Throwable $th) {
+			return response()->json([
+				'status' =>false,
+				'code'=>500,
+				'message'=>$th->getMessage(),
+			]);
+		}
 	}
 
-	function unactive_category($id)
+	public function unactive($id)
 	{
-		$category = Categories::find($id);
-		$category->status = 0;
-		$category->save();
-		return redirect()->back();
+		try {
+			$category = Categories::find($id);
+			$category->status = 0;
+			$category->save();
+			return response()->json([
+				'status' =>true,
+				'code'=>200,
+				'message' =>'Đã thay đổi trạng thái thành công',
+			]);
+		} catch (\Throwable $th) {
+			return response()->json([
+				'status' =>false,
+				'code'=>500,
+				'message'=>$th->getMessage(),
+			]);
+		}
 	}
 	public function storeBrand(Request $req)
 	{
 		BrandCategories::firstOrCreate(['categories_id' => $req->category, 'brands_id' => $req->brand]);
 		return redirect()->back();
 	}
-	public function deleteBrand(Request $req)
+	public function deleteBrand($id)
 	{
-		BrandCategories::where('categories_id', $req->idCate)->where('brands_id', $req->idBrand)->delete();
+		$data=BrandCategories::find($id)->delete();
 		return redirect()->back();
 	}
 }

@@ -52,7 +52,7 @@ Quản lý ảnh
 
 <div>
     <div>
-        <a href="{{ route('listProduct') }}" class="black"><i class="fa fa-arrow-circle-left"></i><span> Thoát</span></a>
+        <a href="{{ route('admin.product.index') }}" class="black"><i class="fa fa-arrow-circle-left"></i><span> Thoát</span></a>
     </div>
     <div class="panel-heading">
         Quản lý ảnh sản phẩm
@@ -71,7 +71,7 @@ Quản lý ảnh
                     @if(count($errors))
                         @include('error.Note')
                     @endif
-                    <form action="{{ route('addImageProduct',$products_id) }}" method="post"
+                    <form action="{{ route('admin.imageProduct.store',$products_id) }}" method="post"
                         enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
@@ -143,24 +143,23 @@ Quản lý ảnh
                                                 <td>
                                                     @if($image->level!=1)
                                                         @if($image->status==0)
-                                                            <a href="{{ route('updateImageProduct',[$image->id,$image->status]) }}"
+                                                            <a href="{{ route('admin.imageProduct.changeAvatar',[$image->id,$image->status]) }}"
                                                                 data-toggle="modal" class="btn btn-primary">
                                                                 Hiện
                                                             </a>
                                                         @else
-                                                            <a href="{{ route('updateImageProduct',[$image->id,$image->status]) }}"
+                                                            <a href="{{ route('admin.imageProduct.changeAvatar',[$image->id,$image->status]) }}"
                                                                 data-toggle="modal" class="btn btn-primary">
                                                                 Ẩn
                                                             </a>
                                                         @endif
                                                     @endif
 
-                                                    <a href="{{ route('delImageProduct',$image->id) }}"
-                                                        data-toggle="modal" class="btn btn-danger" onclick="loading()">
+                                                    <a data-toggle="modal" class="btn btn-danger destroy" data-target="#destroyImage" data-id="{{ $image->id }}">
                                                         Xóa
                                                     </a>
                                                     @if($image->level!=1)
-                                                        <a href="{{ route('changeAvatar',[$image->id,$image->products_id]) }}"
+                                                        <a href="{{ route('admin.imageProduct.changeAvatar',[$image->id,$image->products_id]) }}"
                                                             data-toggle="modal" class="btn btn-success">
                                                             Chọn làm ảnh đại diện
                                                         </a>
@@ -183,4 +182,31 @@ Quản lý ảnh
         </div>
     </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="destroyImage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Xóa ảnh</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action method="post">
+                    @csrf
+                    @method('DELETE')
+                </form>
+                <p>Bạn có chắc chắn xóa ảnh này?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+                <button type="button" class="btn btn-danger" id="button-destroy">Xóa</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+destroyItems('/admin/image-product/','#destroyImage');
+</script>
 @endsection

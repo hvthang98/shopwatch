@@ -85,6 +85,3 @@
     <div class="clearfix"> </div>
 </div>
 @endsection
-@section('js')
-@include('notify.note');
-@endsection

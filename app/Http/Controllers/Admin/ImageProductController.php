@@ -9,14 +9,13 @@ use Illuminate\Support\Facades\Storage;
 
 class ImageProductController extends Controller
 {
-    // image product
     public function index(Request $request)
     {
         $data['images'] = ImgProduct::where('products_id', $request->id)->orderBy('created_at','desc')->paginate(5);
         $data['products_id'] = $request->id;
         return view('backend.page.product.image-product', $data);
     }
-    // function add image product
+
     public function store(Request $request)
     {
         if (isset($request->image)) {
@@ -33,14 +32,14 @@ class ImageProductController extends Controller
         }
     }
 
-    public function delete(Request $request)
+    public function destroy(Request $request)
     {
         $data = ImgProduct::find($request->id);
         Storage::delete($data->image);
         $data->delete();
         return redirect()->back();
     }
-    // update image product / change status image product
+
     public function update(Request $request)
     {
         $table = ImgProduct::find($request->id);
