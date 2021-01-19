@@ -8,10 +8,6 @@ class Products extends Model
 {
     protected $table = 'products';
     protected $guarded  =[
-        'status',
-        'ordernum',
-        'content',
-        'quantily',
         'infor',
         'views',
         'tags',

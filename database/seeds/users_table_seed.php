@@ -13,20 +13,13 @@ class users_table_seed extends Seeder
     {
         $data = [
             [
-                // 'email'=>'thang@gmail.com',
-                // 'password'=>bcrypt('123456'),
-                // 'name'=>'thang',
-                // 'birthday'=>'1999-5-11',
-                // 'phone_number'=>'12345678',
-                // 'address'=>'Quang Ngai',
-                // 'level'=>0
-               'email'=>'hoai123@gmail.com',
-                'password'=>bcrypt('123456'),
-                'name'=>'hoai',
-                'birthday'=>'1999-5-11',
-                'phone_number'=>'244466666',
-                'address'=>'Bình Định',
-                'level'=>1 
+                'email' => 'admin@gmail.com',
+                'password' => bcrypt('123456'),
+                'name' => 'admin',
+                'birthday' => '1999-1-1',
+                'phone_number' => '0123456789',
+                'address' => 'Bình Định',
+                'level' => 1
             ]
         ];
         DB::table('users')->insert($data);

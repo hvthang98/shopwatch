@@ -28,31 +28,35 @@ class ProductController extends Controller
         return view('backend.page.product.add-product', $data);
     }
 
-    public function store(AddProductRequest $request)
+    public function store(AddProductRequest $req)
     {
+        $price = str_replace([',', '.'], '', $req->price);
+        $sellPrice = str_replace([',', '.'], '', $req->sellprice);
+        $quantily = str_replace([',', '.'], '', $req->quantily);
+
         $product = new Products;
-        $product->name = $request->name;
-        $product->price = $request->price;
-        $product->sellprice = $request->sellprice;
-        $product->quantily = $request->quantily;
-        $product->content = $request->content;
-        $product->status = $request->status;
-        $product->ordernum = $request->ordernum;
-        $category = $request->category;
+        $product->name = $req->name;
+        $product->price = $price;
+        $product->sellprice = $sellPrice;
+        $product->quantily = $quantily;
+        $product->content = $req->content;
+        $product->status = $req->status;
+        $product->ordernum = $req->ordernum;
+        $category = $req->category;
         if ($category != 0) {
-            if (isset($request->brands)) {
-                $product->brands_id = $request->brands;
+            if (isset($req->brands)) {
+                $product->brands_id = $req->brands;
             }
             $product->categories_id = $category;
         }
-        if (isset($request->tags)) {
-            $tags = implode(',', $request->tags);
+        if (isset($req->tags)) {
+            $tags = implode(',', $req->tags);
             $product->tags = $tags;
         }
         $product->save();
 
-        if (isset($request->image)) {
-            $path = $request->file('image')->store('product' . ($product->id));
+        if (isset($req->image)) {
+            $path = $req->file('image')->store('product/'.date('Y_m_d').'_' . ($product->id).'_product');
             $img = new ImgProduct;
             $img->image = $path;
             $img->status = 1;

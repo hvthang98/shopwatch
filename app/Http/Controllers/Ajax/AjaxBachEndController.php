@@ -10,8 +10,15 @@ class AjaxBachEndController extends Controller
 {
     public function getBrand(Request $req)
     {
-        $category = BrandCategories::where('categories_id', $req->id)->get();
-        $data['categories'] =$category;
-        return view('backend.ajax.brand',$data);
+        $brand=[];
+        $categories = BrandCategories::where('categories_id', $req->id)->get();
+        foreach ($categories as $category){
+            array_push($brand,$category->brand);
+        }
+        return response()->json([
+            'status' =>true,
+            'code' =>200,
+            'data' => $brand,
+        ]); 
     }
 }

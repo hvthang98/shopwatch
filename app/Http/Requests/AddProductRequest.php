@@ -25,10 +25,9 @@ class AddProductRequest extends FormRequest
     {
         return [
             'name'=>'required',
-            'price'=>'required|min:0|numeric',
-            'sellprice'=>'required|min:0|numeric',
+            'price'=>'required',
+            'sellprice'=>'required',
             'ordernum'=>'required|min:0|numeric',
-
         ];
     }
     public function messages()
@@ -36,13 +35,7 @@ class AddProductRequest extends FormRequest
         return [
             'name.required'=>'Tên không được để trống',
             'price.required'=>'Giá bán không được để trống',
-            'price.min'=>'giá bán nhỏ hơn không',
-            'price.numeric'=>'Giá bán không phải là số',
-
             'sellprice.required'=>'Giá khuyến mãi không được để trống',
-            'sellprice.min'=>'giá khuyến mãi nhỏ hơn không',
-            'sellprice.numeric'=>'Giá khuyến mãi không phải là số',
-
             'ordernum.required'=>'Sắp xếp không được để trống',
             'ordernum.min'=>'Sắp xếp nhỏ hơn không',
             'ordernum.numeric'=>'Sắp xếp không phải là số',
