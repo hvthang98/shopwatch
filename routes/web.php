@@ -121,6 +121,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
         Route::get('bill','SeachController@getBill')->name('seachBill');
         Route::get('products','SeachController@getProducts')->name('seachProducts');
     });
+
+    /**
+     * Menu
+     */
+    Route::resource('menu', 'MenuController')->names('admin.menu')->parameters(['menu'=>'id'])->except('show');
+    Route::post('menu/active','MenuController@active')->name('admin.menu.active');
+    Route::post('menu/unactive','MenuController@unactive')->name('admin.menu.unactive');
 });
 
 //Route fontend

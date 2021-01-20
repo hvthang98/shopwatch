@@ -12,9 +12,4 @@ class Categories extends Model
         'status',
         'ordernum',
     ];
-    public function brandCategories()
-    {
-        return $this->hasMany('App\Models\BrandCategories', 'categories_id', 'id');
-    }
-    
 }

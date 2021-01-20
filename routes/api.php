@@ -28,5 +28,8 @@ Route::group(['namespace' => 'Api'], function () {
     Route::apiResource('/brand','BrandController')->parameters([
         'brand'=>'id',
     ]);
-    Route::post('brand/category','BrandController@storeForeignCategory')->name('brand.storeForeignCategory');
+    Route::apiResource('/menu','MenuController')->parameters([
+        'menu'=>'id',
+    ]);
+    
 });

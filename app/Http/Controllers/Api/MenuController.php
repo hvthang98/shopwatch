@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Brands;
-use App\Models\BrandCategories;
+use App\Models\Menu;
 
-class BrandController extends Controller
+class MenuController extends Controller
 {
     private function errorMessage($error, $code = null)
     {
@@ -17,20 +16,29 @@ class BrandController extends Controller
             'message' => $error->getMessage(),
         ]);
     }
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $req)
     {
         try {
-            $brand = Brands::all();
+            $limit = $req->limit ?? config('app.paginate.per_page');
+            $data = Menu::query();
+            if ($req->column && $req->sort) {
+                $data = $data->orderBy($req->column, $req->sort);
+            }
+            $data = $data->paginate($limit);
             return response()->json([
-                'status' => true,
-                'code' => 200,
-                'data' => $brand,
+                'status'=>true,
+                'code' =>200,
+                'data'=>$data->items(),
+                'meta'=> [
+                    'currentPage' => $data->currentPage(),
+                    'perPage'     => $data->perPage(),
+                    'total'       => $data->total(),
+                ],
             ]);
         } catch (\Throwable $th) {
             return $this->errorMessage($th);
@@ -43,18 +51,14 @@ class BrandController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
         try {
-            $isBrand = Brands::where('name', $request->name)->get();
-            if (count($isBrand) > 0) {
-                return abort(500, 'name record already exist');
-            }
-            $brand = Brands::create($request->all());
+            $menu= Menu::create($req->all());
             return response()->json([
-                'status' => true,
-                'code' => 201,
-                'data' => $brand,
+                'status' =>true,
+                'code' =>201,
+                'data' =>$menu,
             ]);
         } catch (\Throwable $th) {
             return $this->errorMessage($th);
@@ -70,14 +74,14 @@ class BrandController extends Controller
     public function show($id)
     {
         try {
-            $brand = Brands::find($id);
+            $menu= Menu::find($id);
             return response()->json([
-                'status' => true,
-                'code' => 200,
-                'data' => $brand,
+                'status' =>true,
+                'code' =>200,
+                'data' =>$menu,
             ]);
         } catch (\Throwable $th) {
-            return $this->errorMessage($th, 404);
+            return $this->errorMessage($th,404);
         }
     }
 
@@ -88,15 +92,15 @@ class BrandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $req, $id)
     {
         try {
-            Brands::where('id', $id)->update($request->all());
-            $brand = Brands::find($id);
+            Menu::where('id',$id)->update($req->all());
+            $menu = Menu::find($id);
             return response()->json([
-                'status' => true,
-                'code' => 200,
-                'data' => $brand,
+                'status' =>true,
+                'code' =>200,
+                'data' =>$menu,
             ]);
         } catch (\Throwable $th) {
             return $this->errorMessage($th);
@@ -112,11 +116,11 @@ class BrandController extends Controller
     public function destroy($id)
     {
         try {
-            Brands::find($id)->delete();
+            Menu::destroy($id);
             return response()->json([
-                'status' => true,
-                'code' => 200,
-                'message' => 'Đã xóa thành công',
+                'status' =>true,
+                'code' =>200,
+                'message' =>'Đã xóa thành công',
             ]);
         } catch (\Throwable $th) {
             return $this->errorMessage($th);
