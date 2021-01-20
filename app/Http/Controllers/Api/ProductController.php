@@ -14,13 +14,13 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    private function errorMessage($error, $code)
+    private function errorMessage($error, $code = null)
     {
         return response()->json([
             'status' => false,
-            'code' => $code,
+            'code' => $code ?? 500,
             'message' => $error->getMessage(),
-        ])->setStatusCode($code);
+        ])->setStatusCode($code ?? 500);
     }
 
     public function index(Request $req)
@@ -105,12 +105,11 @@ class ProductController extends Controller
             return response()->json([
                 'status' => true,
                 'code' => Response::HTTP_OK,
-                'data' => $product, 
+                'data' => $product,
             ]);
         } catch (\Throwable $th) {
             return $this->errorMessage($th, 500);
         }
-
     }
 
     /**
@@ -126,7 +125,24 @@ class ProductController extends Controller
             return response()->json([
                 'status' => true,
                 'code' => Response::HTTP_OK,
-                'message'=>'Delete record id = '.$id, 
+                'message' => 'Delete record id = ' . $id,
+            ]);
+        } catch (\Throwable $th) {
+            return $this->errorMessage($th, 500);
+        }
+    }
+
+    public function storeInfor(Request $req)
+    {
+        try {
+            $product = Products::find($req->id);
+            $product->infor = $req->infor;
+            $product->save();
+            return response()->json([
+                'status' => true,
+                'code' => 200,
+                'message' => 'Đã lưu thành công',
+                'data' => $product->infor,
             ]);
         } catch (\Throwable $th) {
             return $this->errorMessage($th, 500);

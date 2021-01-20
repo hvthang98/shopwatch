@@ -21,6 +21,7 @@ Route::group(['namespace' => 'Api'], function () {
     Route::apiResource('/product','ProductController')->parameters([
         'product'=>'id',
     ]);
+    Route::post('/product/infor','ProductController@storeInfor')->name('product.storeInfor');
     Route::apiResource('/category','CategoryController')->parameters([
         'category'=>'id',
     ]);

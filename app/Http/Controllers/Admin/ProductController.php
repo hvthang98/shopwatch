@@ -17,15 +17,15 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $data['products'] = Products::orderBy('created_at', 'desc')->paginate(10);
-        return view('backend.page.product.list-product', $data);
+        $products = Products::orderBy('created_at', 'desc')->paginate(10);
+        return view('backend.page.product.list-product', compact('products'));
     }
 
     public function create()
     {
-        $data['brands'] = Brands::all();
-        $data['categories'] = Categories::orderBy('ordernum', 'asc')->get();
-        return view('backend.page.product.add-product', $data);
+        $brands = Brands::all();
+        $categories = Categories::orderBy('ordernum', 'asc')->get();
+        return view('backend.page.product.add-product', compact('brands','categories'));
     }
 
     public function store(AddProductRequest $req)
@@ -70,42 +70,30 @@ class ProductController extends Controller
     public function edit(Request $request)
     {
         $product = Products::find($request->id);
-        $data['product'] = $product;
-        $data['categories'] = Categories::orderBy('ordernum', 'asc')->get();
-        $data['brands'] = BrandCategories::where('categories_id', $product->categories_id)->get();
-        $data['info_product'] = json_decode($product->infor);
-        if (isset($product->infor)) {
-            $count = count(json_decode($product->infor));
-        } else {
-            $count = 0;
-        }
-        $data['countInfor'] = $count;
-        return view('backend.page.product.edit-product', $data);
+        $categories = Categories::orderBy('ordernum', 'asc')->get();
+        $brands = Brands::all();
+        $info_product= json_decode($product->infor);
+        return view('backend.page.product.edit-product', compact('product','categories','brands','info_product'));
     }
 
-    public function update(Request $request)
+    public function update(Request $req)
     {
-        $table = Products::find($request->id);
-        $table->name = $request->name;
-        $table->price = $request->price;
-        $table->sellprice = $request->sellprice;
-        $table->quantily = $request->quantily;
-        $table->content = $request->content;
-        $table->ordernum = $request->ordernum;
-        $table->status = $request->status;
-        $category = $request->category;
-        if ($category != 0) {
-            if (isset($request->brands)) {
-                $table->brands_id = $request->brands;
-            } else {
-                $table->brands_id = null;
-            }
-            $table->categories_id = $category;
-        } else {
-            $table->categories_id = null;
-        }
-        if (isset($request->tags)) {
-            $tags = implode(',', $request->tags);
+        $price=str_replace([',', '.'], '', $req->price);
+        $sellPrice=str_replace([',', '.'], '', $req->sellprice);
+        $quantily=str_replace([',', '.'], '', $req->quantily);
+
+        $table = Products::find($req->id);
+        $table->name = $req->name;
+        $table->price = $price;
+        $table->sellprice = $sellPrice;
+        $table->quantily = $quantily;
+        $table->content = $req->content;
+        $table->ordernum = $req->ordernum;
+        $table->status = $req->status;
+        $table->categories_id = $req->category;
+        $table->brands_id = $req->brands;
+        if (isset($req->tags)) {
+            $tags = implode(',', $req->tags);
             $table->tags = $tags;
         }
         $table->save();

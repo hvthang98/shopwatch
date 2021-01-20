@@ -70,7 +70,7 @@
                                     <div>
                                         <a data-toggle="modal" data-target="#addCategory"><i class="fa fa-plus-square-o"
                                                 style="font-size: 2rem;
-                                                                                        padding-top: 2px;"></i></a>
+                                                                                                padding-top: 2px;"></i></a>
                                     </div>
                                 </div>
                                 <div class="form-group ">
@@ -78,11 +78,16 @@
                                     <div class="col-lg-6">
                                         <select class="form-control m-bot15" id="brands" name="brands" required>
                                             <option value="">Chọn thương hiệu</option>
+                                            @isset($brands)
+                                                @foreach ($brands as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                @endforeach
+                                            @endisset
                                         </select>
                                     </div>
                                     <div id="formAddBrand">
                                         <a data-toggle="modal" data-target="#addBrand"><i class="fa fa-plus-square-o" style="font-size: 2rem;
-                                                                                        padding-top: 2px;"></i></a>
+                                                                                                padding-top: 2px;"></i></a>
                                     </div>
                                 </div>
 
@@ -193,30 +198,6 @@
             tags: true,
             tokenSeparators: [',']
         })
-        $('#formAddBrand').hide();
-        /**
-         * ajax brand
-         */
-        $('#category').change(function() {
-            let idCategory = this.value;
-            let url = '/ajax/brand';
-            $.get(url, {
-                id: idCategory
-            }, function(data) {
-                let brand = data.data;
-                let html = `<option value="">Chọn thương hiệu</option>`;
-                brand.forEach(function(e) {
-                    html += `<option value="${e.id}">${e.name}</option>`;
-                })
-                $('#brands').html(html);
-            });
-            if (idCategory == '') {
-                $('#formAddBrand').hide();
-            } else {
-                $('#formAddBrand').show();
-            }
-        });
-
         $('#btn-save-category').on('click', function() {
             let url = '/api/category';
             let name = $('#addCategory input[name="name"]').val();
@@ -249,31 +230,15 @@
                 status: 1,
             }, function(data) {
                 if (data.status == true) {
-                    $.post('/api/brand/category', {
-                        categories_id: category_id,
-                        brands_id: data.data.id,
-                    }, function(data2) {
-                        if (data.status == true) {
-                            let html = `<option value="${data.data.id}">${data.data.name}</option>`;
-                            $('#brands').append(html);
-                            Swal.fire({
-                                position: 'top-end',
-                                width: 600,
-                                icon: 'success',
-                                title: 'Thêm thương hiệu thành công',
-                                showConfirmButton: false,
-                                timer: 800
-                            })
-                        } else {
-                            Swal.fire({
-                                position: 'top-end',
-                                width: 600,
-                                icon: 'error',
-                                title: 'Thêm thương hiệu không thành công',
-                                showConfirmButton: false,
-                                timer: 800
-                            })
-                        }
+                    let html = `<option value="${data.data.id}">${data.data.name}</option>`;
+                    $('#brands').append(html);
+                    Swal.fire({
+                        position: 'top-end',
+                        width: 600,
+                        icon: 'success',
+                        title: 'Thêm thương hiệu thành công',
+                        showConfirmButton: false,
+                        timer: 800
                     })
                 } else {
                     Swal.fire({
@@ -288,8 +253,8 @@
             })
             $('#addBrand input[name="name"]').val('');
             $('#addBrand input[name="info"]').val('');
-            $('#addBrand').modal('hide')
-        });
+            $('#addBrand').modal('hide');
+        })
 
     </script>
 @endsection
