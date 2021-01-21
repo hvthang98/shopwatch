@@ -22,7 +22,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
     Route::get('dashboard', 'DashboardController@index')->name('admin.dashboard.index');
 
     /**
-      * Category
+      * Category/`
       *
     */
     Route::resource('category', 'CategoryController')->names('admin.category')->parameters([
@@ -53,10 +53,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
     Route::resource('user', 'UserController')->names('admin.user')->parameters([
         'user' =>'id'
     ]);
-    Route::group(['prefix' => 'user'], function () {
-        Route::get('active/{id}', 'UserController@active')->name('admin.user.active');
-        Route::get('unactive/{id}', 'UserController@unactive')->name('admin.user.unactive');
-    });
     Route::get('change-password/{id}','UserController@changePassword')->name('admin.user.changePassword');
     Route::post('post-change-pw','UserController@updatePassword')->name('admin.user.updatePassword');
 

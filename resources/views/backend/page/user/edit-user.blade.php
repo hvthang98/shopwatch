@@ -44,10 +44,10 @@
                             <div class="form-group">
                                 <label for="level">Chức vụ</label>
                                 <select name="level" class="form-control input-sm m-bot15">
-                                    <option value="0" @if ($user->level==0)
+                                    <option value="0" @if ($user->roles_id==2)
                                         {{ 'selected' }}
                                     @endif>Khách hàng</option>
-                                    <option value="1"  @if ($user->level==1)
+                                    <option value="1"  @if ($user->roles_id==1)
                                         {{ 'selected' }}
                                     @endif>Quản lý</option>
                                 </select>

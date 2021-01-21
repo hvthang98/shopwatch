@@ -47,8 +47,11 @@
                             <div class="form-group">
                                 <label for="level">Chức vụ</label>
                                 <select name="level" class="form-control input-sm m-bot15">
-                                    <option value="0">Khách hàng</option>
-                                    <option value="1">Quản lý</option>
+                                    @if ($roles)
+                                        @foreach ($roles as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                             <button type="submit" name="add-user" class="btn btn-info">Thêm người dùng</button>

@@ -11,11 +11,11 @@ class DashboardController extends Controller
 {
     function index()
 	{
-		$data['users']=count(User::where('level',0)->get());
-        $data['order']=count(Bills::all());
+		$users=count(User::where('roles_id',1)->get());
+        $order=count(Bills::all());
         // $date=date('m');
         // $products=BillDetails::where('created_at','>','2020-5-1')->get()->toarray();
         // dd($products);
-		return view('backend.page.dashboard',$data);
+		return view('backend.page.dashboard',compact('users','order'));
 	}
 }

@@ -5,7 +5,6 @@
             <div class="panel-heading">
                 Danh mục người dùng
             </div>
-
             @if (session('status'))
                 <div class="alert alert-info">
                     <p style="text-align: center;color: red;">{{ session('status') }}</p>
@@ -35,13 +34,7 @@
                         <td>{{ $user->phone_number }}</td>
                         <td>{{ $user->address }}</td>
                         <td>
-                            @if ($user->level == 0)
-                                <a href="{{ route('admin.user.active', ['id' => $user->id]) }}">Khách
-                                    hàng</a>
-                            @elseif($user->level==1)
-                                <a href="{{ route('admin.user.unactive', ['id' => $user->id]) }}">Quản
-                                    lý</a>
-                            @endif
+                            <a>{{ $user->roles->name }}</a>
                         </td>
                         <td>
                             <a href="{{ route('admin.user.edit', ['id' => $user->id]) }}"><i style="font-size: 20px"
@@ -56,7 +49,4 @@
             {{ $users->links() }}
         </div>
     </div>
-    @if (session('notification'))
-        @include('notify.note')
-    @endif
 @endsection

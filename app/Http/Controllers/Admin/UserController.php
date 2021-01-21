@@ -8,12 +8,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Models\Role;
 
 class UserController extends Controller
 {
 	public function create()
 	{
-		return view('backend.page.user.add-user');
+		$roles = Role::all();
+		return view('backend.page.user.add-user',compact('roles'));
 	}
 	public function store(UserRequest $request)
 	{
@@ -59,20 +61,6 @@ class UserController extends Controller
 		$user->level = $data['level'];
 		$user->save();
 		return redirect()->route('admin.user.index')->with(['notification' => 'Đã cập nhật người dùng thành công']);
-	}
-	public function active($id)
-	{
-		$user = User::find($id);
-		$user->level = 1;
-		$user->save();
-		return redirect()->back();
-	}
-	public function unactive($id)
-	{
-		$user = User::find($id);
-		$user->level = 0;
-		$user->save();
-		return redirect()->back();
 	}
 	public function destroy($id)
 	{
