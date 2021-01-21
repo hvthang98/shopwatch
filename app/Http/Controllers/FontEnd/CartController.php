@@ -79,7 +79,7 @@ class CartController extends Controller
         }
         return redirect(route('getCart'))->with('notification', 'Thêm sản phẩm vào giỏ hàng thành công');
     }
-    public function updateCart(Request $request)
+    public function update(Request $request)
     {
         if (Auth::check()) {
             $cart = Carts::find($request->id);

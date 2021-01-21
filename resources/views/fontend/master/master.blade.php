@@ -153,7 +153,7 @@
     </div>
 </body>
 @if (session('notification'))
-    @include('notify.note')
+    @include('notify.success')
 @endif
 <script>
     function questionLoading(mes) {

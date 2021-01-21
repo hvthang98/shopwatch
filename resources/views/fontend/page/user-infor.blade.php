@@ -143,9 +143,9 @@
 			<div class="container">
 				@foreach($infors as $infor)
 
-				<form name="" action="{{route('post-infor',['id'=>$infor->id])}}" method="post">
+				<form name="" action="{{route('fontend.user.update',['id'=>$infor->id])}}" method="post">
 					@csrf
-					
+					@method('put')
 					<div class="row">
 						<div class="col-50">
 							<h3>Thông tin cá nhân</h3>
@@ -162,7 +162,7 @@
 							<label for="repas"> Đổi mật khẩu</label>
 							<input type="password" id="repas" name="repas" value="">
 							<input type="submit" name="" value="Đồng ý">
-							<button ><a href="{{route('index')}}">Quay lại</a></button>
+							<button ><a href="{{route('fontend.index')}}">Quay lại</a></button>
 					@endforeach
 				</form>
 				

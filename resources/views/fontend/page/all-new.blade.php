@@ -11,7 +11,7 @@ Tin tức
                     <img width="363" height="250" src="storage/{{ $new->image }}">
                     <div class="nd">
                         <p>{{ $new->title }}</p><a
-                            href="{{ route('detail-new',['id'=>$new->id]) }}">Xem
+                            href="{{ route('fontend.news.show',['id'=>$new->id]) }}">Xem
                             thêm</a>
                     </div>
                 </div>

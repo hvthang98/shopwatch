@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function user_login()
+    public function login()
     {
         if (Auth::check()) {
             return redirect('/');
@@ -23,7 +23,7 @@ class UserController extends Controller
         return view('fontend.page.login');
     }
 
-    public function post_user_login(Request $request)
+    public function checkLogin(Request $request)
     {
         $request->validate(['email' => 'required', 'password' => 'required|min:6'], ['required' => 'Không được để trống trường', 'min' => 'Mật khẩu ít nhất 6 ký tự']);
         $email = $request->email;
@@ -36,15 +36,14 @@ class UserController extends Controller
         }
     }
 
-    public function user_infor($id)
+    public function show($id)
     {
         $infor = User::where('id', $id)->get();
 
         return view('fontend.page.user-infor')->with('infors', $infor);
     }
-    public function post_user_infor(Request $request, $id)
+    public function update(Request $request, $id)
     {
-
         $infor = User::find($id);
         $infor->name = $request->name;
         $infor->email = $request->email;
@@ -54,18 +53,17 @@ class UserController extends Controller
         if ($request->repas != null) {
             $infor->password = bcrypt($request->repas);
         }
-
         $infor->save();
         return redirect('/')->with('notification', 'Cập nhật thông tin thành công');
     }
-    public function user_logout()
+    public function logout()
     {
         if (Auth::check()) {
             Auth::logout();
             return redirect('/');
         }
     }
-    public function user_signup()
+    public function create()
     {
         if(Auth::check()){
             return redirect('/');
@@ -73,7 +71,7 @@ class UserController extends Controller
         return view('fontend.page.sign-up');
     }
 
-    public function post_user_signup(UserLoginRequest $request)
+    public function store(UserLoginRequest $request)
     {
         $data = $request->all();
         $user = new User;

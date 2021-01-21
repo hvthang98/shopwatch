@@ -123,7 +123,7 @@
                 <div class="login-title">
 
                     <div id="loginbox" class="loginbox">
-                        <form action="{{ route('post-user-login') }}" method="post" name="login" class="login-form">
+                        <form action="{{ route('fontend.user.checkLogin') }}" method="post" name="login" class="login-form">
                             <h1 class="title">Đăng nhập</h1>
                             @csrf
                             @if (count($errors) > 0)
@@ -149,7 +149,7 @@
                             </div>
                             <input type="submit" class="logbtn" name="login" value="Đăng nhập">
                             <div class="bottom-text">
-                                Chưa có tài khoản? <a href="{{ route('user-sign-up') }}">Đăng ký</a>
+                                Chưa có tài khoản? <a href="{{ route('fontend.user.create') }}">Đăng ký</a>
                             </div>
                         </form>
                     </div>

@@ -25,7 +25,7 @@
 <div class="mens">
     <div class="main">
         <div class="wrap">
-            <ul class="breadcrumb breadcrumb__t"><a class="home" href="{{ route('index') }}">Trang
+            <ul class="breadcrumb breadcrumb__t"><a class="home" href="{{ route('fontend.index') }}">Trang
                     chủ</a> / {{ $products->name }}</ul>
             <div class="cont span_2_of_3">
                 <div class="grid images_3_of_2">
@@ -83,7 +83,7 @@
                         @foreach($listProducts as $list)
                             <li>
                                 <img src="storage/<?php if(isset($list->avatar->image)) echo $list->avatar->image?>" style="height:140px" />
-                                <a href="{{ route('getProductSingle',$list->id) }}">
+                                <a href="{{ route('fontend.product.show',$list->id) }}">
                                     {{ $list->name }}
                                 </a>
                                 <p style="font-size:15px">{{ number_format($list->sellprice) }} <span>đ</span></p>
@@ -175,7 +175,6 @@
         </div>
     </div>
 </div>
-@include('notify.note')
 <script type="text/javascript">
     $(window).load(function () {
         $("#flexiselDemo1").flexisel();

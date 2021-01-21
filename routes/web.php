@@ -135,21 +135,26 @@ Route::get('test', function () {
     return view('fontend.master.master');
 });
 Route::group(['namespace' => 'FontEnd'], function () {
-    //single product
-    Route::get('product-detail/{id}', 'ProductDetailController@getProductDetail')->name('getProductSingle');
+    /** 
+     * product in fontend
+    */
+    Route::get('product/{id}', 'ProductController@show')->name('fontend.product.show');
 
-    // home
-    Route::get('/', 'HomeController@index')->name('index');
-    //sign up
-    Route::get('/user-sign-up', 'UserController@user_signup')->name('user-sign-up');
-    Route::post('/post-user-sign-up', 'UserController@post_user_signup')->name('post-user-signup');
-    //login
-    Route::get('/user-login', 'UserController@user_login')->name('user-login');
-    Route::post('/post-user-login', 'UserController@post_user_login')->name('post-user-login');
-    Route::get('/user-infor/{id}/', 'UserController@user_infor')->name('user-infor');
-    Route::post('/post-infor/{id}/', 'UserController@post_user_infor')->name('post-infor');
-    //logout
-    Route::get('/user-logout', 'UserController@user_logout')->name('user-logout');
+    /**
+     * home client
+     */
+    Route::get('/', 'HomeController@index')->name('fontend.index');
+
+    /**
+     * login, sign up, logout of client 
+     */
+    Route::get('/user/sign-up', 'UserController@create')->name('fontend.user.create');
+    Route::post('/user/sign-up', 'UserController@store')->name('fontend.user.store');
+    Route::get('/user-login', 'UserController@login')->name('fontend.user.login');
+    Route::post('/user-login', 'UserController@checkLogin')->name('fontend.user.checkLogin');
+    Route::get('/user-infor/{id}', 'UserController@show')->name('fontend.user.show');
+    Route::put('/user-infor/{id}', 'UserController@update')->name('fontend.user.update');
+    Route::get('/user-logout', 'UserController@logout')->name('fontend.user.logout');
 
     //danh sách sản phẩm theo thương hiệu
     Route::get('/brand/{idCategory}/{idBrand?}', 'BrandController@product_of_brand')->name('brand');
@@ -162,15 +167,19 @@ Route::group(['namespace' => 'FontEnd'], function () {
         Route::get('female-product', 'ProductController@all_female_product')->name('female-product');
         Route::get('female-product-{id}', 'ProductController@all_female_product_brand')->name('female-product/');
     });
-    
 
-    //tin tức
-    Route::get('/new','NewController@all_new')->name('all-new');
-    Route::get('detail-new-{id}','NewController@detail_new')->name('detail-new');
+    /**
+     * news in fontend
+     */
+    Route::resource('news','NewsController')->names('fontend.news')->parameters([
+        'news'=>'id',
+    ])->only('index','show');
 
-    //liên hệ
-    Route::get('/contact','ContactController@contactPage')->name('contact');
-    Route::post('/contact','ContactController@post_contact')->name('post-contact');
+    /**
+     * contact
+     */
+    Route::get('/contact','ContactController@create')->name('fontend.contact.create');
+    Route::post('/contact','ContactController@store')->name('fontend.contact.store');
 
     //route function cart
     Route::group(['prefix' => 'cart'], function () {
@@ -180,34 +189,19 @@ Route::group(['namespace' => 'FontEnd'], function () {
         Route::get('delete/{products_id}', 'CartController@delete')->name('deleteCart');
     });
 
-    //create bill
+    /**
+     * bill
+     */
     Route::group(['prefix' => 'bill'], function () {
-        Route::post('create', 'BillFontEndController@create')->name('createBill');
+        Route::post('create', 'BillController@store')->name('fontend.bill.store');
+        Route::get('/{id}','BillController@show')->name('fontend.bill.show');
     });
 
     //seach
     Route::get('seach','SeachFontEndController@getSeach')->name('seachFE');
-    //show bill user
-    Route::group(['prefix' => 'bill'], function () {
-        Route::get('/{id}','BillFontEndController@getBillUser')->name('getBillUser');
-    });
     //delete comment
     Route::group(['prefix' => 'comment'], function () {
         Route::get('delete/{id}','CommentController@delete')->name('deleteComment');
         Route::get('deleteReply/{id}','CommentController@deleteReply')->name('deleteReplyComment');
-    });
-});
-//ajax
-Route::group(['namespace' => 'Ajax'], function () {
-    Route::group(['prefix' => 'ajax'], function () {
-        Route::get('/', 'AjaxFontEndController@index');
-        Route::group(['prefix' => 'comment'], function () {
-            Route::get('add', 'AjaxFontEndController@addComment')->name('addComment');
-            Route::get('addreply', 'AjaxFontEndController@addReplyComment')->name('addReplyComment');
-        });
-        //check email
-        Route::post('check-email', 'AjaxFontEndController@checkEmail')->name('checkEmail');
-        //backend
-        Route::get('brand','AjaxBachEndController@getBrand');
     });
 });
