@@ -22,25 +22,25 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
     Route::get('dashboard', 'DashboardController@index')->name('admin.dashboard.index');
 
     /**
-      * Category/`
-      *
-    */
+     * Category/`
+     *
+     */
     Route::resource('category', 'CategoryController')->names('admin.category')->parameters([
-        'category'=>'id',
+        'category' => 'id',
     ])->except('show');
     Route::group(['prefix' => 'category'], function () {
         Route::get('active/{id}', 'CategoryController@active')->name('admin.category.active');
         Route::get('unactive/{id}', 'CategoryController@unactive')->name('admin.category.unactive');
-        
-        Route::post('store-brand','CategoryController@storeBrand')->name('admin.category.storeBrand');
-        Route::get('del-brand-cate/{id}','CategoryController@deleteBrand')->name('admin.category.deleteBrand');
+
+        Route::post('store-brand', 'CategoryController@storeBrand')->name('admin.category.storeBrand');
+        Route::get('del-brand-cate/{id}', 'CategoryController@deleteBrand')->name('admin.category.deleteBrand');
     });
 
     /**
-      * Banner
-    */
+     * Banner
+     */
     Route::resource('banner', 'BannerController')->names('admin.banner')->parameters([
-        'banner'=>'id',
+        'banner' => 'id',
     ])->except('show');
     Route::group(['prefix' => 'banner'], function () {
         Route::get('/active/{id}', 'BannerController@active')->name('admin.banner.active');
@@ -51,17 +51,17 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
      * User
      */
     Route::resource('user', 'UserController')->names('admin.user')->parameters([
-        'user' =>'id'
+        'user' => 'id'
     ]);
-    Route::get('change-password/{id}','UserController@changePassword')->name('admin.user.changePassword');
-    Route::post('post-change-pw','UserController@updatePassword')->name('admin.user.updatePassword');
+    Route::get('change-password/{id}', 'UserController@changePassword')->name('admin.user.changePassword');
+    Route::post('post-change-pw', 'UserController@updatePassword')->name('admin.user.updatePassword');
 
     /**
      * Product
      * 
      */
     Route::resource('product', 'ProductController')->names('admin.product')->parameters([
-        'product'=>'id',
+        'product' => 'id',
     ])->except('show');
 
     Route::group(['prefix' => 'product'], function () {
@@ -81,7 +81,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
      * 
      */
     Route::resource('brand', 'BrandController')->names('admin.brand')->parameters([
-        'brand'=>'id',
+        'brand' => 'id',
     ])->except('show');
 
     /**
@@ -89,48 +89,48 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
      * 
      */
     Route::resource('bill', 'BillController')->names('admin.bill')->parameters([
-        'bill'=>'id',
-    ])->except('edit','create','store');
+        'bill' => 'id',
+    ])->except('edit', 'create', 'store');
 
     /**
      * News
      * 
      */
     Route::resource('news', 'NewsController')->names('admin.news')->parameters([
-        'news'=>'id'
+        'news' => 'id'
     ])->except('show');
-    Route::group(['prefix'=>'news'],function(){
-        Route::get('active/{id}','NewsController@active')->name('admin.news.active');
-        Route::get('unactive/{id}','NewsController@unactive')->name('admin.news.unactive');
+    Route::group(['prefix' => 'news'], function () {
+        Route::get('active/{id}', 'NewsController@active')->name('admin.news.active');
+        Route::get('unactive/{id}', 'NewsController@unactive')->name('admin.news.unactive');
     });
 
     /**
      * contact
      */
-    Route::resource('contact', 'ContactController')->names('admin.contact')->parameters(['contact'=>'id'])->only('index','destroy');
-    Route::get('reply-contact','ContactController@reply')->name('admin.contact.reply');
-    
+    Route::resource('contact', 'ContactController')->names('admin.contact')->parameters(['contact' => 'id'])->only('index', 'destroy');
+    Route::get('reply-contact', 'ContactController@reply')->name('admin.contact.reply');
+
     /**
      * seach
      */
     Route::group(['prefix' => 'seach'], function () {
-        Route::get('bill','SeachController@getBill')->name('seachBill');
-        Route::get('products','SeachController@getProducts')->name('seachProducts');
+        Route::get('bill', 'SeachController@getBill')->name('seachBill');
+        Route::get('products', 'SeachController@getProducts')->name('seachProducts');
     });
 
     /**
      * Menu
      */
-    Route::resource('menu', 'MenuController')->names('admin.menu')->parameters(['menu'=>'id'])->except('show');
-    Route::post('menu/active','MenuController@active')->name('admin.menu.active');
-    Route::post('menu/unactive','MenuController@unactive')->name('admin.menu.unactive');
+    Route::resource('menu', 'MenuController')->names('admin.menu')->parameters(['menu' => 'id'])->except('show');
+    Route::post('menu/active', 'MenuController@active')->name('admin.menu.active');
+    Route::post('menu/unactive', 'MenuController@unactive')->name('admin.menu.unactive');
 });
 
 //Route fontend
 Route::group(['namespace' => 'FontEnd'], function () {
     /** 
      * product in fontend
-    */
+     */
     Route::get('product/{id}', 'ProductController@show')->name('fontend.product.show');
 
     /**
@@ -151,10 +151,10 @@ Route::group(['namespace' => 'FontEnd'], function () {
 
     //danh sách sản phẩm theo thương hiệu
     Route::get('/brand/{idCategory}/{idBrand?}', 'BrandController@product_of_brand')->name('brand');
-    
-    
+
+
     //danh sách sản phẩm
-    Route::group(['prefix'=>'product'],function(){
+    Route::group(['prefix' => 'product'], function () {
         Route::get('male-product', 'ProductController@all_male_product')->name('male-product');
         Route::get('male-product-{id}', 'ProductController@all_male_product_brand')->name('male-product/');
         Route::get('female-product', 'ProductController@all_female_product')->name('female-product');
@@ -162,17 +162,25 @@ Route::group(['namespace' => 'FontEnd'], function () {
     });
 
     /**
+     * list product
+     */
+
+    Route::group(['prefix' => 'product'], function () {
+        Route::get('/list/brand/{id}', 'ProductController@getProductToBrand')->name('fontend.product.getProductToBrand');
+        Route::get('/list/category/{id}', 'ProductController@getProductToCategory')->name('fontend.product.getProductToCategory');
+    });
+    /**
      * news in fontend
      */
-    Route::resource('news','NewsController')->names('fontend.news')->parameters([
-        'news'=>'id',
-    ])->only('index','show');
+    Route::resource('news', 'NewsController')->names('fontend.news')->parameters([
+        'news' => 'id',
+    ])->only('index', 'show');
 
     /**
      * contact
      */
-    Route::get('/contact','ContactController@create')->name('fontend.contact.create');
-    Route::post('/contact','ContactController@store')->name('fontend.contact.store');
+    Route::get('/contact', 'ContactController@create')->name('fontend.contact.create');
+    Route::post('/contact', 'ContactController@store')->name('fontend.contact.store');
 
     /**
      * cart
@@ -189,14 +197,14 @@ Route::group(['namespace' => 'FontEnd'], function () {
      */
     Route::group(['prefix' => 'bill'], function () {
         Route::post('create', 'BillController@store')->name('fontend.bill.store');
-        Route::get('/{id}','BillController@show')->name('fontend.bill.show');
+        Route::get('/{id}', 'BillController@show')->name('fontend.bill.show');
     });
 
     //seach
-    Route::get('seach','SeachFontEndController@getSeach')->name('seachFE');
+    Route::get('seach', 'SeachFontEndController@getSeach')->name('seachFE');
     //delete comment
     Route::group(['prefix' => 'comment'], function () {
-        Route::get('delete/{id}','CommentController@delete')->name('deleteComment');
-        Route::get('deleteReply/{id}','CommentController@deleteReply')->name('deleteReplyComment');
+        Route::get('delete/{id}', 'CommentController@delete')->name('deleteComment');
+        Route::get('deleteReply/{id}', 'CommentController@deleteReply')->name('deleteReplyComment');
     });
 });

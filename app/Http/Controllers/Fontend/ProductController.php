@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Products;
 use App\Models\Comment;
+use App\Models\Categories;
 
 class ProductController extends Controller
 {
@@ -852,5 +853,17 @@ class ProductController extends Controller
         $listProducts = Products::orderBy('created_at', 'desc')->limit(6)->get();
         $comments = Comment::where('products_id', $id)->get();
         return view('fontend.page.single', compact('comments', 'products', 'infor_product', 'listProducts'));
+    }
+
+    public function getProductToBrand($id)
+    {
+        $products = Products::where('brands_id', $id)->where('status', 1)->paginate(10);
+        return view('fontend.page.list-product-of-brand', compact('products'));
+    }
+    
+    public function getProductToCategory($id)
+    {
+        $products = Products::where('categories_id', $id)->where('status', 1)->paginate(10);
+        return view('fontend.page.list-product-of-brand', compact('products'));
     }
 }

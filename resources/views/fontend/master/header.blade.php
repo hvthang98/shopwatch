@@ -63,10 +63,10 @@
                                             <div class="h_nav">
                                                 <ul>
                                                     @foreach ($menu->menuBrand as $menuBrand)
-                                                        <li><a href="">{{ $menuBrand->brand->name }}</a></li>
+                                                        <li><a href="{{ route('fontend.product.getProductToBrand',$menuBrand->brand->id) }}">{{ $menuBrand->brand->name }}</a></li>
                                                     @endforeach
                                                     @foreach ($menu->menuCategory as $menuCategory)
-                                                        <li><a href="">{{ $menuCategory->category->name }}</a></li>
+                                                        <li><a href="{{ route('fontend.product.getProductToCategory',$menuCategory->category->id) }}">{{ $menuCategory->category->name }}</a></li>
                                                     @endforeach
                                                 </ul>
                                             </div>
