@@ -31,7 +31,7 @@ Giỏ hàng
                 <h4 class="title">Giỏ hàng chưa có sản phẩm</h4>
             @endif
         @endif
-        <a href="{{ route('index') }}">Tiếp tục mua sắm</a>
+        <a href="{{ route('fontend.index') }}">Tiếp tục mua sắm</a>
         <!-- cart not empty -->
         @if(isset($carts)||(isset($carts_user)&&count($carts_user)!=0))
             <div>
@@ -125,7 +125,7 @@ Giỏ hàng
                 </div>
 
                 <div class="cart-total">
-                    <form action="{{ route('createBill') }}" method="post">
+                    <form action="{{ route('fontend.bill.store') }}" method="post">
                         @csrf
                         <div class="address">
                             <h4>Thông tin giao hàng</h4>

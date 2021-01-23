@@ -99,7 +99,7 @@
                         {{--  {{ dd($billDetail->toarray()) }}  --}}
                         @foreach ($billDetail as $detail)
                         <tr>
-                            <td><img src="{{ asset($detail->products->avatar->image) }}"
+                            <td><img src="./storage/{{ $detail->products->avatar->image }}"
                                     alt="" class="bill-img-product"></td>
                             <td >{{ $detail->products->name }}</td>
                             <td>{{ number_format($detail->price) }}</td>
@@ -170,5 +170,4 @@
         <div class="clear"></div>
     </div>
 </div>
-@include('notify.note')
 @endsection

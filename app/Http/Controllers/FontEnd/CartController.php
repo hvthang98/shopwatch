@@ -10,7 +10,7 @@ use App\Models\Carts;
 
 class CartController extends Controller
 {
-    public function getCart()
+    public function index()
     {
         $total = 0;
         if (Auth::check()) {

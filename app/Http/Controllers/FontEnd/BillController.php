@@ -4,6 +4,11 @@ namespace App\Http\Controllers\FontEnd;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Bills;
+use App\Models\Carts;
+use App\Models\BillDetails;
+use App\Models\Products;
 
 class BillController extends Controller
 {
@@ -53,11 +58,14 @@ class BillController extends Controller
         }
         //delete all session
         session()->forget('cart');
-        return redirect(route('getCart'))->with('notification', 'Đặt đơn hàng thành công');
+        return redirect(route('fontend.cart.index'))->with('notification', 'Đặt đơn hàng thành công');
     }
     public function show(Request $request)
     {
         $bill = Bills::find($request->id);
+        if(!isset($bill)){
+            return redirect()->route('fontend.index');
+        }
         $billDetail = BillDetails::where('bills_id', $request->id)->get();
         return view('fontend.page.bill', compact('billDetail', 'bill'));
     }

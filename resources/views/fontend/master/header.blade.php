@@ -26,7 +26,7 @@
                             <ul>
                                 <li>Các đơn hàng gần đây:</li>
                                 @foreach ($bills as $bill)
-                                    <li><a href="{{ route('getBillUser', $bill->id) }}">
+                                    <li><a href="{{ route('fontend.bill.show', $bill->id) }}">
                                             {{ date('d/m/Y', strtotime($bill->created_at)) }}
                                             - Mã ĐH: {{ $bill->id }}</a></li>
                                 @endforeach
@@ -53,18 +53,29 @@
             <div class="menu">
                 <ul class="megamenu skyblue">
                     <li class="active grid"><a href="{{ route('fontend.index') }}">Trang chủ</a></li>
-                    <li><a href="" class="color5" style="cursor: pointer;">Menu1<span><i class="fa fa-caret-down"></i></span></a>
-                        <div class="megapanel">
-                            <div class="col1">
-                                <div class="h_nav">
-                                    <ul>
-                                        <li><a href="">Menu</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
+                    @isset($menus)
+                        @foreach ($menus as $menu)
+                            <li><a href="" class="color5" style="cursor: pointer;">{{ $menu->name }}<span><i
+                                            class="fa fa-caret-down"></i></span></a>
+                                @if(isset($menu->menuBrand)||isset($menu->menuCategory))
+                                    <div class="megapanel">
+                                        <div class="col1">
+                                            <div class="h_nav">
+                                                <ul>
+                                                    @foreach ($menu->menuBrand as $menuBrand)
+                                                        <li><a href="">{{ $menuBrand->brand->name }}</a></li>
+                                                    @endforeach
+                                                    @foreach ($menu->menuCategory as $menuCategory)
+                                                        <li><a href="">{{ $menuCategory->category->name }}</a></li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                            </li>
+                        @endforeach
+                    @endisset
                     <li><a class="color5" href="{{ route('fontend.news.index') }}">Tin tức</a></li>
                 </ul>
             </div>
@@ -79,7 +90,7 @@
             </div>
             <div class="tag-list">
                 <ul class="icon1 sub-icon1 profile_img">
-                    <li><a class="icon-cart" href="{{ route('getCart') }}" title="Giỏ hàng">
+                    <li><a class="icon-cart" href="{{ route('fontend.cart.index') }}" title="Giỏ hàng">
                             <i class="fa fa-shopping-cart"></i>
                         </a>
                         <ul class="sub-icon1 list">

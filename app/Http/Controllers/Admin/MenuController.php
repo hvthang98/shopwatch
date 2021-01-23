@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Menu;
+use App\Models\Brands;
+use App\Models\Categories;
 
 class MenuController extends Controller
 {
@@ -15,8 +17,10 @@ class MenuController extends Controller
      */
     public function index()
     {
+        $brands= Brands::all();
+        $categories = Categories::all();
         $menus = Menu::orderBy('ordernum', 'asc')->paginate(15);
-        return view('backend.page.menu.ListMenu', compact('menus'));
+        return view('backend.page.menu.ListMenu', compact('menus','brands','categories'));
     }
 
     /**

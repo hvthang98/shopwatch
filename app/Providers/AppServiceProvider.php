@@ -10,6 +10,7 @@ use App\Models\Bills;
 use App\Models\Carts;
 use App\Models\Categories;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Menu;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -35,8 +36,10 @@ class AppServiceProvider extends ServiceProvider
             $view->with('numbills',$bills);
         });
         view()->composer('fontend/master/header', function ($view) {
-            $category = Categories::where('status', 1)->orderBy('ordernum','asc')->get();
-            $view->with('categories', $category);
+            // $category = Categories::where('status', 1)->orderBy('ordernum','asc')->get();
+            // $view->with('categories', $category);
+            $menu = Menu::where('status',1)->orderBy('ordernum','asc')->get();
+            $view->with('menus', $menu);
             if (session()->has('cart')) {
                 $carts = session('cart');
                 foreach ($carts as $key => $value) {

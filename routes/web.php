@@ -127,9 +127,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
 });
 
 //Route fontend
-Route::get('test', function () {
-    return view('fontend.master.master');
-});
 Route::group(['namespace' => 'FontEnd'], function () {
     /** 
      * product in fontend
@@ -177,9 +174,11 @@ Route::group(['namespace' => 'FontEnd'], function () {
     Route::get('/contact','ContactController@create')->name('fontend.contact.create');
     Route::post('/contact','ContactController@store')->name('fontend.contact.store');
 
-    //route function cart
+    /**
+     * cart
+     */
     Route::group(['prefix' => 'cart'], function () {
-        Route::get('list', 'CartController@getCart')->name('getCart');
+        Route::get('list', 'CartController@index')->name('fontend.cart.index');
         Route::get('add', 'CartController@add')->name('addCart');
         Route::get('update', 'CartController@updateCart')->name('updateCart');
         Route::get('delete/{products_id}', 'CartController@delete')->name('deleteCart');

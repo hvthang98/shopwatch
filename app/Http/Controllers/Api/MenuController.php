@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Menu;
+use App\Models\MenuBrand;
+use App\Models\MenuCategory;
 
 class MenuController extends Controller
 {
@@ -31,10 +33,10 @@ class MenuController extends Controller
             }
             $data = $data->paginate($limit);
             return response()->json([
-                'status'=>true,
-                'code' =>200,
-                'data'=>$data->items(),
-                'meta'=> [
+                'status' => true,
+                'code' => 200,
+                'data' => $data->items(),
+                'meta' => [
                     'currentPage' => $data->currentPage(),
                     'perPage'     => $data->perPage(),
                     'total'       => $data->total(),
@@ -54,11 +56,11 @@ class MenuController extends Controller
     public function store(Request $req)
     {
         try {
-            $menu= Menu::create($req->all());
+            $menu = Menu::create($req->all());
             return response()->json([
-                'status' =>true,
-                'code' =>201,
-                'data' =>$menu,
+                'status' => true,
+                'code' => 201,
+                'data' => $menu,
             ]);
         } catch (\Throwable $th) {
             return $this->errorMessage($th);
@@ -74,14 +76,14 @@ class MenuController extends Controller
     public function show($id)
     {
         try {
-            $menu= Menu::find($id);
+            $menu = Menu::find($id);
             return response()->json([
-                'status' =>true,
-                'code' =>200,
-                'data' =>$menu,
+                'status' => true,
+                'code' => 200,
+                'data' => $menu,
             ]);
         } catch (\Throwable $th) {
-            return $this->errorMessage($th,404);
+            return $this->errorMessage($th, 404);
         }
     }
 
@@ -95,12 +97,12 @@ class MenuController extends Controller
     public function update(Request $req, $id)
     {
         try {
-            Menu::where('id',$id)->update($req->all());
+            Menu::where('id', $id)->update($req->all());
             $menu = Menu::find($id);
             return response()->json([
-                'status' =>true,
-                'code' =>200,
-                'data' =>$menu,
+                'status' => true,
+                'code' => 200,
+                'data' => $menu,
             ]);
         } catch (\Throwable $th) {
             return $this->errorMessage($th);
@@ -118,9 +120,95 @@ class MenuController extends Controller
         try {
             Menu::destroy($id);
             return response()->json([
-                'status' =>true,
-                'code' =>200,
-                'message' =>'Đã xóa thành công',
+                'status' => true,
+                'code' => 200,
+                'message' => 'Đã xóa thành công',
+            ]);
+        } catch (\Throwable $th) {
+            return $this->errorMessage($th);
+        }
+    }
+
+    public function getBrand($id)
+    {
+        try {
+            $menuBrand = MenuBrand::where('menus_id', $id)->get();
+            foreach ($menuBrand as $item){
+                $item->brand;
+            }
+            return response()->json([
+                'status' => true,
+                'code' => 200,
+                'data' => $menuBrand,
+            ]);
+        } catch (\Throwable $th) {
+            return $this->errorMessage($th, 404);
+        }
+    }
+
+    public function getCategory($id)
+    {
+        try {
+            $menuCategory = MenuCategory::where('menus_id', $id)->get();
+            foreach ($menuCategory as $item){
+                $item->category;
+            }
+            return response()->json([
+                'status' => true,
+                'code' => 200,
+                'data' => $menuCategory,
+            ]);
+        } catch (\Throwable $th) {
+            return $this->errorMessage($th, 404);
+        }
+    }
+
+    public function storeBrand(Request $req)
+    {
+        try {
+            $brand = $req->brands_id;
+            $menu = $req->menus_id;
+            MenuBrand::where('menus_id', $menu)->delete();
+            foreach ($brand as $item) {
+                MenuBrand::create([
+                    'brands_id' => $item,
+                    'menus_id' => $menu,
+                ]);
+            }
+            $menuBrand = MenuBrand::where('menus_id', $menu)->get();
+            foreach ($menuBrand as $item) {
+                $item->brand;
+            }
+            return response()->json([
+                'status' => true,
+                'code' => 201,
+                'data' => $menuBrand,
+            ]);
+        } catch (\Throwable $th) {
+            return $this->errorMessage($th);
+        }
+    }
+
+    public function storeCategory(Request $req)
+    {
+        try {
+            $category = $req->categories_id;
+            $menu = $req->menus_id;
+            MenuCategory::where('menus_id', $menu)->delete();
+            foreach ($category as $item) {
+                MenuCategory::create([
+                    'categories_id' => $item,
+                    'menus_id' => $menu,
+                ]);
+            }
+            $menuCategory = MenuCategory::where('menus_id', $menu)->get();
+            foreach ($menuCategory as $item) {
+                $item->category;
+            }
+            return response()->json([
+                'status' => true,
+                'code' => 201,
+                'data' => $menuCategory,
             ]);
         } catch (\Throwable $th) {
             return $this->errorMessage($th);
