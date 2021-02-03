@@ -3,13 +3,12 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Brands;
 use App\Models\Banners;
 use App\Models\Products;
 use App\Models\Bills;
 use App\Models\Carts;
-use App\Models\Categories;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Menu;
 
 class AppServiceProvider extends ServiceProvider

@@ -7,10 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Products;
 use App\Models\Brands;
 use App\Http\Requests\AddProductRequest;
-use App\Models\BrandCategories;
 use App\Models\Categories;
 use App\Models\ImgProduct;
-use App\Models\Info_product;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller

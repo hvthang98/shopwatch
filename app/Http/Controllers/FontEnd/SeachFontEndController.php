@@ -5,7 +5,6 @@ namespace App\Http\Controllers\FontEnd;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Products;
-use App\Models\Info_product;
 use App\Models\Brands;
 
 class SeachFontEndController extends Controller

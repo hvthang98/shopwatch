@@ -1,9 +1,5 @@
 <?php
-
-use App\Http\Controllers\Admin\HomeAdmin;
-use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Products;
 
 /**
  * sign in or login
@@ -164,7 +160,6 @@ Route::group(['namespace' => 'FontEnd'], function () {
     /**
      * list product
      */
-
     Route::group(['prefix' => 'product'], function () {
         Route::get('/list/brand/{id}', 'ProductController@getProductToBrand')->name('fontend.product.getProductToBrand');
         Route::get('/list/category/{id}', 'ProductController@getProductToCategory')->name('fontend.product.getProductToCategory');

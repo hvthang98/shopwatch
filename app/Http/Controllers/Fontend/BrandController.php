@@ -3,13 +3,10 @@
 namespace App\Http\Controllers\Fontend;
 
 use App\Http\Controllers\Controller;
-use App\Models\BrandCategories;
 use Illuminate\Http\Request;
-use Illuminate\Support\collection;
 use App\Models\Brands;
 use App\Models\Categories;
 use App\Models\Products;
-use Illuminate\Support\Facades\DB;
 
 class BrandController extends Controller
 {

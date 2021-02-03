@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\Bills;
 use App\Models\BillDetails;
 use App\Models\Products;
-use App\Models\Users;
 
 class BillController extends Controller
 {

@@ -4,13 +4,8 @@ namespace App\Http\Controllers\Fontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\UserRequest;
 use App\Models\Products;
 use App\Models\News;
-use App\Models\ImgProduct;
-use App\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {

@@ -5,12 +5,7 @@ namespace App\Http\Controllers\Fontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserLoginRequest;
-use App\Models\Banners;
-use App\Models\Products;
-use App\Models\Brands;
-use App\Models\ImgProduct;
 use App\User;
-use Captcha;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
