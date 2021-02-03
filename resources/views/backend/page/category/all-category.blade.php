@@ -48,8 +48,11 @@
                         <td>
                             <a href="{{ route('admin.category.edit', ['id' => $cat->id]) }}"><i style="font-size: 20px"
                                     class="fa fa-pencil text-success text-active"></i></a>
+                            <a href="{{ route('admin.category.getListProduct', ['id' => $cat->id]) }}" title="Danh sách sản phẩm"><i
+                                    class="fa fa-list-alt" style="font-size:24px"></i></a>
                             <a data-toggle="modal" data-target="#destroyCategory" data-id="{{ $cat->id }}"
                                 class="destroy"><i class="fa fa-trash-o" style="font-size:24px"></i></a>
+
                         </td>
                     </tr>
                 @endforeach

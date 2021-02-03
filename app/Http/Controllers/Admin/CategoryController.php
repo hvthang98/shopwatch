@@ -7,6 +7,7 @@ use App\Models\BrandCategories;
 use App\Models\Brands;
 use Illuminate\Http\Request;
 use App\Models\Categories;
+use App\Models\Products;
 
 class CategoryController extends Controller
 {
@@ -122,5 +123,11 @@ class CategoryController extends Controller
 	{
 		$data=BrandCategories::find($id)->delete();
 		return redirect()->back();
+	}
+
+	public function getListProduct($id)
+	{
+		$products=Products::where('categories_id',$id)->paginate(15);
+		return view('backend.page.category.list_product',compact('products'));
 	}
 }

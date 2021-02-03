@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\AddBrandRequest;
 use App\Http\Requests\UpdateBrandRequest;
 use App\Models\Brands;
+use App\Models\Products;
 
 class BrandController extends Controller
 {
@@ -51,5 +52,11 @@ class BrandController extends Controller
     {
         Brands::find($request->id)->delete();
         return redirect(route('admin.brand.index'))->with('notification', 'Xóa thương hiệu thành công');
+    }
+
+    public function getListProduct($id)
+    {
+        $products = Products::where('brands_id', $id)->paginate(12);
+        return view('backend.page.brand.list_product', compact('products'));
     }
 }
