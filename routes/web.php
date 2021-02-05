@@ -18,7 +18,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
     Route::get('dashboard', 'DashboardController@index')->name('admin.dashboard.index');
 
     /**
-     * Category/`
+     * Category
      *
      */
     Route::resource('category', 'CategoryController')->names('admin.category')->parameters([
@@ -27,9 +27,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
     Route::group(['prefix' => 'category'], function () {
         Route::get('active/{id}', 'CategoryController@active')->name('admin.category.active');
         Route::get('unactive/{id}', 'CategoryController@unactive')->name('admin.category.unactive');
+
         Route::post('store-brand', 'CategoryController@storeBrand')->name('admin.category.storeBrand');
         Route::get('del-brand-cate/{id}', 'CategoryController@deleteBrand')->name('admin.category.deleteBrand');
-        Route::get('list-product/{id}', 'CategoryController@getListProduct')->name('admin.category.getListProduct');
     });
 
     /**
@@ -73,13 +73,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
     });
 
     /**
-     * Brand
+     * Brand of product
      * 
      */
     Route::resource('brand', 'BrandController')->names('admin.brand')->parameters([
         'brand' => 'id',
     ])->except('show');
-    Route::get('brand/list-product/{id}','BrandController@getListProduct')->name('admin.brand.getListProduct');
+
     /**
      * Bill
      * 
@@ -111,7 +111,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
      */
     Route::group(['prefix' => 'seach'], function () {
         Route::get('bill', 'SeachController@getBill')->name('seachBill');
-        Route::get('products', 'SeachController@getProducts')->name('seachProducts');
+        Route::get('products', 'SeachController@getProducts')->name('admin.seach.products');'
+        ';
     });
 
     /**
