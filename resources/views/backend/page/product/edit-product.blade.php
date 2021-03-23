@@ -20,6 +20,9 @@
                     </header>
                     <div class="panel-body">
                         <div class="form">
+                            @if (count($errors) > 0)
+                                @include('error.Note')
+                            @endif
                             <form class="cmxform form-horizontal" method="post"
                                 action="{{ route('admin.product.update', $product->id) }}" novalidate="novalidate"
                                 enctype="multipart/form-data">
@@ -143,6 +146,45 @@
                                         </label>
                                     </div>
                                 </div>
+                                <div class="col-lg-12">
+                                    <section class="panel">
+                                        <header class="panel-heading">
+                                            Thông tin kỹ thuật
+                                        </header>
+                                        <div class="panel-body">
+                                            <div class="form">
+                                                <div>
+                                                    <div class="form-group">
+                                                        <div class="col-lg-4 text-center"><b>Tên kỹ thuật</b></div>
+                                                        <div class="col-lg-8 text-center"><b>Mô tả</b></div>
+                                                    </div>
+                                                </div>
+                                                <div class="content-infor">
+                                                    @if (isset($info_product))
+                                                        @foreach ($info_product as $key => $info)
+                                                            <div class="form-group">
+                                                                <div class="col-lg-4"><input class="form-control name_infor"
+                                                                        value="{{ $info->name }}" name="infor[{{ $key }}][name]" required></div>
+                                                                <div class="col-lg-7"><input
+                                                                        class="form-control content_infor"
+                                                                        value="{{ $info->content }}" name="infor[{{ $key }}][content]" required></div>
+                                                                <div class="col-lg-1">
+                                                                    <i class="fa fa-remove remove-infor"
+                                                                        style="font-size:24px;color:red;cursor: pointer;"></i>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+                                                    @endif
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-lg-4 d-right">
+                                                        <button class="btn btn-success" id="add-infor" type="button">Thêm</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
                                 <div class="form-group">
                                     <div class="col-lg-offset-3 col-lg-6">
                                         <button class="btn btn-primary" type="submit">Lưu</button>
@@ -157,129 +199,8 @@
                     </div>
                 </section>
             </div>
-
-            <!-- information product -->
-            <div class="col-lg-12">
-                <section class="panel">
-                    <header class="panel-heading">
-                        Thông tin kỹ thuật
-                        <span class="tools pull-right">
-                            <a class="fa fa-chevron-down" href="javascript:;"></a>
-                        </span>
-                    </header>
-                    <div class="panel-body">
-                        <div class="form">
-                            <form class="form-horizontal" method="post" action="">
-                                <div>
-                                    <div class="form-group">
-                                        <div class="col-lg-4 text-center"><b>Tên kỹ thuật</b></div>
-                                        <div class="col-lg-8 text-center"><b>Mô tả</b></div>
-                                    </div>
-                                </div>
-                                <div class="content-infor">
-                                    @if (isset($info_product))
-                                        @foreach ($info_product as $key => $info)
-                                            <div class="form-group">
-                                                <div class="col-lg-4"><input class="form-control name_infor"
-                                                        value="{{ $info->name }}"></div>
-                                                <div class="col-lg-7"><input
-                                                        class="form-control content_infor"
-                                                        value="{{ $info->content }}"></div>
-                                                <div class="col-lg-1">
-                                                    <i class="fa fa-remove remove-infor"
-                                                        style="font-size:24px;color:red;cursor: pointer;"></i>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    @endif
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-lg-4">
-                                        <button class="btn btn-success" id="add-infor" type="button">Thêm</button>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-lg-12" style="text-align: center">
-                                        <button class="btn btn-primary" type="button" id="save-infor"
-                                            data-product="{{ $product->id }}">Lưu</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </section>
-            </div>
         </div>
         <!-- page end-->
     </div>
-    <script>
-        CKEDITOR.replace('content');
-        //add infor
-        let count = $('#add-infor').data('count');
-        count = parseInt(count);
-        $('#add-infor').click(function() {
-            count++;
-            let content =
-                `<div class="form-group">
-                        <div class="col-lg-4">
-                            <input class="form-control name_infor">
-                        </div>
-                        <div class="col-lg-7">
-                            <input class="form-control content_infor">
-                        </div>
-                        <div class="col-lg-1">
-                            <i class="fa fa-remove remove-infor" style="font-size:24px;color:red;cursor: pointer;"></i>
-                        </div>
-                    </div>`;
-            $('.content-infor').append(content);
-        });
-        $('.content-infor').on('click', '.remove-infor', function() {
-            $(this).parent().parent().remove();
-        })
-        $('#save-infor').click(function() {
-            let dataInfor = [];
-            let eNameInfor = $('.name_infor').toArray();
-            let eContentInfor = $('.content_infor').toArray();
-            $.each(eNameInfor, function(key, e) {
-                let name = e.value;
-                let content = eContentInfor[key].value;
-                if (name != '') {
-                    dataInfor.push({
-                        name: name,
-                        content: content
-                    });
-                }
-            })
-            console.log(dataInfor);
-            //ajax
-            let json = JSON.stringify(dataInfor);
-            let idProduct = this.dataset.product;
-            let url = 'api/product/infor';
-            $.post(url, {
-                id: idProduct,
-                infor: json
-            }, function(data) {
-                if(data.status == true){
-                    Swal.fire({
-                        position: 'top-end',
-                        width: 600,
-                        icon: 'success',
-                        title: data.message,
-                        showConfirmButton: false,
-                        timer: 1000
-                    })
-                }else{
-                    Swal.fire({
-                        position: 'top-end',
-                        width: 600,
-                        icon: 'error',
-                        title: 'Lưu kỹ thuật bị lỗi',
-                        showConfirmButton: false,
-                        timer: 1000
-                    })
-                }
-            })
-        })
-
-    </script>
+    @include('backend.page.product.product_js')
 @endsection

@@ -52,7 +52,7 @@
                                     <label for="" class="control-label col-lg-3">Ảnh đại diện</label>
                                     <div class="col-lg-6">
                                         <input class="form-control " id="image" name="image" type="file"
-                                            value="{{ old('image') }}">
+                                            value="{{ old('image') }}" required>
                                     </div>
                                 </div>
                                 <div class="form-group ">
@@ -69,8 +69,7 @@
                                     </div>
                                     <div>
                                         <a data-toggle="modal" data-target="#addCategory"><i class="fa fa-plus-square-o"
-                                                style="font-size: 2rem;
-                                                                                                padding-top: 2px;"></i></a>
+                                            style="font-size: 2rem; padding-top: 2px;"></i></a>
                                     </div>
                                 </div>
                                 <div class="form-group ">
@@ -125,6 +124,30 @@
                                     <select name="tags[]" class="form-control multi-tag" style="width: 500px"
                                         multiple="multiple">
                                     </select>
+                                </div>
+                                <div class="col-lg-12">
+                                    <section class="panel">
+                                        <header class="panel-heading">
+                                            Thông tin kỹ thuật
+                                        </header>
+                                        <div class="panel-body">
+                                            <div class="form">
+                                                <div>
+                                                    <div class="form-group">
+                                                        <div class="col-lg-4 text-center"><b>Tên kỹ thuật</b></div>
+                                                        <div class="col-lg-8 text-center"><b>Mô tả</b></div>
+                                                    </div>
+                                                </div>
+                                                <div class="content-infor">
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-lg-4 d-right">
+                                                        <button class="btn btn-success" id="add-infor" type="button">Thêm</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-lg-offset-3 col-lg-6">
@@ -192,69 +215,5 @@
             </div>
         </div>
     </div>
-    <script>
-        CKEDITOR.replace('content');
-        $(".multi-tag").select2({
-            tags: true,
-            tokenSeparators: [',']
-        })
-        $('#btn-save-category').on('click', function() {
-            let url = '/api/category';
-            let name = $('#addCategory input[name="name"]').val();
-            $.post(url, {
-                name: name,
-            }, function(data) {
-                let html = `<option value="${data.data.id}">${data.data.name}</option>`;
-                $('#category').append(html);
-                Swal.fire({
-                    position: 'top-end',
-                    width: 600,
-                    icon: 'success',
-                    title: 'Thêm danh mục thành công',
-                    showConfirmButton: false,
-                    timer: 800
-                })
-            })
-            $('#addCategory input[name="name"]').val('');
-            $('#addCategory').modal('hide');
-        });
-
-        $('#btn-save-brand').on('click', function(event) {
-            let url = '/api/brand';
-            let name = $('#addBrand input[name="name"]').val();
-            let info = $('#addBrand input[name="info"]').val();
-            let category_id = $('select[name="category"]').val();
-            $.post(url, {
-                name: name,
-                info: info,
-                status: 1,
-            }, function(data) {
-                if (data.status == true) {
-                    let html = `<option value="${data.data.id}">${data.data.name}</option>`;
-                    $('#brands').append(html);
-                    Swal.fire({
-                        position: 'top-end',
-                        width: 600,
-                        icon: 'success',
-                        title: 'Thêm thương hiệu thành công',
-                        showConfirmButton: false,
-                        timer: 800
-                    })
-                } else {
-                    Swal.fire({
-                        position: 'top-end',
-                        width: 600,
-                        icon: 'error',
-                        title: 'Thêm thương hiệu không thành công',
-                        showConfirmButton: false,
-                        timer: 800
-                    })
-                }
-            })
-            $('#addBrand input[name="name"]').val('');
-            $('#addBrand input[name="info"]').val('');
-            $('#addBrand').modal('hide');
-        })
-
-    </script>
+    @include('backend.page.product.product_js')
 @endsection

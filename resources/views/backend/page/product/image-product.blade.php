@@ -50,7 +50,6 @@
         .black {
             color: rgb(240, 30, 30);
         }
-
     </style>
 
     <div>
@@ -80,7 +79,7 @@
                             @csrf
                             <div class="form-group">
                                 <input type="file" class="form-control" id="image" name="image" title="chọn file ảnh"
-                                    required>
+                                accept="image/x-png,image/gif,image/jpeg" required>
                             </div>
                             <div class="form-group center">
                                 <button type="submit" class="btn btn-info">Lưu</button>
@@ -121,11 +120,11 @@
                                     <tbody>
                                         @if (isset($images))
                                             @php
-                                            $stt=$images->firstItem()-1;
+                                                $stt = $images->firstItem() - 1;
                                             @endphp
                                             @foreach ($images as $image)
                                                 @php
-                                                $stt++;
+                                                    $stt++;
                                                 @endphp
                                                 <tr>
                                                     <td>{{ $stt }}</td>
@@ -133,11 +132,14 @@
                                                         <img src="../storage/{{ $image->image }}" alt="" class="list-img">
                                                     </td>
                                                     <td>
-                                                        @if ($image->status == 1)
-                                                            {{ 'Hiện' }}
-                                                        @else
-                                                            {{ 'Ẩn' }}
-                                                        @endif
+                                                        <div class="custom-control custom-switch">
+                                                            <input type="checkbox"
+                                                                class="custom-control-input status-control"
+                                                                id="status{{ $stt }}" data-id="{{ $image->id }}"
+                                                                {{ $image->status == 1 ? 'checked' : '' }}>
+                                                            <label class="custom-control-label"
+                                                                for="status{{ $stt }}">Hiện</label>
+                                                        </div>
                                                     </td>
                                                     <td>
                                                         @if ($image->level == 1)
@@ -145,27 +147,12 @@
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        @if ($image->level != 1)
-                                                            @if ($image->status == 0)
-                                                                <a href="{{ route('admin.imageProduct.changeAvatar', [$image->id, $image->status]) }}"
-                                                                    data-toggle="modal" class="btn btn-primary">
-                                                                    Hiện
-                                                                </a>
-                                                            @else
-                                                                <a href="{{ route('admin.imageProduct.changeAvatar', [$image->id, $image->status]) }}"
-                                                                    data-toggle="modal" class="btn btn-primary">
-                                                                    Ẩn
-                                                                </a>
-                                                            @endif
-                                                        @endif
-
                                                         <a data-toggle="modal" class="btn btn-danger destroy"
                                                             data-target="#destroyImage" data-id="{{ $image->id }}">
                                                             Xóa
                                                         </a>
                                                         @if ($image->level != 1)
-                                                            <a href="{{ route('admin.imageProduct.changeAvatar', [$image->id, $image->products_id]) }}"
-                                                                data-toggle="modal" class="btn btn-success">
+                                                            <a href="{{ route('admin.imageProduct.changeAvatar', [$image->id, $image->products_id]) }}" class="btn btn-success">
                                                                 Chọn làm ảnh đại diện
                                                             </a>
                                                         @endif
@@ -214,6 +201,25 @@
     </div>
     <script>
         destroyItems('/admin/image-product/', '#destroyImage');
+        $(document).ready(function() {
+            $('.status-control').on('change', function() {
+                let status = $(this).is(':checked');
+                let id = $(this).data('id');
+                $.ajax({
+                    method: 'PATCH',
+                    url: '{{ route('admin.imageProduct.updateStatus') }}',
+                    data: {
+                        '_token': '{{ csrf_token() }}',
+                        'id': id,
+                        'status': status == true ? 1 : 0,
+                    },
+                    success: function(response) {
+                        let status = response.success ? 'success': 'error';
+                        notify(status, response.message);
+                    },
+                })
+            });
+        });
 
     </script>
 @endsection

@@ -68,7 +68,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
         Route::get('/{id}', 'ImageProductController@index')->name('admin.imageProduct.index');
         Route::post('/{id}', 'ImageProductController@store')->name('admin.imageProduct.store');
         Route::delete('/{id}', 'ImageProductController@destroy')->name('admin.imageProduct.destroy');
-        Route::get('update-image-product/{id}/{status}', 'ImageProductController@update')->name('admin.imageProduct.changeAvatar');
+        Route::patch('update-image-product', 'ImageProductController@updateStatus')->name('admin.imageProduct.updateStatus');
         Route::get('change-avatar/{image_id}/{products_id}', 'ImageProductController@changeAvatar')->name('admin.imageProduct.changeAvatar');
     });
 

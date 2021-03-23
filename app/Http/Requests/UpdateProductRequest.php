@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
-class AddProductRequest extends FormRequest
+class UpdateProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,10 +22,10 @@ class AddProductRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(Request $request)
     {
         return [
-            'name'=>'required|unique:products,name',
+            'name'=>'required|unique:products,name,'.$request->id,
             'price'=>'required',
             'sellprice'=>'required',
             'ordernum'=>'required|min:0|numeric',

@@ -32,6 +32,7 @@
         <div class="panel-heading">
             Danh sách sản phẩm
         </div>
+        <a class="btn btn-primary" href="{{ route('admin.product.create') }}" role="button" style="float: right"><i class="fa fa-plus-square" style="margin-right:10px"></i> Thêm sản phẩm</a>
         <div style="padding: 15px 10px 10px 10px">
             <form action="{{ route('admin.seach.products') }}" method="GET">
                 <input type="text" class="form-control search" placeholder="Tìm kiếm sản phẩm" name="key">
