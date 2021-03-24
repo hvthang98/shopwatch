@@ -21,6 +21,10 @@ class RepositoryServiceProvider extends ServiceProvider
             \App\Repositories\ImgProducts\ImgProductRepository::class,
             \App\Repositories\ImgProducts\EloquentImgProduct::class
         );
+        $this->app->singleton(
+            \App\Repositories\User\UserRepository::class,
+            \App\Repositories\User\EloquentUser::class
+        );
     }
 
     /**

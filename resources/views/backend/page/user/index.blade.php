@@ -23,8 +23,8 @@
                 </tr>
                 @foreach ($users as $user)
                     @php
-                    $birthday=date_create($user->birthday);
-                    $birthday=date_format($birthday,"m/d/Y");
+                        $birthday = date_create($user->birthday);
+                        $birthday = date_format($birthday, 'm/d/Y');
                     @endphp
                     <tr>
                         <td>{{ $user->id }}</td>
@@ -39,8 +39,10 @@
                         <td>
                             <a href="{{ route('admin.user.edit', ['id' => $user->id]) }}"><i style="font-size: 20px"
                                     class="fa fa-pencil text-success text-active"></i></a>
-                            <a>
-                                <i class="fa fa-trash-o" style="font-size:24px"></i>
+                            <a href="javascript:void(0)">
+                                <i class="fa fa-trash-o destroy-button" style="font-size:24px" data-toggle="modal"
+                                    data-target="#destroyForm"
+                                    data-link="{{ route('admin.user.destroy', ['id' => $user->id]) }}"></i>
                             </a>
                         </td>
                     </tr>

@@ -64,17 +64,8 @@
     @if (session()->has('error'))
         @include('notify.error')
     @endif
-    <script>
-    function notify($status, $message){
-        Swal.fire({
-        position: 'top-end',
-        icon: $status,
-        title: $message,
-        showConfirmButton: false,
-        timer: 1500
-        });
-    }
-    </script>
+    @include('backend.footerjs')
+   
 </body>
 
 </html>

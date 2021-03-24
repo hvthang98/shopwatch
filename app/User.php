@@ -42,4 +42,10 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\Role', 'id', 'roles_id');
     }
+
+    public function setPassword($password)
+    {
+        $this->password = bcrypt($password);
+        $this->save();
+    }
 }

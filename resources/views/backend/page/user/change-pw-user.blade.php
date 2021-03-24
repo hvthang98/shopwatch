@@ -156,6 +156,7 @@
                     @endif
                     <form action="{{ route('admin.user.updatePassword') }}" method="POST">
                         @csrf
+                        @method('patch')
                         <div class="col-50">
                             <h3>Thay đổi mật khẩu</h3>
                             <label></i>Mật khẩu cũ</label>

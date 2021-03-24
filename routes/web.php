@@ -50,7 +50,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
         'user' => 'id'
     ]);
     Route::get('change-password/{id}', 'UserController@changePassword')->name('admin.user.changePassword');
-    Route::post('post-change-pw', 'UserController@updatePassword')->name('admin.user.updatePassword');
+    Route::patch('post-change-pw', 'UserController@updatePassword')->name('admin.user.updatePassword');
 
     /**
      * Product

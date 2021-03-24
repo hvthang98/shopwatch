@@ -3,33 +3,24 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
-class UserRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize()
-    {
-        return true;
-    }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
-    public function rules()
+    public function rules(Request $request)
     {
         return [
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email|unique:users,email,'.$request->id,
             'name' => 'required',
             'birthday' => 'required|date',
             'phone_number' => 'required|numeric',
             'address' => 'required',
-            'password' => 'required|same:password_confirmation|min:6'
+            'roles_id'=>'required',
         ];
     }
     public function messages()
@@ -37,10 +28,8 @@ class UserRequest extends FormRequest
         return [
             'required' => 'Không được để trống trường',
             'email' => 'không đúng định dạng Email',
-            'password.same' => 'Xác nhận lại mật khẩu sai',
             'email.unique' => 'Email đã tồn tại',
             'numeric'=>'Số điện thoại không phải dạng số',
-            'min'=>'Mật khẩu ít nhất 6 ký tự',
         ];
     }
 }
