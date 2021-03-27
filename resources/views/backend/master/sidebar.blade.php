@@ -11,14 +11,10 @@
                     </a>
                 </li>
                 <li class="sub-menu">
-                    <a href="">
+                    <a href="{{ route('admin.menu.index') }}">
                         <i class="fa fa-align-left"></i>
                         <span>Quản lý menu</span>
                     </a>
-                    <ul class="sub">
-                        <li><a href="{{ route('admin.menu.create') }}">Thêm menu</a></li>
-                        <li><a href="{{ route('admin.menu.index') }}">Danh sách menu</a></li>
-                    </ul>
                 </li>
                 <li class="sub-menu">
                     <a href="">

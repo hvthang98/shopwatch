@@ -4,7 +4,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Comfirm delete</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -23,6 +23,23 @@
         </div>
     </div>
 </div>
+
+<!-- Modal edit form -->
+<div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Chỉnh sửa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="form" style="padding:40px"></div>
+        </div>
+    </div>
+</div>
+
 
 <script>
     function notify($status, $message) {
@@ -45,7 +62,20 @@
             $('#destroyForm form').attr('action', link);
         })
 
-
+        $('[data-target="#modalForm"]').on('click', function(e) {
+            e.preventDefault();
+            let link = $(this).data('link');
+            $.ajax({
+                url:link,
+                data:{},
+                success: function(response){
+                    $('#modalForm .form').html(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
     })
 
 </script>

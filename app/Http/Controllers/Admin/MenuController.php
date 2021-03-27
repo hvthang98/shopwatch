@@ -7,9 +7,17 @@ use Illuminate\Http\Request;
 use App\Models\Menu;
 use App\Models\Brands;
 use App\Models\Categories;
+use App\Repositories\Menu\MenuRepository;
 
 class MenuController extends Controller
 {
+    protected $model;
+
+    public function __construct(MenuRepository $menu)
+    {
+        $this->model = $menu;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,10 +25,10 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $brands= Brands::all();
+        $brands = Brands::all();
         $categories = Categories::all();
-        $menus = Menu::orderBy('ordernum', 'asc')->paginate(15);
-        return view('backend.page.menu.ListMenu', compact('menus','brands','categories'));
+        $menus = $this->model->get(15, 'ordernum', 'asc');
+        return view('backend.page.menu.ListMenu', compact('menus', 'brands', 'categories'));
     }
 
     /**
@@ -30,8 +38,8 @@ class MenuController extends Controller
      */
     public function create()
     {
-        $menus = Menu::all();
-        return view('backend.page.menu.AddMenu', compact('menus'));
+        $menus = $this->model->all();
+        return view('backend.page.menu.create', compact('menus'));
     }
 
     /**
@@ -42,17 +50,7 @@ class MenuController extends Controller
      */
     public function store(Request $req)
     {
-        $menu = Menu::create($req->all());
-        $ordernum = $req->ordernum;
-        $list = Menu::where('ordernum', '>', $ordernum)->get();
-        foreach ($list as $item) {
-            $num = $item->ordernum;
-            $num++;
-            $item->ordernum = $num;
-            $item->save();
-        }
-        $menu->ordernum = $ordernum + 1;
-        $menu->save();
+        $this->model->store($req->all());
         return redirect()->route('admin.menu.index')->with('notification', 'Đã thêm thành công');
     }
 
@@ -75,8 +73,8 @@ class MenuController extends Controller
      */
     public function edit($id)
     {
-        $menus = Menu::all();
-        $menu = Menu::find($id);
+        $menus = $this->model->all();
+        $menu = $this->model->show($id);
         return view('backend.page.menu.EditMenu', compact('menus', 'menu'));
     }
 
@@ -89,21 +87,7 @@ class MenuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $menu = Menu::find($id);
-        $menu->name = $request->name;
-        $menu->status = $request->status;
-        $ordernum = $request->ordernum;
-        if ($ordernum != $menu->ordernum) {
-            $list = Menu::where('ordernum', '>', $ordernum)->get();
-            foreach ($list as $item) {
-                $num = $item->ordernum;
-                $num++;
-                $item->ordernum = $num;
-                $item->save();
-            }
-            $menu->ordernum = $ordernum + 1;
-        }
-        $menu->save();
+        $this->model->update($request->all(), $id);
         return redirect()->route('admin.menu.index')->with('notification', 'Đã cập nhật thành công');
     }
 
@@ -115,7 +99,7 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-        Menu::destroy($id);
+        $this->model->destroy($id);
         return redirect()->back()->with('notification', 'Đã xóa thành công');
     }
 

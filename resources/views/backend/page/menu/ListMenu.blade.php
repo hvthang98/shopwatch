@@ -6,7 +6,8 @@
     <div class="table-agile-info">
         <div class="panel panel-default">
             <div>
-                <a class="btn btn-primary" href="{{ route('admin.menu.create') }}" role="button">Thêm menu</a>
+                <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#modalForm"
+                    data-link={{ route('admin.menu.create') }} role="button">Thêm menu</a>
             </div>
             <div class="panel-heading">
                 Danh mục menu
@@ -16,8 +17,10 @@
                     <p style="text-align: center;color: red;">{{ session('status') }}</p>
                 </div>
             @endif
+            @if (count($errors->all()) > 0)
+                @include('error.Note')
+            @endif()
             <table class="table table-striped b-t b-light tableData">
-
                 <tr>
                     <th>STT</th>
                     <th>Tên menu</th>
@@ -48,10 +51,11 @@
                             </td>
                             <td>{{ $menu->ordernum }}</td>
                             <td>
-                                <a href="{{ route('admin.menu.edit', ['id' => $menu->id]) }}"><i style="font-size: 20px"
-                                        class="fa fa-pencil text-success text-active"></i></a>
-                                <a data-toggle="modal" data-target="#destroy" data-id="{{ $menu->id }}" class="destroy"><i
-                                        class="fa fa-trash-o" style="font-size:24px"></i></a>
+                                <a href="#" data-toggle="modal" data-target="#modalForm"
+                                    data-link="{{ route('admin.menu.edit', ['id' => $menu->id]) }}"><i
+                                        style="font-size: 20px" class="fa fa-pencil text-success text-active"></i></a>
+                                <a href="#" data-toggle="modal" data-target="#destroy" data-id="{{ $menu->id }}"
+                                    class="destroy"><i class="fa fa-trash-o" style="font-size:24px"></i></a>
                             </td>
                         </tr>
                     @endforeach
@@ -116,7 +120,8 @@
                             @isset($brands)
                                 @foreach ($brands as $brand)
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="brand" value="{{ $brand->id }}">
+                                        <input class="form-check-input" type="checkbox" name="brand"
+                                            value="{{ $brand->id }}">
                                         <label class="form-check-label">
                                             {{ $brand->name }}
                                         </label>
