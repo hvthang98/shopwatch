@@ -16,13 +16,13 @@ class CategoryController extends Controller
 		$categories = Categories::orderBy('ordernum', 'asc')->paginate(10);
 		$brand = Brands::all();
 		$stt = $categories->firstItem();
-		return view('backend.page.category.all-category', ['categories' => $categories, 'stt' => $stt, 'brands' => $brand]);
+		return view('backend.page.category.index', ['categories' => $categories, 'stt' => $stt, 'brands' => $brand]);
 	}
 
 	public function create()
 	{
 		$data['categories'] = Categories::orderBy('ordernum', 'asc')->get();
-		return view('backend.page.category.add-category', $data);
+		return view('backend.page.category.create', $data);
 	}
 
 	public function store(Request $request)
@@ -41,13 +41,13 @@ class CategoryController extends Controller
 		$category->save();
 		return redirect()->route('admin.category.index')->with(['notification' => 'Đã thêm danh mục thành công']);
 	}
-	
+
 	public function edit($id)
 	{
 		$category = Categories::find($id);
 		$categories = Categories::orderBy('ordernum', 'asc')->get();
 
-		return view('backend.page.category.edit-category', ['category' => $category, 'categories' => $categories]);
+		return view('backend.page.category.edit', compact('category', 'categories'));
 	}
 	public function update(Request $request, $id)
 	{
@@ -82,15 +82,15 @@ class CategoryController extends Controller
 			$category->status = 1;
 			$category->save();
 			return response()->json([
-				'status' =>true,
-				'code'=>200,
-				'message' =>'Đã thay đổi trạng thái thành công',
+				'status' => true,
+				'code' => 200,
+				'message' => 'Đã thay đổi trạng thái thành công',
 			]);
 		} catch (\Throwable $th) {
 			return response()->json([
-				'status' =>false,
-				'code'=>500,
-				'message'=>$th->getMessage(),
+				'status' => false,
+				'code' => 500,
+				'message' => $th->getMessage(),
 			]);
 		}
 	}
@@ -102,15 +102,15 @@ class CategoryController extends Controller
 			$category->status = 0;
 			$category->save();
 			return response()->json([
-				'status' =>true,
-				'code'=>200,
-				'message' =>'Đã thay đổi trạng thái thành công',
+				'status' => true,
+				'code' => 200,
+				'message' => 'Đã thay đổi trạng thái thành công',
 			]);
 		} catch (\Throwable $th) {
 			return response()->json([
-				'status' =>false,
-				'code'=>500,
-				'message'=>$th->getMessage(),
+				'status' => false,
+				'code' => 500,
+				'message' => $th->getMessage(),
 			]);
 		}
 	}
@@ -121,13 +121,13 @@ class CategoryController extends Controller
 	}
 	public function deleteBrand($id)
 	{
-		$data=BrandCategories::find($id)->delete();
+		$data = BrandCategories::find($id)->delete();
 		return redirect()->back();
 	}
 
 	public function getListProduct($id)
 	{
-		$products=Products::where('categories_id',$id)->paginate(15);
-		return view('backend.page.category.list_product',compact('products'));
+		$products = Products::where('categories_id', $id)->paginate(15);
+		return view('backend.page.category.list_product', compact('products'));
 	}
 }

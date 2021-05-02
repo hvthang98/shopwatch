@@ -28,6 +28,17 @@ window.addEventListener('DOMContentLoaded', () => {
             this.value = formatNumber.format(data);
         })
     })
+
+    /**
+    * Only number
+    */
+     let elementOnlyNumber = document.querySelectorAll('.only-number');
+     Array.from(elementOnlyNumber).forEach(function (e) {
+         e.addEventListener('keyup', function () {
+            this.value  = this.value.replace(/[^0-9]+/g, "");
+         })
+     })
+
     /**
      *  notify required
      */

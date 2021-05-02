@@ -30,6 +30,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
 
         Route::post('store-brand', 'CategoryController@storeBrand')->name('admin.category.storeBrand');
         Route::get('del-brand-cate/{id}', 'CategoryController@deleteBrand')->name('admin.category.deleteBrand');
+        Route::get('{id}/product', 'CategoryController@getListProduct')->name('admin.category.getListProduct');
     });
 
     /**
@@ -121,6 +122,12 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
     Route::resource('menu', 'MenuController')->names('admin.menu')->parameters(['menu' => 'id'])->except('show');
     Route::post('menu/active', 'MenuController@active')->name('admin.menu.active');
     Route::post('menu/unactive', 'MenuController@unactive')->name('admin.menu.unactive');
+
+    /**
+     * Information company
+     */
+    Route::get('/information-company', 'CompanyController@index')->name('admin.company.index');
+    Route::post('/information-company', 'CompanyController@store')->name('admin.company.store');
 });
 
 //Route fontend

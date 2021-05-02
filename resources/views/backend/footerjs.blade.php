@@ -1,3 +1,21 @@
+<!-- Modal popup -->
+<div class="modal fade" id="modal-popup-ajax" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div> 
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
 <!-- Modal -->
 <div class="modal fade" id="destroyForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -75,6 +93,27 @@
                     console.log(error);
                 }
             });
+        });
+
+        $(document).on('click','[data-popup-ajax="true"]',function(e){
+            e.preventDefault();
+            let url = $(this).data('target');
+            $.ajax({
+                url: url,
+                success: function(res){
+                    $('#modal-popup-ajax .modal-body').html(res);
+                    $('#modal-popup-ajax').modal('show');
+                },
+                error: function(err) {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: 'error',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
         });
     })
 

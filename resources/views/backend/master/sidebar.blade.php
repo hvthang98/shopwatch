@@ -31,7 +31,6 @@
                         <span>Quản lý danh mục sản phẩm</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="{{ route('admin.category.create') }}">Thêm danh mục sản phẩm</a></li>
                         <li><a href="{{ route('admin.category.index') }}">Danh sách danh mục sản phẩm</a></li>
                     </ul>
                 </li>
@@ -93,6 +92,15 @@
                         </a>
                     <ul class="sub">
                         <li><a href="{{route('admin.contact.index')}}">Danh sách liên hệ</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="">
+                     <i class="fa fa-cogs"></i>
+                        <span>Cài đặt</span>
+                        </a>
+                    <ul class="sub">
+                        <li><a href="{{route('admin.company.index')}}">Thông tin cửa hàng</a></li>
                     </ul>
                 </li>
                 <li>

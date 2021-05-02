@@ -23,7 +23,7 @@
                                     placeholder="Nhập tên banner " required>
                             </div>
                             <div class="form-group">
-                                <label for="product">Link Banner</label>
+                                <label for="product">Liên kết Banner</label>
                                 <input type="text" name="banner_link" class="form-control" id="banner">
                             </div>
                             <div>
@@ -39,7 +39,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="mota">Odernum</label>
+                                <label for="mota">Sắp xếp</label>
                                 <select id="my-select" class="form-control" name="ordernum">
                                     @if (isset($banners))
                                         <option value="0">Đầu tiên</option>
@@ -49,7 +49,6 @@
                                     @else
                                         <option value="0">Đầu tiên</option>
                                     @endif
-
                                 </select>
                             </div>
                             <button type="submit" name="add_product" class="btn btn-info">Thêm banner</button>

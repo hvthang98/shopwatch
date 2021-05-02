@@ -9,8 +9,7 @@
     <div class="table-agile-info">
         <div class="panel panel-default">
             <div>
-                <a class="btn btn-primary" href="{{ route('admin.category.create') }}" role="button">Thêm danh mục sản
-                    phẩm</a>
+                <a class="btn btn-primary" href="javascript:void(0)" role="button" data-popup-ajax="true" data-target="{{ route('admin.category.create') }}">Thêm danh mục sản phẩm</a>
             </div>
             <div class="panel-heading">
                 Danh mục Menu
@@ -46,7 +45,7 @@
                             @endif
                         </td>
                         <td>
-                            <a href="{{ route('admin.category.edit', ['id' => $cat->id]) }}"><i style="font-size: 20px"
+                            <a href="javascript:void(0)" data-popup-ajax="true" data-target="{{ route('admin.category.edit', ['id' => $cat->id]) }}"><i style="font-size: 20px"
                                     class="fa fa-pencil text-success text-active"></i></a>
                             <a href="{{ route('admin.category.getListProduct', ['id' => $cat->id]) }}" title="Danh sách sản phẩm"><i
                                     class="fa fa-list-alt" style="font-size:24px"></i></a>
@@ -58,35 +57,6 @@
                 @endforeach
             </table>
         </div>
-        {{-- <div>
-            <div class="panel-heading">
-                Thêm thương hiệu cho menu
-            </div>
-            <form action="{{ route('admin.category.storeBrand') }}" method="POST">
-                @csrf
-                <div class="form-group">
-                    <label for="my-input">Tên category</label>
-                    <select class="form-control m-bot15" name="category">
-                        @if (isset($categories))
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                            @endforeach
-                        @endif
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="my-input">Tên thương hiệu</label>
-                    <select class="form-control m-bot15" name="brand">
-                        @if (isset($brands))
-                            @foreach ($brands as $brand)
-                                <option value="{{ $brand->id }}">{{ $brand->name }}</option>
-                            @endforeach
-                        @endif
-                    </select>
-                </div>
-                <button class="btn btn-success" type="submit">Lưu</button>
-            </form>
-        </div> --}}
     </div>
     <!-- Modal -->
     <div class="modal fade" id="destroyCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
