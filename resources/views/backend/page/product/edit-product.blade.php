@@ -202,5 +202,10 @@
         </div>
         <!-- page end-->
     </div>
+    <script>
+        CKEDITOR.replace( 'content', {
+            filebrowserBrowseUrl: '{{ route('ckfinder_browser') }}',
+        });
+    </script>
     @include('backend.page.product.product_js')
 @endsection
