@@ -1,5 +1,5 @@
 # Shop watch
-- Project web app in University of transport Ho Chi Minh city
+- Project web app at school
 - Used to Laravel framework.
 - Shop watch is web app online sell watchs.
 ## Requirements
