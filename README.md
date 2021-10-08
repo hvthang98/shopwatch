@@ -17,6 +17,9 @@ php artisan migrate
 ```base
 composer dump-autoload
 ```
+```base
+php artisan ckfinder:download
+```
 ## Seeder:
 - php artisan db:seed --class=RolesTableSeed
 - php artisan db:seed --class=UsersTableSeed

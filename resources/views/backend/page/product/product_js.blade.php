@@ -1,5 +1,4 @@
 <script>
-    CKEDITOR.replace('content');
     $(".multi-tag").select2({
         tags: true,
         tokenSeparators: [',']
