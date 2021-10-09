@@ -43,7 +43,6 @@
         <section id="main-content">
             <section class="wrapper">
                 @yield('main-content')
-                @include('ckfinder::setup')
             </section>
             <!-- footer -->
             @include('backend.master.footer')

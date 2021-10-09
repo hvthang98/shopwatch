@@ -216,9 +216,7 @@
         </div>
     </div>
     <script>
-        CKEDITOR.replace( 'content', {
-            filebrowserBrowseUrl: '{{ route('ckfinder_browser') }}',
-        });
+        CKEDITOR.replace( 'content');
     </script>
     @include('backend.page.product.product_js')
 @endsection
