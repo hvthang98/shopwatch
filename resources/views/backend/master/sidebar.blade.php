@@ -1,7 +1,7 @@
-<!--sidebar start-->
+<!--sidebar-->
 <aside>
     <div id="sidebar" class="nav-collapse">
-        <!-- sidebar menu start-->
+        <!-- sidebar menu-->
         <div class="leftside-navigation">
             <ul class="sidebar-menu" id="nav-accordion">
                 <li>
@@ -82,25 +82,25 @@
                     </a>
                     <ul class="sub">
                         <li><a href="{{ route('admin.news.create') }}">Thêm tin tức mới</a></li>
-                        <li><a href="{{route('admin.news.index')}}">Danh sách tin tức</a></li>
+                        <li><a href="{{ route('admin.news.index') }}">Danh sách tin tức</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
                     <a href="">
-                     <i class="fa fa-phone"></i>
+                        <i class="fa fa-phone"></i>
                         <span>Quản lý liên hệ</span>
-                        </a>
+                    </a>
                     <ul class="sub">
-                        <li><a href="{{route('admin.contact.index')}}">Danh sách liên hệ</a></li>
+                        <li><a href="{{ route('admin.contact.index') }}">Danh sách liên hệ</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
                     <a href="">
-                     <i class="fa fa-cogs"></i>
+                        <i class="fa fa-cogs"></i>
                         <span>Cài đặt</span>
-                        </a>
+                    </a>
                     <ul class="sub">
-                        <li><a href="{{route('admin.company.index')}}">Thông tin cửa hàng</a></li>
+                        <li><a href="{{ route('admin.company.index') }}">Thông tin cửa hàng</a></li>
                     </ul>
                 </li>
                 <li>
@@ -111,7 +111,5 @@
                 </li>
             </ul>
         </div>
-        <!-- sidebar menu end-->
     </div>
 </aside>
-<!--sidebar end-->

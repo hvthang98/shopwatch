@@ -215,8 +215,8 @@
             </div>
         </div>
     </div>
-    <script>
-        CKEDITOR.replace( 'content');
-    </script>
+
     @include('backend.page.product.product_js')
+@endsection
+@section('scripts')
 @endsection

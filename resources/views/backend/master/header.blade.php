@@ -1,6 +1,6 @@
 <!--header start-->
 <header class="header fixed-top clearfix">
-    <!--logo start-->
+    <!--logo-->
     <div class="brand">
         <a href="{{ route('admin.dashboard.index') }}" class="logo">
             LEO SHOP
@@ -9,7 +9,6 @@
             <div class="fa fa-bars"></div>
         </div>
     </div>
-    <!--logo end-->
     <div class="nav notify-row" id="top_menu">
         <!--  notification start -->
         <ul class="nav top-menu">
@@ -161,39 +160,34 @@
                         <div class="alert alert-info clearfix">
                             <span class="alert-icon"><i class="fa fa-shopping-cart"></i></span>
                             <div class="noti-info">
-                                <a href="{{ route('admin.bill.index') }}"><span>{{ $numbills }}</span> đơn hàng chưa xứ lý</a>
+                                <a href="{{ route('admin.bill.index') }}"><span>{{ $numbills }}</span> đơn hàng
+                                    chưa xứ lý</a>
                             </div>
                         </div>
                     </li>
                 </ul>
             </li>
-            <!-- notification dropdown end -->
         </ul>
-        <!--  notification end -->
     </div>
     <div class="top-nav clearfix">
-        <!--search & user info start-->
         <ul class="nav pull-right top-menu">
-
-            @if(Auth::check())
+            @if (Auth::check())
                 <li class="dropdown">
 
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <img alt=""
-                            src="upload/avatar_user/default-avatar.png">
+                        <img alt="" src="public\images\default_user.png">
                         <span class="username">{{ Auth::user()->name }}</span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">
-                        <li><a href="{{ route('admin.user.show',Auth::user()->id) }}"><i class="fa fa-suitcase"></i>Thông tin cá nhân</a></li>
-                        <li><a href="{{ route('admin.user.changePassword',Auth::user()->id) }}"><i class="fa fa-key"></i>Đổi mật khẩu</a></li>
+                        <li><a href="{{ route('admin.user.show', Auth::user()->id) }}"><i
+                                    class="fa fa-suitcase"></i>Thông tin cá nhân</a></li>
+                        <li><a href="{{ route('admin.user.changePassword', Auth::user()->id) }}"><i
+                                    class="fa fa-key"></i>Đổi mật khẩu</a></li>
                         <li><a href="{{ route('admin.logout') }}"><i class="fa fa-power-off"></i>Đăng xuất</a></li>
                     </ul>
                 </li>
             @endif
-            <!-- user login dropdown end -->
         </ul>
-        <!--search & user info end-->
     </div>
 </header>
-<!--header end-->
