@@ -100,6 +100,7 @@
                         <span>Cài đặt</span>
                     </a>
                     <ul class="sub">
+                        <li><a href="{{ route('admin.setting.general') }}">{{ __('Setting General') }}</a></li>
                         <li><a href="{{ route('admin.company.index') }}">Thông tin cửa hàng</a></li>
                     </ul>
                 </li>
