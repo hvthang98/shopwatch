@@ -1,4 +1,4 @@
-@extends('backend.master.admin_master')
+@extends('backend.layouts.admin_master')
 @section('main-content')
     <div class="table-agile-info">
         <ul class="nav nav-tabs" id="myTab" role="tablist">

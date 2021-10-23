@@ -6,16 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Menu extends Model
 {
-    Protected $table = 'menus';
+    protected $table = 'menus';
     public $fillable = [
-        'name','status','ordernum'
+        'name','status','sort', 'menu_parent', 'slug' 
     ];
-    public function menuBrand()
-    {
-        return $this->hasMany('App\Models\MenuBrand', 'menus_id', 'id');
-    }
-    public function menuCategory()
-    {
-        return $this->hasMany('App\Models\MenuCategory', 'menus_id', 'id');
-    }
 }

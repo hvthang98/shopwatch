@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Menu;
-use App\Models\Brands;
-use App\Models\Categories;
 use App\Repositories\Menu\MenuRepository;
+use App\Models\Menu;
 
 class MenuController extends Controller
 {
@@ -25,10 +23,8 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $brands = Brands::all();
-        $categories = Categories::all();
         $menus = $this->model->get(15, 'ordernum', 'asc');
-        return view('backend.page.menu.ListMenu', compact('menus', 'brands', 'categories'));
+        return view('backend.menus.index', compact('menus'));
     }
 
     /**
@@ -39,7 +35,7 @@ class MenuController extends Controller
     public function create()
     {
         $menus = $this->model->all();
-        return view('backend.page.menu.create', compact('menus'));
+        return view('backend.menus.create', compact('menus'));
     }
 
     /**
@@ -75,7 +71,7 @@ class MenuController extends Controller
     {
         $menus = $this->model->all();
         $menu = $this->model->show($id);
-        return view('backend.page.menu.EditMenu', compact('menus', 'menu'));
+        return view('backend.menus.edit', compact('menus', 'menu'));
     }
 
     /**

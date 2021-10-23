@@ -2,5 +2,13 @@
     "Login": "Login",
     "Password": "Password",
     "Setting General": "Setting General",
-    "Setting Basic": "Setting Basic"
+    "Setting Basic": "Setting Basic",
+    "Create": "Create",
+    "Name": "Name",
+    "Status": "Status",
+    "Show": "Show",
+    "Hide": "Hide",
+    "Sort": "Sort",
+    "First": "First",
+    "After": "After"
 }

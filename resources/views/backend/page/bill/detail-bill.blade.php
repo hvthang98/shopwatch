@@ -1,4 +1,4 @@
-@extends('backend.master.admin_master')
+@extends('backend.layouts.admin_master')
 @section('title')
 Chi tiết đơn hàng #{{ $bills->id  }}
 @endsection

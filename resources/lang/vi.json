@@ -3,5 +3,17 @@
     "Password": "Mật khẩu",
     "Setting General": "Cài đặt chung",
     "Setting Basic": "Cài đặt cơ bản",
-    "App name" : "Tên ứng dụng"
+    "App name": "Tên ứng dụng",
+    "Create": "Tạo mới",
+    "Name": "Tên",
+    "Status": "Trạng thái",
+    "Show": "Hiện",
+    "Hide": "Ẩn",
+    "Sort": "Sắp xếp",
+    "First": "Đầu tiên",
+    "After": "Sau",
+    "Close": "Đóng",
+    "Save": "Lưu",
+    "Enter name menu" : "Nhập tên menu",
+    "List menu" : "Danh sách menu"
 }

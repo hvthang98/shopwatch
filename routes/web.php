@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -8,7 +9,7 @@ Route::get('admin-login', 'Admin\HomeController@login');
 Route::post('admin-login', 'Admin\HomeController@isLogin')->name('admin.login.isLogin');
 Route::get('admin-logout', 'Admin\HomeController@logout')->name('admin.logout');
 
-Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'adminlogin', 'as'=>'admin.'], function () {
+Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'adminlogin', 'as' => 'admin.'], function () {
     Route::get('/', function () {
         return redirect(route('dashboard.index'));
     });
@@ -112,7 +113,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
      */
     Route::group(['prefix' => 'seach'], function () {
         Route::get('bill', 'SeachController@getBill')->name('seachBill');
-        Route::get('products', 'SeachController@getProducts')->name('seach.products');'
+        Route::get('products', 'SeachController@getProducts')->name('seach.products');
+        '
         ';
     });
 

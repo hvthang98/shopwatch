@@ -33,16 +33,16 @@
 <body>
     <section id="container">
         <!--header-->
-        @include('backend.master.header')
+        @include('backend.layouts.header')
         <!--sidebar-->
-        @include('backend.master.sidebar')
+        @include('backend.layouts.sidebar')
         <!--main content-->
         <section id="main-content">
             <section class="wrapper">
                 @yield('main-content')
             </section>
             <!-- footer -->
-            @include('backend.master.footer')
+            @include('backend.layouts.footer')
         </section>
     </section>
     <script src="public/backend/js/bootstrap.js"></script>

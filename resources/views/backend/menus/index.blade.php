@@ -1,16 +1,15 @@
-@extends('backend.master.admin_master')
+@extends('backend.layouts.admin_master')
 @section('title')
-    Danh sách các banner
+    {{ __('Menu') }}
 @endsection
 @section('main-content')
     <div class="table-agile-info">
         <div class="panel panel-default">
-            <div>
-                <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#modalForm"
-                    data-link={{ route('admin.menu.create') }} role="button">Thêm menu</a>
+            <div class="panel-action">
+                <a class="btn btn-primary" href="javascript:void(0)" data-popup-ajax="true" data-target = {{ route('admin.menu.create') }} data-title="{{ __('Create') }}" role="button">Thêm menu</a>
             </div>
             <div class="panel-heading">
-                Danh mục menu
+                {{ __('List menu') }}
             </div>
             @if (session('status'))
                 <div class="alert alert-info">
@@ -20,7 +19,7 @@
             @if (count($errors->all()) > 0)
                 @include('error.Note')
             @endif()
-            <table class="table table-striped b-t b-light tableData">
+            {{-- <table class="table table-striped b-t b-light tableData">
                 <tr>
                     <th>STT</th>
                     <th>Tên menu</th>
@@ -51,8 +50,7 @@
                             </td>
                             <td>{{ $menu->ordernum }}</td>
                             <td>
-                                <a href="#" data-toggle="modal" data-target="#modalForm"
-                                    data-link="{{ route('admin.menu.edit', ['id' => $menu->id]) }}"><i
+                                <a href="#" data-popup-ajax="true" data-target="{{ route('admin.menu.edit', ['id' => $menu->id]) }}"><i
                                         style="font-size: 20px" class="fa fa-pencil text-success text-active"></i></a>
                                 <a href="#" data-toggle="modal" data-target="#destroy" data-id="{{ $menu->id }}"
                                     class="destroy"><i class="fa fa-trash-o" style="font-size:24px"></i></a>
@@ -61,7 +59,7 @@
                     @endforeach
 
                 @endisset
-            </table>
+            </table> --}}
         </div>
     </div>
 
@@ -139,7 +137,7 @@
         </div>
     </div>
     <script>
-        destroyItems('/admin/menu/', '#destroy');
+        // destroyItems('/admin/menu/', '#destroy');
         //active or unactive
         $('.itemsMenu').on('click', '.btnUnactive', function() {
             let id = $(this).data('id');
@@ -203,99 +201,6 @@
                 }
             })
         })
-        /**
-         * show submenu
-         */
-        const eClassSubmenu = document.querySelectorAll('.submenu');
-        Array.from(eClassSubmenu).forEach(e => {
-            let id = e.dataset.id;
-            const eSubmenu = $('#submenu' + id + ' ul');
-            $.get('api/menu/brand/' + id, {}, function(data) {
-                let name = data.data.map(item => item.brand.name);
-                let html = name.map(item => `<li>${item}</li>`).join('');
-                eSubmenu.append(html);
-            });
-            $.get('api/menu/category/' + id, {}, function(data) {
-                let name = data.data.map(item => item.category.name);
-                let html = name.map(item => `<li>${item}</li>`).join('');
-                eSubmenu.append(html);
-            })
-        })
-        /**
-         * save submenu
-         */
-        const eMenu = document.querySelectorAll('.add-submenu');
-        const eBrand = document.querySelectorAll('input[name="brand"]');
-        const eCategory = document.querySelectorAll('input[name="category"]');
-        let idMenu;
-        Array.from(eMenu).forEach(function(e) {
-            e.addEventListener('click', function() {
-                idMenu = this.dataset.id;
-                $.get('api/menu/brand/' + idMenu, {}, function(data) {
-                    let brand = data.data.map(item => item.brands_id);
-                    Array.from(eBrand).forEach(function(e) {
-                        if (brand.indexOf(parseInt(e.value)) >= 0) {
-                            e.checked = true;
-                        } else {
-                            e.checked = false;
-                        };
-                    })
-                });
-                $.get('api/menu/category/' + idMenu, {}, function(data) {
-                    let category = data.data.map(item => item.categories_id);
-                    Array.from(eCategory).forEach(function(e) {
-                        if (category.indexOf(parseInt(e.value)) >= 0) {
-                            e.checked = true;
-                        } else {
-                            e.checked = false;
-                        };
-                    })
-                })
-            })
-        })
-        $('#button-save-submenu').on('click', function() {
-            let idBrand = [];
-            let idCategory = [];
-            let list = [];
-            const eSubmenu = $('#submenu' + idMenu + ' ul');
-            eSubmenu.html('');
-            const brand = document.querySelectorAll('input[name="brand"]:checked');
-            const category = document.querySelectorAll('input[name="category"]:checked');
-            if (brand) {
-                Array.from(brand).forEach(function(e) {
-                    idBrand.push(e.value);
-                });
-            }
-            if (category) {
-                Array.from(category).forEach(function(e) {
-                    idCategory.push(e.value);
-                })
-            }
-            $.post('api/menu/brand/create', {
-                menus_id: idMenu,
-                brands_id: idBrand,
-            }, function(data) {
-                if (data.status == true && data.data != []) {
-                    data.data.forEach(function(eData) {
-                        let html = `<li>${eData.brand.name}</li>`
-                        eSubmenu.append(html);
-                    })
-                }
-            });
-            $.post('api/menu/category/create', {
-                menus_id: idMenu,
-                categories_id: idCategory,
-            }, function(data) {
-                if (data.status == true && data.data != []) {
-                    data.data.forEach(function(eData) {
-                        let html = `<li>${eData.category.name}</li>`
-                        eSubmenu.append(html);
-                    })
-                }
-            });
-            $('#addSubMenu').modal('hide');
-        });
-
     </script>
 
 @endsection
