@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\Menu\MenuRepository;
 use App\Models\Menu;
+use Illuminate\Support\Str;
 
 class MenuController extends Controller
 {
@@ -23,7 +24,7 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $menus = $this->model->get(15, 'ordernum', 'asc');
+        $menus = $this->model->get(15);
         return view('backend.menus.index', compact('menus'));
     }
 
@@ -44,21 +45,18 @@ class MenuController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $req)
+    public function store(Request $request)
     {
-        $this->model->store($req->all());
-        return redirect()->route('admin.menu.index')->with('notification', 'Đã thêm thành công');
-    }
+        $request->validate([
+            'name' => 'required|unique:menus,name',
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->name);
+        $data['menu_parent'] = $request->parent;
+
+        $this->model->store($data);
+        return redirect()->route('admin.menu.index')->with('notification', 'Đã thêm thành công');
     }
 
     /**
@@ -69,7 +67,7 @@ class MenuController extends Controller
      */
     public function edit($id)
     {
-        $menus = $this->model->all();
+        $menus = Menu::where('id', '!=' ,$id)->get();
         $menu = $this->model->show($id);
         return view('backend.menus.edit', compact('menus', 'menu'));
     }
@@ -83,7 +81,15 @@ class MenuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->model->update($request->all(), $id);
+        $request->validate([
+            'name' => 'required|unique:menus,name,'.$id,
+        ]);
+
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->name);
+        $data['menu_parent'] = $request->parent;
+
+        $this->model->update($data, $id);
         return redirect()->route('admin.menu.index')->with('notification', 'Đã cập nhật thành công');
     }
 
@@ -95,47 +101,8 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-        $this->model->destroy($id);
+        $this->model->delete($id);
         return redirect()->back()->with('notification', 'Đã xóa thành công');
     }
-
-    public function active(Request $req)
-    {
-        try {
-            $menu = Menu::find($req->id);
-            $menu->status = 1;
-            $menu->save();
-            return response()->json([
-                'status' => true,
-                'code' => 200,
-                'message' => 'Đã thay đổi thành công',
-            ]);
-        } catch (\Throwable $th) {
-            return response()->json([
-                'status' => false,
-                'code' => 500,
-                'message' => $th->getMessage(),
-            ]);
-        }
-    }
-
-    public function unactive(Request $req)
-    {
-        try {
-            $menu = Menu::find($req->id);
-            $menu->status = 0;
-            $menu->save();
-            return response()->json([
-                'status' => true,
-                'code' => 200,
-                'message' => 'Đã thay đổi thành công',
-            ]);
-        } catch (\Throwable $th) {
-            return response()->json([
-                'status' => false,
-                'code' => 500,
-                'message' => $th->getMessage(),
-            ]);
-        }
-    }
+    
 }

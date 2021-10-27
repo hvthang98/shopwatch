@@ -4090,16 +4090,53 @@ div#graph11 {
     }
 }
 
-.panel-action{
+.panel-action {
     padding: 15px 5px;
     text-align: right;
 }
 
-.form-action{
+.form-action {
     padding: 10px 5px;
     text-align: right;
 }
 
-.ml-5-important{
+.ml-5-important {
     margin-left: 5px !important;
+}
+
+.list-media {
+    padding: 10px;
+}
+
+.list-media .media-content{
+    width: 100%;
+    padding: 15px 10px;
+    border-radius: 5px;
+    box-shadow: inset 0 -3em 3em rgb(0 0 0 / 10%), 0 0 0 2px rgb(255 255 255);
+}
+
+.list-media .media .media{
+    margin-left: 60px;;
+}
+
+.list-media .media-content .media-action{
+    text-align: right;
+}
+.list-media .media-content .media-action a{
+    color: #000;
+}
+.list-media .media-content .media-action a+a{
+    margin-left: 10px;
+}
+
+.modal-header .close{
+    margin-top: -18px;
+}
+
+.modal-header .close span{
+    font-size: 25px;
+}
+
+.mr-2{
+    margin-right: 5px;
 }

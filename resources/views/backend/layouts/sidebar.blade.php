@@ -13,7 +13,7 @@
                 <li class="sub-menu">
                     <a href="{{ route('admin.menu.index') }}">
                         <i class="fa fa-align-left"></i>
-                        <span>Quản lý menu</span>
+                        <span>{{ __('Menu') }}</span>
                     </a>
                 </li>
                 <li class="sub-menu">

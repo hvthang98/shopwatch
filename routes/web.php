@@ -122,8 +122,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
      * Menu
      */
     Route::resource('menu', 'MenuController')->names('menu')->parameters(['menu' => 'id'])->except('show');
-    Route::post('menu/active', 'MenuController@active')->name('menu.active');
-    Route::post('menu/unactive', 'MenuController@unactive')->name('menu.unactive');
 
     /**
      * Information company

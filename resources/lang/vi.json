@@ -14,6 +14,8 @@
     "After": "Sau",
     "Close": "Đóng",
     "Save": "Lưu",
-    "Enter name menu" : "Nhập tên menu",
-    "List menu" : "Danh sách menu"
+    "Enter name menu": "Nhập tên menu",
+    "List menu": "Danh sách menu",
+    "Create menu": "Tạo menu",
+    "Edit menu": "Chỉnh sửa memu"
 }

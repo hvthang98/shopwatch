@@ -10,5 +10,9 @@
     "Hide": "Hide",
     "Sort": "Sort",
     "First": "First",
-    "After": "After"
+    "After": "After",
+    "Parent": "Parent",
+    "Menu": "Menu",
+    "Create menu": "Create menu",
+    "Edit menu": "Edit menu"
 }

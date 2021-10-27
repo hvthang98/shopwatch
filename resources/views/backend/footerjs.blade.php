@@ -1,7 +1,7 @@
 <!-- Modal popup -->
 <div class="modal fade" id="modal-popup-ajax" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel"></h5>
@@ -61,6 +61,13 @@
         $('.destroy-button').on('click', function() {
             let link = $(this).data('link');
             $('#destroyForm form').attr('action', link);
+        })
+
+        $('[data-delete="true"]').on('click', function() {
+            let link = $(this).data('target');
+            console.log(link);
+            $('#destroyForm form').attr('action', link);
+            $('#destroyForm').modal('show');
         })
 
         $(document).on('click','[data-popup-ajax="true"]',function(e){

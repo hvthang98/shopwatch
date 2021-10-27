@@ -6,7 +6,6 @@ use App\Repositories\BaseRepository;
 use App\Repositories\EloquentRepository;
 use App\Repositories\Menu\MenuRepository;
 use App\Models\Menu;
-use App\Http\Requests\Request;
 
 class EloquentMenu extends EloquentRepository implements BaseRepository, MenuRepository
 {
@@ -17,34 +16,47 @@ class EloquentMenu extends EloquentRepository implements BaseRepository, MenuRep
         $this->model = $menu;
     }
 
-    public function get($limit = 15, $column = null, $sort = 'desc')
+    public function get($limit = 15)
     {
-        $menu = $this->model->query();
-        if (!empty($column)) {
-            $menu = $menu->orderBy($column, $sort);
-        }
-        $menu = $menu->paginate($limit);
-        return $menu;
+        $menus = $this->model->whereNull('menu_parent')->orderBy('sort', 'asc')->get();
+        return $menus;
     }
 
     public function store($data)
     {
-        $ordernum = $data['ordernum'];
-        $list = $this->model->where('ordernum', '>', $ordernum)->get();
-        foreach ($list as $item) {
-            $num = $item->ordernum;
-            $num++;
-            $item->ordernum = $num;
-            $item->save();
-        }
-        $data['ordernum'] = $ordernum + 1;
-        return  $this->model->create($data);
+        $insert = [
+            'name'          => $data['name'],
+            'slug'          => $data['slug'],
+            'status'        => $data['status'],
+            'sort'          => $data['sort'],
+            'menu_parent'   => $data['menu_parent'],
+        ];
+        return  $this->model->create($insert);
     }
 
     public function update($data, $id)
     {
-        $model = parent::show($id);
-        $ordernum = $data['ordernum'];
+        $dataUpdate = [
+            'name'          => $data['name'],
+            'slug'          => $data['slug'],
+            'status'        => $data['status'],
+            'sort'          => $data['sort'],
+            'menu_parent'   => $data['menu_parent'],
+        ];
+
+        $this->model->where('id', $id)->update($dataUpdate);
+        
+        return parent::update($data, $id);
+    }
+
+    public function delete($id)
+    {
+        $menu = $this->model->find($id);
+        $menu->deleteChild();
+        $menu->delete();
+    }
+
+    private function sort($ordernum, $model){
         if ($ordernum != $model->ordernum) {
             $list = Menu::where('ordernum', '>', $ordernum)->get();
             foreach ($list as $item) {
@@ -55,6 +67,6 @@ class EloquentMenu extends EloquentRepository implements BaseRepository, MenuRep
             }
             $data['ordernum'] = $ordernum + 1;
         }
-        return parent::update($data, $id);
     }
+
 }

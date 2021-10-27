@@ -2,31 +2,40 @@
     @csrf
     @method('put')
     <div class="form-group">
-        <label for="product">Tên Menu</label>
-        <input type="text" name="name" class="form-control" id="menu" value="{{ $menu->name }}">
+        <label for="name">{{ __('Name') }}</label>
+        <input type="text" name="name" class="form-control" placeholder="{{ __('Enter name menu') }}" required value="{{ $menu->name }}">
     </div>
     <div class="form-group">
-        <label for="mota">Trạng thái</label>
-        <select name="status" class="form-control input-sm m-bot15">
-            <option value="0" @if ($menu->status == 0) {{ 'selected' }} @endif>Ẩn</option>
-            <option value="1" @if ($menu->status == 1) {{ 'selected' }} @endif>Hiện</option>
+        <label for="status">{{ __('Status') }}</label>
+        <select name="status" class="form-control">
+            <option value="1" {{ $menu->status == 1 ? 'selected' : ''}}>{{ __('Show') }}</option>
+            <option value="0" {{ $menu->status == 0 ? 'selected' : ''}}>{{ __('Hide') }}</option>
         </select>
     </div>
     <div class="form-group">
-        <label for="mota">Ordernum</label>
-        <select id="my-select" class="form-control" name="ordernum">
-            <option value="0">Đầu tiên</option>
-            @isset($menus)
-                @foreach ($menus as $item)
-                    @if ($item->id == $menu->id)
-                        <option value="{{ $item->ordernum }}" selected>Không đổi</option>
-                    @else
-                        <option value="{{ $item->ordernum }}">Sau {{ $item->name }}</option>
-                    @endif
+        <label for="">{{ __('Parent') }}</label>
+        <select id="my-select" class="form-control" name="parent">
+            <option value="">--</option>
+            @if (isset($menus))
+                @foreach ($menus as $m)
+                    <option value="{{ $m->id }}" {{ $menu->parent_menu == $m->id ? ' selected="selected"' : '' }}>{{ $m->name }}</option>
                 @endforeach
-            @endisset
+            @endif
         </select>
     </div>
-    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    <button type="submit" name="edit_menu" class="btn btn-info">Cập nhật menu</button>
+    <div class="form-group">
+        <label for="sort">{{ __('Sort') }}</label>
+        <select id="my-select" class="form-control" name="sort">
+            <option value="">{{ __('First') }}</option>
+            @if (isset($menus))
+                @foreach ($menus as $menu)
+                    <option value="{{ $menu->id }}">{{ __('After') }} {{ $menu->name }}</option>
+                @endforeach
+            @endif
+        </select>
+    </div>
+    <div class="form-action">
+        <button type="submit" class="btn btn-info">{{ __('Save') }}</button>
+        <button type="button" class="btn btn-secondary ml-5-important" data-dismiss="modal">{{ __('Close') }}</button>
+    </div>
 </form>
