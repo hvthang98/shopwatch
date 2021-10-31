@@ -47,10 +47,10 @@
     </section>
     <script src="public/backend/js/bootstrap.js"></script>
     <script src="public/backend/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="public/backend/js/scripts.js"></script>
     <script src="public/backend/js/jquery.slimscroll.js"></script>
     <script src="public/backend/js/jquery.nicescroll.js"></script>
     <script src="public/backend/js/jquery.scrollTo.js"></script>
+    <script src="public/backend/js/scripts.js?v={{ time() }}"></script>
 
     @if (session()->has('notification'))
         @include('notify.success')

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Bills;
+use App\Models\Order;
 use App\Models\Products;
 
 class SeachController extends Controller
@@ -21,7 +21,7 @@ class SeachController extends Controller
     }
     public function getBill(Request $request)
     {
-        $data['bills'] = Bills::where('id', $request->key)->orWhere('name', 'like', '%' . $request->key . '%')->paginate(10);
+        $data['bills'] = Order::where('id', $request->key)->orWhere('name', 'like', '%' . $request->key . '%')->paginate(10);
         return view('backend.page.bill.list-bill', $data);
     }
     public function getProducts(Request $req)

@@ -184,7 +184,13 @@
                                     class="fa fa-suitcase"></i>Thông tin cá nhân</a></li>
                         <li><a href="{{ route('admin.user.changePassword', Auth::user()->id) }}"><i
                                     class="fa fa-key"></i>Đổi mật khẩu</a></li>
-                        <li><a href="{{ route('admin.logout') }}"><i class="fa fa-power-off"></i>Đăng xuất</a></li>
+                        <li>
+                            <a href="javascript:void(0)" data-toggle="submit-form" data-target="#form-logout-admin"><i
+                                    class="fa fa-power-off"></i>Đăng xuất</a>
+                            <form action="{{ route('admin.logout') }}" method="post" id="form-logout-admin">
+                                @csrf
+                            </form>
+                        </li>
                     </ul>
                 </li>
             @endif

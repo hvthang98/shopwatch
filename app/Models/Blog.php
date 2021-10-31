@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Contact extends Model
+class Blog extends Model
 {
-    protected $table = "contacts";
+    protected $table = 'blogs';
+
     protected $fillable = [
-        'name', 'email', 'phone', 'messages', 'created_by'
+        'title', 'slug', 'content', 'cover_image', 'view', 'status', 'created_by',
     ];
 
     public function createdBy()

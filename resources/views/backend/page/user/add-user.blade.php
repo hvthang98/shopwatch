@@ -50,7 +50,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="level">Chức vụ</label>
-                                <select name="roles_id" class="form-control input-sm m-bot15">
+                                <select name="role_id" class="form-control input-sm m-bot15">
                                     @if ($roles)
                                         @foreach ($roles as $item)
                                             <option value="{{ $item->id }}">{{ $item->name }}</option>

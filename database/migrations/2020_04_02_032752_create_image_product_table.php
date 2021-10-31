@@ -13,13 +13,13 @@ class CreateImageProductTable extends Migration
      */
     public function up()
     {
-        Schema::create('image_product', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('image',100);
+        Schema::create('image_products', function (Blueprint $table) {
+            $table->id();
+            $table->string('image');
             $table->tinyInteger('status')->default(0);
-            $table->integer('level');
-            $table->integer('products_id')->unsigned();
-            $table->foreign('products_id')->references('id')->on('products')->onDelete('cascade');
+            $table->integer('level')->default(0);
+            $table->bigInteger('product_id')->unsigned();
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateImageProductTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('image_product');
+        Schema::dropIfExists('image_products');
     }
 }

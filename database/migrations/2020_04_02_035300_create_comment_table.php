@@ -13,13 +13,15 @@ class CreateCommentTable extends Migration
      */
     public function up()
     {
-        Schema::create('comment', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('comments', function (Blueprint $table) {
+            $table->id();
             $table->text('content');
-            $table->integer('users_id')->unsigned();
-            $table->integer('products_id')->unsigned();
-            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('products_id')->references('id')->on('products')->onDelete('cascade');
+            $table->longText('images')->nullable();
+            $table->bigInteger('reply_comment')->nullable();
+            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('product_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +33,6 @@ class CreateCommentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comment');
+        Schema::dropIfExists('comments');
     }
 }

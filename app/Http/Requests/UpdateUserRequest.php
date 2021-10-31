@@ -20,7 +20,7 @@ class UpdateUserRequest extends FormRequest
             'birthday' => 'required|date',
             'phone_number' => 'required|numeric',
             'address' => 'required',
-            'roles_id'=>'required',
+            'role_id'=>'required',
         ];
     }
     public function messages()

@@ -14,12 +14,12 @@ class CreateTableBanners extends Migration
     public function up()
     {
         Schema::create('banners', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name',45);
-            $table->string('link',100)->nullable();
-            $table->string('image',100);
+            $table->id();
+            $table->string('title');
+            $table->string('link')->nullable();
+            $table->string('image');
             $table->tinyInteger('status')->default(0);
-            $table->integer('ordernum');
+            $table->integer('sort');
             $table->timestamps();
         });
     }

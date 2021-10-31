@@ -11,17 +11,17 @@ class UsersTableSeed extends Seeder
      */
     public function run()
     {
-        $user = DB::table('users')->where('email', 'admin@gmail.com')->get();
+        $user = DB::table('users')->where('email', 'admin@example.com')->get();
         if (count($user) <= 0) {
             $data = [
                 [
-                    'email' => 'admin@gmail.com',
-                    'password' => bcrypt('123456'),
-                    'name' => 'admin',
-                    'birthday' => '1999-1-1',
-                    'phone_number' => '0123456789',
-                    'address' => 'Bình Định',
-                    'roles_id' => 1,
+                    'email'         => 'admin@example.com',
+                    'password'      => bcrypt('123456'),
+                    'name'          => 'admin',
+                    'birthday'      => '1999-1-1',
+                    'phone_number'  => '0123456789',
+                    'address'       => 'Bình Định',
+                    'role_id'      => 1,
                 ]
             ];
             DB::table('users')->insert($data);

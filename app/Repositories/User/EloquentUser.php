@@ -5,7 +5,7 @@ namespace App\Repositories\User;
 use App\Repositories\BaseRepository;
 use App\Repositories\User\UserRepository;
 use App\Repositories\EloquentRepository;
-use App\User;
+use App\Models\User;
 
 class EloquentUser extends EloquentRepository implements BaseRepository, UserRepository{
     

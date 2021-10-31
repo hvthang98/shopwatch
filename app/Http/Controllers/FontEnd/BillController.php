@@ -5,9 +5,9 @@ namespace App\Http\Controllers\FontEnd;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Bills;
+use App\Models\Order;
 use App\Models\Carts;
-use App\Models\BillDetails;
+use App\Models\OrderDetails;
 use App\Models\Products;
 
 class BillController extends Controller
@@ -62,7 +62,7 @@ class BillController extends Controller
     }
     public function show(Request $request)
     {
-        $bill = Bills::find($request->id);
+        $bill = Order::find($request->id);
         if(!isset($bill)){
             return redirect()->route('fontend.index');
         }

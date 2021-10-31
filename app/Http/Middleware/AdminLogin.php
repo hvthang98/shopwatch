@@ -16,15 +16,9 @@ class AdminLogin
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check()) {
-            $user = Auth::user();
-            if ($user->roles_id == 1) {
-                return $next($request);
-            } else {
-                return redirect('admin-login');
-            }
-        } else {
-            return redirect('admin-login');
+        if (Auth::check() && Auth::user()->role_id == 1) {
+            return $next($request);
         }
+        return redirect()->route('admin.login.form_login');
     }
 }

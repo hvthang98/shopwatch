@@ -42,9 +42,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="level">Chức vụ</label>
-                                    <select name="roles_id" class="form-control input-sm m-bot15">
-                                        <option value="2" {{ $user->roles_id == 2 ?'selected':''  }}>Khách hàng</option>
-                                        <option value="1" {{ $user->roles_id == 1 ?'selected':'' }}>Quản lý</option>
+                                    <select name="role_id" class="form-control input-sm m-bot15">
+                                        <option value="2" {{ $user->role_id == 2 ?'selected':''  }}>Khách hàng</option>
+                                        <option value="1" {{ $user->role_id == 1 ?'selected':'' }}>Quản lý</option>
                                     </select>
                                 </div>
                                 <button type="submit" class="btn btn-info">Cập nhật người dùng</button>

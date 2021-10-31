@@ -131,7 +131,4 @@
             </div>
         </div>
     </div>
-    <script>
-        destroyItems('/admin/product/', '#destroyProduct');
-    </script>
 @endsection

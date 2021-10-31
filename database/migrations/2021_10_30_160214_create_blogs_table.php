@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class EditMenusTable extends Migration
+class CreateBlogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class EditMenusTable extends Migration
      */
     public function up()
     {
-        Schema::create('menus', function (Blueprint $table) {
+        Schema::create('blogs', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('title');
             $table->string('slug')->unique();
-            $table->bigInteger('sort')->nullable();
-            $table->bigInteger('menu_parent')->nullable();
+            $table->longText('content')->nullable();
+            $table->string('cover_image');
+            $table->double('view')->default(0);
             $table->tinyInteger('status')->default(0);
+            $table->bigInteger('created_by')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +33,6 @@ class EditMenusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('menus');
+        Schema::dropIfExists('blogs');
     }
 }

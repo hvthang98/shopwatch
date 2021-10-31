@@ -17,5 +17,14 @@
     "Enter name menu": "Nhập tên menu",
     "List menu": "Danh sách menu",
     "Create menu": "Tạo menu",
-    "Edit menu": "Chỉnh sửa memu"
+    "Edit menu": "Chỉnh sửa memu",
+    "Add New Product" : "Thêm sản phẩm mới",
+    "Price":"Giá bán",
+    "Price Sell" : "Giá khuyến mãi",
+    "Quantily":"Số lượng",
+    "Avatar":"Ảnh đại diện",
+    "Category":"Danh mục",
+    "Brand":"Thương hiệu",
+    "Description":"Mô tả",
+    "More Information":"Thông tin bổ sung"
 }

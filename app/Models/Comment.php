@@ -6,13 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    protected $table="comment";
-    public function users()
+    protected $table = "comments";
+    protected $fillable = [
+        'content', 'images', 'reply_comment', 'user_id', 'product_id',
+    ];
+
+    public function user()
     {
-        return $this->hasOne('App\Models\Users', 'id', 'users_id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function product_id()
+    {
+        return $this->belongsTo(Product::class, 'product_id', 'id');
+    }
+
     public function replyComment()
     {
-        return $this->hasMany('App\Models\ReplyComment', 'comment_id', 'id');
+        return Comment::where('reply_comment', $this->id)->get();
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Brands;
 use App\Models\Banners;
 use App\Models\Products;
-use App\Models\Bills;
+use App\Models\Order;
 use App\Models\Carts;
 use App\Models\Menu;
 
@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('backend.layouts.header',function($view){
-            $bills=Bills::where('status',0)->count();
+            $bills=Order::where('status',0)->count();
             $view->with('numbills',$bills);
         });
         view()->composer('fontend/master/header', function ($view) {
@@ -51,7 +51,7 @@ class AppServiceProvider extends ServiceProvider
             if(Auth::check()){
                 $id=Auth::user()->id;
                 //bill
-                $bills=Bills::where('users_id',$id)->get();
+                $bills=Order::where('users_id',$id)->get();
                 $view->with('bills',$bills);
                 //cart
                 $carts=Carts::where('users_id',$id)->get();

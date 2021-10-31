@@ -64,16 +64,16 @@
     $('#add-infor').click(function() {
         let content =
             `<div class="form-group">
-                        <div class="col-lg-4">
-                            <input class="form-control name_infor" required>
-                        </div>
-                        <div class="col-lg-7">
-                            <input class="form-control content_infor" required>
-                        </div>
-                        <div class="col-lg-1">
-                            <i class="fa fa-remove remove-infor" style="font-size:24px;color:red;cursor: pointer;"></i>
-                        </div>
-                    </div>`;
+                <div class="col-lg-4">
+                    <input class="form-control name_infor" required>
+                </div>
+                <div class="col-lg-7">
+                    <textarea class="form-control content_infor" rows="3" required></textarea>
+                </div>
+                <div class="col-lg-1">
+                    <i class="fa fa-remove remove-infor" style="font-size:24px;color:red;cursor: pointer;"></i>
+                </div>
+            </div>`;
         $('.content-infor').append(content);
         resetNameInfor();
     });
@@ -87,12 +87,10 @@
         Array.from(contentElement).forEach(function(item, key) {
             item.name = `infor[${key+1}][content]`;
         });
-        console.log(nameElement, contentElement);
-
     }
+    
     $('.content-infor').on('click', '.remove-infor', function() {
         $(this).parent().parent().remove();
         resetNameInfor();
     })
-
 </script>

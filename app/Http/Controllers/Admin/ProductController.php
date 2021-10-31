@@ -4,11 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Products;
-use App\Models\Brands;
-use App\Http\Requests\{AddProductRequest,UpdateProductRequest};
-use App\Models\Categories;
-use App\Models\ImgProduct;
+use App\Models\{Product, Category, Brand};
+use App\Http\Requests\{AddProductRequest, UpdateProductRequest};
 use Illuminate\Support\Facades\Storage;
 use App\Repositories\Products\ProductRepository;
 
@@ -16,21 +13,22 @@ class ProductController extends Controller
 {
     protected $model;
 
-    public function __construct(ProductRepository $product){
+    public function __construct(ProductRepository $product)
+    {
         $this->model = $product;
     }
 
     public function index()
     {
         $products = $this->model->getData(10);
-        return view('backend.page.product.list-product', compact('products'));
+        return view('backend.product.index', compact('products'));
     }
 
     public function create()
     {
-        $brands = Brands::all();
+        $brands = Brand::all();
         $categories = Categories::orderBy('ordernum', 'asc')->get();
-        return view('backend.page.product.add-product', compact('brands','categories'));
+        return view('backend.product.create', compact('brands', 'categories'));
     }
 
     public function store(AddProductRequest $request)
@@ -43,14 +41,14 @@ class ProductController extends Controller
     {
         $product = Products::find($request->id);
         $categories = Categories::orderBy('ordernum', 'asc')->get();
-        $brands = Brands::all();
-        $info_product= json_decode($product->infor);
-        return view('backend.page.product.edit-product', compact('product','categories','brands','info_product'));
+        $brands = Brand::all();
+        $info_product = json_decode($product->infor);
+        return view('backend.page.product.edit-product', compact('product', 'categories', 'brands', 'info_product'));
     }
 
-    public function update(UpdateProductRequest $request,$id)
+    public function update(UpdateProductRequest $request, $id)
     {
-        $this->model->update($request,$id);
+        $this->model->update($request, $id);
         return redirect()->back()->with('notification', 'Thay đổi thông tin sản phẩm thành công');
     }
 

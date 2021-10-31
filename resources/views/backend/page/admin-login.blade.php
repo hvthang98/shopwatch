@@ -2,18 +2,9 @@
 
 <head>
     <title>Đăng nhập</title>
+    <base href="{{ asset('/public') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <script type="application/x-javascript">
-        addEventListener("load", function() {
-            setTimeout(hideURLbar, 0);
-        }, false);
-
-        function hideURLbar() {
-            window.scrollTo(0, 1);
-        }
-
-    </script>
     <!-- bootstrap-css -->
     <link rel="stylesheet" href="public/backend/css/bootstrap.min.css">
     <!-- //bootstrap-css -->
@@ -35,7 +26,7 @@
     <div class="log-w3">
         <div class="w3layouts-main">
             <h2>{{ __('Login') }}</h2>
-            <form action="{{ route('admin.login.isLogin') }}" method="post">
+            <form action="{{ route('admin.login') }}" method="post">
                 @csrf
                 @if (isset($tb))
                     <div><strong style="color: red;font-weight: italic;text-align: center">{{ $tb }}</strong></div>
@@ -58,11 +49,6 @@
         </div>
     </div>
     <script src="public/backend/js/bootstrap.js"></script>
-    <script src="public/backend/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="public/backend/js/scripts.js"></script>
-    <script src="public/backend/js/jquery.slimscroll.js"></script>
-    <script src="public/backend/js/jquery.nicescroll.js"></script>
-    <script src="public/backend/js/jquery.scrollTo.js"></script>
 </body>
 
 </html>

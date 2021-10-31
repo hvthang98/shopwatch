@@ -19,11 +19,11 @@ class Menu extends Model
 
     public function deleteChild()
     {
-        if(count($this->children()) <= 0){
+        if (count($this->children()) <= 0) {
             return 0;
-        }else{
+        } else {
             $children = $this->children();
-            foreach($children as $child){
+            foreach ($children as $child) {
                 $child->deleteChild();
                 $child->delete();
             }

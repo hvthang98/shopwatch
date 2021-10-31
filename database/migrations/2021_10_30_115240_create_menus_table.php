@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TableContact extends Migration
+class CreateMenusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class TableContact extends Migration
      */
     public function up()
     {
-        Schema::create('contacts', function (Blueprint $table) {
+        Schema::create('menus', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email');
-            $table->string('phone')->nullable();
-            $table->text('messages')->nullable();
-            $table->bigInteger('created_by')->nullable();
+            $table->string('slug')->unique();
+            $table->bigInteger('sort')->nullable();
+            $table->bigInteger('menu_parent')->nullable();
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class TableContact extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contacts');
+        Schema::dropIfExists('menus');
     }
 }

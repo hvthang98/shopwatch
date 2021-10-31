@@ -7,7 +7,7 @@ use App\Http\Requests\UserChangePW;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\User;
+use App\Models\User;
 use App\Models\Role;
 use App\Repositories\User\UserRepository;
 use App\Http\Requests\UpdateUserRequest;

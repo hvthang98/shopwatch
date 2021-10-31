@@ -7,36 +7,39 @@ use App\Models\ImgProduct;
 
 class Product extends Model
 {
-    const SHOW_STATUS = 'Hiện';
-    const HIDE_STATUS = 'Ẩn';
+    const STATUS_SHOW = 1, STATUS_HIDE = 0;
+
     protected $table = 'products';
-    public $guarded  = ['views'];
+    public $guarded  = [];
 
     public function brands()
     {
-        return $this->hasOne('App\Models\Brands', 'id', 'brands_id');
+        return $this->belongsTo(Brand::class, 'brand_id', 'id');
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
+
     public function imageProduct()
     {
         return $this->hasMany(ImgProduct::class, 'products_id', 'id');
     }
-    public function infoProduct()
-    {
-        return $this->hasOne('App\Models\Info_product', 'products_id', 'id');
-    }
+
     public function avatar()
     {
-        return $this->hasOne('App\Models\ImgProduct', 'products_id', 'id')->where('level', 1);
+        return $this->hasOne(ImgProduct::class, 'products_id', 'id')->where('level', 1);
     }
 
     public function getStatus()
     {
         switch ($this->status) {
-            case 0:
-                return Product::HIDE_STATUS;
+            case Product::STATUS_HIDE:
+                return __('Hide');
                 break;
-            case 1:
-                return Product::SHOW_STATUS;
+            case Product::STATUS_SHOW:
+                return __('show');
                 break;
             default:
                 return null;

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Fontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserLoginRequest;
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller

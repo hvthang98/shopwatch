@@ -5,9 +5,11 @@ use Illuminate\Support\Facades\Route;
 /**
  * sign in or login
  */
-Route::get('admin-login', 'Admin\HomeController@login');
-Route::post('admin-login', 'Admin\HomeController@isLogin')->name('admin.login.isLogin');
-Route::get('admin-logout', 'Admin\HomeController@logout')->name('admin.logout');
+Route::group(['namespace' => 'Auth', 'prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::get('login', 'LoginController@showLoginForm')->name('login.form_login');
+    Route::post('login', 'LoginController@login')->name('login');
+    Route::post('logout', 'LoginController@logout')->name('logout');
+});
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'adminlogin', 'as' => 'admin.'], function () {
     Route::get('/', function () {

@@ -4108,35 +4108,66 @@ div#graph11 {
     padding: 10px;
 }
 
-.list-media .media-content{
+.list-media .media-content {
     width: 100%;
     padding: 15px 10px;
     border-radius: 5px;
     box-shadow: inset 0 -3em 3em rgb(0 0 0 / 10%), 0 0 0 2px rgb(255 255 255);
 }
 
-.list-media .media .media{
-    margin-left: 60px;;
+.list-media .media .media {
+    margin-left: 60px;
+    ;
 }
 
-.list-media .media-content .media-action{
+.list-media .media-content .media-action {
     text-align: right;
 }
-.list-media .media-content .media-action a{
+
+.list-media .media-content .media-action a {
     color: #000;
 }
-.list-media .media-content .media-action a+a{
+
+.list-media .media-content .media-action a+a {
     margin-left: 10px;
 }
 
-.modal-header .close{
+.modal-header .close {
     margin-top: -18px;
 }
 
-.modal-header .close span{
+.modal-header .close span {
     font-size: 25px;
 }
 
-.mr-2{
+.mr-2 {
     margin-right: 5px;
+}
+
+.mr-5 {
+    margin-right: 45px;
+}
+
+/* custom select 2 */
+
+.select2.select2-container {
+    width: 100% !important;
+}
+
+.select2.select2-container .select2-selection {
+    border: 1px solid #ccc;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    height: 34px;
+    padding: 2px 8px;
+}
+
+.fz-2rem {
+    font-size: 2rem !important;
+}
+
+.form-group .form-image-review {
+    max-width: 110px;
+    max-height: 100px;
 }
