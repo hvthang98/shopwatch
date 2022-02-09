@@ -148,7 +148,10 @@ Route::group(['namespace' => 'FontEnd'], function () {
     /**
      * home client
      */
-    Route::get('/', 'HomeController@index')->name('fontend.index');
+    // Route::get('/', 'HomeController@index')->name('fontend.index');
+    Route::get('/', function () {
+        return redirect(route('admin.dashboard.index'));
+    });
 
     /**
      * login, sign up, logout of client 
