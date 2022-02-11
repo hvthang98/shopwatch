@@ -29,27 +29,27 @@
                     <th>Tùy chọn </th>
                 </tr>
 
-                @foreach ($categories as $cat)
+                @foreach ($categories as $key => $category)
                     <tr class="itemsCategory">
-                        <td>{{ $stt++ }}</td>
+                        <td>{{ $key + 1 }}</td>
                         <td>
-                            {{ $cat->name }}
+                            {{ $category->name }}
                         </td>
-                        <td id="status{{ $cat->id }}">
-                            @if ($cat->status == 0)
+                        <td id="status{{ $category->id }}">
+                            @if ($category->status == 0)
                                 <a <button class="btn btn-danger btnUnactive" type="button"
-                                    data-id="{{ $cat->id }}">Ẩn</button>
+                                    data-id="{{ $category->id }}">Ẩn</button>
                                 @else
                                     <button class="btn btn-success btnActive" type="button"
-                                        data-id="{{ $cat->id }}">Hiện</button>
+                                        data-id="{{ $category->id }}">Hiện</button>
                             @endif
                         </td>
                         <td>
-                            <a href="javascript:void(0)" data-popup-ajax="true" data-target="{{ route('admin.category.edit', ['id' => $cat->id]) }}"><i style="font-size: 20px"
+                            <a href="javascript:void(0)" data-popup-ajax="true" data-target="{{ route('admin.category.edit', ['id' => $category->id]) }}"><i style="font-size: 20px"
                                     class="fa fa-pencil text-success text-active"></i></a>
-                            <a href="{{ route('admin.category.getListProduct', ['id' => $cat->id]) }}" title="Danh sách sản phẩm"><i
+                            <a href="{{ route('admin.category.getListProduct', ['id' => $category->id]) }}" title="Danh sách sản phẩm"><i
                                     class="fa fa-list-alt" style="font-size:24px"></i></a>
-                            <a data-toggle="modal" data-target="#destroyCategory" data-id="{{ $cat->id }}"
+                            <a data-toggle="modal" data-target="#destroyCategory" data-id="{{ $category->id }}"
                                 class="destroy"><i class="fa fa-trash-o" style="font-size:24px"></i></a>
 
                         </td>

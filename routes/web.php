@@ -83,13 +83,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'admi
     Route::resource('brand', 'BrandController')->names('brand')->parameters([
         'brand' => 'id',
     ])->except('show');
-
+    
     /**
-     * Bill
+     * Order
      * 
      */
-    Route::resource('bill', 'BillController')->names('bill')->parameters([
-        'bill' => 'id',
+    Route::resource('order', 'OrderController')->names('order')->parameters([
+        'order' => 'id',
     ])->except('edit', 'create', 'store');
 
     /**

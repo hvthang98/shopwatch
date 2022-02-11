@@ -22,7 +22,7 @@
                         <span>Quản lý đơn hàng</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="{{ route('admin.bill.index') }}">Danh sách đơn hàng</a></li>
+                        <li><a href="{{ route('admin.order.index') }}">Danh sách đơn hàng</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">

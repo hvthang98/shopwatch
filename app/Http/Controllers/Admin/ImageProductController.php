@@ -22,7 +22,7 @@ class ImageProductController extends Controller
     {
         $images = $this->model->getData($request->id, 5, 'created_at');
         $products_id = $request->id;
-        return view('backend.page.product.image-product', compact('images', 'products_id'));
+        return view('backend.product.image-product', compact('images', 'products_id'));
     }
 
     public function store(Request $request)
@@ -31,14 +31,14 @@ class ImageProductController extends Controller
             'image' => 'required|mimes:jpeg,jpg,png,gif',
         ]);
         $this->model->store($request);
-        Session::flash('notification','Lưu ảnh thành công');
+        Session::flash('notification', 'Lưu ảnh thành công');
         return redirect()->back();
     }
 
     public function destroy($id)
     {
         $this->model->destroy($id);
-        Session::flash('notification','Xóa ảnh thành công');
+        Session::flash('notification', 'Xóa ảnh thành công');
         return redirect()->back();
     }
 
@@ -52,14 +52,19 @@ class ImageProductController extends Controller
         }
         return response()->json([
             'success' => true,
-            'message' =>'Cập nhật trạng thái thành công',
+            'message' => 'Cập nhật trạng thái thành công',
         ]);
     }
-    //change avatar
+
+    /**
+     * Change avatar product
+     * 
+     */
+
     public function changeAvatar(Request $request)
     {
         $this->model->changeAvatar($request);
-        Session::flash('notification','Thay đổi avatar thành công');
+        Session::flash('notification', 'Thay đổi avatar thành công');
         return redirect()->back();
     }
 }

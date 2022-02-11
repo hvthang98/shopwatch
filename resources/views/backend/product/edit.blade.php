@@ -90,7 +90,7 @@
                                     <label for="password" class="control-label col-lg-3">Mô tả</label>
                                     <div class="col-lg-6">
                                         <textarea class="ckeditor" id="content"
-                                            name="content">{{ $product->content }}</textarea>
+                                            name="description">{{ $product->description }}</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group ">
@@ -115,21 +115,13 @@
                                 <div class="form-group">
                                     <label class="control-label col-lg-3">Tags</label>
                                     <?php $tags = explode(',', $product->tags); ?>
-                                    <select name="tags[]" class="form-control multi-tag" style="width: 500px"
-                                        multiple="multiple">
+                                    <select name="tags[]" class="form-control multi-tag" style="width: 500px" multiple="multiple">
                                         @foreach ($tags as $tag)
                                             @if ($tag != '')
                                                 <option selected="selected">{{ $tag }}</option>
                                             @endif
                                         @endforeach
                                     </select>
-                                    <script type="text/javascript">
-                                        $(".multi-tag").select2({
-                                            tags: true,
-                                            tokenSeparators: [',']
-                                        })
-
-                                    </script>
                                 </div>
                                 <div class="form-group ">
                                     <label for="sellprice" class="control-label col-lg-3">Trạng thái</label>
@@ -202,10 +194,11 @@
         </div>
         <!-- page end-->
     </div>
-    <script>
-        CKEDITOR.replace( 'content', {
-            filebrowserBrowseUrl: '{{ route('ckfinder_browser') }}',
-        });
+    <script type="text/javascript">
+        $(".multi-tag").select2({
+            tags: true,
+            tokenSeparators: [',']
+        })
     </script>
-    @include('backend.page.product.product_js')
+    @include('backend.product.product_js')
 @endsection

@@ -160,7 +160,7 @@
                         <div class="alert alert-info clearfix">
                             <span class="alert-icon"><i class="fa fa-shopping-cart"></i></span>
                             <div class="noti-info">
-                                <a href="{{ route('admin.bill.index') }}"><span>{{ $numbills }}</span> đơn hàng
+                                <a href="{{ route('admin.order.index') }}"><span>{{ $numbills }}</span> đơn hàng
                                     chưa xứ lý</a>
                             </div>
                         </div>

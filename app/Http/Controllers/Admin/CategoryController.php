@@ -3,33 +3,29 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\BrandCategories;
-use App\Models\Brands;
 use Illuminate\Http\Request;
-use App\Models\Categories;
-use App\Models\Products;
+use App\Models\{Category, Product, Brand};
 
 class CategoryController extends Controller
 {
 	public function index()
 	{
-		$categories = Categories::orderBy('ordernum', 'asc')->paginate(10);
-		$brand = Brands::all();
-		$stt = $categories->firstItem();
-		return view('backend.page.category.index', ['categories' => $categories, 'stt' => $stt, 'brands' => $brand]);
+		$categories = Category::paginate(10);
+		$brands = Brand::all();
+		return view('backend.categories.index', compact('categories', 'brands'));
 	}
 
 	public function create()
 	{
-		$data['categories'] = Categories::orderBy('ordernum', 'asc')->get();
-		return view('backend.page.category.create', $data);
+		$data['categories'] = Category::get();
+		return view('backend.categories.create', $data);
 	}
 
 	public function store(Request $request)
 	{
 		$request->validate(['category_name' => 'required']);
 		$ordernum = $request->ordernum;
-		$list = Categories::where('ordernum', '>', $ordernum)->get();
+		$list = Category::where('ordernum', '>', $ordernum)->get();
 		foreach ($list as $item) {
 			$item->ordernum = $item->ordernum + 1;
 			$item->save();
@@ -44,19 +40,20 @@ class CategoryController extends Controller
 
 	public function edit($id)
 	{
-		$category = Categories::find($id);
-		$categories = Categories::orderBy('ordernum', 'asc')->get();
+		$category = Category::find($id);
+		$categories = Category::get();
 
-		return view('backend.page.category.edit', compact('category', 'categories'));
+		return view('backend.categories.edit', compact('category', 'categories'));
 	}
+
 	public function update(Request $request, $id)
 	{
 		$name = $request->edit_category_name;
 		$status = $request->edit_status;
-		$category = Categories::find($id);
+		$category = Category::find($id);
 		$ordernum = $request->ordernum;
 		if ($ordernum != 'null') {
-			$list = Categories::where('ordernum', '>', $ordernum)->get();
+			$list = Category::where('ordernum', '>', $ordernum)->get();
 			foreach ($list as $item) {
 				$item->ordernum = $item->ordernum + 1;
 				$item->save();
@@ -71,14 +68,14 @@ class CategoryController extends Controller
 
 	public function destroy($id)
 	{
-		Categories::find($id)->delete();
+		Category::find($id)->delete();
 		return redirect()->route('admin.category.index')->with(['notification' => 'Đã xóa danh mục thành công']);
 	}
 
 	public function active($id)
 	{
 		try {
-			$category = Categories::find($id);
+			$category = Category::find($id);
 			$category->status = 1;
 			$category->save();
 			return response()->json([
@@ -98,7 +95,7 @@ class CategoryController extends Controller
 	public function unactive($id)
 	{
 		try {
-			$category = Categories::find($id);
+			$category = Category::find($id);
 			$category->status = 0;
 			$category->save();
 			return response()->json([
@@ -114,20 +111,22 @@ class CategoryController extends Controller
 			]);
 		}
 	}
+
 	public function storeBrand(Request $req)
 	{
-		BrandCategories::firstOrCreate(['categories_id' => $req->category, 'brands_id' => $req->brand]);
+		BrandCategory::firstOrCreate(['categories_id' => $req->category, 'brands_id' => $req->brand]);
 		return redirect()->back();
 	}
+
 	public function deleteBrand($id)
 	{
-		$data = BrandCategories::find($id)->delete();
+		$data = BrandCategory::find($id)->delete();
 		return redirect()->back();
 	}
 
 	public function getListProduct($id)
 	{
 		$products = Products::where('categories_id', $id)->paginate(15);
-		return view('backend.page.category.list_product', compact('products'));
+		return view('backend.categories.list_product', compact('products'));
 	}
 }

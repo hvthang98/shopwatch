@@ -18,7 +18,7 @@ class EloquentImgProduct extends EloquentRepository implements BaseRepository, I
 
     public function getData($id, $limit = 10, $column = null, $sort = 'desc')
     {
-        $imgProduct = $this->model->where('products_id', $id);
+        $imgProduct = $this->model->where('product_id', $id);
         if ($column !== null) {
             $imgProduct = $imgProduct->orderBy($column, $sort);
         }

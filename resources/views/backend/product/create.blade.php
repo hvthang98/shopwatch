@@ -4,7 +4,6 @@
 @endsection
 @section('main-content')
     <div class="form-w3layouts">
-        <!-- page start-->
         <div class="row">
             <div class="col-lg-12">
                 <section class="panel">
@@ -29,29 +28,31 @@
                                 <div class="form-group">
                                     <label for="price" class="control-label col-lg-3">{{ __('Price') }}</label>
                                     <div class="col-lg-6">
-                                        <input class="form-control" data-toggle="number" data-format="default" id="price" name="price" type="text"
-                                            required value="{{ old('price') }}">
+                                        <input class="form-control" data-toggle="number" data-format="default" id="price"
+                                            name="price" type="text" required value="{{ old('price') }}">
                                     </div>
                                 </div>
                                 <div class="form-group ">
                                     <label for="sellprice" class="control-label col-lg-3">{{ __('Price Sell') }}</label>
                                     <div class="col-lg-6">
-                                        <input class="form-control" id="sellprice" name="sellprice" type="text" data-toggle="number" data-format="default"
-                                            required value="{{ old('sellprice') }}">
+                                        <input class="form-control" id="sellprice" name="sellprice" type="text"
+                                            data-toggle="number" data-format="default" required
+                                            value="{{ old('sellprice') }}">
                                     </div>
                                 </div>
                                 <div class="form-group ">
                                     <label for="sellprice" class="control-label col-lg-3">{{ __('Quantily') }}</label>
                                     <div class="col-lg-6">
-                                        <input class="form-control" id="quantily" name="quantily" type="text" data-toggle="number" data-format="default"
-                                            value="{{ old('quantily') }}" required>
+                                        <input class="form-control" id="quantily" name="quantily" type="text"
+                                            data-toggle="number" data-format="default" value="{{ old('quantily') }}"
+                                            required>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="control-label col-lg-3">{{ __('Avatar') }}</label>
                                     <div class="col-lg-6">
-                                        <input class="form-control " id="image" name="image" type="file" data-type="image" data-review="#avatar_review"
-                                            value="{{ old('image') }}" required>
+                                        <input class="form-control " id="image" name="image" type="file" data-type="image"
+                                            data-review="#avatar_review" value="{{ old('image') }}" required>
                                     </div>
                                     <div class="col-lg-2">
                                         <img src="" alt="" class="form-image-review" id="avatar_review">
@@ -71,7 +72,8 @@
                                         </select>
                                     </div>
                                     <div>
-                                        <a data-toggle="modal" data-target="#addCategory"><i class="fa fa-plus-square-o fz-2rem pt-2"></i></a>
+                                        <a data-toggle="modal" data-target="#addCategory"><i
+                                                class="fa fa-plus-square-o fz-2rem pt-2"></i></a>
                                     </div>
                                 </div>
                                 <div class="form-group ">
@@ -87,7 +89,8 @@
                                         </select>
                                     </div>
                                     <div id="formAddBrand">
-                                        <a data-toggle="modal" data-target="#addBrand"><i class="fa fa-plus-square-o fz-2rem pt-2"></i></a>
+                                        <a data-toggle="modal" data-target="#addBrand"><i
+                                                class="fa fa-plus-square-o fz-2rem pt-2"></i></a>
                                     </div>
                                 </div>
 
@@ -95,20 +98,10 @@
                                     <label for="password" class="control-label col-lg-3">{{ __('Description') }}</label>
                                     <div class="col-lg-6">
                                         <textarea class="ckeditor" id="content"
-                                            name="content">{{ old('content') }}</textarea>
+                                            name="description">{{ old('description') }}</textarea>
                                     </div>
                                 </div>
 
-                                {{--  <div class="form-group ">
-                                    <label for="" class="control-label col-lg-3">Danh mục trang chủ</label>
-                                    <div class="col-lg-6">
-                                        <select class="form-control m-bot15" name="ordernum" required>
-                                            <option value="0" checked>Không hiển thị trang chủ</option>
-                                            <option value="1">Sản phẩm nổi bật</option>
-                                            <option value="2">Sản phẩm mới</option>
-                                        </select>
-                                    </div>
-                                </div>  --}}
                                 <div class="form-group ">
                                     <label for="sellprice" class="control-label col-lg-3">{{ __('Status') }}</label>
                                     <div class="col-lg-6">
@@ -138,7 +131,8 @@
                                                 <div>
                                                     <div class="form-group">
                                                         <div class="col-lg-4 text-center"><b>{{ __('Name') }}</b></div>
-                                                        <div class="col-lg-8 text-center"><b>{{ __('Description') }}</b></div>
+                                                        <div class="col-lg-8 text-center"><b>{{ __('Description') }}</b>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="content-infor">

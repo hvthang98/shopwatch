@@ -38,11 +38,10 @@ class EloquentProduct extends EloquentRepository implements BaseRepository, Prod
             'price' => clearNumber($request->price),
             'sellprice' => clearNumber($request->sellprice),
             'quantily' => clearNumber($request->quantily),
-            'content' => $request->content,
+            'description' => $request->description,
             'status' => $request->status,
-            'ordernum' => $request->ordernum,
-            'categories_id' => $request->category,
-            'brands_id' => $request->brands,
+            'category_id' => $request->category,
+            'brand_id' => $request->brands,
         ];
         if(isset($request->tags)){
             $data['tags'] = implode(',', $request->tags);
@@ -84,11 +83,10 @@ class EloquentProduct extends EloquentRepository implements BaseRepository, Prod
             'price' => clearNumber($request->price),
             'sellprice' => clearNumber($request->sellprice),
             'quantily' => clearNumber($request->quantily),
-            'content' => $request->content,
+            'description' => $request->description,
             'status' => $request->status,
-            'ordernum' => $request->ordernum,
-            'categories_id' => $request->category,
-            'brands_id' => $request->brands,
+            'category_id' => $request->category,
+            'brand_id' => $request->brands,
         ];
         if(isset($request->tags)){
             $data['tags'] = implode(',', $request->tags);

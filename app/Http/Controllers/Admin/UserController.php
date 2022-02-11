@@ -15,6 +15,7 @@ use App\Http\Requests\UpdateUserRequest;
 class UserController extends Controller
 {
 	protected $model;
+	
 	public function __construct(UserRepository $user)
 	{
 		$this->model = $user;
@@ -23,7 +24,7 @@ class UserController extends Controller
 	public function create()
 	{
 		$roles = Role::all();
-		return view('backend.page.user.add-user', compact('roles'));
+		return view('backend.users.create', compact('roles'));
 	}
 
 	public function store(UserRequest $request)
@@ -35,14 +36,14 @@ class UserController extends Controller
 	public function index()
 	{
 		$users = User::paginate(5);
-		return view('backend.page.user.index', ['users' => $users]);
+		return view('backend.users.index', ['users' => $users]);
 	}
 
 	public function edit($id)
 	{
 		$user = User::where('id', $id)->get();
 
-		return view('backend.page.user.edit-user', ['user' => $user]);
+		return view('backend.users.edit', ['user' => $user]);
 	}
 
 	public function update(UpdateUserRequest $request, $id)
@@ -60,12 +61,12 @@ class UserController extends Controller
 	public function show(Request $request)
 	{
 		$data['user'] = User::find($request->id);
-		return view('backend.page.user.infor-user', $data);
+		return view('backend.users.profile', $data);
 	}
 
 	public function changePassword(Request $request)
 	{
-		return view('backend.page.user.change-pw-user');
+		return view('backend.users.change_password');
 	}
 
 	public function updatePassword(UserChangePW $request)

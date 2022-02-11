@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\{Product, Category, Brand};
-use App\Http\Requests\{AddProductRequest, UpdateProductRequest};
+use App\Http\Requests\{CreateProductRequest, UpdateProductRequest};
 use Illuminate\Support\Facades\Storage;
 use App\Repositories\Products\ProductRepository;
 
@@ -27,11 +27,11 @@ class ProductController extends Controller
     public function create()
     {
         $brands = Brand::all();
-        $categories = Categories::orderBy('ordernum', 'asc')->get();
+        $categories = Category::get();
         return view('backend.product.create', compact('brands', 'categories'));
     }
 
-    public function store(AddProductRequest $request)
+    public function store(CreateProductRequest $request)
     {
         $this->model->store($request);
         return redirect(route('admin.product.index'))->with('notification', 'Thêm sản phẩm thành công');
@@ -39,11 +39,11 @@ class ProductController extends Controller
 
     public function edit(Request $request)
     {
-        $product = Products::find($request->id);
-        $categories = Categories::orderBy('ordernum', 'asc')->get();
+        $product = Product::find($request->id);
+        $categories = Category::get();
         $brands = Brand::all();
         $info_product = json_decode($product->infor);
-        return view('backend.page.product.edit-product', compact('product', 'categories', 'brands', 'info_product'));
+        return view('backend.product.edit', compact('product', 'categories', 'brands', 'info_product'));
     }
 
     public function update(UpdateProductRequest $request, $id)
@@ -54,7 +54,7 @@ class ProductController extends Controller
 
     public function destroy(Request $request)
     {
-        $product = Products::find($request->id);
+        $product = Product::find($request->id);
         $path = 'product' . ($request->id);
         Storage::deleteDirectory($path);
         $product->delete();
@@ -63,7 +63,7 @@ class ProductController extends Controller
 
     public function updateInfoProduct(Request $request)
     {
-        $product = Products::find($request->id);
+        $product = Product::find($request->id);
         $product->infor = $request->content;
         $product->save();
         return true;

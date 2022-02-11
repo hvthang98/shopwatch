@@ -24,7 +24,7 @@ class Product extends Model
 
     public function imageProduct()
     {
-        return $this->hasMany(ImgProduct::class, 'products_id', 'id');
+        return $this->hasMany(ImgProduct::class, 'product_id', 'id');
     }
 
     public function avatar()

@@ -32,7 +32,7 @@
         <div class="panel-heading">
             Danh sách sản phẩm
         </div>
-        <a class="btn btn-primary" href="{{ route('admin.product.create') }}" role="button" style="float: right"><i class="fa fa-plus-square" style="margin-right:10px"></i> Thêm sản phẩm</a>
+        <a class="btn btn-primary" href="{{ route('admin.product.create') }}" role="button" style="float: right; margin: 10px"><i class="fa fa-plus-square" style="margin-right:10px"></i> Thêm sản phẩm</a>
         <div style="padding: 15px 10px 10px 10px">
             <form action="{{ route('admin.seach.products') }}" method="GET">
                 <input type="text" class="form-control search" placeholder="Tìm kiếm sản phẩm" name="key">
@@ -54,21 +54,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @php
-                    $i=$products->firstItem();
-                    @endphp
-                    @foreach ($products as $product)
+                    @foreach ($products as $key => $product)
                         <tr>
 
-                            <td>{{ $i++ }}</td>
+                            <td>{{ $key+1 }}</td>
                             <td>{{ $product->name }}</td>
                             <td>{{ number_format($product->price) }}</td>
                             <td>{{ number_format($product->sellprice) }}</td>
                             <td>{{ number_format($product->quantily) }}</td>
                             <td>
-                                @if (isset($product->avatar->image))
+                                {{-- @if (isset($product->avatar->image))
                                     <img src="storage/{{ $product->avatar->image }}" alt="" class="list-img">
-                                @endif
+                                @endif --}}
                             </td>
                             <td>
                                 @if (isset($product->brands->name))

@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class ImgProduct extends Model
 {
-    protected $table = 'image_product';
+    protected $table = 'image_products';
     protected $fillable = [
-        'image', 'status', 'level', 'products_id',
+        'image', 'status', 'level', 'product_id',
     ];
 
     public function product()

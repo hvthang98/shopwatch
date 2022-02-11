@@ -72,7 +72,7 @@
                                             title="Xóa" data-id="{{ $brand->id }}">
                                             <i class="fa fa-times style-icon"></i>
                                         </a>
-                                        <a href="{{ route('admin.brand.getListProduct', ['id' => $brand->id]) }}"
+                                        <a href=""
                                             title="Danh sách sản phẩm"><i class="fa fa-list-alt"
                                                 style="font-size:24px"></i></a>
                                         </a>
